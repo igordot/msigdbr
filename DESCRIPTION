@@ -1,0 +1,17 @@
+Package: msigdbr
+Type: Package
+Title: MSigDB for Common Model Organisms in a Tidy Data Format
+Version: 6.1.1
+Author: 
+Description: 
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.2.0),
+    dplyr (>= 0.7.0),
+    tibble
+Imports: 
+    magrittr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1
