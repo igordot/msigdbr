@@ -3,6 +3,7 @@
 #'
 #' @return a vector of possible species
 #' @importFrom magrittr %>%
+#' @import dplyr
 #' @export
 msigdbr_show_species <- function() {
 
@@ -18,6 +19,7 @@ msigdbr_show_species <- function() {
 #'
 #' @return a data frame of gene sets with one gene per row
 #' @importFrom magrittr %>%
+#' @import dplyr
 #' @export
 #'
 #' @examples

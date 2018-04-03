@@ -2,4 +2,5 @@
 
 export(msigdbr)
 export(msigdbr_show_species)
+import(dplyr)
 importFrom(magrittr,"%>%")
