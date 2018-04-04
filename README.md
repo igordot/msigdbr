@@ -1,5 +1,8 @@
 # msigdbr: MSigDB for Multiple Organisms in a Tidy Data Format
 
+[![Travis Build Status](https://travis-ci.org/igordot/msigdbr.svg?branch=master)](https://travis-ci.org/igordot/msigdbr)
+[![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
+
 ## Overview
 
 Most people who work with genomic data are eventually tasked with performing pathway analysis.
