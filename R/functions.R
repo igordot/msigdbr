@@ -33,6 +33,11 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   # filter by species
   msigdbr_orthologs_subset = msigdbr_orthologs %>% filter(species_name == species)
 
+  # confirm that the species exists in the database
+  if (nrow(msigdbr_orthologs_subset) == 0) {
+    stop("species does not exist in the database: ", species)
+  }
+
   # filter by category
   if (is.null(category)) {
     msigdbr_genesets_subset = msigdbr_genesets

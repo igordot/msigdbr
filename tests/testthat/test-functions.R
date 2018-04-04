@@ -27,3 +27,5 @@ expect_gt(nrow(msigdbr_cp), 1000)
 msigdbr_bp = msigdbr(species = "Homo sapiens", category = "C5", subcategory = "BP")
 expect_s3_class(msigdbr_bp, "tbl_df")
 expect_gt(nrow(msigdbr_bp), 1000)
+
+expect_error(msigdbr(species = "x"))

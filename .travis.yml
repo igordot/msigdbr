@@ -1,8 +1,17 @@
 language: r
 cache: packages
 
+os:
+  - linux
+  - osx
+
 r_packages:
   - covr
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
