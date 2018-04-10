@@ -1,7 +1,21 @@
-# msigdbr: MSigDB for Multiple Organisms in a Tidy Data Format
+---
+title: "Introduction to msigdbr"
+output:
+  rmarkdown::html_vignette:
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to msigdbr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-[![Travis Build Status](https://travis-ci.org/igordot/msigdbr.svg?branch=master)](https://travis-ci.org/igordot/msigdbr)
-[![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(width = 90)
+```
 
 ## Overview
 
@@ -16,67 +30,37 @@ The goal of `msigdbr` is to provide MSigDB gene sets:
 * as both gene symbols and Entrez Gene IDs
 * that can be used and shared in a script without requiring additional files
 
-## Installation
-
-```r
-devtools::install_github("igordot/msigdbr")
-```
-
 ## Usage
 
 Load package.
 
-```r
+```{r load-package, message=FALSE}
 library(msigdbr)
 ```
 
 Check the species available in the database.
 
-```r
+```{r show-species}
 msigdbr_show_species()
-#>  [1] "Bos taurus"               "Caenorhabditis elegans"   "Canis lupus familiaris"  
-#>  [4] "Danio rerio"              "Drosophila melanogaster"  "Gallus gallus"           
-#>  [7] "Homo sapiens"             "Mus musculus"             "Rattus norvegicus"       
-#> [10] "Saccharomyces cerevisiae" "Sus scrofa"
 ```
 
 Retrieve all human gene sets.
 
-```r
+```{r get-human-all}
 m_df = msigdbr(species = "Homo sapiens")
 head(m_df)
-#> # A tibble: 6 x 9
-#>   gs_name    gs_id gs_cat gs_subcat human_gene_symb… species_name entrez_gene gene_symbol
-#>   <chr>      <chr> <chr>  <chr>     <chr>            <chr>              <int> <chr>      
-#> 1 AAACCAC_M… M126… C3     MIR       ABCC4            Homo sapiens       10257 ABCC4      
-#> 2 AAACCAC_M… M126… C3     MIR       ACTN4            Homo sapiens          81 ACTN4      
-#> 3 AAACCAC_M… M126… C3     MIR       ACVR1            Homo sapiens          90 ACVR1      
-#> 4 AAACCAC_M… M126… C3     MIR       ADAM9            Homo sapiens        8754 ADAM9      
-#> 5 AAACCAC_M… M126… C3     MIR       ADAMTS5          Homo sapiens       11096 ADAMTS5    
-#> 6 AAACCAC_M… M126… C3     MIR       AGER             Homo sapiens         177 AGER       
-#> # ... with 1 more variable: sources <chr>
 ```
 
 Retrieve mouse hallmark collection gene sets.
 
-```r
+```{r get-mouse-h}
 m_df = msigdbr(species = "Mus musculus", category = "H")
 head(m_df)
-#> # A tibble: 6 x 9
-#>   gs_name    gs_id gs_cat gs_subcat human_gene_symb… species_name entrez_gene gene_symbol
-#>   <chr>      <chr> <chr>  <chr>     <chr>            <chr>              <int> <chr>      
-#> 1 HALLMARK_… M5905 H      ""        ABCA1            Mus musculus       11303 Abca1      
-#> 2 HALLMARK_… M5905 H      ""        ABCB8            Mus musculus       74610 Abcb8      
-#> 3 HALLMARK_… M5905 H      ""        ACAA2            Mus musculus       52538 Acaa2      
-#> 4 HALLMARK_… M5905 H      ""        ACADL            Mus musculus       11363 Acadl      
-#> 5 HALLMARK_… M5905 H      ""        ACADM            Mus musculus       11364 Acadm      
-#> 6 HALLMARK_… M5905 H      ""        ACADS            Mus musculus       11409 Acads      
-#> # ... with 1 more variable: sources <chr>
 ```
 
 The gene sets data frame can also be manipulated manually.
 
-```r
+```{r get-mouse-h-filter}
 m_df = msigdbr(species = "Mus musculus") %>% dplyr::filter(gs_cat == "H")
 ```
 
@@ -84,21 +68,21 @@ m_df = msigdbr(species = "Mus musculus") %>% dplyr::filter(gs_cat == "H")
 
 Use the gene sets data frame for `clusterProfiler` (for genes as Entrez Gene IDs).
 
-```r
+```{r cp-entrez, eval=FALSE}
 m_t2g = m_df %>% dplyr::select(gs_name, entrez_gene) %>% as.data.frame()
 enricher(gene = genes_entrez, TERM2GENE = m_t2g, ...)
 ```
 
 Use the gene sets data frame for `clusterProfiler` (for genes as gene symbols).
 
-```r
+```{r cp-symbols, eval=FALSE}
 m_t2g = m_df %>% dplyr::select(gs_name, gene_symbol) %>% as.data.frame()
 enricher(gene = genes_symbols, TERM2GENE = m_t2g, ...)
 ```
 
 Use the gene sets data frame for `fgsea`.
 
-```r
+```{r fgsea, eval=FALSE}
 m_list = m_df %>% split(x = .$gene_symbol, f = .$gs_name)
 fgsea(pathways = m_list, ...)
 ```

@@ -3,11 +3,12 @@
 #'
 #' @return a vector of possible species
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
 #' @import dplyr
 #' @export
 msigdbr_show_species <- function() {
 
-  msigdbr_orthologs %>% pull(species_name) %>% unique() %>% sort()
+  msigdbr_orthologs %>% pull(.data$species_name) %>% unique() %>% sort()
 
 }
 
@@ -19,6 +20,8 @@ msigdbr_show_species <- function() {
 #'
 #' @return a data frame of gene sets with one gene per row
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#' @import tibble
 #' @import dplyr
 #' @export
 #'
@@ -31,32 +34,30 @@ msigdbr_show_species <- function() {
 msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
 
   # filter by species
-  msigdbr_orthologs_subset = msigdbr_orthologs %>% filter(species_name == species)
+  orthologs_subset = filter(msigdbr_orthologs, .data$species_name == species)
 
   # confirm that the species exists in the database
-  if (nrow(msigdbr_orthologs_subset) == 0) {
+  if (nrow(orthologs_subset) == 0) {
     stop("species does not exist in the database: ", species)
   }
 
+  genesets_subset = msigdbr_genesets
+
   # filter by category
-  if (is.null(category)) {
-    msigdbr_genesets_subset = msigdbr_genesets
-  } else {
-    msigdbr_genesets_subset = msigdbr_genesets %>% filter(gs_cat == category)
+  if (is.character(category)) {
+    genesets_subset = filter(genesets_subset, .data$gs_cat == category)
   }
 
   # filter by sub-category
-  if (is.null(subcategory)) {
-    msigdbr_genesets_subset = msigdbr_genesets_subset
-  } else {
-    msigdbr_genesets_subset = msigdbr_genesets_subset %>% filter(gs_subcat == subcategory)
+  if (is.character(subcategory)) {
+    genesets_subset = filter(genesets_subset, .data$gs_subcat == subcategory)
   }
 
   # combine gene sets and orthologs
-  msigdbr_genesets_subset %>%
-    inner_join(msigdbr_orthologs_subset, by = "human_entrez_gene") %>%
-    arrange(gs_name, human_gene_symbol) %>%
-    select(-human_entrez_gene, -num_sources)
+  genesets_subset %>%
+    inner_join(orthologs_subset, by = "human_entrez_gene") %>%
+    arrange(.data$gs_name, .data$human_gene_symbol) %>%
+    select(-.data$human_entrez_gene, -.data$num_sources)
 
 }
 

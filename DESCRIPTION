@@ -4,9 +4,11 @@ Title: MSigDB for Multiple Organisms in a Tidy Data Format
 Version: 6.1.1
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: MIT
+Description: The msigdbr package provides The Molecular Signatures Database
+    (MSigDB) gene sets used with the Gene Set Enrichment Analysis (GSEA)
+    software for various frequently studied model organisms in an R-friendly
+    format.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -14,7 +16,11 @@ Depends:
     dplyr (>= 0.7.0),
     tibble
 Imports:
-    magrittr
-Suggests: testthat
+    magrittr,
+    rlang
+Suggests: testthat,
+    knitr,
+    rmarkdown
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr
