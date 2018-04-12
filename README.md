@@ -1,5 +1,6 @@
 # msigdbr: MSigDB for Multiple Organisms in a Tidy Data Format
 
+![](http://www.r-pkg.org/badges/version/msigdbr)
 [![Travis Build Status](https://travis-ci.org/igordot/msigdbr.svg?branch=master)](https://travis-ci.org/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
@@ -19,7 +20,7 @@ The goal of `msigdbr` is to provide MSigDB gene sets:
 ## Installation
 
 ```r
-devtools::install_github("igordot/msigdbr")
+install.packages("msigdbr")
 ```
 
 ## Usage
