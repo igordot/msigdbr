@@ -1,6 +1,6 @@
 # msigdbr: MSigDB for Multiple Organisms in a Tidy Data Format
 
-![](http://www.r-pkg.org/badges/version/msigdbr)
+[![CRAN](http://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![Travis Build Status](https://travis-ci.org/igordot/msigdbr.svg?branch=master)](https://travis-ci.org/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
