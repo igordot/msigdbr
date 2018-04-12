@@ -1,7 +1,7 @@
 Package: msigdbr
 Type: Package
 Title: MSigDB for Multiple Organisms in a Tidy Data Format
-Version: 6.1.1
+Version: 6.1.1.9000
 Authors@R: person("Igor", "Dolgalev", email = "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
 Description: Provides the 'Molecular Signatures Database' (MSigDB) gene sets
     used with the 'Gene Set Enrichment Analysis' (GSEA) software (Subramanian et
