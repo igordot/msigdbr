@@ -2,8 +2,6 @@
 #' List the species available in msigdbr.
 #'
 #' @return a vector of possible species
-#' @importFrom magrittr %>%
-#' @importFrom rlang .data
 #' @import dplyr
 #' @export
 msigdbr_show_species <- function() {
@@ -19,8 +17,6 @@ msigdbr_show_species <- function() {
 #' @param subcategory sub-collection, such as CGP, MIR, BP, etc.
 #'
 #' @return a data frame of gene sets with one gene per row
-#' @importFrom magrittr %>%
-#' @importFrom rlang .data
 #' @import tibble
 #' @import dplyr
 #' @export

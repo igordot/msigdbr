@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^data-raw$
+^cran-comments\.md$
+^LICENSE\.md$
 ^\.travis\.yml$
