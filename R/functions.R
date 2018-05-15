@@ -1,5 +1,5 @@
 
-#' List the species available in msigdbr.
+#' List the species available in the msigdbr package
 #'
 #' @return a vector of possible species
 #' @import dplyr
@@ -10,7 +10,7 @@ msigdbr_show_species <- function() {
 
 }
 
-#' Retrieve msigdbr data frame.
+#' Retrieve the msigdbr data frame
 #'
 #' @param species species name, such as Homo sapiens, Mus musculus, etc.
 #' @param category collection, such as H, C1, C2, C3, C4, C5, C6, C7.

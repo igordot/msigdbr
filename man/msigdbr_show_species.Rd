@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{msigdbr_show_species}
 \alias{msigdbr_show_species}
-\title{List the species available in msigdbr.}
+\title{List the species available in the msigdbr package}
 \usage{
 msigdbr_show_species()
 }
@@ -10,5 +10,5 @@ msigdbr_show_species()
 a vector of possible species
 }
 \description{
-List the species available in msigdbr.
+List the species available in the msigdbr package
 }

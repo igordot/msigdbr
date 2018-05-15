@@ -19,16 +19,23 @@ options(width = 90)
 
 ## Overview
 
-Most people who work with genomic data are eventually tasked with performing pathway analysis.
-The majority of pathways analysis software tools are R-based.
+Performing pathway analysis is a common task in genomics and there are many available software tools, many of which are R-based.
 Depending on the tool, it may be necessary to import the pathways into R, translate genes to the appropriate species, convert between symbols and IDs, and format the object in the required way.
 
-The goal of `msigdbr` is to provide MSigDB gene sets:
+The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
-* for various frequently studied model organisms
 * in an R-friendly format (a data frame in a "long" format with one gene per row)
-* as both gene symbols and Entrez Gene IDs
-* that can be used and shared in a script without requiring additional files
+* for multiple frequently studied model organisms (human, mouse, rat, pig, fly, yeast, etc.)
+* as both gene symbols and Entrez Gene IDs (for better compatibility with pathway enrichment tools)
+* that can be used in a script without requiring additional external files
+
+## Installation
+
+The package can be installed from CRAN.
+
+```{r install-package, eval=FALSE}
+install.packages("msigdbr")
+```
 
 ## Usage
 
@@ -38,7 +45,7 @@ Load package.
 library(msigdbr)
 ```
 
-Check the species available in the database.
+Check the available species.
 
 ```{r show-species}
 msigdbr_show_species()

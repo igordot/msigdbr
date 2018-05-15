@@ -1,13 +1,15 @@
 Package: msigdbr
 Type: Package
-Title: MSigDB for Multiple Organisms in a Tidy Data Format
+Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
 Version: 6.1.1.9000
 Authors@R: person("Igor", "Dolgalev", email = "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
 Description: Provides the 'Molecular Signatures Database' (MSigDB) gene sets
-    used with the 'Gene Set Enrichment Analysis' (GSEA) software (Subramanian et
-    al. 2005 <doi:10.1073/pnas.0506580102>, Liberzon et al. 2015
-    <doi:10.1016/j.cels.2015.12.004>) for various frequently studied model
-    organisms in a standard R data frame with key-value pairs.
+    typically used with the 'Gene Set Enrichment Analysis' (GSEA) software
+    (Subramanian et al. 2005 <doi:10.1073/pnas.0506580102>, Liberzon et al. 2015
+    <doi:10.1016/j.cels.2015.12.004>) in a standard R data frame with key-value
+    pairs. Included are the original human gene symbols and Entrez IDs as well
+    as the equivalents for various frequently studied model organisms such as
+    mouse, rat, pig, fly, and yeast.
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/igordot/msigdbr
