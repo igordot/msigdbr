@@ -1,5 +1,5 @@
 ---
-title: "Introduction to msigdbr"
+title: "Introduction to the msigdbr package"
 output:
   rmarkdown::html_vignette:
     keep_md: true
@@ -65,7 +65,14 @@ m_df = msigdbr(species = "Mus musculus", category = "H")
 head(m_df)
 ```
 
-The gene sets data frame can also be manipulated manually.
+Retrieve mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets.
+
+```{r get-mouse-c2}
+m_df = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+head(m_df)
+```
+
+The `msigdbr()` function output can also be manipulated as a standard data frame.
 
 ```{r get-mouse-h-filter}
 m_df = msigdbr(species = "Mus musculus") %>% dplyr::filter(gs_cat == "H")
@@ -98,8 +105,9 @@ fgsea(pathways = m_list, ...)
 
 Which version of MSigDB was used?
 
-> This package was generated with MSigDB v6.1 (released October 2017).
-> The MSigDB version is used as the base of the package version. You can check with `packageVersion("msigdbr")`.
+> This package was generated with MSigDB v6.2 (released July 2018).
+> The MSigDB version is used as the base of the package version.
+> You can check the installed version with `packageVersion("msigdbr")`.
 
 Can't I just download the gene sets from MSigDB?
 
@@ -122,9 +130,9 @@ Aren't there already other similar tools?
 
 > There are a few other resources that and provide some of the functionality and served as an inspiration for this package.
 > [Ge Lab Gene Set Files](http://ge-lab.org/#/data) has GMT files for many species.
-> According the log, it was last updated in 2013 (as of April 2018) so the gene sets may be outdated.
-> [WEHI](http://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse, but the genes are provided only as Entrez IDs, each collection is a separate file, and the database is not actively maintained (last updated in October 2016 as of April 2018).
-> [MSigDF](https://github.com/stephenturner/msigdf) is based on the WEHI resource, so it provides the same data, but it is converted to a more tidyverse-friendly data frame.
+> [WEHI](http://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse, but the genes are provided only as Entrez IDs and each collection is a separate file.
+> [MSigDF](https://github.com/stephenturner/msigdf) is based on the WEHI resource, so it provides the same data, but converted to a more tidyverse-friendly data frame.
+> When `msigdbr` was initially released, all of them were multiple releases behind the latest version of MSigDB, so they are possibly no longer maintained.
 
 ## Details
 

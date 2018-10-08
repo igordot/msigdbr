@@ -4,7 +4,8 @@
 \alias{msigdbr}
 \title{Retrieve the msigdbr data frame}
 \usage{
-msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
+msigdbr(species = "Homo sapiens", category = NULL,
+  subcategory = NULL)
 }
 \arguments{
 \item{species}{species name, such as Homo sapiens, Mus musculus, etc.}

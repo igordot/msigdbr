@@ -3,17 +3,21 @@ library(dplyr)
 library(tidyr)
 library(readr)
 library(stringr)
+library(glue)
 library(xml2)
+library(usethis)
 
 # Import MSigDB gene sets -------------------------------------------------
 
 # Download the MSigDB XML file
-msigdb_xml = "msigdb_v6.1.xml"
-msigdb_xml_url = "http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.1/msigdb_v6.1.xml"
+msigdb_version = "6.2"
+msigdb_xml = glue("msigdb_v{msigdb_version}.xml")
+msigdb_url_base = "http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb"
+msigdb_xml_url = glue("{msigdb_url_base}/{msigdb_version}/msigdb_v{msigdb_version}.xml")
 download.file(
   url = msigdb_xml_url, destfile = msigdb_xml, quiet = TRUE,
   method = "wget",
-  extra = "-c --header='Cookie: JSESSIONID=759F081469284B7B5AF5B0C2C9D7264B'"
+  extra = "-c --header='Cookie: JSESSIONID=DF8191E9C5083E0F32D4F826F46F4889'"
 )
 
 # Check MSigDB XML file size in bytes
@@ -113,7 +117,8 @@ msigdbr_orthologs =
   filter(num_sources > 1)
 
 # Names and IDs of common species
-species_tbl = tibble(species_id = integer(), species_name = character()) %>%
+species_tbl =
+  tibble(species_id = integer(), species_name = character()) %>%
   add_row(species_id = 4932, species_name = "Saccharomyces cerevisiae") %>%
   add_row(species_id = 6239, species_name = "Caenorhabditis elegans") %>%
   add_row(species_id = 7227, species_name = "Drosophila melanogaster") %>%
@@ -124,7 +129,6 @@ species_tbl = tibble(species_id = integer(), species_name = character()) %>%
   add_row(species_id = 9913, species_name = "Bos taurus") %>%
   add_row(species_id = 10090, species_name = "Mus musculus") %>%
   add_row(species_id = 10116, species_name = "Rattus norvegicus")
-species_tbl
 
 # List available ortholog species
 msigdbr_orthologs %>% pull(species_id) %>% unique() %>% sort()
@@ -147,15 +151,16 @@ msigdbr_orthologs =
   bind_rows(human_tbl) %>%
   arrange(species_name, human_gene_symbol) %>%
   select(-species_id)
-msigdbr_orthologs %>% pull(human_entrez_gene) %>% unique() %>% length()
 
 # Prepare package ---------------------------------------------------------
 
 # Create package data
-usethis::use_data(msigdbr_genesets,
-                  msigdbr_orthologs,
-                  internal = TRUE,
-                  overwrite = TRUE,
-                  compress = "xz")
+use_data(
+  msigdbr_genesets,
+  msigdbr_orthologs,
+  internal = TRUE,
+  overwrite = TRUE,
+  compress = "xz"
+)
 
 
