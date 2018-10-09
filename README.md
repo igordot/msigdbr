@@ -13,7 +13,7 @@ The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene set
 * as both gene symbols and Entrez Gene IDs (for better compatibility with pathway enrichment tools)
 * that can be used in a script without requiring additional external files
 
-Details and examples are described in the [vignette](https://cran.r-project.org/web/packages/msigdbr/vignettes/msigdbr-intro.html).
+Details and examples are described in the [vignette](https://CRAN.R-project.org/package=msigdbr/vignettes/msigdbr-intro.html).
 
 ## Installation
 
