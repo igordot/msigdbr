@@ -95,7 +95,7 @@ Use the gene sets data frame for `clusterProfiler` (for genes as gene symbols).
 
 ```{r cp-symbols, eval=FALSE}
 m_t2g = m_df %>% dplyr::select(gs_name, gene_symbol) %>% as.data.frame()
-enricher(gene = genes_symbols, TERM2GENE = m_t2g, ...)
+enricher(gene = gene_symbol, TERM2GENE = m_t2g, ...)
 ```
 
 Use the gene sets data frame for `fgsea`.
