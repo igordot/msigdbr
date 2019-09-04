@@ -2,7 +2,7 @@
 #' List the species available in the msigdbr package
 #'
 #' @return a vector of possible species
-#' @import dplyr
+#' @importFrom dplyr pull
 #' @export
 msigdbr_show_species <- function() {
 
@@ -18,7 +18,7 @@ msigdbr_show_species <- function() {
 #'
 #' @return a data frame of gene sets with one gene per row
 #' @import tibble
-#' @import dplyr
+#' @importFrom dplyr filter inner_join arrange select
 #' @export
 #'
 #' @examples
@@ -32,6 +32,10 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   # filter by species
   orthologs_subset = filter(msigdbr_orthologs, .data$species_name == species)
 
+  if (length(species) > 1) {
+    stop("please specify only one species at a time")
+  }
+
   # confirm that the species exists in the database
   if (nrow(orthologs_subset) == 0) {
     stop("species does not exist in the database: ", species)
@@ -41,11 +45,17 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
 
   # filter by category
   if (is.character(category)) {
+    if (length(category) > 1) {
+      stop("please specify only one category at a time")
+    }
     genesets_subset = filter(genesets_subset, .data$gs_cat == category)
   }
 
   # filter by sub-category
   if (is.character(subcategory)) {
+    if (length(subcategory) > 1) {
+      stop("please specify only one subcategory at a time")
+    }
     genesets_subset = filter(genesets_subset, .data$gs_subcat == subcategory)
   }
 

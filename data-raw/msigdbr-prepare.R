@@ -10,14 +10,14 @@ library(usethis)
 # Import MSigDB gene sets -------------------------------------------------
 
 # Download the MSigDB XML file
-msigdb_version = "6.2"
+msigdb_version = "7.0"
 msigdb_xml = glue("msigdb_v{msigdb_version}.xml")
 msigdb_url_base = "http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb"
 msigdb_xml_url = glue("{msigdb_url_base}/{msigdb_version}/msigdb_v{msigdb_version}.xml")
 download.file(
   url = msigdb_xml_url, destfile = msigdb_xml, quiet = TRUE,
   method = "wget",
-  extra = "-c --header='Cookie: JSESSIONID=DF8191E9C5083E0F32D4F826F46F4889'"
+  extra = "-c --header='Cookie: JSESSIONID=94C597E7CE4BCEF65ADE10782AD067AD'"
 )
 
 # Check MSigDB XML file size in bytes
@@ -38,6 +38,7 @@ file.remove(msigdb_xml)
 # * MEMBERS: list of gene set members as they originally appeared in the source
 # * MEMBERS_SYMBOLIZED: list of gene set members in the form of human gene symbols
 # * MEMBERS_EZID: list of gene set members in the form of human Entrez Gene IDs
+# * MEMBERS_MAPPING: pipe-separated list of in the form of: MEMBERS, MEMBERS_SYMBOLIZED, MEMBERS_EZID
 geneset_records = xml_find_all(msigdb_doc, xpath = ".//GENESET")
 msigdbr_genesets =
   tibble(
@@ -45,43 +46,46 @@ msigdbr_genesets =
     gs_id               = xml_attr(geneset_records, attr = "SYSTEMATIC_NAME"),
     gs_cat              = xml_attr(geneset_records, attr = "CATEGORY_CODE"),
     gs_subcat           = xml_attr(geneset_records, attr = "SUB_CATEGORY_CODE"),
-    gs_members_symbols  = xml_attr(geneset_records, attr = "MEMBERS_SYMBOLIZED"),
-    gs_members_ezids    = xml_attr(geneset_records, attr = "MEMBERS_EZID")
+    gs_members          = xml_attr(geneset_records, attr = "MEMBERS_MAPPING")
   ) %>%
   filter(gs_cat != "ARCHIVED")
 
 # Check the number of gene sets per category
 msigdbr_genesets %>% count(gs_cat) %>% arrange(gs_cat)
 
-# Create a table of human genes based on MSigDB gene mappings (for original human genesets)
+# Convert to "long" format (one gene per row)
+msigdbr_genesets =
+  msigdbr_genesets %>%
+  mutate(members = strsplit(gs_members, "\\|")) %>%
+  unnest(members) %>%
+  separate(
+    col = members,
+    into = c("source_gene", "human_gene_symbol", "human_entrez_gene"),
+    sep = ","
+  ) %>%
+  mutate(human_entrez_gene = as.integer(human_entrez_gene)) %>%
+  filter(human_entrez_gene > 0)
+
+# Create a table of human genes based on MSigDB gene mappings
 human_tbl =
   msigdbr_genesets %>%
-  mutate(
-    species_id = 9606,
-    species_name = "Homo sapiens",
-    human_entrez_gene = strsplit(gs_members_ezids, ","),
-    human_gene_symbol = strsplit(gs_members_symbols, ",")
-  ) %>%
-  unnest(human_entrez_gene, human_gene_symbol) %>%
-  mutate(human_entrez_gene = as.integer(human_entrez_gene)) %>%
-  select(species_id, species_name, human_entrez_gene, human_gene_symbol) %>%
+  select(human_entrez_gene, human_gene_symbol) %>%
   distinct() %>%
   mutate(
+    species_name = "Homo sapiens",
     entrez_gene = human_entrez_gene,
     gene_symbol = human_gene_symbol
   )
 
-# Get a list of all MSigDB genes (Entrez IDs)
-msigdb_entrez_genes = human_tbl %>% pull(entrez_gene) %>% sort() %>% unique()
-
-# Convert to "long" format (one gene per row)
+# Clean up
 msigdbr_genesets =
   msigdbr_genesets %>%
-  mutate(human_entrez_gene = strsplit(gs_members_ezids, ",")) %>%
-  unnest(human_entrez_gene) %>%
-  mutate(human_entrez_gene = as.integer(human_entrez_gene)) %>%
-  select(-gs_members_symbols, -gs_members_ezids) %>%
-  arrange(gs_name, human_entrez_gene)
+  select(gs_name, gs_id, gs_cat, gs_subcat, human_entrez_gene) %>%
+  arrange(gs_name, gs_id, human_entrez_gene) %>%
+  distinct()
+
+# Get a list of all MSigDB genes (Entrez IDs)
+msigdb_entrez_genes = msigdbr_genesets %>% pull(human_entrez_gene) %>% sort() %>% unique()
 
 # Import HCOP orthologs ---------------------------------------------------
 
@@ -94,27 +98,26 @@ msigdbr_orthologs =
   hcop %>%
   select(
     human_entrez_gene,
-    human_symbol,
-    ortholog_species,
-    ortholog_species_entrez_gene,
-    ortholog_species_symbol,
-    support
-  ) %>%
-  rename(
     human_gene_symbol = human_symbol,
     species_id = ortholog_species,
     entrez_gene = ortholog_species_entrez_gene,
     gene_symbol = ortholog_species_symbol,
     sources = support
   ) %>%
-  filter(human_entrez_gene != "-") %>%
-  filter(entrez_gene != "-") %>%
-  mutate(human_entrez_gene = as.integer(human_entrez_gene)) %>%
-  mutate(entrez_gene = as.integer(entrez_gene)) %>%
-  filter(gene_symbol != "-") %>%
-  filter(human_entrez_gene %in% msigdb_entrez_genes) %>%
-  mutate(num_sources = str_count(sources, ",") + 1) %>%
-  filter(num_sources > 1)
+  filter(
+    human_entrez_gene != "-",
+    entrez_gene != "-",
+    gene_symbol != "-"
+  ) %>%
+  mutate(
+    human_entrez_gene = as.integer(human_entrez_gene),
+    entrez_gene = as.integer(entrez_gene),
+    num_sources = str_count(sources, ",") + 1
+  ) %>%
+  filter(
+    human_entrez_gene %in% msigdb_entrez_genes,
+    num_sources > 1
+  )
 
 # Names and IDs of common species
 species_tbl =
@@ -134,13 +137,12 @@ species_tbl =
 msigdbr_orthologs %>% pull(species_id) %>% unique() %>% sort()
 
 # Add species names
-msigdbr_orthologs =
-  inner_join(species_tbl, msigdbr_orthologs, by = "species_id") %>%
-  select(starts_with("human"), everything())
+msigdbr_orthologs = inner_join(species_tbl, msigdbr_orthologs, by = "species_id")
 
-# For each gene, only keep the best ortholog (one found in the most databases)
+# For each gene, only keep the best ortholog (found in the most databases)
 msigdbr_orthologs =
   msigdbr_orthologs %>%
+  select(-species_id) %>%
   group_by(human_entrez_gene, species_name) %>%
   top_n(1, num_sources) %>%
   ungroup()
@@ -149,8 +151,12 @@ msigdbr_orthologs =
 msigdbr_orthologs =
   msigdbr_orthologs %>%
   bind_rows(human_tbl) %>%
+  select(
+    human_entrez_gene, human_gene_symbol,
+    species_name, entrez_gene, gene_symbol, sources, num_sources
+  ) %>%
   arrange(species_name, human_gene_symbol) %>%
-  select(-species_id)
+  distinct()
 
 # Prepare package ---------------------------------------------------------
 
