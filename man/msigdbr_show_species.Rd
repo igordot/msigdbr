@@ -7,8 +7,11 @@
 msigdbr_show_species()
 }
 \value{
-a vector of possible species
+A vector of possible species.
 }
 \description{
 List the species available in the msigdbr package
+}
+\examples{
+msigdbr_show_species()
 }

@@ -1,3 +1,8 @@
+# msigdbr 7.1.1
+
+* Based on MSigDB v7.1 release.
+* Increased ortholog prediction stringency.
+
 # msigdbr 7.0.1
 
 * Based on MSigDB v7.0 release.

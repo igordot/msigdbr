@@ -1,4 +1,5 @@
 library(msigdbr)
+library(dplyr)
 context("functions")
 
 species = msigdbr_show_species()
@@ -43,6 +44,11 @@ expect_s3_class(msigdbr_rn_bp, "tbl_df")
 expect_gt(nrow(msigdbr_rn_bp), 100000)
 expect_gt(length(unique(msigdbr_rn_bp$gs_id)), 5000)
 expect_lt(length(unique(msigdbr_rn_bp$gs_id)), 10000)
+
+expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "NRAS")), 100)
+expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "PIK3CA")), 100)
+expect_equal(nrow(filter(msigdbr_hs, gs_id == "M30226", gene_symbol == "PICART1")), 1)
+expect_equal(nrow(filter(msigdbr_hs, gs_id == "M8918", gene_symbol == "NEPNP")), 1)
 
 expect_error(msigdbr(species = "test"))
 expect_error(msigdbr(species = c("Homo sapiens", "Mus musculus")))

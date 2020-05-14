@@ -54,14 +54,20 @@ Check the available species.
 msigdbr_show_species()
 ```
 
-Retrieve all human gene sets.
+Retrieve human genes for all gene sets in the database.
 
 ```{r get-human-all}
 m_df = msigdbr(species = "Homo sapiens")
 head(m_df)
 ```
 
-Retrieve mouse hallmark collection gene sets.
+Check the available collections and sub-collections.
+
+```{r show-collections}
+m_df %>% dplyr::distinct(gs_cat, gs_subcat) %>% dplyr::arrange(gs_cat, gs_subcat)
+```
+
+Retrieve mouse genes for just the hallmark collection gene sets.
 
 ```{r get-mouse-h}
 m_df = msigdbr(species = "Mus musculus", category = "H")
@@ -75,7 +81,7 @@ m_df = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
 head(m_df)
 ```
 
-The `msigdbr()` function output can also be manipulated as a standard data frame.
+The `msigdbr()` function output can also be manipulated as any standard data frame.
 
 ```{r get-mouse-h-filter}
 m_df = msigdbr(species = "Mus musculus") %>% dplyr::filter(gs_cat == "H")
@@ -109,7 +115,7 @@ fgsea(pathways = m_list, ...)
 
 Which version of MSigDB was used?
 
-> This package was generated with MSigDB v7.0 (released August 2019).
+> This package was generated with MSigDB v7.1 (released March 2020).
 > The MSigDB version is used as the base of the package version.
 > You can check the installed version with `packageVersion("msigdbr")`.
 
