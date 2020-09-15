@@ -49,13 +49,14 @@ msigdbr_genesets =
     gs_id               = xml_attr(geneset_records, attr = "SYSTEMATIC_NAME"),
     gs_cat              = xml_attr(geneset_records, attr = "CATEGORY_CODE"),
     gs_subcat           = xml_attr(geneset_records, attr = "SUB_CATEGORY_CODE"),
-    gs_members          = xml_attr(geneset_records, attr = "MEMBERS_MAPPING")
+    gs_members          = xml_attr(geneset_records, attr = "MEMBERS_MAPPING"),
+    sources             = xml_attr(geneset_records, attr = "EXACT_SOURCE")
   ) %>%
   filter(gs_cat != "ARCHIVED")
 
 # Separate genes and gene sets
 msigdbr_genes = msigdbr_genesets %>% select(gs_id, gs_members)
-msigdbr_genesets = msigdbr_genesets %>% distinct(gs_id, gs_name, gs_cat, gs_subcat)
+msigdbr_genesets = msigdbr_genesets %>% distinct(gs_id, gs_name, gs_cat, gs_subcat, sources)
 msigdbr_genesets = msigdbr_genesets %>% arrange(gs_name, gs_id)
 
 # Check the number of gene sets per category

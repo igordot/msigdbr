@@ -1,3 +1,7 @@
+# msigdbr 7.1.2
+
+* Added external sources to returned tibbles
+
 # msigdbr 7.1.1
 
 * Based on MSigDB v7.1 release.
