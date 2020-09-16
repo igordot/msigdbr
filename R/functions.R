@@ -47,7 +47,6 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
 
   # filter orthologs by species
   orthologs_subset <- filter(msigdbr_orthologs, .data$species_name == species)
-  orthologs_subset <- dplyr::select(orthologs_subset, -sources, -num_sources)
 
   # confirm that the species exists in the database
   if (nrow(orthologs_subset) == 0) {

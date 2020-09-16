@@ -1,6 +1,6 @@
-# msigdbr 7.1.2
+# msigdbr (development version)
 
-* Added external sources to returned tibbles
+* Added more annotation fields to the returned gene sets.
 
 # msigdbr 7.1.1
 
