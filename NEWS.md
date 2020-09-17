@@ -1,3 +1,7 @@
+# msigdbr (development version)
+
+* Added more annotation fields to the returned gene sets.
+
 # msigdbr 7.1.1
 
 * Based on MSigDB v7.1 release.

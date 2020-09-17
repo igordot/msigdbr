@@ -78,5 +78,5 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   genesets_subset %>%
     inner_join(orthologs_subset, by = "human_entrez_gene") %>%
     arrange(.data$gs_name, .data$human_gene_symbol) %>%
-    select(-.data$human_entrez_gene, -.data$num_sources)
+    select(-.data$human_entrez_gene)
 }

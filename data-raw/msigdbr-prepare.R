@@ -33,11 +33,18 @@ file.remove(glue("{msigdb_dir}.zip"))
 unlink(msigdb_dir, recursive = TRUE)
 
 # Extract the attributes and convert into a tibble
+# https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/MSigDB_XML_description
 # GENESET record attributes:
 # * STANDARD_NAME: gene set name
 # * SYSTEMATIC_NAME: gene set name for internal indexing purposes
 # * CATEGORY_CODE: gene set collection code, e.g., C2
 # * SUB_CATEGORY_CODE: gene set subcategory code, e.g., CGP
+# * PMID: PubMed ID for the source publication
+# * GEOID: GEO or ArrayExpress ID for the raw microarray data in GEO or ArrayExpress repository
+# * EXACT_SOURCE: exact source of the set, usually a specific figure or table in the publication
+# * GENESET_LISTING_URL: URL of the original source that listed the gene set members (all blank)
+# * EXTERNAL_DETAILS_URL: URL of the original source page of the gene set
+# * DESCRIPTION_BRIEF: brief description of the gene set
 # * MEMBERS: list of gene set members as they originally appeared in the source
 # * MEMBERS_SYMBOLIZED: list of gene set members in the form of human gene symbols
 # * MEMBERS_EZID: list of gene set members in the form of human Entrez Gene IDs
@@ -49,14 +56,22 @@ msigdbr_genesets =
     gs_id               = xml_attr(geneset_records, attr = "SYSTEMATIC_NAME"),
     gs_cat              = xml_attr(geneset_records, attr = "CATEGORY_CODE"),
     gs_subcat           = xml_attr(geneset_records, attr = "SUB_CATEGORY_CODE"),
+    gs_pmid             = xml_attr(geneset_records, attr = "PMID"),
+    gs_geoid            = xml_attr(geneset_records, attr = "GEOID"),
+    gs_exact_source     = xml_attr(geneset_records, attr = "EXACT_SOURCE"),
+    gs_url              = xml_attr(geneset_records, attr = "EXTERNAL_DETAILS_URL"),
+    gs_description      = xml_attr(geneset_records, attr = "DESCRIPTION_BRIEF"),
     gs_members          = xml_attr(geneset_records, attr = "MEMBERS_MAPPING")
   ) %>%
   filter(gs_cat != "ARCHIVED")
 
 # Separate genes and gene sets
 msigdbr_genes = msigdbr_genesets %>% select(gs_id, gs_members)
-msigdbr_genesets = msigdbr_genesets %>% distinct(gs_id, gs_name, gs_cat, gs_subcat)
-msigdbr_genesets = msigdbr_genesets %>% arrange(gs_name, gs_id)
+msigdbr_genesets =
+  msigdbr_genesets %>%
+  select(!gs_members) %>%
+  distinct() %>%
+  arrange(gs_name, gs_id)
 
 # Check the number of gene sets per category
 msigdbr_genesets %>% count(gs_cat, gs_subcat) %>% arrange(gs_cat)
@@ -74,7 +89,7 @@ msigdbr_genes =
   mutate(human_entrez_gene = as.integer(human_entrez_gene)) %>%
   filter(human_entrez_gene > 0)
 
-# Create a table of human genes based on MSigDB gene mappings
+# Create a table of human genes based on the original MSigDB gene mappings
 human_tbl =
   msigdbr_genes %>%
   select(human_entrez_gene, human_gene_symbol) %>%
@@ -137,17 +152,17 @@ table(msigdbr_orthologs$num_sources, useNA = "ifany")
 
 # Names and IDs of common species
 species_tbl =
-  tibble(species_id = integer(), species_name = character()) %>%
-  add_row(species_id = 4932, species_name = "Saccharomyces cerevisiae") %>%
-  add_row(species_id = 6239, species_name = "Caenorhabditis elegans") %>%
-  add_row(species_id = 7227, species_name = "Drosophila melanogaster") %>%
-  add_row(species_id = 7955, species_name = "Danio rerio") %>%
-  add_row(species_id = 9031, species_name = "Gallus gallus") %>%
-  add_row(species_id = 9615, species_name = "Canis lupus familiaris") %>%
-  add_row(species_id = 9823, species_name = "Sus scrofa") %>%
-  add_row(species_id = 9913, species_name = "Bos taurus") %>%
-  add_row(species_id = 10090, species_name = "Mus musculus") %>%
-  add_row(species_id = 10116, species_name = "Rattus norvegicus")
+  tibble(species_id = integer(), species_name = character(), species_common_name = character()) %>%
+  add_row(species_id = 4932, species_name = "Saccharomyces cerevisiae", species_common_name = "baker's or brewer's yeast") %>%
+  add_row(species_id = 6239, species_name = "Caenorhabditis elegans", species_common_name = "roundworm") %>%
+  add_row(species_id = 7227, species_name = "Drosophila melanogaster", species_common_name = "fruit fly") %>%
+  add_row(species_id = 7955, species_name = "Danio rerio", species_common_name = "zebrafish") %>%
+  add_row(species_id = 9031, species_name = "Gallus gallus", species_common_name = "chicken") %>%
+  add_row(species_id = 9615, species_name = "Canis lupus familiaris", species_common_name = "dog") %>%
+  add_row(species_id = 9823, species_name = "Sus scrofa", species_common_name = "pig") %>%
+  add_row(species_id = 9913, species_name = "Bos taurus", species_common_name = "cattle") %>%
+  add_row(species_id = 10090, species_name = "Mus musculus", species_common_name = "house mouse") %>%
+  add_row(species_id = 10116, species_name = "Rattus norvegicus", species_common_name = "Norway rat")
 
 # List available ortholog species
 msigdbr_orthologs %>% pull(species_id) %>% unique() %>% sort()
@@ -176,7 +191,7 @@ msigdbr_orthologs =
   bind_rows(human_tbl) %>%
   select(
     human_entrez_gene, human_gene_symbol,
-    species_name, entrez_gene, gene_symbol, sources, num_sources
+    species_name, species_common_name, entrez_gene, gene_symbol, sources, num_sources
   ) %>%
   arrange(human_gene_symbol, human_entrez_gene, species_name) %>%
   distinct()
@@ -184,7 +199,7 @@ msigdbr_orthologs =
 # Show the orthologs summary stats
 hcop %>%
   inner_join(species_tbl, by = c("ortholog_species" = "species_id")) %>%
-  group_by(species_name) %>%
+  group_by(species_name, species_common_name) %>%
   summarize(n_distinct(ortholog_species_symbol))
 msigdbr_orthologs %>%
   group_by(species_name) %>%
