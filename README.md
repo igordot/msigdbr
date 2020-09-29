@@ -1,7 +1,7 @@
 # msigdbr: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
 
 [![CRAN](http://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
-[![Travis Build Status](https://travis-ci.org/igordot/msigdbr.svg?branch=master)](https://travis-ci.org/igordot/msigdbr)
+[![Travis Build Status](https://travis-ci.com/igordot/msigdbr.svg?branch=master)](https://travis-ci.com/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
 ## Overview
