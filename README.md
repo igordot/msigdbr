@@ -5,15 +5,13 @@
 [![Travis Build Status](https://travis-ci.com/igordot/msigdbr.svg?branch=master)](https://travis-ci.com/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
-## Overview
-
 The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
-* in an R-friendly format (a data frame in a "long" format with one gene per row)
-* for multiple frequently studied model organisms (human, mouse, rat, pig, fly, yeast, etc.)
-* as both gene symbols and Entrez Gene IDs (for better compatibility with pathway enrichment tools)
+* in an R-friendly tidy format (a data frame in a "long" format with one gene per row)
+* for multiple frequently studied model organisms (human, mouse, rat, pig, zebrafish, fly, yeast, etc.)
+* as both gene symbols and NCBI/Entrez Gene IDs (for better compatibility with pathway enrichment tools)
 * that can be used in a script without requiring additional external files
 
-Details and examples are described in the [vignette](https://CRAN.R-project.org/package=msigdbr/vignettes/msigdbr-intro.html).
+The package is available on [CRAN](https://cran.r-project.org/package=msigdbr).
 
 
