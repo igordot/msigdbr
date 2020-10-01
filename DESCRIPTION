@@ -12,7 +12,7 @@ Description: Provides the 'Molecular Signatures Database' (MSigDB) gene sets
     as mouse, rat, pig, fly, and yeast.
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://github.com/igordot/msigdbr
+URL: https://igordot.github.io/msigdbr, https://github.com/igordot/msigdbr
 BugReports: https://github.com/igordot/msigdbr/issues
 LazyData: true
 Depends:
