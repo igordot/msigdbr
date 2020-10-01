@@ -21,7 +21,8 @@ Imports:
     magrittr,
     rlang,
     dplyr (>= 0.7.0),
-    tibble
+    tibble,
+    tidyselect
 Suggests:
     testthat,
     knitr,

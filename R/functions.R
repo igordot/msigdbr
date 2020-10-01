@@ -30,7 +30,7 @@ msigdbr_show_species <- function() {
     sort()
 }
 
-#' Retrieve the msigdbr data frame
+#' Retrieve the gene sets data frame
 #'
 #' @param species Species name, such as Homo sapiens or Mus musculus. The available species can be retrieved with `msigdbr_show_species()`.
 #' @param category MSigDB collection abbreviation, such as H, C1, C2, C3, C4, C5, C6, C7.
@@ -42,6 +42,7 @@ msigdbr_show_species <- function() {
 #'
 #' @import tibble
 #' @importFrom dplyr filter inner_join arrange select
+#' @importFrom tidyselect everything
 #' @export
 #'
 #' @examples
@@ -92,6 +93,15 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   # combine gene sets and orthologs
   genesets_subset %>%
     inner_join(orthologs_subset, by = "human_entrez_gene") %>%
-    arrange(.data$gs_name, .data$human_gene_symbol) %>%
-    select(-.data$human_entrez_gene)
+    arrange(.data$gs_name, .data$human_gene_symbol, .data$gene_symbol) %>%
+    select(
+      .data$gs_cat,
+      .data$gs_subcat,
+      .data$gs_name,
+      .data$entrez_gene,
+      .data$gene_symbol,
+      .data$human_entrez_gene,
+      .data$human_gene_symbol,
+      everything()
+    )
 }
