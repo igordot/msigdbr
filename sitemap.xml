@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://igordot.github.io/msigdbr/index.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/reference/msigdbr.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/reference/msigdbr_collections.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/reference/msigdbr_show_species.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/reference/msigdbr_species.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://igordot.github.io/msigdbr/articles/msigdbr-intro.html</loc>
+  </url>
+</urlset>
