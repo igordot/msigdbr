@@ -66,6 +66,7 @@ test_that("rat BP subcategory", {
 })
 
 test_that("specific genes present in msigdbr() data frame", {
+  msigdbr_hs = msigdbr()
   expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "NRAS")), 100)
   expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "PIK3CA")), 100)
   expect_equal(nrow(filter(msigdbr_hs, gs_id == "M30226", gene_symbol == "PICART1")), 1)
