@@ -1,16 +1,31 @@
 
 #' List the species available in the msigdbr package
 #'
-#' @return A vector of possible species.
+#' @return A data frame of the available species.
 #'
-#' @importFrom dplyr pull
+#' @importFrom dplyr arrange distinct select
+#' @importFrom tidyselect starts_with
 #' @export
 #'
 #' @examples
-#' msigdbr_show_species()
-msigdbr_show_species <- function() {
+#' msigdbr_species()
+msigdbr_species <- function() {
   msigdbr_orthologs %>%
-    pull(.data$species_name) %>%
+    select(starts_with("species")) %>%
+    distinct() %>%
+    arrange(.data$species_name)
+}
+
+#' List the species available in the msigdbr package
+#'
+#' This function is being deprecated and replaced by `msigdbr_species()`.
+#'
+#' @return A vector of possible species.
+#'
+#' @export
+msigdbr_show_species <- function() {
+  .Deprecated("msigdbr_species")
+  msigdbr_orthologs$species_name %>%
     unique() %>%
     sort()
 }

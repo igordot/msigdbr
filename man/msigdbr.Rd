@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{msigdbr}
 \alias{msigdbr}
-\title{Retrieve the msigdbr data frame}
+\title{Retrieve the gene sets data frame}
 \usage{
 msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
 }
@@ -17,7 +17,7 @@ msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
 A data frame of gene sets with one gene per row.
 }
 \description{
-Retrieve the msigdbr data frame
+Retrieve the gene sets data frame
 }
 \examples{
 # get all human gene sets

@@ -10,8 +10,5 @@ msigdbr_show_species()
 A vector of possible species.
 }
 \description{
-List the species available in the msigdbr package
-}
-\examples{
-msigdbr_show_species()
+This function is being deprecated and replaced by \code{msigdbr_species()}.
 }

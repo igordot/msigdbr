@@ -1,6 +1,7 @@
 # msigdbr (development version)
 
 * Added more annotation fields to the returned gene sets.
+* Added `msigdbr_species()` as an alternative to `msigdbr_show_species()`.
 
 # msigdbr 7.1.1
 
