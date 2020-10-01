@@ -5,13 +5,29 @@
 [![Travis Build Status](https://travis-ci.com/igordot/msigdbr.svg?branch=master)](https://travis-ci.com/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
+## Overview
+
 The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
-* in an R-friendly tidy format (a data frame in a "long" format with one gene per row)
-* for multiple frequently studied model organisms (human, mouse, rat, pig, zebrafish, fly, yeast, etc.)
-* as both gene symbols and NCBI/Entrez Gene IDs (for better compatibility with pathway enrichment tools)
-* that can be used in a script without requiring additional external files
+* in an R-friendly tidy/long format with one gene per row
+* for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
+* as both gene symbols and NCBI/Entrez Gene IDs for better compatibility with pathway enrichment tools
+* that can be installed and loaded as a package without requiring additional external files
 
-The package is available on [CRAN](https://cran.r-project.org/package=msigdbr).
+## Installation
 
+The package can be installed from [CRAN](https://cran.r-project.org/package=msigdbr).
 
+```{r}
+install.packages("msigdbr")
+```
+
+## Usage
+
+The package data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes. For example, you can retrieve mouse genes from the C2 (curated) CGP (chemical and genetic perturbations) gene sets.
+
+```{r}
+genesets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+```
+
+Check the [documentation website](https://igordot.github.io/msigdbr) for more information.

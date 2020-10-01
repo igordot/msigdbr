@@ -1,3 +1,21 @@
+url: https://igordot.github.io/msigdbr
+
 template:
   params:
     bootswatch: readable
+    ganalytics: UA-130263433-2
+
+navbar:
+  structure:
+    left: []
+    right: [home, intro, reference, articles, news, github]
+  components:
+    home: ~
+    articles: ~
+    intro:
+      text: Get started
+      href: articles/msigdbr-intro.html
+
+home:
+  title: MSigDB gene sets R package
+  strip_header: true
