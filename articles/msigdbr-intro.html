@@ -122,17 +122,17 @@
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="va">h_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Homo sapiens"</span>, category <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_g… gene_sym… human_en… human_ge… gs_id gs_pmid gs_geoid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 H      ""        HALLMA…        19 ABCA1            19 ABCA1     M5905 ""      ""      </span>
-<span class="co">#&gt; 2 H      ""        HALLMA…     11194 ABCB8         11194 ABCB8     M5905 ""      ""      </span>
-<span class="co">#&gt; 3 H      ""        HALLMA…     10449 ACAA2         10449 ACAA2     M5905 ""      ""      </span>
-<span class="co">#&gt; 4 H      ""        HALLMA…        33 ACADL            33 ACADL     M5905 ""      ""      </span>
-<span class="co">#&gt; 5 H      ""        HALLMA…        34 ACADM            34 ACADM     M5905 ""      ""      </span>
-<span class="co">#&gt; 6 H      ""        HALLMA…        35 ACADS            35 ACADS     M5905 ""      ""      </span>
-<span class="co">#&gt; # … with 7 more variables: gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span>
-<span class="co">#&gt; #   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 16</span>
+<span class="co">#&gt;   gs_name gs_id gs_cat gs_subcat gs_pmid gs_geoid gs_exact… gs_url gs_descr… human_ge…</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ABCA1    </span>
+<span class="co">#&gt; 2 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ABCB8    </span>
+<span class="co">#&gt; 3 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACAA2    </span>
+<span class="co">#&gt; 4 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADL    </span>
+<span class="co">#&gt; 5 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADM    </span>
+<span class="co">#&gt; 6 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADS    </span>
+<span class="co">#&gt; # … with 6 more variables: species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   entrez_gene &lt;int&gt;, gene_symbol &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
 <p>There is a helper function to show the available species.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/msigdbr_show_species.html">msigdbr_show_species</a></span><span class="op">(</span><span class="op">)</span>
@@ -147,33 +147,33 @@
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="va">all_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Homo sapiens"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_g… gene_sym… human_en… human_ge… gs_id gs_pmid gs_geoid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 C3     MIR:MIR_… AAACCA…     10257 ABCC4         10257 ABCC4     M126… ""      ""      </span>
-<span class="co">#&gt; 2 C3     MIR:MIR_… AAACCA…     23172 ABRAXAS2      23172 ABRAXAS2  M126… ""      ""      </span>
-<span class="co">#&gt; 3 C3     MIR:MIR_… AAACCA…        81 ACTN4            81 ACTN4     M126… ""      ""      </span>
-<span class="co">#&gt; 4 C3     MIR:MIR_… AAACCA…        90 ACVR1            90 ACVR1     M126… ""      ""      </span>
-<span class="co">#&gt; 5 C3     MIR:MIR_… AAACCA…      8754 ADAM9          8754 ADAM9     M126… ""      ""      </span>
-<span class="co">#&gt; 6 C3     MIR:MIR_… AAACCA…     11096 ADAMTS5       11096 ADAMTS5   M126… ""      ""      </span>
-<span class="co">#&gt; # … with 7 more variables: gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span>
-<span class="co">#&gt; #   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 16</span>
+<span class="co">#&gt;   gs_name gs_id gs_cat gs_subcat gs_pmid gs_geoid gs_exact… gs_url gs_descr… human_ge…</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ABCC4    </span>
+<span class="co">#&gt; 2 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ABRAXAS2 </span>
+<span class="co">#&gt; 3 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ACTN4    </span>
+<span class="co">#&gt; 4 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ACVR1    </span>
+<span class="co">#&gt; 5 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ADAM9    </span>
+<span class="co">#&gt; 6 AAACCA… M126… C3     MIR:MIR_… ""      ""       ""        ""     Genes ha… ADAMTS5  </span>
+<span class="co">#&gt; # … with 6 more variables: species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   entrez_gene &lt;int&gt;, gene_symbol &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
 <p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function output is a data frame and can be manipulated using more standard methods.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="va">all_gene_sets</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gs_cat</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_g… gene_sym… human_en… human_ge… gs_id gs_pmid gs_geoid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 H      ""        HALLMA…        19 ABCA1            19 ABCA1     M5905 ""      ""      </span>
-<span class="co">#&gt; 2 H      ""        HALLMA…     11194 ABCB8         11194 ABCB8     M5905 ""      ""      </span>
-<span class="co">#&gt; 3 H      ""        HALLMA…     10449 ACAA2         10449 ACAA2     M5905 ""      ""      </span>
-<span class="co">#&gt; 4 H      ""        HALLMA…        33 ACADL            33 ACADL     M5905 ""      ""      </span>
-<span class="co">#&gt; 5 H      ""        HALLMA…        34 ACADM            34 ACADM     M5905 ""      ""      </span>
-<span class="co">#&gt; 6 H      ""        HALLMA…        35 ACADS            35 ACADS     M5905 ""      ""      </span>
-<span class="co">#&gt; # … with 7 more variables: gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span>
-<span class="co">#&gt; #   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 16</span>
+<span class="co">#&gt;   gs_name gs_id gs_cat gs_subcat gs_pmid gs_geoid gs_exact… gs_url gs_descr… human_ge…</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ABCA1    </span>
+<span class="co">#&gt; 2 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ABCB8    </span>
+<span class="co">#&gt; 3 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACAA2    </span>
+<span class="co">#&gt; 4 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADL    </span>
+<span class="co">#&gt; 5 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADM    </span>
+<span class="co">#&gt; 6 HALLMA… M5905 H      ""        ""      ""       ""        ""     Genes up… ACADS    </span>
+<span class="co">#&gt; # … with 6 more variables: species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   entrez_gene &lt;int&gt;, gene_symbol &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
 <p>Check the available collections and sub-collections.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="va">all_gene_sets</span> <span class="op">%&gt;%</span>
@@ -205,17 +205,17 @@
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="va">cgp_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_g… gene_sym… human_en… human_ge… gs_id gs_pmid gs_geoid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 C2     CGP       ABBUD_…     66395 Ahnak         79026 AHNAK     M1423 145761… ""      </span>
-<span class="co">#&gt; 2 C2     CGP       ABBUD_…     71452 Ankrd40       91369 ANKRD40   M1423 145761… ""      </span>
-<span class="co">#&gt; 3 C2     CGP       ABBUD_…     93760 Arid1a         8289 ARID1A    M1423 145761… ""      </span>
-<span class="co">#&gt; 4 C2     CGP       ABBUD_…     12040 Bckdhb          594 BCKDHB    M1423 145761… ""      </span>
-<span class="co">#&gt; 5 C2     CGP       ABBUD_…    239691 AU021092     146556 C16orf89  M1423 145761… ""      </span>
-<span class="co">#&gt; 6 C2     CGP       ABBUD_…     73647 Capn9         10753 CAPN9     M1423 145761… ""      </span>
-<span class="co">#&gt; # … with 7 more variables: gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span>
-<span class="co">#&gt; #   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 16</span>
+<span class="co">#&gt;   gs_name gs_id gs_cat gs_subcat gs_pmid gs_geoid gs_exact… gs_url gs_descr… human_ge…</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… AHNAK    </span>
+<span class="co">#&gt; 2 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… ANKRD40  </span>
+<span class="co">#&gt; 3 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… ARID1A   </span>
+<span class="co">#&gt; 4 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… BCKDHB   </span>
+<span class="co">#&gt; 5 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… C16orf89 </span>
+<span class="co">#&gt; 6 ABBUD_… M1423 C2     CGP       145761… ""       Table 2   ""     Genes do… CAPN9    </span>
+<span class="co">#&gt; # … with 6 more variables: species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   entrez_gene &lt;int&gt;, gene_symbol &lt;chr&gt;, sources &lt;chr&gt;, num_sources &lt;dbl&gt;</span></pre></div>
 </div>
 <div id="pathway-enrichment-analysis" class="section level2">
 <h2 class="hasAnchor">
