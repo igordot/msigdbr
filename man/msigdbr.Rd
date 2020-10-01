@@ -7,9 +7,9 @@
 msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
 }
 \arguments{
-\item{species}{Species name, such as Homo sapiens or Mus musculus. The available species can be retrieved with \code{msigdbr_show_species()}.}
+\item{species}{Species name, such as Homo sapiens or Mus musculus.}
 
-\item{category}{MSigDB collection abbreviation, such as H, C1, C2, C3, C4, C5, C6, C7.}
+\item{category}{MSigDB collection abbreviation, such as H or C1.}
 
 \item{subcategory}{MSigDB sub-collection abbreviation, such as CGP or BP.}
 }
@@ -17,7 +17,8 @@ msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
 A data frame of gene sets with one gene per row.
 }
 \description{
-Retrieve the gene sets data frame
+Retrieve a data frame of gene sets and their member genes.
+The available species and collections can be checked with \code{msigdbr_species()} and \code{msigdbr_collections()}.
 }
 \examples{
 # get all human gene sets
@@ -25,9 +26,6 @@ Retrieve the gene sets data frame
 
 # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
 \donttest{msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")}
-
-# check all the available categories and sub-categories
-\donttest{msigdbr() \%>\% dplyr::distinct(gs_cat, gs_subcat) \%>\% dplyr::arrange(gs_cat, gs_subcat)}
 }
 \references{
 \url{https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp}

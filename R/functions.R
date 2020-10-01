@@ -30,10 +30,29 @@ msigdbr_show_species <- function() {
     sort()
 }
 
+#' List the collections available in the msigdbr package
+#'
+#' @return A data frame of the available collections.
+#'
+#' @importFrom dplyr arrange count distinct
+#' @export
+#'
+#' @examples
+#' msigdbr_collections()
+msigdbr_collections <- function() {
+  msigdbr_genesets %>%
+    distinct(.data$gs_cat, .data$gs_subcat, .data$gs_id) %>%
+    count(.data$gs_cat, .data$gs_subcat, name = "num_genesets") %>%
+    arrange(.data$gs_cat, .data$gs_subcat)
+}
+
 #' Retrieve the gene sets data frame
 #'
-#' @param species Species name, such as Homo sapiens or Mus musculus. The available species can be retrieved with `msigdbr_show_species()`.
-#' @param category MSigDB collection abbreviation, such as H, C1, C2, C3, C4, C5, C6, C7.
+#' Retrieve a data frame of gene sets and their member genes.
+#' The available species and collections can be checked with `msigdbr_species()` and `msigdbr_collections()`.
+#'
+#' @param species Species name, such as Homo sapiens or Mus musculus.
+#' @param category MSigDB collection abbreviation, such as H or C1.
 #' @param subcategory MSigDB sub-collection abbreviation, such as CGP or BP.
 #'
 #' @return A data frame of gene sets with one gene per row.
@@ -51,9 +70,6 @@ msigdbr_show_species <- function() {
 #'
 #' # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
 #' \donttest{msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")}
-#'
-#' # check all the available categories and sub-categories
-#' \donttest{msigdbr() %>% dplyr::distinct(gs_cat, gs_subcat) %>% dplyr::arrange(gs_cat, gs_subcat)}
 msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
 
   # confirm that only one species is specified

@@ -2,10 +2,12 @@
 
 export("%>%")
 export(msigdbr)
+export(msigdbr_collections)
 export(msigdbr_show_species)
 export(msigdbr_species)
 import(tibble)
 importFrom(dplyr,arrange)
+importFrom(dplyr,count)
 importFrom(dplyr,distinct)
 importFrom(dplyr,filter)
 importFrom(dplyr,inner_join)
