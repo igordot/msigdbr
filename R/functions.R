@@ -92,15 +92,25 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     if (length(category) > 1) {
       stop("please specify only one category at a time")
     }
-    genesets_subset <- filter(genesets_subset, .data$gs_cat == category)
+    if (category %in% genesets_subset$gs_cat) {
+      genesets_subset <- filter(genesets_subset, .data$gs_cat == category)
+    } else {
+      stop("unknown category")
+    }
   }
 
-  # filter by sub-category
+  # filter by sub-category (with and without colon)
   if (is.character(subcategory)) {
     if (length(subcategory) > 1) {
       stop("please specify only one subcategory at a time")
     }
-    genesets_subset <- filter(genesets_subset, .data$gs_subcat == subcategory)
+    if (subcategory %in% genesets_subset$gs_subcat) {
+      genesets_subset <- filter(genesets_subset, .data$gs_subcat == subcategory)
+    } else if (subcategory %in% gsub(".*:", "", genesets_subset$gs_subcat)){
+      genesets_subset <- filter(genesets_subset, gsub(".*:", "", .data$gs_subcat) == subcategory)
+    } else {
+      stop("unknown subcategory")
+    }
   }
 
   # combine gene sets and genes

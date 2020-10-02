@@ -130,7 +130,7 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 **Which version of MSigDB was used?**
 
-This package was generated with MSigDB v7.1 (released March 2020).
+This package was generated with MSigDB v7.2 (released September 2020).
 The MSigDB version is used as the base of the package version.
 You can check the installed version with `packageVersion("msigdbr")`.
 

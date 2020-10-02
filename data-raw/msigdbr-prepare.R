@@ -11,7 +11,7 @@ library(usethis)
 # Import MSigDB gene sets -------------------------------------------------
 
 # Define MSigDB download variables
-msigdb_version = "7.1"
+msigdb_version = "7.2"
 msigdb_url_base = "https://data.broadinstitute.org/gsea-msigdb/msigdb/release"
 msigdb_zip_url = glue("{msigdb_url_base}/{msigdb_version}/msigdb_v{msigdb_version}_files_to_download_locally.zip")
 msigdb_dir = glue("msigdb_v{msigdb_version}_files_to_download_locally")
@@ -96,6 +96,7 @@ human_tbl =
   distinct() %>%
   mutate(
     species_name = "Homo sapiens",
+    species_common_name = "human",
     entrez_gene = human_entrez_gene,
     gene_symbol = human_gene_symbol
   )
@@ -130,7 +131,7 @@ msigdbr_orthologs =
     species_id = ortholog_species,
     entrez_gene = ortholog_species_entrez_gene,
     gene_symbol = ortholog_species_symbol,
-    sources = support
+    ortholog_sources = support
   ) %>%
   filter(
     human_entrez_gene != "-",
@@ -140,15 +141,15 @@ msigdbr_orthologs =
   mutate(
     human_entrez_gene = as.integer(human_entrez_gene),
     entrez_gene = as.integer(entrez_gene),
-    num_sources = str_count(sources, ",") + 1
+    num_ortholog_sources = str_count(ortholog_sources, ",") + 1
   ) %>%
   filter(
     human_entrez_gene %in% msigdb_entrez_genes,
-    num_sources > 2
+    num_ortholog_sources > 2
   )
 
 # List the number of supporting sources
-table(msigdbr_orthologs$num_sources, useNA = "ifany")
+table(msigdbr_orthologs$num_ortholog_sources, useNA = "ifany")
 
 # Names and IDs of common species
 species_tbl =
@@ -173,9 +174,8 @@ msigdbr_orthologs = inner_join(species_tbl, msigdbr_orthologs, by = "species_id"
 # For each human gene, only keep the best ortholog (found in the most databases)
 msigdbr_orthologs =
   msigdbr_orthologs %>%
-  select(-species_id) %>%
   group_by(human_entrez_gene, species_name) %>%
-  top_n(1, num_sources) %>%
+  top_n(1, num_ortholog_sources) %>%
   ungroup()
 
 # For each human gene, ignore ortholog pairs with many orthologs
@@ -191,7 +191,8 @@ msigdbr_orthologs =
   bind_rows(human_tbl) %>%
   select(
     human_entrez_gene, human_gene_symbol,
-    species_name, species_common_name, entrez_gene, gene_symbol, sources, num_sources
+    species_name, species_common_name, entrez_gene, gene_symbol,
+    ortholog_sources, num_ortholog_sources
   ) %>%
   arrange(human_gene_symbol, human_entrez_gene, species_name) %>%
   distinct()
@@ -203,7 +204,7 @@ hcop %>%
   summarize(n_distinct(ortholog_species_symbol))
 msigdbr_orthologs %>%
   group_by(species_name) %>%
-  summarize(n_distinct(human_gene_symbol), n_distinct(gene_symbol), max(num_sources))
+  summarize(n_distinct(human_gene_symbol), n_distinct(gene_symbol), max(num_ortholog_sources))
 
 # Prepare package ---------------------------------------------------------
 
