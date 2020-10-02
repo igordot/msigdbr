@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1</span>
       </span>
     </div>
 
@@ -122,8 +122,8 @@
 <span class="co">#&gt; 5 C3     MIR:MIR_… AAACCA…       11502 Adam9              8754 ADAM9       M126… ""     </span>
 <span class="co">#&gt; 6 C3     MIR:MIR_… AAACCA…       23794 Adamts5           11096 ADAMTS5     M126… ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
-<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;,</span>
-<span class="co">#&gt; #   num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
 <p>There is a helper function to show the available species.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span>
@@ -136,7 +136,7 @@
 <span class="co">#&gt;  4 Danio rerio              zebrafish                </span>
 <span class="co">#&gt;  5 Drosophila melanogaster  fruit fly                </span>
 <span class="co">#&gt;  6 Gallus gallus            chicken                  </span>
-<span class="co">#&gt;  7 Homo sapiens             &lt;NA&gt;                     </span>
+<span class="co">#&gt;  7 Homo sapiens             human                    </span>
 <span class="co">#&gt;  8 Mus musculus             house mouse              </span>
 <span class="co">#&gt;  9 Rattus norvegicus        Norway rat               </span>
 <span class="co">#&gt; 10 Saccharomyces cerevisiae baker's or brewer's yeast</span>
@@ -155,8 +155,8 @@
 <span class="co">#&gt; 5 H      ""        HALLMA…       11364 Acadm                34 ACADM       M5905 ""     </span>
 <span class="co">#&gt; 6 H      ""        HALLMA…       11409 Acads                35 ACADS       M5905 ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
-<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;,</span>
-<span class="co">#&gt; #   num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
 <p>Retrieve mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="va">cgp_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span>
@@ -165,39 +165,42 @@
 <span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
 <span class="co">#&gt; 1 C2     CGP       ABBUD_…       66395 Ahnak             79026 AHNAK       M1423 145761…</span>
-<span class="co">#&gt; 2 C2     CGP       ABBUD_…       71452 Ankrd40           91369 ANKRD40     M1423 145761…</span>
-<span class="co">#&gt; 3 C2     CGP       ABBUD_…       93760 Arid1a             8289 ARID1A      M1423 145761…</span>
-<span class="co">#&gt; 4 C2     CGP       ABBUD_…       12040 Bckdhb              594 BCKDHB      M1423 145761…</span>
-<span class="co">#&gt; 5 C2     CGP       ABBUD_…      239691 AU021092         146556 C16orf89    M1423 145761…</span>
-<span class="co">#&gt; 6 C2     CGP       ABBUD_…       73647 Capn9             10753 CAPN9       M1423 145761…</span>
+<span class="co">#&gt; 2 C2     CGP       ABBUD_…       11658 Alcam               214 ALCAM       M1423 145761…</span>
+<span class="co">#&gt; 3 C2     CGP       ABBUD_…       71452 Ankrd40           91369 ANKRD40     M1423 145761…</span>
+<span class="co">#&gt; 4 C2     CGP       ABBUD_…       93760 Arid1a             8289 ARID1A      M1423 145761…</span>
+<span class="co">#&gt; 5 C2     CGP       ABBUD_…       12040 Bckdhb              594 BCKDHB      M1423 145761…</span>
+<span class="co">#&gt; 6 C2     CGP       ABBUD_…      239691 AU021092         146556 C16orf89    M1423 145761…</span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
-<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;,</span>
-<span class="co">#&gt; #   num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
 <p>There is a helper function to show the available collections.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 19 x 3</span>
-<span class="co">#&gt;    gs_cat gs_subcat        num_genesets</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                   &lt;int&gt;</span>
-<span class="co">#&gt;  1 C1     ""                        299</span>
-<span class="co">#&gt;  2 C2     "CGP"                    3297</span>
-<span class="co">#&gt;  3 C2     "CP"                       29</span>
-<span class="co">#&gt;  4 C2     "CP:BIOCARTA"             289</span>
-<span class="co">#&gt;  5 C2     "CP:KEGG"                 186</span>
-<span class="co">#&gt;  6 C2     "CP:PID"                  196</span>
-<span class="co">#&gt;  7 C2     "CP:REACTOME"            1532</span>
-<span class="co">#&gt;  8 C3     "MIR:MIR_Legacy"          221</span>
-<span class="co">#&gt;  9 C3     "MIR:MIRDB"              2377</span>
-<span class="co">#&gt; 10 C3     "TFT:GTRD"                526</span>
-<span class="co">#&gt; 11 C3     "TFT:TFT_Legacy"          611</span>
-<span class="co">#&gt; 12 C4     "CGN"                     427</span>
-<span class="co">#&gt; 13 C4     "CM"                      431</span>
-<span class="co">#&gt; 14 C5     "BP"                     7530</span>
-<span class="co">#&gt; 15 C5     "CC"                      999</span>
-<span class="co">#&gt; 16 C5     "MF"                     1663</span>
-<span class="co">#&gt; 17 C6     ""                        189</span>
-<span class="co">#&gt; 18 C7     ""                       4872</span>
-<span class="co">#&gt; 19 H      ""                         50</span></pre></div>
+<span class="co">#&gt; # A tibble: 22 x 3</span>
+<span class="co">#&gt;    gs_cat gs_subcat         num_genesets</span>
+<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                    &lt;int&gt;</span>
+<span class="co">#&gt;  1 C1     ""                         299</span>
+<span class="co">#&gt;  2 C2     "CGP"                     3358</span>
+<span class="co">#&gt;  3 C2     "CP"                        56</span>
+<span class="co">#&gt;  4 C2     "CP:BIOCARTA"              292</span>
+<span class="co">#&gt;  5 C2     "CP:KEGG"                  186</span>
+<span class="co">#&gt;  6 C2     "CP:PID"                   196</span>
+<span class="co">#&gt;  7 C2     "CP:REACTOME"             1554</span>
+<span class="co">#&gt;  8 C2     "CP:WIKIPATHWAYS"          587</span>
+<span class="co">#&gt;  9 C3     "MIR:MIR_Legacy"           221</span>
+<span class="co">#&gt; 10 C3     "MIR:MIRDB"               2377</span>
+<span class="co">#&gt; 11 C3     "TFT:GTRD"                 348</span>
+<span class="co">#&gt; 12 C3     "TFT:TFT_Legacy"           610</span>
+<span class="co">#&gt; 13 C4     "CGN"                      427</span>
+<span class="co">#&gt; 14 C4     "CM"                       431</span>
+<span class="co">#&gt; 15 C5     "GO:BP"                   7573</span>
+<span class="co">#&gt; 16 C5     "GO:CC"                   1001</span>
+<span class="co">#&gt; 17 C5     "GO:MF"                   1697</span>
+<span class="co">#&gt; 18 C5     "HPO"                     4494</span>
+<span class="co">#&gt; 19 C6     ""                         189</span>
+<span class="co">#&gt; 20 C7     ""                        4872</span>
+<span class="co">#&gt; 21 C8     ""                         302</span>
+<span class="co">#&gt; 22 H      ""                          50</span></pre></div>
 <p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function output is a data frame and can be manipulated using more standard methods.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="va">all_gene_sets</span> <span class="op">%&gt;%</span>
@@ -213,8 +216,8 @@
 <span class="co">#&gt; 5 H      ""        HALLMA…       11364 Acadm                34 ACADM       M5905 ""     </span>
 <span class="co">#&gt; 6 H      ""        HALLMA…       11409 Acads                35 ACADS       M5905 ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
-<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, sources &lt;chr&gt;,</span>
-<span class="co">#&gt; #   num_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
 </div>
 <div id="pathway-enrichment-analysis" class="section level2">
 <h2 class="hasAnchor">
@@ -241,7 +244,7 @@
 <h2 class="hasAnchor">
 <a href="#questions-and-concerns" class="anchor"></a>Questions and concerns</h2>
 <p><strong>Which version of MSigDB was used?</strong></p>
-<p>This package was generated with MSigDB v7.1 (released March 2020). The MSigDB version is used as the base of the package version. You can check the installed version with <code><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion("msigdbr")</a></code>.</p>
+<p>This package was generated with MSigDB v7.2 (released September 2020). The MSigDB version is used as the base of the package version. You can check the installed version with <code><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion("msigdbr")</a></code>.</p>
 <p><strong>Can I download the gene sets directly from MSigDB instead of using this package?</strong></p>
 <p>Yes. You can then import the GMT files (with <code>getGmt()</code> from the <code>GSEABase</code> package, for example). The GMTs only include the human genes, even for gene sets generated from mouse experiments. If you are not working with non-human data, you then have to convert the MSigDB genes to your organism or your genes to human.</p>
 <p><strong>Can I convert between human and mouse genes just by adjusting gene capitalization?</strong></p>
