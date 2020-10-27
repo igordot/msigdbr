@@ -254,6 +254,8 @@
 <p>Yes. A popular method is using the <code>biomaRt</code> package. You may still end up with dozens of homologs for some genes, so additional cleanup may be helpful.</p>
 <p><strong>Aren’t there already other similar tools?</strong></p>
 <p>There are a few other resources that and provide some of the functionality and served as an inspiration for this package. <a href="http://ge-lab.org/#/data">Ge Lab Gene Set Files</a> has GMT files for many species. <a href="http://bioinf.wehi.edu.au/software/MSigDB/">WEHI</a> provides MSigDB gene sets in R format for human and mouse, but the genes are provided only as Entrez IDs and each collection is a separate file. <a href="https://github.com/stephenturner/msigdf">MSigDF</a> is based on the WEHI resource, but is converted to a more tidyverse-friendly data frame. When <code>msigdbr</code> was initially released, these were multiple releases behind the latest version of MSigDB, so they may not be actively maintained.</p>
+<p><strong>How do I cite msigdbr?</strong></p>
+<p>For information on how to cite cite an R package, such as <code>msigdsbr</code>, you can use the function <code><a href="https://rdrr.io/r/utils/citation.html">citation("msigdbr")</a></code>. To cite use of the underlying Molecular Signatures Database (MSigDB) data, reference Subramanian, Tamayo, et al. (2005, PNAS 102, 15545-15550) and one or more of the following as appropriate: Liberzon, et al. (2011, Bionformatics), Liberzon, et al. (2015, Cell Systems), and also the source for the gene set.</p>
 </div>
 <div id="details" class="section level2">
 <h2 class="hasAnchor">
