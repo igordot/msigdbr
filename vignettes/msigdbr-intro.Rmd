@@ -159,6 +159,11 @@ There are a few other resources that and provide some of the functionality and s
 [MSigDF](https://github.com/stephenturner/msigdf) is based on the WEHI resource, but is converted to a more tidyverse-friendly data frame.
 When `msigdbr` was initially released, these were multiple releases behind the latest version of MSigDB, so they may not be actively maintained.
 
+**How do I cite msigdbr?**
+
+For information on how to cite cite an R package, such as `msigdsbr`, you can use the function `citation("msigdbr")`.
+To cite use of the underlying Molecular Signatures Database (MSigDB) data, reference Subramanian, Tamayo, et al. (2005, PNAS 102, 15545-15550) and one or more of the following as appropriate: Liberzon, et al. (2011, Bionformatics), Liberzon, et al. (2015, Cell Systems), and also the source for the gene set.
+
 ## Details
 
 The Molecular Signatures Database (MSigDB) is a collection of gene sets originally created for use with the Gene Set Enrichment Analysis (GSEA) software.

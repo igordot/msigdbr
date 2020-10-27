@@ -22,10 +22,14 @@ The available species and collections can be checked with \code{msigdbr_species(
 }
 \examples{
 # get all human gene sets
-\donttest{msigdbr(species = "Homo sapiens")}
+\donttest{
+msigdbr(species = "Homo sapiens")
+}
 
 # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
-\donttest{msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")}
+\donttest{
+msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+}
 }
 \references{
 \url{https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp}

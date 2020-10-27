@@ -66,10 +66,14 @@ msigdbr_collections <- function() {
 #'
 #' @examples
 #' # get all human gene sets
-#' \donttest{msigdbr(species = "Homo sapiens")}
+#' \donttest{
+#' msigdbr(species = "Homo sapiens")
+#' }
 #'
 #' # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
-#' \donttest{msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")}
+#' \donttest{
+#' msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+#' }
 msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
 
   # confirm that only one species is specified
@@ -106,7 +110,7 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     }
     if (subcategory %in% genesets_subset$gs_subcat) {
       genesets_subset <- filter(genesets_subset, .data$gs_subcat == subcategory)
-    } else if (subcategory %in% gsub(".*:", "", genesets_subset$gs_subcat)){
+    } else if (subcategory %in% gsub(".*:", "", genesets_subset$gs_subcat)) {
       genesets_subset <- filter(genesets_subset, gsub(".*:", "", .data$gs_subcat) == subcategory)
     } else {
       stop("unknown subcategory")
