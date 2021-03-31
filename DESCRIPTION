@@ -1,7 +1,7 @@
 Package: msigdbr
 Type: Package
 Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
-Version: 7.2.1.9000
+Version: 7.2.1.9001
 Authors@R: person("Igor", "Dolgalev", email = "igor.dolgalev@nyumc.org", role = c("aut", "cre"))
 Description: Provides the 'Molecular Signatures Database' (MSigDB) gene sets
     typically used with the 'Gene Set Enrichment Analysis' (GSEA) software
@@ -12,7 +12,7 @@ Description: Provides the 'Molecular Signatures Database' (MSigDB) gene sets
     as mouse, rat, pig, fly, and yeast.
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://igordot.github.io/msigdbr, https://github.com/igordot/msigdbr
+URL: https://igordot.github.io/msigdbr
 BugReports: https://github.com/igordot/msigdbr/issues
 LazyData: true
 Depends:

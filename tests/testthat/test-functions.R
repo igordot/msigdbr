@@ -5,7 +5,7 @@ test_that("msigdbr_species()", {
   species <- msigdbr_species()
   expect_s3_class(species, "tbl_df")
   expect_gt(nrow(species), 5)
-  expect_lt(nrow(species), 15)
+  expect_lt(nrow(species), 20)
   expect_match(species$species_name, "Homo sapiens", fixed = TRUE, all = FALSE)
   expect_match(species$species_name, "Mus musculus", fixed = TRUE, all = FALSE)
   expect_match(species$species_name, "Drosophila melanogaster", fixed = TRUE, all = FALSE)
@@ -29,16 +29,28 @@ test_that("msigdbr_collections()", {
 test_that("all gene sets default", {
   msigdbr_hs <- msigdbr()
   expect_s3_class(msigdbr_hs, "tbl_df")
-  expect_gt(nrow(msigdbr_hs), 100000)
+  expect_gt(nrow(msigdbr_hs), 3000000)
+  expect_gt(n_distinct(msigdbr_hs$human_gene_symbol), 40000)
   expect_equal(min(rle(msigdbr_hs$gs_id)$lengths), 5)
-  expect_lt(max(rle(msigdbr_hs$gs_id)$lengths), 2000)
+  expect_lt(max(rle(msigdbr_hs$gs_id)$lengths), 2005)
 })
 
 test_that("all gene sets mouse", {
   msigdbr_mm <- msigdbr(species = "Mus musculus")
   expect_s3_class(msigdbr_mm, "tbl_df")
-  expect_gt(nrow(msigdbr_mm), 100000)
-  expect_lt(max(msigdbr_mm$num_ortholog_sources), 15)
+  expect_gt(nrow(msigdbr_mm), 3000000)
+  expect_gt(n_distinct(msigdbr_mm$human_gene_symbol), 15000)
+  expect_gt(n_distinct(msigdbr_mm$gene_symbol), 15000)
+  expect_equal(max(msigdbr_mm$num_ortholog_sources), 12)
+})
+
+test_that("all gene sets rat", {
+  msigdbr_rn <- msigdbr(species = "Rattus norvegicus")
+  expect_s3_class(msigdbr_rn, "tbl_df")
+  expect_gt(nrow(msigdbr_rn), 3000000)
+  expect_gt(n_distinct(msigdbr_rn$human_gene_symbol), 15000)
+  expect_gt(n_distinct(msigdbr_rn$gene_symbol), 15000)
+  expect_equal(max(msigdbr_rn$num_ortholog_sources), 10)
 })
 
 test_that("human hallmark category", {
@@ -98,12 +110,29 @@ test_that("subcategory partial match", {
   expect_identical(msigdbr_mm_gomf, msigdbr_mm_mf)
 })
 
-test_that("specific genes present in msigdbr() data frame", {
+test_that("specific genes present", {
   msigdbr_hs <- msigdbr()
   expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "NRAS")), 100)
   expect_gt(nrow(filter(msigdbr_hs, gene_symbol == "PIK3CA")), 100)
   expect_equal(nrow(filter(msigdbr_hs, gs_id == "M30055", gene_symbol == "FOS")), 1)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M30055", entrez_gene == 2353)), 1)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M30055", ensembl_gene == "ENSG00000170345")), 1)
   expect_equal(nrow(filter(msigdbr_hs, gs_id == "M8918", gene_symbol == "NEPNP")), 1)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M8918", entrez_gene == 442253)), 1)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M8918", ensembl_gene == "ENSG00000218233")), 1)
+})
+
+test_that("number of genes in specific gene sets", {
+  msigdbr_hs <- msigdbr()
+  msigdbr_mm <- msigdbr(species = "Mus musculus")
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M5902")), 161)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5902")), 161)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M5903")), 32)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5903")), 32)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M39207")), 5)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M39207")), 5)
+  expect_equal(nrow(filter(msigdbr_hs, gs_id == "M40020")), 12)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M40020")), 12)
 })
 
 test_that("wrong msigdbr() parameters", {

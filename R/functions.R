@@ -129,6 +129,7 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
       .data$gs_subcat,
       .data$gs_name,
       .data$entrez_gene,
+      .data$ensembl_gene,
       .data$gene_symbol,
       .data$human_entrez_gene,
       .data$human_gene_symbol,
