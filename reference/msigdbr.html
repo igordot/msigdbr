@@ -103,7 +103,7 @@ The available species and collections can be checked with msigdbr_species() and 
 </li>
 <li>
   <a href="https://github.com/igordot/msigdbr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -160,46 +160,46 @@ The available species and collections can be checked with <code><a href='msigdbr
     <pre class="examples"><div class='input'><span class='co'># get all human gene sets</span>
 <span class='co'># \donttest{</span>
 <span class='fu'>msigdbr</span><span class='op'>(</span>species <span class='op'>=</span> <span class='st'>"Homo sapiens"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3,647,311 x 17</span><span>
-#&gt;    gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entrez_ge…
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> C3     MIR:MIR_… AAACCA…       </span><span style='text-decoration: underline;'>10</span><span>257 ABCC4                  </span><span style='text-decoration: underline;'>10</span><span>257
-#&gt; </span><span style='color: #555555;'> 2</span><span> C3     MIR:MIR_… AAACCA…       </span><span style='text-decoration: underline;'>23</span><span>172 ABRAXAS2               </span><span style='text-decoration: underline;'>23</span><span>172
-#&gt; </span><span style='color: #555555;'> 3</span><span> C3     MIR:MIR_… AAACCA…          81 ACTN4                     81
-#&gt; </span><span style='color: #555555;'> 4</span><span> C3     MIR:MIR_… AAACCA…          90 ACVR1                     90
-#&gt; </span><span style='color: #555555;'> 5</span><span> C3     MIR:MIR_… AAACCA…        </span><span style='text-decoration: underline;'>8</span><span>754 ADAM9                   </span><span style='text-decoration: underline;'>8</span><span>754
-#&gt; </span><span style='color: #555555;'> 6</span><span> C3     MIR:MIR_… AAACCA…       </span><span style='text-decoration: underline;'>11</span><span>096 ADAMTS5                </span><span style='text-decoration: underline;'>11</span><span>096
-#&gt; </span><span style='color: #555555;'> 7</span><span> C3     MIR:MIR_… AAACCA…      </span><span style='text-decoration: underline;'>219</span><span>287 AMER2                 </span><span style='text-decoration: underline;'>219</span><span>287
-#&gt; </span><span style='color: #555555;'> 8</span><span> C3     MIR:MIR_… AAACCA…         287 ANK2                     287
-#&gt; </span><span style='color: #555555;'> 9</span><span> C3     MIR:MIR_… AAACCA…        </span><span style='text-decoration: underline;'>8</span><span>539 API5                    </span><span style='text-decoration: underline;'>8</span><span>539
-#&gt; </span><span style='color: #555555;'>10</span><span> C3     MIR:MIR_… AAACCA…         571 BACH1                    571
-#&gt; </span><span style='color: #555555;'># … with 3,647,301 more rows, and 11 more variables: human_gene_symbol </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   gs_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_pmid </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_geoid </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_exact_source </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   gs_url </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_description </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, species_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   species_common_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ortholog_sources </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   num_ortholog_sources </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3,647,311 x 17</span><span>
+#&gt;    gs_cat gs_subcat      gs_name        entrez_gene gene_symbol human_entrez_ge…
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>10</span><span>257 ABCC4                  </span><span style='text-decoration: underline;'>10</span><span>257
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>23</span><span>172 ABRAXAS2               </span><span style='text-decoration: underline;'>23</span><span>172
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140          81 ACTN4                     81
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140          90 ACVR1                     90
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140        </span><span style='text-decoration: underline;'>8</span><span>754 ADAM9                   </span><span style='text-decoration: underline;'>8</span><span>754
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>11</span><span>096 ADAMTS5                </span><span style='text-decoration: underline;'>11</span><span>096
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140      </span><span style='text-decoration: underline;'>219</span><span>287 AMER2                 </span><span style='text-decoration: underline;'>219</span><span>287
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140         287 ANK2                     287
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140        </span><span style='text-decoration: underline;'>8</span><span>539 API5                    </span><span style='text-decoration: underline;'>8</span><span>539
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140         571 BACH1                    571
+#&gt; </span><span style='color: #949494;'># … with 3,647,301 more rows, and 11 more variables: human_gene_symbol &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, species_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   species_common_name &lt;chr&gt;, ortholog_sources &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   num_ortholog_sources &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets</span>
 <span class='co'># \donttest{</span>
 <span class='fu'>msigdbr</span><span class='op'>(</span>species <span class='op'>=</span> <span class='st'>"Mus musculus"</span>, category <span class='op'>=</span> <span class='st'>"C2"</span>, subcategory <span class='op'>=</span> <span class='st'>"CGP"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 363,345 x 17</span><span>
-#&gt;    gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entrez_ge…
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>66</span><span>395 Ahnak                  </span><span style='text-decoration: underline;'>79</span><span>026
-#&gt; </span><span style='color: #555555;'> 2</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>11</span><span>658 Alcam                    214
-#&gt; </span><span style='color: #555555;'> 3</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>71</span><span>452 Ankrd40                </span><span style='text-decoration: underline;'>91</span><span>369
-#&gt; </span><span style='color: #555555;'> 4</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>93</span><span>760 Arid1a                  </span><span style='text-decoration: underline;'>8</span><span>289
-#&gt; </span><span style='color: #555555;'> 5</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>12</span><span>040 Bckdhb                   594
-#&gt; </span><span style='color: #555555;'> 6</span><span> C2     CGP       ABBUD_…      </span><span style='text-decoration: underline;'>239</span><span>691 AU021092              </span><span style='text-decoration: underline;'>146</span><span>556
-#&gt; </span><span style='color: #555555;'> 7</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>73</span><span>647 Capn9                  </span><span style='text-decoration: underline;'>10</span><span>753
-#&gt; </span><span style='color: #555555;'> 8</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>12</span><span>484 Cd24a              100</span><span style='text-decoration: underline;'>133</span><span>941
-#&gt; </span><span style='color: #555555;'> 9</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>77</span><span>644 C330007P06…            </span><span style='text-decoration: underline;'>63</span><span>932
-#&gt; </span><span style='color: #555555;'>10</span><span> C2     CGP       ABBUD_…       </span><span style='text-decoration: underline;'>20</span><span>430 Cyfip1                 </span><span style='text-decoration: underline;'>23</span><span>191
-#&gt; </span><span style='color: #555555;'># … with 363,335 more rows, and 11 more variables: human_gene_symbol </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   gs_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_pmid </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_geoid </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_exact_source </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   gs_url </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gs_description </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, species_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   species_common_name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ortholog_sources </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   num_ortholog_sources </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 363,345 x 17</span><span>
+#&gt;    gs_cat gs_subcat gs_name            entrez_gene gene_symbol  human_entrez_ge…
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>66</span><span>395 Ahnak                   </span><span style='text-decoration: underline;'>79</span><span>026
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>11</span><span>658 Alcam                     214
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>71</span><span>452 Ankrd40                 </span><span style='text-decoration: underline;'>91</span><span>369
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>93</span><span>760 Arid1a                   </span><span style='text-decoration: underline;'>8</span><span>289
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>12</span><span>040 Bckdhb                    594
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C2     CGP       ABBUD_LIF_SIGNALI…      </span><span style='text-decoration: underline;'>239</span><span>691 AU021092               </span><span style='text-decoration: underline;'>146</span><span>556
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>73</span><span>647 Capn9                   </span><span style='text-decoration: underline;'>10</span><span>753
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>12</span><span>484 Cd24a               100</span><span style='text-decoration: underline;'>133</span><span>941
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>77</span><span>644 C330007P06R…            </span><span style='text-decoration: underline;'>63</span><span>932
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C2     CGP       ABBUD_LIF_SIGNALI…       </span><span style='text-decoration: underline;'>20</span><span>430 Cyfip1                  </span><span style='text-decoration: underline;'>23</span><span>191
+#&gt; </span><span style='color: #949494;'># … with 363,335 more rows, and 11 more variables: human_gene_symbol &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, species_name &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   species_common_name &lt;chr&gt;, ortholog_sources &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   num_ortholog_sources &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

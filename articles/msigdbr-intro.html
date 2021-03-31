@@ -55,7 +55,7 @@
 </li>
 <li>
   <a href="https://github.com/igordot/msigdbr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -69,8 +69,7 @@
 
       
 
-      </header><script src="msigdbr-intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="msigdbr-intro_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="msigdbr-intro_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="msigdbr-intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to msigdbr</h1>
@@ -100,34 +99,34 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package can be installed from <a href="https://cran.r-project.org/package=msigdbr">CRAN</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"msigdbr"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"msigdbr"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Load package.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr">msigdbr</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr">msigdbr</a></span><span class="op">)</span></code></pre></div>
 <p>All gene sets in the database can be retrieved without specifying a collection/category.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">all_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1 C3     MIR:MIR_… AAACCA…      239273 Abcc4             10257 ABCC4       M126… ""     </span>
-<span class="co">#&gt; 2 C3     MIR:MIR_… AAACCA…      109359 Abraxas2          23172 ABRAXAS2    M126… ""     </span>
-<span class="co">#&gt; 3 C3     MIR:MIR_… AAACCA…       60595 Actn4                81 ACTN4       M126… ""     </span>
-<span class="co">#&gt; 4 C3     MIR:MIR_… AAACCA…       11477 Acvr1                90 ACVR1       M126… ""     </span>
-<span class="co">#&gt; 5 C3     MIR:MIR_… AAACCA…       11502 Adam9              8754 ADAM9       M126… ""     </span>
-<span class="co">#&gt; 6 C3     MIR:MIR_… AAACCA…       23794 Adamts5           11096 ADAMTS5     M126… ""     </span>
+<span class="co">#&gt;   gs_cat gs_subcat  gs_name  entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 C3     MIR:MIR_L… AAACCAC…      239273 Abcc4             10257 ABCC4       M126… ""     </span>
+<span class="co">#&gt; 2 C3     MIR:MIR_L… AAACCAC…      109359 Abraxas2          23172 ABRAXAS2    M126… ""     </span>
+<span class="co">#&gt; 3 C3     MIR:MIR_L… AAACCAC…       60595 Actn4                81 ACTN4       M126… ""     </span>
+<span class="co">#&gt; 4 C3     MIR:MIR_L… AAACCAC…       11477 Acvr1                90 ACVR1       M126… ""     </span>
+<span class="co">#&gt; 5 C3     MIR:MIR_L… AAACCAC…       11502 Adam9              8754 ADAM9       M126… ""     </span>
+<span class="co">#&gt; 6 C3     MIR:MIR_L… AAACCAC…       23794 Adamts5           11096 ADAMTS5     M126… ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
 <span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></code></pre></div>
 <p>There is a helper function to show the available species.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 11 x 2</span>
 <span class="co">#&gt;    species_name             species_common_name      </span>
 <span class="co">#&gt;    &lt;chr&gt;                    &lt;chr&gt;                    </span>
@@ -141,42 +140,42 @@
 <span class="co">#&gt;  8 Mus musculus             house mouse              </span>
 <span class="co">#&gt;  9 Rattus norvegicus        Norway rat               </span>
 <span class="co">#&gt; 10 Saccharomyces cerevisiae baker's or brewer's yeast</span>
-<span class="co">#&gt; 11 Sus scrofa               pig</span></pre></div>
+<span class="co">#&gt; 11 Sus scrofa               pig</span></code></pre></div>
 <p>You can retrieve data for a specific collection, such as the hallmark gene sets.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">h_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">h_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1 H      ""        HALLMA…       11303 Abca1                19 ABCA1       M5905 ""     </span>
-<span class="co">#&gt; 2 H      ""        HALLMA…       74610 Abcb8             11194 ABCB8       M5905 ""     </span>
-<span class="co">#&gt; 3 H      ""        HALLMA…       52538 Acaa2             10449 ACAA2       M5905 ""     </span>
-<span class="co">#&gt; 4 H      ""        HALLMA…       11363 Acadl                33 ACADL       M5905 ""     </span>
-<span class="co">#&gt; 5 H      ""        HALLMA…       11364 Acadm                34 ACADM       M5905 ""     </span>
-<span class="co">#&gt; 6 H      ""        HALLMA…       11409 Acads                35 ACADS       M5905 ""     </span>
+<span class="co">#&gt;   gs_cat gs_subcat gs_name   entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 H      ""        HALLMARK…       11303 Abca1                19 ABCA1       M5905 ""     </span>
+<span class="co">#&gt; 2 H      ""        HALLMARK…       74610 Abcb8             11194 ABCB8       M5905 ""     </span>
+<span class="co">#&gt; 3 H      ""        HALLMARK…       52538 Acaa2             10449 ACAA2       M5905 ""     </span>
+<span class="co">#&gt; 4 H      ""        HALLMARK…       11363 Acadl                33 ACADL       M5905 ""     </span>
+<span class="co">#&gt; 5 H      ""        HALLMARK…       11364 Acadm                34 ACADM       M5905 ""     </span>
+<span class="co">#&gt; 6 H      ""        HALLMARK…       11409 Acads                35 ACADS       M5905 ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
 <span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></code></pre></div>
 <p>Retrieve mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">cgp_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cgp_gene_sets</span> <span class="op">=</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1 C2     CGP       ABBUD_…       66395 Ahnak             79026 AHNAK       M1423 145761…</span>
-<span class="co">#&gt; 2 C2     CGP       ABBUD_…       11658 Alcam               214 ALCAM       M1423 145761…</span>
-<span class="co">#&gt; 3 C2     CGP       ABBUD_…       71452 Ankrd40           91369 ANKRD40     M1423 145761…</span>
-<span class="co">#&gt; 4 C2     CGP       ABBUD_…       93760 Arid1a             8289 ARID1A      M1423 145761…</span>
-<span class="co">#&gt; 5 C2     CGP       ABBUD_…       12040 Bckdhb              594 BCKDHB      M1423 145761…</span>
-<span class="co">#&gt; 6 C2     CGP       ABBUD_…      239691 AU021092         146556 C16orf89    M1423 145761…</span>
+<span class="co">#&gt;   gs_cat gs_subcat gs_name   entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 C2     CGP       ABBUD_LI…       66395 Ahnak             79026 AHNAK       M1423 145761…</span>
+<span class="co">#&gt; 2 C2     CGP       ABBUD_LI…       11658 Alcam               214 ALCAM       M1423 145761…</span>
+<span class="co">#&gt; 3 C2     CGP       ABBUD_LI…       71452 Ankrd40           91369 ANKRD40     M1423 145761…</span>
+<span class="co">#&gt; 4 C2     CGP       ABBUD_LI…       93760 Arid1a             8289 ARID1A      M1423 145761…</span>
+<span class="co">#&gt; 5 C2     CGP       ABBUD_LI…       12040 Bckdhb              594 BCKDHB      M1423 145761…</span>
+<span class="co">#&gt; 6 C2     CGP       ABBUD_LI…      239691 AU021092         146556 C16orf89    M1423 145761…</span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
 <span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></code></pre></div>
 <p>There is a helper function to show the available collections.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 22 x 3</span>
 <span class="co">#&gt;    gs_cat gs_subcat         num_genesets</span>
 <span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                    &lt;int&gt;</span>
@@ -201,45 +200,45 @@
 <span class="co">#&gt; 19 C6     ""                         189</span>
 <span class="co">#&gt; 20 C7     ""                        4872</span>
 <span class="co">#&gt; 21 C8     ""                         302</span>
-<span class="co">#&gt; 22 H      ""                          50</span></pre></div>
+<span class="co">#&gt; 22 H      ""                          50</span></code></pre></div>
 <p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function output is a data frame and can be manipulated using more standard methods.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">all_gene_sets</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_gene_sets</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gs_cat</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 17</span>
-<span class="co">#&gt;   gs_cat gs_subcat gs_name entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
-<span class="co">#&gt; 1 H      ""        HALLMA…       11303 Abca1                19 ABCA1       M5905 ""     </span>
-<span class="co">#&gt; 2 H      ""        HALLMA…       74610 Abcb8             11194 ABCB8       M5905 ""     </span>
-<span class="co">#&gt; 3 H      ""        HALLMA…       52538 Acaa2             10449 ACAA2       M5905 ""     </span>
-<span class="co">#&gt; 4 H      ""        HALLMA…       11363 Acadl                33 ACADL       M5905 ""     </span>
-<span class="co">#&gt; 5 H      ""        HALLMA…       11364 Acadm                34 ACADM       M5905 ""     </span>
-<span class="co">#&gt; 6 H      ""        HALLMA…       11409 Acads                35 ACADS       M5905 ""     </span>
+<span class="co">#&gt;   gs_cat gs_subcat gs_name   entrez_gene gene_symbol human_entr… human_gene… gs_id gs_pmid</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 H      ""        HALLMARK…       11303 Abca1                19 ABCA1       M5905 ""     </span>
+<span class="co">#&gt; 2 H      ""        HALLMARK…       74610 Abcb8             11194 ABCB8       M5905 ""     </span>
+<span class="co">#&gt; 3 H      ""        HALLMARK…       52538 Acaa2             10449 ACAA2       M5905 ""     </span>
+<span class="co">#&gt; 4 H      ""        HALLMARK…       11363 Acadl                33 ACADL       M5905 ""     </span>
+<span class="co">#&gt; 5 H      ""        HALLMARK…       11364 Acadm                34 ACADM       M5905 ""     </span>
+<span class="co">#&gt; 6 H      ""        HALLMARK…       11409 Acads                35 ACADS       M5905 ""     </span>
 <span class="co">#&gt; # … with 8 more variables: gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span>
 <span class="co">#&gt; #   gs_description &lt;chr&gt;, species_name &lt;chr&gt;, species_common_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="pathway-enrichment-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pathway-enrichment-analysis" class="anchor"></a>Pathway enrichment analysis</h2>
 <p>The <code>msigdbr</code> output can be used with various popular pathway analysis packages.</p>
 <p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as Entrez Gene IDs.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 <p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as gene symbols.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 <p>Use the gene sets data frame for <code>fgsea</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">msigdbr_list</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span>
-<span class="fu">fgsea</span><span class="op">(</span>pathways <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">msigdbr_list</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span>
+<span class="fu">fgsea</span><span class="op">(</span>pathways <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 <p>Use the gene sets data frame for <code>GSVA</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">msigdbr_list</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span>
-<span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">msigdbr_list</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span>
+<span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="questions-and-concerns" class="section level2">
 <h2 class="hasAnchor">
