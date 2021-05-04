@@ -3,15 +3,21 @@
 #'
 #' @return A data frame of the available species.
 #'
+#' @importFrom babelgene species
 #' @importFrom dplyr arrange distinct select
-#' @importFrom tidyselect starts_with
+#' @importFrom tibble as_tibble
 #' @export
 #'
 #' @examples
 #' msigdbr_species()
 msigdbr_species <- function() {
-  msigdbr_orthologs %>%
-    select(starts_with("species")) %>%
+  species() %>%
+    as_tibble() %>%
+    select(
+      species_name = .data$scientific_name,
+      species_common_name = .data$common_name
+    ) %>%
+    rbind(c("Homo sapiens", "human")) %>%
     distinct() %>%
     arrange(.data$species_name)
 }
@@ -25,9 +31,7 @@ msigdbr_species <- function() {
 #' @export
 msigdbr_show_species <- function() {
   .Deprecated("msigdbr_species")
-  msigdbr_orthologs$species_name %>%
-    unique() %>%
-    sort()
+  sort(msigdbr_species()[["species_name"]])
 }
 
 #' List the collections available in the msigdbr package
@@ -60,8 +64,9 @@ msigdbr_collections <- function() {
 #' @references \url{https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp}
 #'
 #' @import tibble
-#' @importFrom dplyr filter inner_join arrange select
-#' @importFrom tidyselect everything
+#' @importFrom babelgene orthologs
+#' @importFrom dplyr arrange distinct filter inner_join mutate rename select
+#' @importFrom tidyselect any_of everything
 #' @export
 #'
 #' @examples
@@ -81,14 +86,6 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     stop("please specify only one species at a time")
   }
 
-  # filter orthologs by species
-  orthologs_subset <- filter(msigdbr_orthologs, .data$species_name == species)
-
-  # confirm that the species exists in the database
-  if (nrow(orthologs_subset) == 0) {
-    stop("species does not exist in the database: ", species)
-  }
-
   genesets_subset <- msigdbr_genesets
 
   # filter by category
@@ -103,7 +100,6 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     }
   }
 
-  # filter by sub-category (with and without colon)
   if (is.character(subcategory)) {
     if (length(subcategory) > 1) {
       stop("please specify only one subcategory at a time")
@@ -118,21 +114,56 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   }
 
   # combine gene sets and genes
-  genesets_subset <- inner_join(genesets_subset, msigdbr_genes, by = "gs_id")
+  genesets_subset <-
+    genesets_subset %>%
+    inner_join(msigdbr_geneset_genes, by = "gs_id") %>%
+    inner_join(msigdbr_genes, by = "gene_id") %>%
+    select(-any_of(c("gene_id")))
+
+  # retrieve orthologs
+  if (species %in% c("Homo sapiens", "human")) {
+    orthologs_subset <-
+      genesets_subset %>%
+      select(
+        .data$human_ensembl_gene,
+        gene_symbol = .data$human_gene_symbol,
+        entrez_gene = .data$human_entrez_gene
+      ) %>%
+      mutate(ensembl_gene = .data$human_ensembl_gene) %>%
+      distinct()
+  } else {
+    orthologs_subset <-
+      orthologs(genes = genesets_subset$human_ensembl_gene, species = species) %>%
+      select(-any_of(c("human_symbol", "human_entrez"))) %>%
+      rename(
+        human_ensembl_gene = .data$human_ensembl,
+        gene_symbol = .data$symbol,
+        entrez_gene = .data$entrez,
+        ensembl_gene = .data$ensembl,
+        ortholog_sources = .data$support,
+        num_ortholog_sources = .data$support_n
+      )
+  }
+
+  # confirm that the species exists in the database
+  if (nrow(orthologs_subset) == 0) {
+    stop("species does not exist in the database: ", species)
+  }
 
   # combine gene sets and orthologs
   genesets_subset %>%
-    inner_join(orthologs_subset, by = "human_entrez_gene") %>%
+    inner_join(orthologs_subset, by = "human_ensembl_gene") %>%
     arrange(.data$gs_name, .data$human_gene_symbol, .data$gene_symbol) %>%
     select(
       .data$gs_cat,
       .data$gs_subcat,
       .data$gs_name,
+      .data$gene_symbol,
       .data$entrez_gene,
       .data$ensembl_gene,
-      .data$gene_symbol,
-      .data$human_entrez_gene,
       .data$human_gene_symbol,
+      .data$human_entrez_gene,
+      .data$human_ensembl_gene,
       everything()
     )
 }

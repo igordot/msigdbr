@@ -31,7 +31,7 @@ The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene set
 
 * in an R-friendly tidy/long format with one gene per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
-* as both gene symbols and NCBI/Entrez Gene IDs for better compatibility with pathway enrichment tools
+* as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools
 * that can be installed and loaded as a package without requiring additional external files
 
 Please be aware that the homologs were computationally predicted for distinct genes.
@@ -55,12 +55,12 @@ library(msigdbr)
 
 All gene sets in the database can be retrieved without specifying a collection/category.
 
-```{r get-human-all}
+```{r msigdbr-mouse-all}
 all_gene_sets = msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 ```
 
-There is a helper function to show the available species.
+There is a helper function to show the available species. Either scientific or common names are acceptable.
 
 ```{r species}
 msigdbr_species()
@@ -68,15 +68,15 @@ msigdbr_species()
 
 You can retrieve data for a specific collection, such as the hallmark gene sets.
 
-```{r get-human-h}
-h_gene_sets = msigdbr(species = "Mus musculus", category = "H")
+```{r msigdbr-mouse-h}
+h_gene_sets = msigdbr(species = "mouse", category = "H")
 head(h_gene_sets)
 ```
 
 Retrieve mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets.
 
-```{r get-mouse-c2}
-cgp_gene_sets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+```{r msigdbr-mouse-c2}
+cgp_gene_sets = msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
 head(cgp_gene_sets)
 ```
 
@@ -88,7 +88,7 @@ msigdbr_collections()
 
 The `msigdbr()` function output is a data frame and can be manipulated using more standard methods.
 
-```{r get-human-h-filter}
+```{r filter-h}
 all_gene_sets %>%
   dplyr::filter(gs_cat == "H") %>%
   head()
@@ -130,7 +130,7 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 **Which version of MSigDB was used?**
 
-This package was generated with MSigDB v7.3 (released March 2021).
+This package was generated with MSigDB v7.4 (released April 2021).
 The MSigDB version is used as the base of the `msigdsbr` package version.
 You can check the installed version with `packageVersion("msigdbr")`.
 
@@ -139,7 +139,7 @@ You can check the installed version with `packageVersion("msigdbr")`.
 Yes.
 You can then import the GMT files (with `getGmt()` from the `GSEABase` package, for example).
 The GMTs only include the human genes, even for gene sets generated from mouse experiments.
-If you are not working with non-human data, you then have to convert the MSigDB genes to your organism or your genes to human.
+If you are working with non-human data, you then have to convert the MSigDB genes to your organism or your genes to human.
 
 **Can I convert between human and mouse genes just by adjusting gene capitalization?**
 
@@ -166,7 +166,7 @@ You can submit feedback and report bugs on [GitHub](https://github.com/igordot/m
 ## Details
 
 The Molecular Signatures Database (MSigDB) is a collection of gene sets originally created for use with the Gene Set Enrichment Analysis (GSEA) software.
-To cite use of the underlying MSigDB data, reference Subramanian, Tamayo, et al. (2005, PNAS 102, 15545-15550) and one or more of the following as appropriate: Liberzon, et al. (2011, Bioinformatics), Liberzon, et al. (2015, Cell Systems), and also the source for the gene set.
+To cite use of the underlying MSigDB data, reference Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the following as appropriate: Liberzon, et al. (2011, Bioinformatics), Liberzon, et al. (2015, Cell Systems), and also the source for the gene set.
 
 Gene homologs are provided by HUGO Gene Nomenclature Committee at the European Bioinformatics Institute which integrates the orthology assertions predicted for human genes by eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN.
 For each human equivalent within each species, only the ortholog supported by the largest number of databases is used.

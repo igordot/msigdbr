@@ -4,6 +4,10 @@ template:
   params:
     bootswatch: readable
     ganalytics: UA-130263433-2
+  opengraph:
+    twitter:
+      creator: "@bioigor"
+      card: summary_large_image
 
 navbar:
   structure:

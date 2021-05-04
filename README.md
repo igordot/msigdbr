@@ -2,7 +2,6 @@
 
 [![CRAN](http://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![R build status](https://github.com/igordot/msigdbr/workflows/R-CMD-check/badge.svg)](https://github.com/igordot/msigdbr/actions)
-[![Travis Build Status](https://travis-ci.com/igordot/msigdbr.svg?branch=master)](https://travis-ci.com/igordot/msigdbr)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://codecov.io/gh/igordot/msigdbr)
 
 ## Overview
@@ -11,7 +10,7 @@ The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene set
 
 * in an R-friendly tidy/long format with one gene per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
-* as both gene symbols and NCBI/Entrez Gene IDs for better compatibility with pathway enrichment tools
+* as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools
 * that can be installed and loaded as a package without requiring additional external files
 
 ## Installation
@@ -30,4 +29,4 @@ The package data can be accessed using the `msigdbr()` function, which returns a
 genesets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
 ```
 
-Check the [documentation website](https://igordot.github.io/msigdbr) for more information.
+Check the [documentation website](https://igordot.github.io/msigdbr/) for more information.
