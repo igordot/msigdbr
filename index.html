@@ -16,9 +16,12 @@
     typically used with the Gene Set Enrichment Analysis (GSEA) software
     (Subramanian et al. 2005 &lt;doi:10.1073/pnas.0506580102&gt;, Liberzon et al. 2015
     &lt;doi:10.1016/j.cels.2015.12.004&gt;) in a standard R data frame with key-value
-    pairs. The package includes the original human gene symbols and NCBI/Entrez
-    IDs as well as the equivalents for frequently studied model organisms such
-    as mouse, rat, pig, fly, and yeast.">
+    pairs. The package includes the human genes as listed in MSigDB as well as
+    the corresponding symbols and IDs for frequently studied model organisms
+    such as mouse, rat, pig, fly, and yeast.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@bioigor">
+<meta name="twitter:site" content="@bioigor">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -43,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1.9002</span>
       </span>
     </div>
 
@@ -87,7 +90,7 @@
 <ul>
 <li>in an R-friendly tidy/long format with one gene per row</li>
 <li>for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes</li>
-<li>as both gene symbols and NCBI/Entrez Gene IDs for better compatibility with pathway enrichment tools</li>
+<li>as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools</li>
 <li>that can be installed and loaded as a package without requiring additional external files</li>
 </ul>
 </div>
@@ -102,7 +105,7 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>The package data can be accessed using the <code><a href="reference/msigdbr.html">msigdbr()</a></code> function, which returns a data frame of gene sets and their member genes. For example, you can retrieve mouse genes from the C2 (curated) CGP (chemical and genetic perturbations) gene sets.</p>
 <pre class="{r}"><code>genesets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")</code></pre>
-<p>Check the <a href="https://igordot.github.io/msigdbr">documentation website</a> for more information.</p>
+<p>Check the <a href="https://igordot.github.io/msigdbr/">documentation website</a> for more information.</p>
 </div>
 </div>
   </div>
@@ -138,7 +141,6 @@
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=msigdbr"><img src="http://www.r-pkg.org/badges/version/msigdbr" alt="CRAN"></a></li>
 <li><a href="https://github.com/igordot/msigdbr/actions"><img src="https://github.com/igordot/msigdbr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://travis-ci.com/igordot/msigdbr"><img src="https://travis-ci.com/igordot/msigdbr.svg?branch=master" alt="Travis Build Status"></a></li>
 <li><a href="https://codecov.io/gh/igordot/msigdbr"><img src="https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>

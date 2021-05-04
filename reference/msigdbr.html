@@ -42,6 +42,9 @@
 <meta property="og:title" content="Retrieve the gene sets data frame — msigdbr" />
 <meta property="og:description" content="Retrieve a data frame of gene sets and their member genes.
 The available species and collections can be checked with msigdbr_species() and msigdbr_collections()." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@bioigor" />
+<meta name="twitter:site" content="@bioigor" />
 
 
 
@@ -83,7 +86,7 @@ The available species and collections can be checked with msigdbr_species() and 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1.9002</span>
       </span>
     </div>
 
@@ -160,45 +163,44 @@ The available species and collections can be checked with <code><a href='msigdbr
     <pre class="examples"><div class='input'><span class='co'># get all human gene sets</span>
 <span class='co'># \donttest{</span>
 <span class='fu'>msigdbr</span><span class='op'>(</span>species <span class='op'>=</span> <span class='st'>"Homo sapiens"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3,862,192 x 18</span><span>
-#&gt;    gs_cat gs_subcat      gs_name        entrez_gene ensembl_gene    gene_symbol
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>10</span><span>257 ENSG00000125257 ABCC4      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>23</span><span>172 ENSG00000165660 ABRAXAS2   
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140          81 ENSG00000130402 ACTN4      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140          90 ENSG00000115170 ACVR1      
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140        </span><span style='text-decoration: underline;'>8</span><span>754 ENSG00000168615 ADAM9      
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140       </span><span style='text-decoration: underline;'>11</span><span>096 ENSG00000154736 ADAMTS5    
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140      </span><span style='text-decoration: underline;'>219</span><span>287 ENSG00000165566 AMER2      
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140         287 ENSG00000145362 ANK2       
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140        </span><span style='text-decoration: underline;'>8</span><span>539 ENSG00000166181 API5       
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140         571 ENSG00000156273 BACH1      
-#&gt; </span><span style='color: #949494;'># … with 3,862,182 more rows, and 12 more variables: human_entrez_gene &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   human_gene_symbol &lt;chr&gt;, gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, ortholog_sources &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   num_ortholog_sources &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4,263,110 x 15</span><span>
+#&gt;    gs_cat gs_subcat      gs_name        gene_symbol entrez_gene ensembl_gene   
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ABCC4             </span><span style='text-decoration: underline;'>10</span><span>257 ENSG00000125257
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ABRAXAS2          </span><span style='text-decoration: underline;'>23</span><span>172 ENSG00000165660
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ACTN4                81 ENSG00000130402
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ACTN4                81 ENSG00000282844
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ACVR1                90 ENSG00000115170
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAM9              </span><span style='text-decoration: underline;'>8</span><span>754 ENSG00000168615
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAM9              </span><span style='text-decoration: underline;'>8</span><span>754 ENSG00000282230
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAMTS5           </span><span style='text-decoration: underline;'>11</span><span>096 ENSG00000154736
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 AMER2            </span><span style='text-decoration: underline;'>219</span><span>287 ENSG00000165566
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ANK2                287 ENSG00000145362
+#&gt; </span><span style='color: #949494;'># … with 4,263,100 more rows, and 9 more variables: human_gene_symbol &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_description &lt;chr&gt;</span><span></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets</span>
 <span class='co'># \donttest{</span>
 <span class='fu'>msigdbr</span><span class='op'>(</span>species <span class='op'>=</span> <span class='st'>"Mus musculus"</span>, category <span class='op'>=</span> <span class='st'>"C2"</span>, subcategory <span class='op'>=</span> <span class='st'>"CGP"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 366,082 x 18</span><span>
-#&gt;    gs_cat gs_subcat gs_name             entrez_gene ensembl_gene     gene_symbol
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>66</span><span>395 ENSMUSG00000069… Ahnak      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>11</span><span>658 ENSMUSG00000022… Alcam      
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>71</span><span>452 ENSMUSG00000020… Ankrd40    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>93</span><span>760 ENSMUSG00000007… Arid1a     
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>12</span><span>040 ENSMUSG00000032… Bckdhb     
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…      </span><span style='text-decoration: underline;'>239</span><span>691 ENSMUSG00000051… AU021092   
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>73</span><span>647 ENSMUSG00000031… Capn9      
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>12</span><span>484 ENSMUSG00000047… Cd24a      
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>20</span><span>430 ENSMUSG00000030… Cyfip1     
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C2     CGP       ABBUD_LIF_SIGNALIN…       </span><span style='text-decoration: underline;'>28</span><span>199 ENSMUSG00000022… Dcaf11     
-#&gt; </span><span style='color: #949494;'># … with 366,072 more rows, and 12 more variables: human_entrez_gene &lt;int&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   human_gene_symbol &lt;chr&gt;, gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   species_name &lt;chr&gt;, species_common_name &lt;chr&gt;, ortholog_sources &lt;chr&gt;,</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 376,981 x 18</span><span>
+#&gt;    gs_cat gs_subcat gs_name             gene_symbol entrez_gene ensembl_gene    
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Ahnak             </span><span style='text-decoration: underline;'>66</span><span>395 ENSMUSG00000069…
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Alcam             </span><span style='text-decoration: underline;'>11</span><span>658 ENSMUSG00000022…
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Ankrd40           </span><span style='text-decoration: underline;'>71</span><span>452 ENSMUSG00000020…
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Arid1a            </span><span style='text-decoration: underline;'>93</span><span>760 ENSMUSG00000007…
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Bckdhb            </span><span style='text-decoration: underline;'>12</span><span>040 ENSMUSG00000032…
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… AU021092         </span><span style='text-decoration: underline;'>239</span><span>691 ENSMUSG00000051…
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Capn9             </span><span style='text-decoration: underline;'>73</span><span>647 ENSMUSG00000031…
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Cd24a             </span><span style='text-decoration: underline;'>12</span><span>484 ENSMUSG00000047…
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Steep1            </span><span style='text-decoration: underline;'>77</span><span>644 ENSMUSG00000006…
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> C2     CGP       ABBUD_LIF_SIGNALIN… Cyfip1            </span><span style='text-decoration: underline;'>20</span><span>430 ENSMUSG00000030…
+#&gt; </span><span style='color: #949494;'># … with 376,971 more rows, and 12 more variables: human_gene_symbol &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   num_ortholog_sources &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
