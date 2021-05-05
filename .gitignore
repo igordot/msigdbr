@@ -27,6 +27,8 @@ inst/doc
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+# pkgdown
+docs
 
 ### macOS ###
 *.DS_Store
@@ -67,4 +69,3 @@ $RECYCLE.BIN/
 *.msp
 # Windows shortcuts
 *.lnk
-docs

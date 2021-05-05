@@ -31,7 +31,7 @@ The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene set
 
 * in an R-friendly tidy/long format with one gene per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
-* as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools
+* as gene symbols as well as NCBI Entrez and Ensembl IDs
 * that can be installed and loaded as a package without requiring additional external files
 
 Please be aware that the homologs were computationally predicted for distinct genes.
@@ -101,14 +101,14 @@ The `msigdbr` output can be used with various popular pathway analysis packages.
 Use the gene sets data frame for `clusterProfiler` with genes as Entrez Gene IDs.
 
 ```{r cp-entrez, eval=FALSE}
-msigdbr_t2g = msigdbr_df %>% dplyr::select(gs_name, entrez_gene) %>% as.data.frame()
+msigdbr_t2g = msigdbr_df %>% dplyr::distinct(gs_name, entrez_gene) %>% as.data.frame()
 enricher(gene = gene_ids_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
 
 Use the gene sets data frame for `clusterProfiler` with genes as gene symbols.
 
 ```{r cp-symbols, eval=FALSE}
-msigdbr_t2g = msigdbr_df %>% dplyr::select(gs_name, gene_symbol) %>% as.data.frame()
+msigdbr_t2g = msigdbr_df %>% dplyr::distinct(gs_name, gene_symbol) %>% as.data.frame()
 enricher(gene = gene_symbols_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
 

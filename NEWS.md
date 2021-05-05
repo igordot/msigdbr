@@ -1,4 +1,4 @@
-# msigdbr (development version)
+# msigdbr 7.4.1
 
 * Based on MSigDB v7.4 release.
 * Added Ensembl gene IDs to the returned gene sets.

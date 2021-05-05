@@ -145,11 +145,6 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
       )
   }
 
-  # confirm that the species exists in the database
-  if (nrow(orthologs_subset) == 0) {
-    stop("species does not exist in the database: ", species)
-  }
-
   # combine gene sets and orthologs
   genesets_subset %>%
     inner_join(orthologs_subset, by = "human_ensembl_gene") %>%

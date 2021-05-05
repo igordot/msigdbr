@@ -10,7 +10,7 @@ The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene set
 
 * in an R-friendly tidy/long format with one gene per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
-* as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools
+* as gene symbols as well as NCBI Entrez and Ensembl IDs
 * that can be installed and loaded as a package without requiring additional external files
 
 ## Installation

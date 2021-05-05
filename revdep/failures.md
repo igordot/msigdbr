@@ -1,4 +1,4 @@
-# tidybulk
+# simplifyEnrichment
 
 <details>
 
@@ -15,14 +15,18 @@
 
 ```
 
-  There is a binary version available but the source version is later:
-        binary source needs_compilation
-RSQLite  2.2.0  2.2.1              TRUE
+  There are binary versions available but the source versions are later:
+               binary source needs_compilation
+class          7.3-18 7.3-19              TRUE
+colorspace      2.0-0  2.0-1              TRUE
+MASS         7.3-53.1 7.3-54              TRUE
+Matrix          1.3-2  1.3-3              TRUE
+RcppParallel    5.1.3  5.1.4              TRUE
 
   Binaries will be installed
 
 
-installing the source packages ‘EGSEAdata’, ‘hgu133a.db’, ‘hgu133plus2.db’, ‘KEGGdzPathwaysGEO’, ‘org.Mm.eg.db’, ‘org.Rn.eg.db’
+installing the source package ‘reactome.db’
 
 
 
@@ -31,14 +35,18 @@ installing the source packages ‘EGSEAdata’, ‘hgu133a.db’, ‘hgu133plus2
 
 ```
 
-  There is a binary version available but the source version is later:
-        binary source needs_compilation
-RSQLite  2.2.0  2.2.1              TRUE
+  There are binary versions available but the source versions are later:
+               binary source needs_compilation
+class          7.3-18 7.3-19              TRUE
+colorspace      2.0-0  2.0-1              TRUE
+MASS         7.3-53.1 7.3-54              TRUE
+Matrix          1.3-2  1.3-3              TRUE
+RcppParallel    5.1.3  5.1.4              TRUE
 
   Binaries will be installed
 
 
-installing the source packages ‘EGSEAdata’, ‘hgu133a.db’, ‘hgu133plus2.db’, ‘KEGGdzPathwaysGEO’, ‘org.Mm.eg.db’, ‘org.Rn.eg.db’
+installing the source package ‘reactome.db’
 
 
 
