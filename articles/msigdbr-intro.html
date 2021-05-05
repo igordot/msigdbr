@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.2.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">7.4.1</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@
 <ul>
 <li>in an R-friendly tidy/long format with one gene per row</li>
 <li>for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes</li>
-<li>as both gene symbols and NCBI Entrez Gene IDs for better compatibility with pathway enrichment tools</li>
+<li>as gene symbols as well as NCBI Entrez and Ensembl IDs</li>
 <li>that can be installed and loaded as a package without requiring additional external files</li>
 </ul>
 <p>Please be aware that the homologs were computationally predicted for distinct genes. The full pathways may not be well conserved across species.</p>
@@ -238,11 +238,11 @@
 <p>The <code>msigdbr</code> output can be used with various popular pathway analysis packages.</p>
 <p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as Entrez Gene IDs.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 <p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as gene symbols.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">msigdbr_t2g</span> <span class="op">=</span> <span class="va">msigdbr_df</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 <p>Use the gene sets data frame for <code>fgsea</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
