@@ -24,7 +24,7 @@ The available species and collections can be checked with msigdbr_species() and 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.4.1.9000</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ The available species and collections can be checked with <code><a href="msigdbr
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># get all human gene sets</span></span>
 <span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Homo sapiens"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,263,110 × 15</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,331,807 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gs_cat gs_subcat      gs_name        gene_symbol entrez_gene ensembl_gene   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ABCC4             <span style="text-decoration: underline;">10</span>257 ENSG00000125257</span>
@@ -103,7 +103,7 @@ The available species and collections can be checked with <code><a href="msigdbr
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAMTS5           <span style="text-decoration: underline;">11</span>096 ENSG00000154736</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 AMER2            <span style="text-decoration: underline;">219</span>287 ENSG00000165566</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ANK2                287 ENSG00000145362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4,263,100 more rows, and 9 more variables: human_gene_symbol &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4,331,797 more rows, and 9 more variables: human_gene_symbol &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_description &lt;chr&gt;</span></span>
@@ -112,7 +112,7 @@ The available species and collections can be checked with <code><a href="msigdbr
 <span class="r-in"><span class="co"># get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets</span></span>
 <span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 376,981 × 18</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 380,271 × 18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gs_cat gs_subcat gs_name                 gene_symbol entrez_gene ensembl_gene</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Ahnak             <span style="text-decoration: underline;">66</span>395 ENSMUSG0000…</span>
@@ -123,9 +123,9 @@ The available species and collections can be checked with <code><a href="msigdbr
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… AU021092         <span style="text-decoration: underline;">239</span>691 ENSMUSG0000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Capn9             <span style="text-decoration: underline;">73</span>647 ENSMUSG0000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Cd24a             <span style="text-decoration: underline;">12</span>484 ENSMUSG0000…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Steep1            <span style="text-decoration: underline;">77</span>644 ENSMUSG0000…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Cyfip1            <span style="text-decoration: underline;">20</span>430 ENSMUSG0000…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 376,971 more rows, and 12 more variables: human_gene_symbol &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Cyfip1            <span style="text-decoration: underline;">20</span>430 ENSMUSG0000…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Dcaf11            <span style="text-decoration: underline;">28</span>199 ENSMUSG0000…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 380,261 more rows, and 12 more variables: human_gene_symbol &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span>
