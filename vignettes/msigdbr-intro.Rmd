@@ -155,7 +155,7 @@ You may still end up with dozens of homologs for some genes, so additional clean
 
 There are a few other resources that and provide some of the functionality and served as an inspiration for this package.
 [Ge Lab Gene Set Files](http://ge-lab.org/#/data) has GMT files for many species.
-[WEHI](http://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse.
+[WEHI](https://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse.
 [MSigDF](https://github.com/stephenturner/msigdf) is based on the WEHI resource, but is converted to a more tidyverse-friendly data frame.
 These are updated at varying frequencies and may not use the latest version of MSigDB.
 
