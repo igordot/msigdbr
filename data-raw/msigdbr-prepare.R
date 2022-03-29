@@ -11,13 +11,13 @@ library(usethis)
 # Import MSigDB gene sets -------------------------------------------------
 
 # Define MSigDB download variables
-mdb_version <- "7.4"
+mdb_version <- "7.5.1"
 mdb_url_base <- "https://data.broadinstitute.org/gsea-msigdb/msigdb"
 mdb_zip_url <- glue("{mdb_url_base}/release/{mdb_version}/msigdb_v{mdb_version}_files_to_download_locally.zip")
 mdb_dir <- glue("msigdb_v{mdb_version}_files_to_download_locally")
 
 # Download the MSigDB zip file
-options(timeout = 100)
+options(timeout = 150)
 download.file(url = mdb_zip_url, destfile = glue("{mdb_dir}.zip"))
 
 # Check MSigDB XML file size in bytes
