@@ -1,3 +1,7 @@
+# msigdbr 7.5.1
+
+* Based on MSigDB v7.5.1 release.
+
 # msigdbr 7.4.1
 
 * Based on MSigDB v7.4 release.
