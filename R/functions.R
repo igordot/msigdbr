@@ -162,3 +162,150 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
       everything()
     )
 }
+
+
+
+
+#' @title Update Gene Ontology term descriptions
+#'
+#' @description Update entries in the \code{gs_description} column of
+#'   \code{\link{msigdbr}} results to use terms from the
+#'   \href{http://geneontology.org/}{Gene Ontology Consortium}.
+#'
+#' @param x `data.frame` produced by \code{\link{msigdbr}} containing columns
+#'   `gs_description` and `gs_subcat`.
+#' @param version Character string specifying the version of \code{msigdbr} to use. Defaults to the current version.
+#'
+#' @returns A \code{data.frame}. The same as \code{x}, but with updated descriptions.
+#'
+#' @details This function assumes that the phrase "GO-basic obo file released
+#'   on" is present in the MSigDB release notes for that version and is followed
+#'   by a date.
+#'
+#' @author Tyler Sagendorf
+#'
+#' @importFrom ontologyIndex get_OBO
+#' @importFrom data.table setDT setkeyv `:=`
+#' @importFrom utils packageVersion
+#'
+#' @export
+#'
+#' @seealso
+#' \code{\link{cap_names}}, \href{https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Release_Notes}{MSigDB
+#' Release Notes}, \href{http://release.geneontology.org/}{Gene Ontology Data
+#' Archive}
+#'
+#' @references Ashburner, M., et al. (2000). Gene ontology: tool for the
+#'   unification of biology. The Gene Ontology Consortium. *Nature genetics*,
+#'   *25*(1), 25–29. \url{https://doi.org/10.1038/75556}
+#'
+#'   Gene Ontology Consortium (2021). The Gene Ontology resource: enriching a
+#'   GOld mine. *Nucleic acids research*, *49*(D1), D325–D334.
+#'   \url{https://doi.org/10.1093/nar/gkaa1113}
+#'
+#' @examples
+#' \donttest{
+#' x <- msigdbr(species = "Homo sapiens",
+#'              category = "C5",
+#'              subcategory = "GO:MF")
+#' head(unique(x$gs_description)) # before
+#'
+#' x <- update_GO_names(x)
+#' head(unique(x$gs_description)) # after
+#' }
+
+update_GO_names <- function(x,
+                            version = packageVersion("msigdbr"))
+{
+  obsolete <- id <- name <- gs_description <- i.name <- NULL
+
+  go_subcats <- c("GO:MF", "GO:CC", "GO:BP")
+
+  setDT(x, key = "gs_exact_source")
+
+  if (any(x[["gs_subcat"]] %in% go_subcats)) {
+    file <- .obo_file(version = version)
+    message(paste("Updating GO term descriptions.\nUsing", file))
+
+    go_basic_list <- get_OBO(file = file,
+                             propagate_relationships = "is_a",
+                             extract_tags = "minimal")
+    go.dt <- as.data.frame(go_basic_list)
+    setDT(go.dt)
+    go.dt <- go.dt[obsolete != TRUE & grepl("^GO", id), list(id, name)]
+    setkeyv(go.dt, cols = "id")
+
+    # Update gs_description column with names from OBO file
+    x[go.dt, on = list(gs_exact_source = id), gs_description := i.name]
+
+  } else {
+    message("No GO terms.")
+  }
+
+  x <- as.data.frame(x)
+  return(x)
+}
+
+## Not exported
+# Get the path to the appropriate OBO file.
+.obo_file <- function(version = packageVersion("msigdbr")) {
+  # MSigDB release notes for appropriate version
+  path <- sprintf(file.path("https://software.broadinstitute.org/cancer",
+                            "software/gsea/wiki/index.php",
+                            "MSigDB_v%s_Release_Notes"), version)
+  x <- readLines(path)
+  x <- paste(x, collapse = "")
+  x <- gsub("\\\\n", "", x)
+
+  phrase <- "GO-basic obo file released on"
+
+  if (!grepl(phrase, x)) {
+    stop(sprintf("Phrase '%s' not found in %s", phrase, path))
+  }
+
+  obo_date <- sub(sprintf(".*%s ([^ ]+).*", phrase), "\\1", x)
+  obo_file <- sprintf("http://release.geneontology.org/%s/ontology/go-basic.obo",
+                      obo_date)
+  return(obo_file)
+}
+
+
+#' @title Capitalize set descriptions
+#'
+#' @description Capitalizes the first letter of a description, unless the first
+#'   word was not entirely lowercase. For example, the first letter of
+#'   "magnesium ion binding" is capitalized, but "tRNA binding" would remain
+#'   unchanged. This should preserve special capitalization while slightly
+#'   improving the appearance of descriptions in visualizations.
+#'
+#' @param x A character vector of term descriptions (i.e. the
+#'   \code{gs_description} column of \code{\link{msigdbr}} results).
+#'
+#' @returns A character vector of conditionally-capitalized terms.
+#'
+#' @export
+#'
+#' @author Tyler Sagendorf
+#'
+#' @examples
+#' \donttest{
+#' x <- msigdbr(species = "Homo sapiens",
+#'              category = "C5",
+#'              subcategory = "GO:MF")
+#' x <- update_GO_names(x)
+#' head(unique(x$gs_description)) # before
+#'
+#'
+#' x$gs_description <- cap_names(x$gs_description)
+#' head(unique(x$gs_description)) # after
+#' }
+
+cap_names <- function(x) {
+  first_word <- sub("[ |-].*", "", x)
+  idx <- first_word == tolower(first_word)
+  x[idx] <- sub("(.)", "\\U\\1", x[idx], perl = TRUE)
+  return(x)
+}
+
+
+
