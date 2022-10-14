@@ -2,17 +2,17 @@
 
 [![CRAN](https://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/msigdbr)](https://cran.r-project.org/package=msigdbr)
-[![R build status](https://github.com/igordot/msigdbr/workflows/R-CMD-check/badge.svg)](https://github.com/igordot/msigdbr/actions)
+[![R-CMD-check](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/igordot/msigdbr)
 
 ## Overview
 
-The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
+The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
-* in an R-friendly tidy/long format with one gene per row
+* in an R-friendly "[tidy](https://r4ds.had.co.nz/tidy-data.html)" format with one gene pair per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
-* that can be installed and loaded as a package without requiring additional external files
+* without accessing external resources and requiring an active internet connection
 
 ## Installation
 
@@ -30,4 +30,4 @@ The package data can be accessed using the `msigdbr()` function, which returns a
 genesets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
 ```
 
-Check the [documentation website](https://igordot.github.io/msigdbr/) for more information.
+Check the [documentation website](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html) for more information.

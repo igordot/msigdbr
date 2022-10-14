@@ -1,15 +1,26 @@
-url: https://igordot.github.io/msigdbr
+url: https://igordot.github.io/msigdbr/
 
 template:
-  params:
-    bootswatch: readable
-    ganalytics: UA-130263433-2
+  bootstrap: 5
+  bootswatch: zephyr
+  includes:
+    before_body: |
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW0CJR3Z9Z"></script>
+       <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+
+         gtag('config', 'G-WW0CJR3Z9Z');
+       </script>
   opengraph:
     twitter:
       creator: "@bioigor"
       card: summary_large_image
 
 navbar:
+  bg: light
   structure:
     left: []
     right: [home, intro, reference, articles, news, github]
@@ -22,4 +33,3 @@ navbar:
 
 home:
   title: MSigDB gene sets R package
-  strip_header: true
