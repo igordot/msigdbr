@@ -1,55 +1,3 @@
-
-#' List the species available in the msigdbr package
-#'
-#' @return A data frame of the available species.
-#'
-#' @importFrom babelgene species
-#' @importFrom dplyr arrange distinct select
-#' @importFrom tibble as_tibble
-#' @export
-#'
-#' @examples
-#' msigdbr_species()
-msigdbr_species <- function() {
-  species() %>%
-    as_tibble() %>%
-    select(
-      species_name = .data$scientific_name,
-      species_common_name = .data$common_name
-    ) %>%
-    rbind(c("Homo sapiens", "human")) %>%
-    distinct() %>%
-    arrange(.data$species_name)
-}
-
-#' List the species available in the msigdbr package
-#'
-#' This function is being deprecated and replaced by `msigdbr_species()`.
-#'
-#' @return A vector of possible species.
-#'
-#' @export
-msigdbr_show_species <- function() {
-  .Deprecated("msigdbr_species")
-  sort(msigdbr_species()[["species_name"]])
-}
-
-#' List the collections available in the msigdbr package
-#'
-#' @return A data frame of the available collections.
-#'
-#' @importFrom dplyr arrange count distinct
-#' @export
-#'
-#' @examples
-#' msigdbr_collections()
-msigdbr_collections <- function() {
-  msigdbr_genesets %>%
-    distinct(.data$gs_cat, .data$gs_subcat, .data$gs_id) %>%
-    count(.data$gs_cat, .data$gs_subcat, name = "num_genesets") %>%
-    arrange(.data$gs_cat, .data$gs_subcat)
-}
-
 #' Retrieve the gene sets data frame
 #'
 #' Retrieve a data frame of gene sets and their member genes.
@@ -125,9 +73,9 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     orthologs_subset <-
       genesets_subset %>%
       select(
-        .data$human_ensembl_gene,
-        gene_symbol = .data$human_gene_symbol,
-        entrez_gene = .data$human_entrez_gene
+        "human_ensembl_gene",
+        gene_symbol = "human_gene_symbol",
+        entrez_gene = "human_entrez_gene"
       ) %>%
       mutate(ensembl_gene = .data$human_ensembl_gene) %>%
       distinct()
@@ -136,12 +84,12 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
       orthologs(genes = genesets_subset$human_ensembl_gene, species = species) %>%
       select(-any_of(c("human_symbol", "human_entrez"))) %>%
       rename(
-        human_ensembl_gene = .data$human_ensembl,
-        gene_symbol = .data$symbol,
-        entrez_gene = .data$entrez,
-        ensembl_gene = .data$ensembl,
-        ortholog_sources = .data$support,
-        num_ortholog_sources = .data$support_n
+        human_ensembl_gene = "human_ensembl",
+        gene_symbol = "symbol",
+        entrez_gene = "entrez",
+        ensembl_gene = "ensembl",
+        ortholog_sources = "support",
+        num_ortholog_sources = "support_n"
       )
   }
 
@@ -150,15 +98,15 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     inner_join(orthologs_subset, by = "human_ensembl_gene") %>%
     arrange(.data$gs_name, .data$human_gene_symbol, .data$gene_symbol) %>%
     select(
-      .data$gs_cat,
-      .data$gs_subcat,
-      .data$gs_name,
-      .data$gene_symbol,
-      .data$entrez_gene,
-      .data$ensembl_gene,
-      .data$human_gene_symbol,
-      .data$human_entrez_gene,
-      .data$human_ensembl_gene,
+      "gs_cat",
+      "gs_subcat",
+      "gs_name",
+      "gene_symbol",
+      "entrez_gene",
+      "ensembl_gene",
+      "human_gene_symbol",
+      "human_entrez_gene",
+      "human_ensembl_gene",
       everything()
     )
 }
