@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">msigdbr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">7.5.1.9000</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>List the collections available in the msigdbr package</h1>
-    <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/HEAD/R/functions.R" class="external-link"><code>R/functions.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/HEAD/R/msigdbr-collections.R" class="external-link"><code>R/msigdbr-collections.R</code></a></small>
     <div class="hidden name"><code>msigdbr_collections.Rd</code></div>
     </div>
 
@@ -62,28 +62,30 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">msigdbr_collections</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">msigdbr_collections</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame of the available collections.</p>
+    
+
+<p>A data frame of the available collections.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">msigdbr_collections</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">msigdbr_collections</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gs_cat gs_subcat         num_genesets</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C1     <span style="color: #949494;">""</span>                         299</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> C2     <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>                     <span style="text-decoration: underline;">3</span>384</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> C2     <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>                     <span style="text-decoration: underline;">3</span>399</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> C2     <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>                        29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> C2     <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>              292</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> C2     <span style="color: #949494;">"</span>CP:KEGG<span style="color: #949494;">"</span>                  186</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> C2     <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>                   196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C2     <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>             <span style="text-decoration: underline;">1</span>615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C2     <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span>          664</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C2     <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>             <span style="text-decoration: underline;">1</span>635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C2     <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span>          712</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C3     <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">2</span>377</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C3     <span style="color: #949494;">"</span>MIR:MIR_Legacy<span style="color: #949494;">"</span>           221</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 13 more rows</span></span>
@@ -101,7 +103,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
