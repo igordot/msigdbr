@@ -3,7 +3,7 @@
 [![CRAN](https://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![R-CMD-check](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/igordot/msigdbr)
+[![codecov](https://codecov.io/gh/igordot/msigdbr/branch/master/graph/badge.svg?token=nYFPe9mc0Q)](https://codecov.io/gh/igordot/msigdbr)
 
 ## Overview
 
@@ -27,7 +27,8 @@ install.packages("msigdbr")
 The package data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes. For example, you can retrieve mouse genes from the C2 (curated) CGP (chemical and genetic perturbations) gene sets.
 
 ```{r}
-genesets = msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+library(msigdbr)
+genesets = msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
 ```
 
 Check the [documentation website](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html) for more information.

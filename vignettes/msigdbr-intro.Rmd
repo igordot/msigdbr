@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# increase the screen width
-options(width = 90)
 # reduce the minimum number of characters for the tibble column titles (default: 15)
 options(pillar.min_title_chars = 10)
 # increase the maximum number of rows printed (default: 20)
@@ -27,12 +25,12 @@ options(tibble.print_max = 25)
 Pathway analysis is a common task in genomics research and there are many available R-based software tools.
 Depending on the tool, it may be necessary to import the pathways, translate genes to the appropriate species, convert between symbols and IDs, and format the resulting object.
 
-The `msigdbr` R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
+The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
-* in an R-friendly tidy/long format with one gene per row
+* in an R-friendly "[tidy](https://r4ds.had.co.nz/tidy-data.html)" format with one gene pair per row
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
-* that can be installed and loaded as a package without requiring additional external files
+* without accessing external resources and requiring an active internet connection
 
 Please be aware that the homologs were computationally predicted for distinct genes.
 The full pathways may not be well conserved across species.
@@ -53,40 +51,29 @@ Load package.
 library(msigdbr)
 ```
 
-All gene sets in the database can be retrieved without specifying a collection/category.
+All gene sets in the database can be retrieved by specifying a species of interest.
 
 ```{r msigdbr-mouse-all}
-all_gene_sets = msigdbr(species = "Mus musculus")
+all_gene_sets <- msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 ```
 
-There is a helper function to show the available species. Either scientific or common names are acceptable.
-
-```{r species}
-msigdbr_species()
-```
-
-You can retrieve data for a specific collection, such as the hallmark gene sets.
+You can retrieve data just for a specific collection/category, such as the hallmark gene sets.
 
 ```{r msigdbr-mouse-h}
-h_gene_sets = msigdbr(species = "mouse", category = "H")
+h_gene_sets <- msigdbr(species = "mouse", category = "H")
 head(h_gene_sets)
 ```
 
-Retrieve mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets.
+You can specify a sub-category, such as C2 (curated) CGP (chemical and genetic perturbations) gene sets.
 
 ```{r msigdbr-mouse-c2}
-cgp_gene_sets = msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
+cgp_gene_sets <- msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
 head(cgp_gene_sets)
 ```
 
-There is a helper function to show the available collections.
-
-```{r collections}
-msigdbr_collections()
-```
-
-The `msigdbr()` function output is a data frame and can be manipulated using more standard methods.
+If you require more custom filtering, the `msigdbr()` function output is a data frame that can be manipulated using standard methods.
+For example, you can subset to a specific collection/category using `dplyr::filter()`.
 
 ```{r filter-h}
 all_gene_sets %>%
@@ -94,35 +81,55 @@ all_gene_sets %>%
   head()
 ```
 
+## Helper functions
+
+There are `msigdbr_species()` and `msigdbr_collections()` helper functions to assist with setting the `msigdbr()` parameters.
+
+You can check the available species with `msigdbr_species()`. Either scientific or common names are acceptable for the `msigdbr()` function.
+
+```{r species}
+msigdbr_species()
+```
+
+You can check the available collections with `msigdbr_collections()`.
+
+```{r collections}
+msigdbr_collections()
+```
+
 ## Pathway enrichment analysis
 
-The `msigdbr` output can be used with various popular pathway analysis packages.
+The msigdbr output can be used with various pathway analysis packages.
 
-Use the gene sets data frame for `clusterProfiler` with genes as Entrez Gene IDs.
+Use the gene sets data frame for [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/) with genes as Entrez Gene IDs.
 
 ```{r cp-entrez, eval=FALSE}
-msigdbr_t2g = msigdbr_df %>% dplyr::distinct(gs_name, entrez_gene) %>% as.data.frame()
+msigdbr_t2g <- msigdbr_df %>%
+  dplyr::distinct(gs_name, entrez_gene) %>%
+  as.data.frame()
 enricher(gene = gene_ids_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
 
-Use the gene sets data frame for `clusterProfiler` with genes as gene symbols.
+Use the gene sets data frame for [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/) with genes as gene symbols.
 
 ```{r cp-symbols, eval=FALSE}
-msigdbr_t2g = msigdbr_df %>% dplyr::distinct(gs_name, gene_symbol) %>% as.data.frame()
+msigdbr_t2g <- msigdbr_df %>%
+  dplyr::distinct(gs_name, gene_symbol) %>%
+  as.data.frame()
 enricher(gene = gene_symbols_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
 
-Use the gene sets data frame for `fgsea`.
+Use the gene sets data frame for [fgsea](https://bioconductor.org/packages/fgsea/).
 
 ```{r fgsea, eval=FALSE}
-msigdbr_list = split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
+msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 fgsea(pathways = msigdbr_list, ...)
 ```
 
-Use the gene sets data frame for `GSVA`.
+Use the gene sets data frame for [GSVA](https://bioconductor.org/packages/GSVA/).
 
 ```{r gsva, eval=FALSE}
-msigdbr_list = split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
+msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 gsva(gset.idx.list = msigdbr_list, ...)
 ```
 
@@ -130,8 +137,8 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 **Which version of MSigDB was used?**
 
-This package was generated with MSigDB v7.5.1 (released January 2022).
-The MSigDB version is used as the base of the `msigdsbr` package version.
+This package was generated with MSigDB v7.5.1.
+The MSigDB version is used as the base of the msigdbr CRAN package version.
 You can check the installed version with `packageVersion("msigdbr")`.
 
 **Can I download the gene sets directly from MSigDB instead of using this package?**
@@ -153,11 +160,12 @@ You may still end up with dozens of homologs for some genes, so additional clean
 
 **Aren't there already other similar tools?**
 
-There are a few other resources that and provide some of the functionality and served as an inspiration for this package.
-[Ge Lab Gene Set Files](http://ge-lab.org/#/data) has GMT files for many species.
+There are a few resources that provide some of the msigdbr functionality and served as an inspiration for this package.
 [WEHI](https://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse.
-[MSigDF](https://github.com/stephenturner/msigdf) is based on the WEHI resource, but is converted to a more tidyverse-friendly data frame.
-These are updated at varying frequencies and may not use the latest version of MSigDB.
+[MSigDF](https://github.com/stephenturner/msigdf) relies on the WEHI resource, but is converted to a more tidyverse-friendly data frame.
+There is a more recent [ToledoEM/msigdf](https://github.com/ToledoEM/msigdf) fork.
+These are updated at varying frequencies and may not be based on the latest version of MSigDB.
+Since 2022, the GSEA/MSigDB team provides [collections that are natively mouse](https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp) and don't require orthology conversion.
 
 **What if I have other questions?**
 
@@ -171,4 +179,4 @@ To cite use of the underlying MSigDB data, reference Subramanian, Tamayo, et al.
 Gene homologs are provided by HUGO Gene Nomenclature Committee at the European Bioinformatics Institute which integrates the orthology assertions predicted for human genes by eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN.
 For each human equivalent within each species, only the ortholog supported by the largest number of databases is used.
 
-For information on how to cite cite an R package such as `msigdbr`, you can execute `citation("msigdbr")`.
+For information on how to cite cite an R package such as msigdbr, you can execute `citation("msigdbr")`.
