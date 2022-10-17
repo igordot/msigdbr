@@ -248,23 +248,23 @@
 <h2 id="pathway-enrichment-analysis">Pathway enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-enrichment-analysis"></a>
 </h2>
 <p>The msigdbr output can be used with various pathway analysis packages.</p>
-<p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as Entrez Gene IDs.</p>
+<p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a> with genes as Entrez Gene IDs.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
-<p>Use the gene sets data frame for <code>clusterProfiler</code> with genes as gene symbols.</p>
+<p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a> with genes as gene symbols.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
-<p>Use the gene sets data frame for <code>fgsea</code>.</p>
+<p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/fgsea/" class="external-link">fgsea</a>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">fgsea</span><span class="op">(</span>pathways <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
-<p>Use the gene sets data frame for <code>GSVA</code>.</p>
+<p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/GSVA/" class="external-link">GSVA</a>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
