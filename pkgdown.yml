@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   msigdbr-intro: msigdbr-intro.html
-last_built: 2022-10-14T21:21Z
+last_built: 2022-10-17T14:37Z
 urls:
   reference: https://igordot.github.io/msigdbr/reference
   article: https://igordot.github.io/msigdbr/articles
