@@ -36,11 +36,12 @@ msigdbr_collections <- function() {
                           "IMMUNOLOGIC SIGNATURE GENE SETS",
                           "CELL TYPE SIGNATURE GENE SETS",
                           "HALLMARK GENE SETS")
-  msigdbr_genesets %>%
+
+msigdbr_genesets %>%
   distinct(.data$gs_cat, .data$gs_subcat, .data$gs_id) %>%
   count(.data$gs_cat, .data$gs_subcat, name = "num_genesets") %>%
   arrange(.data$gs_cat, .data$gs_subcat) %>% 
   group_by(gs_cat) %>%
   bind_rows(summarise_all(., ~if(is.numeric(.)) sum(.) else "")) %>% 
-  unique() %>% arrange(gs_cat, desc=T) %>% cbind(msigdbr_geneset_desc)
+  unique() %>% arrange(gs_cat, desc=T) %>% cbind(gs_desc = msigdbr_geneset_desc)
 }
