@@ -7,6 +7,7 @@ library(stringr)
 library(glue)
 library(xml2)
 library(usethis)
+library(rvest)
 options(pillar.print_max = 100)
 
 # Import MSigDB gene sets -----
@@ -85,6 +86,15 @@ msigdbr_genesets <- mdb_tbl %>%
   arrange(gs_name, gs_id)
 
 if (nrow(msigdbr_genesets) != sum(msigdb_category_genesets$n_genesets)) stop()
+
+# Scrape gene set descriptions from gsea-msigdb.org collections webpage
+html <- read_html("http://www.gsea-msigdb.org/gsea/msigdb/collections.jsp") 
+desc <- html %>% 
+  html_elements("th") %>% html_text2() %>% 
+  str_extract(., ".*(?=\\n)") %>% as.tibble() %>% 
+  filter(!row_number() %in% c(12, 15, 22, 32)) %>% ungroup() %>% 
+  slice(-1) %>% 
+  rbind(value="H: hallmark gene sets")
 
 # Extract gene set members -----
 
@@ -244,6 +254,7 @@ format(object.size(msigdbr_genes), units = "Mb")
 use_data(
   msigdbr_genesets,
   msigdbr_geneset_genes,
+  desc,
   msigdbr_genes,
   internal = TRUE,
   overwrite = TRUE,
