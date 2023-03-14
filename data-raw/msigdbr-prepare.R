@@ -12,7 +12,12 @@ options(pillar.print_max = 100)
 # Import MSigDB gene sets -----
 
 # Define MSigDB download variables
-mdb_version <- "2022.1.Hs"
+mdb_version0 <- "2023.1"
+species_df<- data.frame('species_vereison' = c('Hs','Mm'),
+                        'species_annotation' = c('Human','Mouse'))
+for (i in 1:nrow(species_df)){
+  mdb_version <- paste0(mdb_version0,'.',
+                        species_df[i,'species_vereison'])
 mdb_xml <- glue("msigdb_v{mdb_version}.xml")
 mdb_url_base <- "https://data.broadinstitute.org/gsea-msigdb/msigdb"
 mdb_xml_url <- glue("{mdb_url_base}/release/{mdb_version}/{mdb_xml}")
@@ -72,7 +77,8 @@ msigdb_category_genesets
 # Import MSigDB Ensembl mappings -----
 
 # Download the MSigDB Ensembl mappings
-ensembl_url <- glue("{mdb_url_base}/annotations/human/Human_Ensembl_Gene_ID_MSigDB.v{mdb_version}.chip")
+ensembl_url <- glue("{mdb_url_base}/annotations/{tolower(chr)}/{chr}_Ensembl_Gene_ID_MSigDB.v{mdb_version}.chip",
+                    chr = species_df[i,'species_annotation'])
 ensembl_tbl <- read_tsv(ensembl_url, progress = FALSE, show_col_types = FALSE)
 ensembl_tbl <- ensembl_tbl %>% select(human_ensembl_gene = `Probe Set ID`, human_gene_symbol = `Gene Symbol`)
 
@@ -241,11 +247,18 @@ format(object.size(msigdbr_geneset_genes), units = "Mb")
 format(object.size(msigdbr_genes), units = "Mb")
 
 # Create package data
-use_data(
-  msigdbr_genesets,
-  msigdbr_geneset_genes,
-  msigdbr_genes,
-  internal = TRUE,
-  overwrite = TRUE,
-  compress = "xz"
-)
+for (j in c('msigdbr_genesets',
+            'msigdbr_geneset_genes',
+            'msigdbr_genes')){
+  assign(x = paste0(j,
+                    species_df[i,'species_vereison']),
+         value = eval(parse(text=j)))
+  do.call("use_data",
+          list(as.name(
+            paste0(j,
+                   species_df[i,'species_vereison'])),
+            internal = F,
+            overwrite = TRUE,
+            compress = "xz"))
+}
+}

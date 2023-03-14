@@ -61,14 +61,14 @@ head(all_gene_sets)
 You can retrieve data just for a specific collection/category, such as the hallmark gene sets.
 
 ```{r msigdbr-mouse-h}
-h_gene_sets <- msigdbr(species = "mouse", category = "H")
+h_gene_sets <- msigdbr(species = "mouse", category = "MH")
 head(h_gene_sets)
 ```
 
 You can specify a sub-category, such as C2 (curated) CGP (chemical and genetic perturbations) gene sets.
 
 ```{r msigdbr-mouse-c2}
-cgp_gene_sets <- msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
+cgp_gene_sets <- msigdbr(species = "mouse", category = "M2", subcategory = "CGP")
 head(cgp_gene_sets)
 ```
 
@@ -77,7 +77,7 @@ For example, you can subset to a specific collection/category using `dplyr::filt
 
 ```{r filter-h}
 all_gene_sets %>%
-  dplyr::filter(gs_cat == "H") %>%
+  dplyr::filter(gs_cat == "MH") %>%
   head()
 ```
 

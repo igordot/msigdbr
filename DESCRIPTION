@@ -2,9 +2,13 @@ Type: Package
 Package: msigdbr
 Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
 Version: 7.5.1.9001
-Authors@R: 
+Authors@R: c(
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-4451-126X"))
+           comment = c(ORCID = "0000-0003-4451-126X")),
+           person("Jiyuan", "Liu",
+           email = c("jliu78wiscedu@gmail.com","jliu78@mgh.harvard.edu"), 
+           role = c("ctb"))
+           )
 Description: Provides the 'Molecular Signatures Database' (MSigDB) gene
     sets typically used with the 'Gene Set Enrichment Analysis' (GSEA)
     software (Subramanian et al. 2005 <doi:10.1073/pnas.0506580102>,
@@ -24,7 +28,14 @@ Imports:
     magrittr,
     rlang (>= 0.4.11),
     tibble,
-    tidyselect
+    tidyselect,
+    glue,
+    purrr,
+    readr,
+    stringr,
+    tidyr,
+    usethis,
+    xml2
 Suggests:
     knitr,
     rmarkdown,
@@ -35,3 +46,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+LazyData: true

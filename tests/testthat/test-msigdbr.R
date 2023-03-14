@@ -33,18 +33,18 @@ test_that("mouse gene sets overall stats", {
   msigdbr_mm <- msigdbr(species = "Mus musculus")
   expect_s3_class(msigdbr_mm, "tbl_df")
   expect_identical(msigdbr_mm, msigdbr(species = "mouse"))
-  expect_gt(nrow(msigdbr_mm), 3700000)
+  expect_gt(nrow(msigdbr_mm), 1700000)
   expect_identical(colnames(msigdbr_mm)[1:6], c("gs_cat", "gs_subcat", "gs_name", "gene_symbol", "entrez_gene", "ensembl_gene"))
-  expect_gt(n_distinct(msigdbr_mm$gs_id), 33000)
+  expect_gt(n_distinct(msigdbr_mm$gs_id), 13000)
   expect_gt(n_distinct(msigdbr_mm$human_gene_symbol), 18000)
   expect_gt(n_distinct(msigdbr_mm$gene_symbol), 17000)
   expect_gt(n_distinct(msigdbr_mm$entrez_gene), 17000)
   expect_gt(n_distinct(msigdbr_mm$ensembl_gene), 17000)
-  expect_equal(max(msigdbr_mm$num_ortholog_sources), 12)
+  # expect_equal(max(msigdbr_mm$num_ortholog_sources), 12)
   expect_gt(min(table(msigdbr_mm$gs_id)), 0)
-  expect_lt(max(table(msigdbr_mm$gs_id)), 2500)
+  expect_lt(max(table(msigdbr_mm$gs_id)), 3500)
   expect_gt(quantile(table(msigdbr_mm$gs_id), 0.8), 100)
-  expect_gt(quantile(table(msigdbr_mm$gs_id), 0.5), 40)
+  expect_gt(quantile(table(msigdbr_mm$gs_id), 0.5), 20)
 })
 
 test_that("rat gene sets overall stats", {
@@ -80,14 +80,14 @@ test_that("human hallmark category", {
 })
 
 test_that("mouse hallmark category", {
-  msigdbr_mm_h <- msigdbr(species = "Mus musculus", category = "H")
+  msigdbr_mm_h <- msigdbr(species = "Mus musculus", category = "MH")
   expect_s3_class(msigdbr_mm_h, "tbl_df")
   expect_gt(nrow(msigdbr_mm_h), 5000)
   expect_equal(n_distinct(msigdbr_mm_h$gs_cat), 1)
   expect_equal(n_distinct(msigdbr_mm_h$gs_subcat), 1)
   expect_equal(n_distinct(msigdbr_mm_h$gs_id), 50)
   expect_gt(min(table(msigdbr_mm_h$gs_id)), 30)
-  expect_lt(max(table(msigdbr_mm_h$gs_id)), 250)
+  expect_lt(max(table(msigdbr_mm_h$gs_id)), 300)
   msigdbr_mm_h_entrez <- distinct(msigdbr_mm_h, gs_id, entrez_gene)
   expect_gt(min(table(msigdbr_mm_h_entrez$gs_id)), 30)
   expect_lt(max(table(msigdbr_mm_h_entrez$gs_id)), 220)
@@ -127,9 +127,9 @@ test_that("rat BP subcategory", {
 })
 
 test_that("subcategory partial match", {
-  msigdbr_mm_gomf <- msigdbr(species = "Mus musculus", category = "C5", subcategory = "GO:MF")
+  msigdbr_mm_gomf <- msigdbr(species = "Rattus norvegicus", category = "C5", subcategory = "GO:MF")
   expect_s3_class(msigdbr_mm_gomf, "tbl_df")
-  msigdbr_mm_mf <- msigdbr(species = "Mus musculus", category = "C5", subcategory = "MF")
+  msigdbr_mm_mf <- msigdbr(species = "Rattus norvegicus", category = "C5", subcategory = "MF")
   expect_s3_class(msigdbr_mm_mf, "tbl_df")
   expect_equal(nrow(msigdbr_mm_gomf), nrow(msigdbr_mm_mf))
   expect_identical(msigdbr_mm_gomf, msigdbr_mm_mf)
@@ -153,10 +153,10 @@ test_that("specific genes present in specific gene sets", {
 test_that("number of genes in specific gene sets", {
   msigdbr_hs <- msigdbr()
   msigdbr_hs_sym <- distinct(msigdbr_hs, gs_id, gene_symbol)
-  msigdbr_mm <- msigdbr(species = "Mus musculus")
+  msigdbr_mm <- msigdbr(species = "Rattus norvegicus")
   # H: HALLMARK_APOPTOSIS
   expect_equal(nrow(filter(msigdbr_hs_sym, gs_id == "M5902")), 161)
-  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5902")), 161)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5902")), 160)
   expect_equal(nrow(filter(msigdbr_hs_sym, gs_id == "M5903")), 32)
   expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5903")), 32)
   # C8: HAY_BONE_MARROW_PRE_DENDRITIC

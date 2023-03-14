@@ -23,9 +23,9 @@
 #' msigdbr(species = "Homo sapiens")
 #' }
 #'
-#' # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
+#' # get mouse M2 (curated) CGP (chemical and genetic perturbations) gene sets
 #' \donttest{
-#' msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+#' msigdbr(species = "Mus musculus", category = "M2", subcategory = "CGP")
 #' }
 msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
 
@@ -34,7 +34,15 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     stop("please specify only one species at a time")
   }
 
-  genesets_subset <- msigdbr_genesets
+  if (species %in% c('mouse','Mus musculus')){
+    genesets_subset <- msigdbr_genesetsMm
+    msigdbr_geneset_genes <- msigdbr_geneset_genesMm
+    msigdbr_genes <- msigdbr_genesMm
+  } else {
+    genesets_subset <- msigdbr_genesetsHs
+    msigdbr_geneset_genes <- msigdbr_geneset_genesHs
+    msigdbr_genes <- msigdbr_genesHs
+  }
 
   # filter by category
   if (is.character(category)) {
@@ -69,7 +77,7 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
     select(-any_of(c("gene_id")))
 
   # retrieve orthologs
-  if (species %in% c("Homo sapiens", "human")) {
+  if (species %in% c("Homo sapiens","human",'mouse','Mus musculus')) {
     orthologs_subset <-
       genesets_subset %>%
       select(

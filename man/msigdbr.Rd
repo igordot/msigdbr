@@ -26,9 +26,9 @@ The available species and collections can be checked with \code{msigdbr_species(
 msigdbr(species = "Homo sapiens")
 }
 
-# get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
+# get mouse M2 (curated) CGP (chemical and genetic perturbations) gene sets
 \donttest{
-msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+msigdbr(species = "Mus musculus", category = "M2", subcategory = "CGP")
 }
 }
 \references{
