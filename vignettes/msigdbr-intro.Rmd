@@ -137,7 +137,7 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 **Which version of MSigDB was used?**
 
-This package was generated with MSigDB v7.5.1.
+This package was generated with MSigDB v2022.1.
 The MSigDB version is used as the base of the msigdbr CRAN package version.
 You can check the installed version with `packageVersion("msigdbr")`.
 

@@ -11,14 +11,19 @@ options(pillar.print_max = 100)
 
 # Import MSigDB gene sets -----
 
-# Define MSigDB download variables
+# Set MSigDB version
 mdb_version <- "2022.1.Hs"
+
+# Set HGNC version (last quarterly release before MSigDB release)
+hgnc_version <- "2022-07-01"
+
+# Set MSigDB file paths
 mdb_xml <- glue("msigdb_v{mdb_version}.xml")
 mdb_url_base <- "https://data.broadinstitute.org/gsea-msigdb/msigdb"
 mdb_xml_url <- glue("{mdb_url_base}/release/{mdb_version}/{mdb_xml}")
 
 # Download the MSigDB XML file
-options(timeout = 150)
+options(timeout = 300)
 download.file(url = mdb_xml_url, destfile = mdb_xml)
 
 # Check MSigDB XML file size in bytes
@@ -64,17 +69,41 @@ mdb_tbl <-
   filter(gs_cat != "ARCHIVED")
 
 # Get the number of gene sets per collection (for testing)
-msigdb_category_genesets <- mdb_tbl %>%
+mdb_category_genesets <- mdb_tbl %>%
   distinct(gs_cat, gs_subcat, gs_id) %>%
   count(gs_cat, gs_subcat, name = "n_genesets")
-msigdb_category_genesets
+mdb_category_genesets
 
 # Import MSigDB Ensembl mappings -----
 
-# Download the MSigDB Ensembl mappings
+# Download MSigDB Ensembl mappings
+# Should include all MSigDB genes
 ensembl_url <- glue("{mdb_url_base}/annotations/human/Human_Ensembl_Gene_ID_MSigDB.v{mdb_version}.chip")
 ensembl_tbl <- read_tsv(ensembl_url, progress = FALSE, show_col_types = FALSE)
-ensembl_tbl <- ensembl_tbl %>% select(human_ensembl_gene = `Probe Set ID`, human_gene_symbol = `Gene Symbol`)
+ensembl_tbl <- distinct(ensembl_tbl, human_ensembl_gene = `Probe Set ID`, human_gene_symbol = `Gene Symbol`)
+ensembl_tbl <- arrange(ensembl_tbl, human_ensembl_gene)
+
+# Check for multi-mappers (should be many)
+count(ensembl_tbl, human_ensembl_gene, sort = TRUE)
+count(ensembl_tbl, human_gene_symbol, sort = TRUE)
+
+# Import HGNC mappings -----
+
+# Download HGNC mappings
+# May not include all MSigDB genes, but there is usually one Ensembl ID per gene
+hgnc_url <- glue("https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/archive/quarterly/tsv/hgnc_complete_set_{hgnc_version}.txt")
+hgnc_tbl <- read_tsv(hgnc_url, progress = FALSE, show_col_types = FALSE, guess_max = 10000)
+hgnc_tbl <- distinct(hgnc_tbl, human_ensembl_gene = ensembl_gene_id, human_entrez_gene = entrez_id)
+hgnc_tbl <- mutate(hgnc_tbl, human_entrez_gene = as.integer(human_entrez_gene))
+
+# Keep only MSigDB Ensembl IDs
+setdiff(hgnc_tbl$human_ensembl_gene, ensembl_tbl$human_ensembl_gene) %>% length()
+hgnc_tbl <- filter(hgnc_tbl, human_ensembl_gene %in% ensembl_tbl$human_ensembl_gene)
+hgnc_tbl <- arrange(hgnc_tbl, human_ensembl_gene)
+
+# Check for multi-mappers (should be few)
+count(hgnc_tbl, human_ensembl_gene, sort = TRUE)
+count(hgnc_tbl, human_entrez_gene, sort = TRUE)
 
 # Generate a gene sets table -----
 
@@ -84,7 +113,7 @@ msigdbr_genesets <- mdb_tbl %>%
   distinct() %>%
   arrange(gs_name, gs_id)
 
-if (nrow(msigdbr_genesets) != sum(msigdb_category_genesets$n_genesets)) stop()
+if (nrow(msigdbr_genesets) != sum(mdb_category_genesets$n_genesets)) stop()
 
 # Extract gene set members -----
 
@@ -98,7 +127,7 @@ nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 geneset_genes <- filter(geneset_genes, str_detect(gs_members_split, fixed(",")))
 nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 
-# Split gene details into columns
+# Split member details into separate columns
 geneset_genes <- geneset_genes %>%
   separate(
     col = gs_members_split,
@@ -109,21 +138,17 @@ geneset_genes <- geneset_genes %>%
 nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 
 # Check for any strange patterns
-geneset_genes %>%
-  count(source_gene, sort = TRUE) %>%
-  head(10)
-geneset_genes %>%
-  count(human_gene_symbol, human_entrez_gene, sort = TRUE) %>%
-  head(10)
+count(geneset_genes, source_gene, sort = TRUE)
+count(geneset_genes, human_gene_symbol, human_entrez_gene, sort = TRUE)
 
 # Get the number of members per gene set (for testing)
 # Not all members map to unique genes
-msigdb_geneset_members <- geneset_genes %>% count(gs_id, name = "n_members")
-msigdb_geneset_members
+mdb_geneset_members <- geneset_genes %>% count(gs_id, name = "n_members")
+mdb_geneset_members
 
 # Confirm that gene set sizes are reasonable
-if (min(msigdb_geneset_members$n_members) < 5) stop()
-if (max(msigdb_geneset_members$n_members) > 3000) stop()
+if (min(mdb_geneset_members$n_members) < 5) stop()
+if (max(mdb_geneset_members$n_members) > 3000) stop()
 if (min(geneset_genes$human_entrez_gene, na.rm = TRUE) < 1) stop()
 
 # Skip genes without an Entrez or Ensembl ID
@@ -136,7 +161,7 @@ geneset_genes <- geneset_genes %>%
   distinct(gs_id, source_gene, human_entrez_gene, human_gene_symbol)
 nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 
-# Generate gene IDs -----
+# Add Ensembl IDs to genes without them -----
 
 # Split genes based on if they include Ensembl IDs
 # Starting with MSigDB 7.0, Ensembl is the platform annotation authority
@@ -144,78 +169,83 @@ nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 # Using Ensembl IDs as IDs for all genes resulted in a larger data file
 geneset_genes_entrez <- geneset_genes %>%
   filter(str_detect(source_gene, "^ENSG000", negate = TRUE)) %>%
-  distinct(gs_id, human_entrez_gene, human_gene_symbol) %>%
-  mutate(gene_id = human_entrez_gene) %>%
-  arrange(gs_id, gene_id)
+  distinct(gs_id, human_entrez_gene, human_gene_symbol)
 geneset_genes_ensembl <- geneset_genes %>%
   filter(str_detect(source_gene, "^ENSG000")) %>%
   select(gs_id, human_entrez_gene, human_ensembl_gene = source_gene, human_gene_symbol) %>%
-  mutate(human_gene_symbol = if_else(human_gene_symbol == "", human_ensembl_gene, human_gene_symbol)) %>%
-  mutate(gene_id = str_replace(human_ensembl_gene, "ENSG000", "9")) %>%
-  mutate(gene_id = as.integer(gene_id)) %>%
-  arrange(gs_id, gene_id)
+  mutate(human_gene_symbol = if_else(human_gene_symbol == "", human_ensembl_gene, human_gene_symbol))
 
-# Check that the gene IDs are distinct for Entrez and Ensembl tables
-intersect(geneset_genes_entrez$gene_id, geneset_genes_ensembl$gene_id)
-
-# Most gene sets should not have only some source genes as Ensembl IDs
+# Very few gene sets should have only some source genes as Ensembl IDs
 intersect(geneset_genes_entrez$gs_id, geneset_genes_ensembl$gs_id)
 
-# Determine unambiguous genes with only one Entrez and Ensembl ID
-clean_entrez_genes <- geneset_genes_ensembl %>%
-  distinct(human_entrez_gene, human_gene_symbol, human_ensembl_gene) %>%
-  count(human_entrez_gene) %>%
-  filter(n == 1) %>%
-  pull(human_entrez_gene)
-length(clean_entrez_genes)
-
-# Use the Entrez ID for unambiguous genes
-geneset_genes_ensembl <- geneset_genes_ensembl %>%
-  mutate(gene_id = if_else(human_entrez_gene %in% clean_entrez_genes, human_entrez_gene, gene_id)) %>%
-  arrange(gs_id, gene_id)
-
 # Check the number of genes
-nrow(geneset_genes_entrez)
-n_distinct(geneset_genes_entrez$gene_id)
+nrow(geneset_genes_entrez) %>% prettyNum(big.mark = ",")
 n_distinct(geneset_genes_entrez$human_gene_symbol)
 n_distinct(geneset_genes_entrez$human_entrez_gene)
-nrow(geneset_genes_ensembl)
-n_distinct(geneset_genes_ensembl$gene_id)
+nrow(geneset_genes_ensembl) %>% prettyNum(big.mark = ",")
 n_distinct(geneset_genes_ensembl$human_gene_symbol)
 n_distinct(geneset_genes_ensembl$human_ensembl_gene)
 
 if (length(setdiff(geneset_genes_entrez$human_gene_symbol, ensembl_tbl$human_gene_symbol))) stop()
 
-# Add Ensembl IDs to genes without them
-geneset_genes_entrez <- left_join(geneset_genes_entrez, ensembl_tbl, by = "human_gene_symbol")
+# Further split genes without Ensembl IDs based on HGNC Ensembl IDs
+geneset_genes_entrez_hgnc <- geneset_genes_entrez %>%
+  filter(human_entrez_gene %in% hgnc_tbl$human_entrez_gene)
+geneset_genes_entrez_ensembl <- geneset_genes_entrez %>%
+  filter(!human_entrez_gene %in% hgnc_tbl$human_entrez_gene)
 
-# Check gene numbers
-nrow(geneset_genes_entrez)
-n_distinct(geneset_genes_entrez$human_entrez_gene)
-n_distinct(geneset_genes_entrez$human_gene_symbol)
-n_distinct(geneset_genes_entrez$human_ensembl_gene)
+# Add Ensembl IDs to genes without them
+geneset_genes_entrez_hgnc <- left_join(geneset_genes_entrez_hgnc, hgnc_tbl, by = "human_entrez_gene")
+geneset_genes_entrez_ensembl <- left_join(geneset_genes_entrez_ensembl, ensembl_tbl, by = "human_gene_symbol")
+
+# Check the number of genes
+nrow(geneset_genes_entrez_hgnc) %>% prettyNum(big.mark = ",")
+n_distinct(geneset_genes_entrez_hgnc$human_entrez_gene)
+n_distinct(geneset_genes_entrez_hgnc$human_ensembl_gene)
+nrow(geneset_genes_entrez_ensembl) %>% prettyNum(big.mark = ",")
+n_distinct(geneset_genes_entrez_ensembl$human_entrez_gene)
+n_distinct(geneset_genes_entrez_ensembl$human_ensembl_gene)
+
+# Combine different types of genes into a single table
+geneset_genes_clean <-
+  bind_rows(geneset_genes_entrez_hgnc, geneset_genes_entrez_ensembl, geneset_genes_ensembl) %>%
+  mutate(gene_id = str_remove(human_ensembl_gene, "ENSG000")) %>%
+  mutate(gene_id = as.integer(gene_id)) %>%
+  distinct() %>%
+  arrange(gs_id, gene_id)
+nrow(geneset_genes_clean) %>% prettyNum(big.mark = ",")
+
+# Make internal IDs consecutive
+geneset_genes_clean$gene_id <- dense_rank(geneset_genes_clean$gene_id)
+geneset_genes_clean %>%
+  count(human_gene_symbol, gene_id) %>%
+  arrange(human_gene_symbol)
+geneset_genes_clean %>%
+  count(human_ensembl_gene, gene_id) %>%
+  arrange(human_ensembl_gene)
 
 # Generate a gene set members table -----
 
 # Combine Entrez and Ensembl genes into a single table
-msigdbr_geneset_genes <-
-  bind_rows(geneset_genes_entrez, geneset_genes_ensembl) %>%
+msigdbr_geneset_genes <- geneset_genes_clean %>%
   distinct(gs_id, gene_id) %>%
   arrange(gs_id, gene_id)
 
-# Check the total number of gene set members
+# Check gene numbers
+nrow(geneset_genes) %>% prettyNum(big.mark = ",")
 nrow(msigdbr_geneset_genes) %>% prettyNum(big.mark = ",")
 
 # Check that all the original gene sets are present
-if (length(setdiff(msigdb_geneset_members$gs_id, msigdbr_geneset_genes$gs_id)) > 0) stop()
+if (length(setdiff(mdb_geneset_members$gs_id, msigdbr_geneset_genes$gs_id)) > 0) stop()
 
 # Check that most of the original gene set members converted to genes
-if (nrow(msigdbr_geneset_genes) < (sum(msigdb_geneset_members$n_members) * 0.85)) stop()
-genes_members_ratio = full_join(msigdb_geneset_members, count(msigdbr_geneset_genes, gs_id, name = "n_genes"), by = "gs_id")
-genes_members_ratio$ratio = genes_members_ratio$n_genes / genes_members_ratio$n_members
+if (nrow(msigdbr_geneset_genes) < (sum(mdb_geneset_members$n_members) * 0.85)) stop()
+genes_members_ratio <- full_join(mdb_geneset_members, count(msigdbr_geneset_genes, gs_id, name = "n_genes"), by = "gs_id")
+genes_members_ratio$ratio <- genes_members_ratio$n_genes / genes_members_ratio$n_members
 if (min(genes_members_ratio$n_genes) < 5) stop()
 if (max(genes_members_ratio$n_genes) > 2300) stop()
-if (max(genes_members_ratio$ratio) > 1) stop()
+if (max(genes_members_ratio$ratio) > 2) stop()
+if (quantile(genes_members_ratio$ratio, 0.99) > 1) stop()
 if (quantile(genes_members_ratio$ratio, 0.001) < 0.3) stop()
 if (quantile(genes_members_ratio$ratio, 0.1) < 0.7) stop()
 if (quantile(genes_members_ratio$ratio, 0.2) < 0.9) stop()
@@ -224,14 +254,12 @@ if (quantile(genes_members_ratio$ratio, 0.3) < 0.99) stop()
 # Generate a genes table -----
 
 # Extract the unique genes
-msigdbr_genes <-
-  bind_rows(geneset_genes_entrez, geneset_genes_ensembl) %>%
-  select(gene_id, human_gene_symbol, human_entrez_gene, human_ensembl_gene) %>%
-  distinct() %>%
+msigdbr_genes <- geneset_genes_clean %>%
+  distinct(gene_id, human_gene_symbol, human_entrez_gene, human_ensembl_gene) %>%
   arrange(human_gene_symbol, gene_id)
 
 # Check the total number of genes
-nrow(msigdbr_genes)
+nrow(msigdbr_genes) %>% prettyNum(big.mark = ",")
 
 # Prepare package -----
 

@@ -1,3 +1,8 @@
+# msigdbr 2022.1.1
+
+* Based on MSigDB v2022.1 release.
+* Not on CRAN.
+
 # msigdbr 7.5.1
 
 * Based on MSigDB v7.5.1 release.
