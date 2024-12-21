@@ -20,9 +20,9 @@ Depends:
     R (>= 3.4)
 Imports:
     babelgene (>= 22.9),
-    dplyr (>= 0.7.0),
+    dplyr (>= 1.1.1),
     magrittr,
-    rlang (>= 0.4.11),
+    rlang,
     tibble,
     tidyselect
 Suggests:

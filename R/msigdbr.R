@@ -14,6 +14,7 @@
 #' @import tibble
 #' @importFrom babelgene orthologs
 #' @importFrom dplyr arrange distinct filter inner_join mutate rename select
+#' @importFrom rlang .data
 #' @importFrom tidyselect any_of everything
 #' @export
 #'
