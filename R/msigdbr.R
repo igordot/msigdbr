@@ -28,7 +28,6 @@
 #' msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
 #' }
 msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
-
   # confirm that only one species is specified
   if (length(species) > 1) {
     stop("please specify only one species at a time")
@@ -62,11 +61,9 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   }
 
   # combine gene sets and genes
-  genesets_subset <-
-    genesets_subset %>%
-    inner_join(msigdbr_geneset_genes, by = "gs_id") %>%
-    inner_join(msigdbr_genes, by = "gene_id") %>%
-    select(-any_of(c("gene_id")))
+  genesets_subset <- inner_join(genesets_subset, msigdbr_geneset_genes, by = "gs_id")
+  genesets_subset <- inner_join(genesets_subset, msigdbr_genes, by = "gene_id", relationship = "many-to-many")
+  genesets_subset <- select(genesets_subset, !any_of(c("gene_id")))
 
   # retrieve orthologs
   if (species %in% c("Homo sapiens", "human")) {
@@ -82,7 +79,7 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   } else {
     orthologs_subset <-
       orthologs(genes = genesets_subset$human_ensembl_gene, species = species) %>%
-      select(-any_of(c("human_symbol", "human_entrez"))) %>%
+      select(!any_of(c("human_symbol", "human_entrez"))) %>%
       rename(
         human_ensembl_gene = "human_ensembl",
         gene_symbol = "symbol",
@@ -94,19 +91,21 @@ msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NUL
   }
 
   # combine gene sets and orthologs
-  genesets_subset %>%
-    inner_join(orthologs_subset, by = "human_ensembl_gene") %>%
-    arrange(.data$gs_name, .data$human_gene_symbol, .data$gene_symbol) %>%
-    select(
-      "gs_cat",
-      "gs_subcat",
-      "gs_name",
-      "gene_symbol",
-      "entrez_gene",
-      "ensembl_gene",
-      "human_gene_symbol",
-      "human_entrez_gene",
-      "human_ensembl_gene",
-      everything()
-    )
+  genesets_subset <- inner_join(genesets_subset, orthologs_subset, by = "human_ensembl_gene", relationship = "many-to-many")
+  genesets_subset <- arrange(genesets_subset, .data$gs_name, .data$human_gene_symbol, .data$gene_symbol)
+  genesets_subset <- select(
+    genesets_subset,
+    "gs_cat",
+    "gs_subcat",
+    "gs_name",
+    "gene_symbol",
+    "entrez_gene",
+    "ensembl_gene",
+    "human_gene_symbol",
+    "human_entrez_gene",
+    "human_ensembl_gene",
+    everything()
+  )
+
+  return(genesets_subset)
 }
