@@ -9,7 +9,7 @@ The available species and collections can be checked with msigdbr_species() and 
 
     <a class="navbar-brand me-2" href="../index.html">msigdbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2022.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2023.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,20 +74,20 @@ The available species and collections can be checked with <code><a href="msigdbr
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># get all human gene sets</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Homo sapiens"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,995,746 × 15</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,029,754 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gs_cat gs_subcat      gs_name        gene_symbol entrez_gene ensembl_gene   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ABCC4             <span style="text-decoration: underline;">10</span>257 ENSG00000125257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ABRAXAS2          <span style="text-decoration: underline;">23</span>172 ENSG00000165660</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ACTN4                81 ENSG00000130402</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ACVR1                90 ENSG00000115170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAM9              <span style="text-decoration: underline;">8</span>754 ENSG00000168615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ADAMTS5           <span style="text-decoration: underline;">11</span>096 ENSG00000154736</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 AMER2            <span style="text-decoration: underline;">219</span>287 ENSG00000165566</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 ANK2                287 ENSG00000145362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 API5               <span style="text-decoration: underline;">8</span>539 ENSG00000166181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C3     MIR:MIR_Legacy AAACCAC_MIR140 BACH1               571 ENSG00000156273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,995,736 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ABCC4             <span style="text-decoration: underline;">10</span>257 ENSG00000125257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ABRAXAS2          <span style="text-decoration: underline;">23</span>172 ENSG00000165660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ACTN4                81 ENSG00000130402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ACVR1                90 ENSG00000115170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ADAM9              <span style="text-decoration: underline;">8</span>754 ENSG00000168615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ADAMTS5           <span style="text-decoration: underline;">11</span>096 ENSG00000154736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 AMER2            <span style="text-decoration: underline;">219</span>287 ENSG00000165566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ANK2                287 ENSG00000145362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 API5               <span style="text-decoration: underline;">8</span>539 ENSG00000166181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C3     MIR:MIR_LEGACY AAACCAC_MIR140 ATOSA             <span style="text-decoration: underline;">56</span>204 ENSG00000047346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4,029,744 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: human_gene_symbol &lt;chr&gt;, human_entrez_gene &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;</span></span>
@@ -96,7 +96,7 @@ The available species and collections can be checked with <code><a href="msigdbr
 <span class="r-in"><span><span class="co"># get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 378,755 × 18</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 378,935 × 18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gs_cat gs_subcat gs_name                 gene_symbol entrez_gene ensembl_gene</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Ahnak             <span style="text-decoration: underline;">66</span>395 ENSMUSG0000…</span>
@@ -109,7 +109,7 @@ The available species and collections can be checked with <code><a href="msigdbr
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Cd24a             <span style="text-decoration: underline;">12</span>484 ENSMUSG0000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Cyfip1            <span style="text-decoration: underline;">20</span>430 ENSMUSG0000…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C2     CGP       ABBUD_LIF_SIGNALING_1_… Dcaf11            <span style="text-decoration: underline;">28</span>199 ENSMUSG0000…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 378,745 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 378,925 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: human_gene_symbol &lt;chr&gt;, human_entrez_gene &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   human_ensembl_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, taxon_id &lt;int&gt;,</span></span>
