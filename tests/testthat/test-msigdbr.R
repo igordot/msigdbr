@@ -159,7 +159,7 @@ test_that("number of genes in specific gene sets", {
   msigdbr_mm <- msigdbr(species = "Mus musculus")
   # H: HALLMARK_APOPTOSIS
   expect_equal(nrow(filter(msigdbr_hs_sym, gs_id == "M5902")), 161)
-  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5902")), 161)
+  expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5902")), 160)
   expect_equal(nrow(filter(msigdbr_hs_sym, gs_id == "M5903")), 32)
   expect_equal(nrow(filter(msigdbr_mm, gs_id == "M5903")), 32)
   # C8: HAY_BONE_MARROW_PRE_DENDRITIC

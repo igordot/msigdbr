@@ -1,4 +1,3 @@
-
 library(dplyr)
 library(tidyr)
 library(purrr)
@@ -12,19 +11,22 @@ options(pillar.print_max = 100)
 # Import MSigDB gene sets -----
 
 # Set MSigDB version
-mdb_version <- "2022.1.Hs"
+mdb_version <- "2023.1.Hs"
 
 # Set HGNC version (last quarterly release before MSigDB release)
-hgnc_version <- "2022-07-01"
+hgnc_version <- "2023-01-01"
 
 # Set MSigDB file paths
 mdb_xml <- glue("msigdb_v{mdb_version}.xml")
+mdb_xml_zip <- str_glue("{mdb_xml}.zip")
 mdb_url_base <- "https://data.broadinstitute.org/gsea-msigdb/msigdb"
-mdb_xml_url <- glue("{mdb_url_base}/release/{mdb_version}/{mdb_xml}")
+mdb_zip_url <- glue("{mdb_url_base}/release/{mdb_version}/{mdb_xml_zip}")
 
-# Download the MSigDB XML file
+# Download and unzip the MSigDB XML file
 options(timeout = 300)
-download.file(url = mdb_xml_url, destfile = mdb_xml)
+download.file(url = mdb_zip_url, destfile = mdb_xml_zip)
+unzip(mdb_xml_zip, exdir = ".")
+file.remove(mdb_xml_zip)
 
 # Check MSigDB XML file size in bytes
 utils:::format.object_size(file.size(mdb_xml), units = "auto")
@@ -81,6 +83,7 @@ mdb_category_genesets
 ensembl_url <- glue("{mdb_url_base}/annotations/human/Human_Ensembl_Gene_ID_MSigDB.v{mdb_version}.chip")
 ensembl_tbl <- read_tsv(ensembl_url, progress = FALSE, show_col_types = FALSE)
 ensembl_tbl <- distinct(ensembl_tbl, human_ensembl_gene = `Probe Set ID`, human_gene_symbol = `Gene Symbol`)
+ensembl_tbl <- filter(ensembl_tbl, str_detect(human_ensembl_gene, "^ENSG000"))
 ensembl_tbl <- arrange(ensembl_tbl, human_ensembl_gene)
 
 # Check for multi-mappers (should be many)
@@ -91,7 +94,7 @@ count(ensembl_tbl, human_gene_symbol, sort = TRUE)
 
 # Download HGNC mappings
 # May not include all MSigDB genes, but there is usually one Ensembl ID per gene
-hgnc_url <- glue("https://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/archive/quarterly/tsv/hgnc_complete_set_{hgnc_version}.txt")
+hgnc_url <- str_glue("https://storage.googleapis.com/public-download-files/hgnc/archive/archive/quarterly/tsv/hgnc_complete_set_{hgnc_version}.txt")
 hgnc_tbl <- read_tsv(hgnc_url, progress = FALSE, show_col_types = FALSE, guess_max = 10000)
 hgnc_tbl <- distinct(hgnc_tbl, human_ensembl_gene = ensembl_gene_id, human_entrez_gene = entrez_id)
 hgnc_tbl <- mutate(hgnc_tbl, human_entrez_gene = as.integer(human_entrez_gene))
@@ -244,7 +247,7 @@ genes_members_ratio <- full_join(mdb_geneset_members, count(msigdbr_geneset_gene
 genes_members_ratio$ratio <- genes_members_ratio$n_genes / genes_members_ratio$n_members
 if (min(genes_members_ratio$n_genes) < 5) stop()
 if (max(genes_members_ratio$n_genes) > 2300) stop()
-if (max(genes_members_ratio$ratio) > 2) stop()
+if (max(genes_members_ratio$ratio) > 2.2) stop()
 if (quantile(genes_members_ratio$ratio, 0.99) > 1) stop()
 if (quantile(genes_members_ratio$ratio, 0.001) < 0.3) stop()
 if (quantile(genes_members_ratio$ratio, 0.1) < 0.7) stop()
