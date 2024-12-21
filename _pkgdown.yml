@@ -2,25 +2,16 @@ url: https://igordot.github.io/msigdbr/
 
 template:
   bootstrap: 5
-  bootswatch: zephyr
+  bootswatch: simplex
   includes:
-    before_body: |
-       <!-- Global site tag (gtag.js) - Google Analytics -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id=G-WW0CJR3Z9Z"></script>
-       <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
-         gtag('config', 'G-WW0CJR3Z9Z');
-       </script>
+    after_body: >
+      <script data-goatcounter="https://igordot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   opengraph:
     twitter:
       creator: "@bioigor"
       card: summary_large_image
 
 navbar:
-  bg: light
   structure:
     left: []
     right: [home, intro, reference, articles, news, github]
