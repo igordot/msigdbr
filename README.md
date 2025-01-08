@@ -22,7 +22,7 @@ The package can be installed from [CRAN](https://cran.r-project.org/package=msig
 install.packages("msigdbr")
 ```
 
-Releases that are not available on CRAN can be installed from GitHub (specific release or version can be specified):
+Recent [releases](https://github.com/igordot/msigdbr/releases) are not available on CRAN and can be installed from GitHub (specific version can be specified):
 
 ```{r}
 remotes::install_github("igordot/msigdbr", ref = "v2022.1.1")
