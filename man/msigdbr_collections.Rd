@@ -4,7 +4,10 @@
 \alias{msigdbr_collections}
 \title{List the collections available in the msigdbr package}
 \usage{
-msigdbr_collections()
+msigdbr_collections(db_species = "Hs")
+}
+\arguments{
+\item{db_species}{Species abbreviation for the human or mouse databases (\code{"Hs"} or \code{"Mm"}).}
 }
 \value{
 A data frame of the available collections.

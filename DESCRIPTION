@@ -1,37 +1,40 @@
 Type: Package
 Package: msigdbr
 Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
-Version: 2023.1.1
+Version: 9.0.0.9000
 Authors@R: 
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4451-126X"))
 Description: Provides the 'Molecular Signatures Database' (MSigDB) gene
     sets typically used with the 'Gene Set Enrichment Analysis' (GSEA)
     software (Subramanian et al. 2005 <doi:10.1073/pnas.0506580102>,
-    Liberzon et al. 2015 <doi:10.1016/j.cels.2015.12.004>) in a standard R
-    data frame with key-value pairs. The package includes the human genes
-    as listed in MSigDB as well as the corresponding symbols and IDs for
-    frequently studied model organisms such as mouse, rat, pig, fly, and
-    yeast.
+    Liberzon et al. 2015 <doi:10.1016/j.cels.2015.12.004>, Castanza et al.
+    2023 <doi:10.1038/s41592-023-02014-7>) as an R data frame. The package
+    includes the human genes as listed in MSigDB as well as the
+    corresponding symbols and IDs for frequently studied model organisms
+    such as mouse, rat, pig, fly, and yeast.
 License: MIT + file LICENSE
 URL: https://igordot.github.io/msigdbr/
 BugReports: https://github.com/igordot/msigdbr/issues
 Depends:
-    R (>= 3.6)
+    R (>= 4.1)
 Imports:
     babelgene (>= 22.9),
     dplyr (>= 1.1.1),
-    magrittr,
+    lifecycle,
+    methods,
     rlang,
     tibble,
-    tidyselect
+    tidyselect (>= 1.2.0)
 Suggests:
     knitr,
+    msigdbdf,
     rmarkdown,
     roxygen2,
     testthat
 VignetteBuilder: 
     knitr
+Additional_repositories: https://igordot.r-universe.dev
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

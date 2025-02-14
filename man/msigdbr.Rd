@@ -4,21 +4,44 @@
 \alias{msigdbr}
 \title{Retrieve the gene sets data frame}
 \usage{
-msigdbr(species = "Homo sapiens", category = NULL, subcategory = NULL)
+msigdbr(
+  species = "Homo sapiens",
+  db_species = "HS",
+  collection = NULL,
+  subcollection = NULL,
+  category = deprecated(),
+  subcategory = deprecated()
+)
 }
 \arguments{
-\item{species}{Species name, such as Homo sapiens or Mus musculus.}
+\item{species}{Species name for output genes, such as \code{"Homo sapiens"} or \code{"Mus musculus"}. Use \code{msigdbr_species()} for available options.}
 
-\item{category}{MSigDB collection abbreviation, such as H or C1.}
+\item{db_species}{Species abbreviation for the human or mouse databases (\code{"HS"} or \code{"MM"}).}
 
-\item{subcategory}{MSigDB sub-collection abbreviation, such as CGP or BP.}
+\item{collection}{Collection abbreviation, such as \code{"H"} or \code{"C1"}. Use \code{msigdbr_collections()} for the available options.}
+
+\item{subcollection}{Sub-collection abbreviation, such as \code{"CGP"} or \code{"BP"}. Use \code{msigdbr_collections()} for the available options.}
+
+\item{category}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use the \code{collection} argument}
+
+\item{subcategory}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use the \code{subcollection} argument}
 }
 \value{
 A data frame of gene sets with one gene per row.
 }
 \description{
 Retrieve a data frame of gene sets and their member genes.
-The available species and collections can be checked with \code{msigdbr_species()} and \code{msigdbr_collections()}.
+The original human genes can be converted into their corresponding counterparts in various model organisms, including mouse, rat, pig, zebrafish, fly, and yeast.
+The output includes gene symbols along with NCBI and Ensembl IDs.
+}
+\details{
+Historically, the MSigDB resource has been tailored to the analysis of human-specific datasets, with gene sets exclusively aligned to the human genome.
+Starting with release 2022.1, MSigDB incorporated a database of mouse-native gene sets and was split into human and mouse divisions ("Hs" and "Mm").
+Each one is provided in the approved gene symbols of its respective species.
+The versioning convention of MSigDB is in the format \code{Year.Release.Species}.
+The genes within each gene set may originate from a species different from the database target species, indicated by the \code{gs_source_species} and \code{db_target_species} fields.
+
+Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 }
 \examples{
 # get all human gene sets
@@ -28,9 +51,9 @@ msigdbr(species = "Homo sapiens")
 
 # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
 \donttest{
-msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+msigdbr(species = "Mus musculus", collection = "C2", subcollection = "CGP")
 }
 }
 \references{
-\url{https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp}
+\url{https://www.gsea-msigdb.org/gsea/msigdb/index.jsp}
 }

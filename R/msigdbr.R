@@ -1,21 +1,31 @@
 #' Retrieve the gene sets data frame
 #'
 #' Retrieve a data frame of gene sets and their member genes.
-#' The available species and collections can be checked with `msigdbr_species()` and `msigdbr_collections()`.
+#' The original human genes can be converted into their corresponding counterparts in various model organisms, including mouse, rat, pig, zebrafish, fly, and yeast.
+#' The output includes gene symbols along with NCBI and Ensembl IDs.
 #'
-#' @param species Species name, such as Homo sapiens or Mus musculus.
-#' @param category MSigDB collection abbreviation, such as H or C1.
-#' @param subcategory MSigDB sub-collection abbreviation, such as CGP or BP.
+#' Historically, the MSigDB resource has been tailored to the analysis of human-specific datasets, with gene sets exclusively aligned to the human genome.
+#' Starting with release 2022.1, MSigDB incorporated a database of mouse-native gene sets and was split into human and mouse divisions ("Hs" and "Mm").
+#' Each one is provided in the approved gene symbols of its respective species.
+#' The versioning convention of MSigDB is in the format `Year.Release.Species`.
+#' The genes within each gene set may originate from a species different from the database target species, indicated by the `gs_source_species` and `db_target_species` fields.
+#'
+#' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
+#'
+#' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Use `msigdbr_species()` for available options.
+#' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
+#' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` for the available options.
+#' @param subcollection Sub-collection abbreviation, such as `"CGP"` or `"BP"`. Use `msigdbr_collections()` for the available options.
+#' @param category `r lifecycle::badge("deprecated")` use the `collection` argument
+#' @param subcategory `r lifecycle::badge("deprecated")` use the `subcollection` argument
 #'
 #' @return A data frame of gene sets with one gene per row.
 #'
-#' @references \url{https://www.gsea-msigdb.org/gsea/msigdb/collections.jsp}
+#' @references <https://www.gsea-msigdb.org/gsea/msigdb/index.jsp>
 #'
-#' @import tibble
 #' @importFrom babelgene orthologs
 #' @importFrom dplyr arrange distinct filter inner_join mutate rename select
-#' @importFrom rlang .data
-#' @importFrom tidyselect any_of everything
+#'
 #' @export
 #'
 #' @examples
@@ -26,87 +36,141 @@
 #'
 #' # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
 #' \donttest{
-#' msigdbr(species = "Mus musculus", category = "C2", subcategory = "CGP")
+#' msigdbr(species = "Mus musculus", collection = "C2", subcollection = "CGP")
 #' }
-msigdbr <- function(species = "Homo sapiens", category = NULL, subcategory = NULL) {
-  # confirm that only one species is specified
+msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
+  # Check that msigdbdf is installed
+  # a dependency listed in DESCRIPTION Suggests is not guaranteed to be installed
+  # if (!requireNamespace("msigdbdf", quietly = TRUE)) {
+  #   stop("package 'msigdbdf' must be installed to use this function", call. = FALSE)
+  # }
+  msigdbr_check_data()
+
+  # Check parameters
+  if (!is(species, "character")) {
+    stop("`species` is not a character string")
+  }
   if (length(species) > 1) {
-    stop("please specify only one species at a time")
+    stop("only one `species` should be specified")
+  }
+  if (!is(db_species, "character")) {
+    stop("`db_species` is not a character string")
   }
 
-  genesets_subset <- msigdbr_genesets
+  # Use only mouse genes for mouse database
+  db_species <- toupper(db_species)
+  if (db_species == "MM" && !(species %in% c("Mus musculus", "mouse", "house mouse"))) {
+    stop("set species to mouse for the mouse database")
+  }
 
-  # filter by category
-  if (is.character(category)) {
-    if (length(category) > 1) {
-      stop("please specify only one category at a time")
+  # Check for deprecated category arguments
+  if (lifecycle::is_present(category)) {
+    lifecycle::deprecate_warn("9.0.0", "msigdbr(category)", "msigdbr(collection)")
+    collection <- category
+  }
+  if (lifecycle::is_present(subcategory)) {
+    lifecycle::deprecate_warn("9.0.0", "msigdbr(subcategory)", "msigdbr(subcollection)")
+    subcollection <- subcategory
+  }
+
+  # Get the gene sets table
+  mdb <- msigdbdf::msigdbdf(target_species = db_species)
+
+  # Filter by collection
+  if (is.character(collection)) {
+    if (length(collection) > 1) {
+      stop("Please specify only one collection at a time.")
     }
-    if (category %in% genesets_subset$gs_cat) {
-      genesets_subset <- filter(genesets_subset, .data$gs_cat == category)
+    if (collection %in% mdb$gs_collection) {
+      mdb <- dplyr::filter(mdb, .data$gs_collection == collection)
     } else {
-      stop("unknown category")
+      stop("Unknown collection. Use `msigdbr_collections()` to see the available collections.")
     }
   }
 
-  if (is.character(subcategory)) {
-    if (length(subcategory) > 1) {
-      stop("please specify only one subcategory at a time")
+  # Filter by sub-collection
+  if (is.character(subcollection)) {
+    if (length(subcollection) > 1) {
+      stop("Please specify only one subcollection at a time.")
     }
-    if (subcategory %in% genesets_subset$gs_subcat) {
-      genesets_subset <- filter(genesets_subset, .data$gs_subcat == subcategory)
-    } else if (subcategory %in% gsub(".*:", "", genesets_subset$gs_subcat)) {
-      genesets_subset <- filter(genesets_subset, gsub(".*:", "", .data$gs_subcat) == subcategory)
+    if (subcollection %in% mdb$gs_subcollection) {
+      mdb <- dplyr::filter(mdb, .data$gs_subcollection == subcollection)
+    } else if (subcollection %in% gsub(".*:", "", mdb$gs_subcollection)) {
+      mdb <- dplyr::filter(mdb, gsub(".*:", "", .data$gs_subcollection) == subcollection)
     } else {
-      stop("unknown subcategory")
+      stop("Unknown subcollection.")
     }
   }
 
-  # combine gene sets and genes
-  genesets_subset <- inner_join(genesets_subset, msigdbr_geneset_genes, by = "gs_id")
-  genesets_subset <- inner_join(genesets_subset, msigdbr_genes, by = "gene_id", relationship = "many-to-many")
-  genesets_subset <- select(genesets_subset, !any_of(c("gene_id")))
-
-  # retrieve orthologs
-  if (species %in% c("Homo sapiens", "human")) {
-    orthologs_subset <-
-      genesets_subset %>%
-      select(
-        "human_ensembl_gene",
-        gene_symbol = "human_gene_symbol",
-        entrez_gene = "human_entrez_gene"
-      ) %>%
-      mutate(ensembl_gene = .data$human_ensembl_gene) %>%
-      distinct()
-  } else {
-    orthologs_subset <-
-      orthologs(genes = genesets_subset$human_ensembl_gene, species = species) %>%
-      select(!any_of(c("human_symbol", "human_entrez"))) %>%
-      rename(
-        human_ensembl_gene = "human_ensembl",
-        gene_symbol = "symbol",
-        entrez_gene = "entrez",
-        ensembl_gene = "ensembl",
-        ortholog_sources = "support",
-        num_ortholog_sources = "support_n"
-      )
-  }
-
-  # combine gene sets and orthologs
-  genesets_subset <- inner_join(genesets_subset, orthologs_subset, by = "human_ensembl_gene", relationship = "many-to-many")
-  genesets_subset <- arrange(genesets_subset, .data$gs_name, .data$human_gene_symbol, .data$gene_symbol)
-  genesets_subset <- select(
-    genesets_subset,
-    "gs_cat",
-    "gs_subcat",
-    "gs_name",
-    "gene_symbol",
-    "entrez_gene",
-    "ensembl_gene",
-    "human_gene_symbol",
-    "human_entrez_gene",
-    "human_ensembl_gene",
-    everything()
+  # Create a fake orthologs table for cases when orthologs are not needed
+  species_genes <- dplyr::select(
+    mdb,
+    gene_symbol = "db_gene_symbol",
+    ncbi_gene = "db_ncbi_gene",
+    ensembl_gene = "db_ensembl_gene"
+  )
+  species_genes <- dplyr::mutate(
+    species_genes,
+    db_ensembl_gene = .data$ensembl_gene
   )
 
-  return(genesets_subset)
+  # Retrieve orthologs for the non-human species for the human database
+  if (db_species == "HS" && !(species %in% c("Homo sapiens", "human"))) {
+    species_genes <- babelgene::orthologs(
+      genes = unique(mdb$db_ensembl_gene),
+      species = species
+    )
+    species_genes <- dplyr::select(
+      species_genes,
+      db_ensembl_gene = "human_ensembl",
+      gene_symbol = "symbol",
+      ncbi_gene = "entrez",
+      ensembl_gene = "ensembl",
+      ortholog_taxon_id = "taxon_id",
+      ortholog_sources = "support",
+      num_ortholog_sources = "support_n",
+      !tidyselect::any_of(c("human_symbol", "human_entrez"))
+    )
+  }
+
+  # Remove duplicate entries
+  species_genes <- dplyr::distinct(species_genes)
+
+  # Combine gene sets and orthologs
+  mdb <- dplyr::inner_join(
+    mdb,
+    species_genes,
+    by = "db_ensembl_gene",
+    relationship = "many-to-many"
+  )
+
+  # Reorder columns for better readability
+  mdb <- dplyr::select(
+    mdb,
+    "gene_symbol",
+    "ncbi_gene",
+    "ensembl_gene",
+    "db_gene_symbol",
+    "db_ncbi_gene",
+    "db_ensembl_gene",
+    "source_gene",
+    "gs_id",
+    "gs_name",
+    "gs_collection",
+    "gs_subcollection",
+    everything()
+  )
+  mdb <- dplyr::arrange(mdb, .data$gs_name, .data$db_gene_symbol, .data$gene_symbol)
+
+  # Add columns from the old msigdbr output if old arguments are present
+  if (lifecycle::is_present(category) | lifecycle::is_present(subcategory)) {
+    mdb <- dplyr::mutate(
+      mdb,
+      entrez_gene = .data$ncbi_gene,
+      gs_cat = .data$gs_collection,
+      gs_subcat = .data$gs_subcollection,
+    )
+  }
+
+  return(mdb)
 }
