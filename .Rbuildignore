@@ -2,12 +2,12 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^LICENSE\.txt$
+^\.github$
 ^cran-comments\.md$
-^\.travis\.yml$
-^revdep$
+^CRAN-SUBMISSION$
 ^CRAN-RELEASE$
+^revdep$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^\.github$
-^CRAN-SUBMISSION$
+^vignettes/articles$
