@@ -1,12 +1,5 @@
 ---
 title: "Introduction to msigdbr"
-output:
-  rmarkdown::html_vignette:
-    keep_md: true
-vignette: >
-  %\VignetteIndexEntry{Introduction to msigdbr}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

@@ -32,8 +32,6 @@ Suggests:
     rmarkdown,
     roxygen2,
     testthat
-VignetteBuilder: 
-    knitr
 Additional_repositories: https://igordot.r-universe.dev
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
