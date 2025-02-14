@@ -8,9 +8,11 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' msigdbr_collections()
+#' }
 msigdbr_collections <- function(db_species = "Hs") {
-  # rlang::check_installed("msigdbdf")
+  # Check that msigdbdf is installed
   msigdbr_check_data()
 
   # Get the full table of gene sets and their member genes

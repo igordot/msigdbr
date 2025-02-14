@@ -40,10 +40,6 @@
 #' }
 msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check that msigdbdf is installed
-  # a dependency listed in DESCRIPTION Suggests is not guaranteed to be installed
-  # if (!requireNamespace("msigdbdf", quietly = TRUE)) {
-  #   stop("package 'msigdbdf' must be installed to use this function", call. = FALSE)
-  # }
   msigdbr_check_data()
 
   # Check parameters
