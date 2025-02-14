@@ -1,8 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^LICENSE\.txt$
 ^cran-comments\.md$
-^LICENSE\.md$
 ^\.travis\.yml$
 ^revdep$
 ^CRAN-RELEASE$
