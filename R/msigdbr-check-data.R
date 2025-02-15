@@ -7,7 +7,7 @@
 #' @importFrom utils install.packages menu
 msigdbr_check_data <- function() {
   if (!requireNamespace("msigdbdf", quietly = TRUE)) {
-    message("The 'msigdbdf' package must be installed.")
+    message("The 'msigdbdf' package must be installed to access all the data.")
 
     install_instructions <- paste0(
       "Please run the following command to install the 'msigdbdf' package:\n",
@@ -37,14 +37,5 @@ msigdbr_check_data <- function() {
       # If not running R interactively
       stop(install_instructions)
     }
-  }
-}
-
-.onAttach <- function(libname, pkgname) {
-  if (!requireNamespace("msigdbdf", quietly = TRUE)) {
-    packageStartupMessage(
-      "To access all the data, please install the 'msigdbdf' package with:\n",
-      "install.packages('msigdbdf', repos = 'https://igordot.r-universe.dev')"
-    )
   }
 }
