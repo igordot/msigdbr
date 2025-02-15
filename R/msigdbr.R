@@ -8,7 +8,7 @@
 #' Starting with release 2022.1, MSigDB incorporated a database of mouse-native gene sets and was split into human and mouse divisions ("Hs" and "Mm").
 #' Each one is provided in the approved gene symbols of its respective species.
 #' The versioning convention of MSigDB is in the format `Year.Release.Species`.
-#' The genes within each gene set may originate from a species different from the database target species, indicated by the `gs_source_species` and `db_target_species` fields.
+#' The genes within each gene set may originate from a species different from the database target species as indicated by the `gs_source_species` and `db_target_species` fields.
 #'
 #' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 #'
@@ -27,17 +27,6 @@
 #' @importFrom dplyr arrange distinct filter inner_join mutate rename select
 #'
 #' @export
-#'
-#' @examples
-#' # get all human gene sets
-#' \donttest{
-#' msigdbr(species = "Homo sapiens")
-#' }
-#'
-#' # get mouse C2 (curated) CGP (chemical and genetic perturbations) gene sets
-#' \donttest{
-#' msigdbr(species = "Mus musculus", collection = "C2", subcollection = "CGP")
-#' }
 msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check that msigdbdf is installed
   msigdbr_check_data()

@@ -15,8 +15,3 @@ A data frame of the available collections.
 \description{
 List the collections available in the msigdbr package
 }
-\examples{
-\donttest{
-msigdbr_collections()
-}
-}

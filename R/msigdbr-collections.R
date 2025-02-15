@@ -5,12 +5,8 @@
 #' @param db_species Species abbreviation for the human or mouse databases (`"Hs"` or `"Mm"`).
 #'
 #' @importFrom dplyr arrange count distinct
-#' @export
 #'
-#' @examples
-#' \donttest{
-#' msigdbr_collections()
-#' }
+#' @export
 msigdbr_collections <- function(db_species = "Hs") {
   # Check that msigdbdf is installed
   msigdbr_check_data()

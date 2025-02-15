@@ -12,6 +12,3 @@ A data frame of the available species.
 \description{
 List the species available in the msigdbr package
 }
-\examples{
-msigdbr_species()
-}
