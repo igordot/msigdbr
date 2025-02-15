@@ -1,4 +1,4 @@
-# R-CMD-check.yaml with R-Universe extra repository
+# R-CMD-check.yaml with only hard (required) dependencies
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
@@ -6,7 +6,7 @@ on:
     branches: [main, master]
   pull_request:
 
-name: R-CMD-check-extra.yaml
+name: R-CMD-check-required.yaml
 
 permissions: read-all
 
