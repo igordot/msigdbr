@@ -1,3 +1,4 @@
+# R-CMD-check.yaml with R-Universe extra repository
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
@@ -5,7 +6,7 @@ on:
     branches: [main, master]
   pull_request:
 
-name: R-CMD-check.yaml
+name: R-CMD-check-extra.yaml
 
 permissions: read-all
 
@@ -39,6 +40,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+          extra-repositories: 'https://igordot.r-universe.dev'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
