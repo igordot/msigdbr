@@ -2,6 +2,7 @@
 
 * Removed the MSigDB data (now a separate package msigdbdf).
 * Updated the package versioning scheme so it is not tied to the MSigDB release.
+* Added support for mouse versions of MSigDB.
 * Updated the annotation fields in the returned gene sets.
 * Updated the `msigdbr()` arguments `gs_cat` and `gs_subcat` to `gs_collection` and `gs_subcollection`.
 

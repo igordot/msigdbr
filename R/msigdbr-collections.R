@@ -8,7 +8,7 @@
 #'
 #' @export
 msigdbr_collections <- function(db_species = "Hs") {
-  # Check that msigdbdf is installed
+  # Check if msigdbdf is available and try to install otherwise
   msigdbr_check_data()
 
   # Get the full table of gene sets and their member genes
