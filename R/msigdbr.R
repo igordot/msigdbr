@@ -28,9 +28,6 @@
 #'
 #' @export
 msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
-  # Check that msigdbdf is installed
-  msigdbr_check_data()
-
   # Check parameters
   if (!is(species, "character")) {
     stop("`species` is not a character string")
@@ -58,8 +55,22 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     subcollection <- subcategory
   }
 
-  # Get the gene sets table
-  mdb <- msigdbdf::msigdbdf(target_species = db_species)
+  # Get the gene sets table or use an internal Hallmark dataset without msigdbdf
+  if (requireNamespace("msigdbdf", quietly = TRUE)) {
+    # Get the gene sets table
+    mdb <- msigdbdf::msigdbdf(target_species = db_species)
+  } else {
+    if (species == "Homo sapiens" && db_species == "HS" && collection == "H") {
+      # Use an internal human Hallmark dataset for minimal functionality without msigdbdf
+      # msigdb_h <- msigdbdf::msigdbdf(target_species = "HS")
+      # msigdb_h <- dplyr::filter(msigdb_h, gs_collection == "H")
+      # usethis::use_data(msigdb_h, internal = TRUE, overwrite = TRUE, compress = "xz")
+      mdb <- msigdb_h
+    } else {
+      # Check if msigdbdf is available and try to install otherwise
+      msigdbr_check_data()
+    }
+  }
 
   # Filter by collection
   if (is.character(collection)) {

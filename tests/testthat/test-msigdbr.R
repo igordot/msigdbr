@@ -75,7 +75,7 @@ test_that("human db rat genes", {
 })
 
 test_that("human hallmark category", {
-  skip_if_not_installed("msigdbdf")
+  # should be using internal data if msigdbdf is not installed
   m_hs_h <- msigdbr(species = "Homo sapiens", collection = "H")
   expect_s3_class(m_hs_h, "tbl_df")
   expect_gt(nrow(m_hs_h), 5000)
