@@ -60,12 +60,10 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     # Get the gene sets table
     mdb <- msigdbdf::msigdbdf(target_species = db_species)
   } else {
-    if (species == "Homo sapiens" && db_species == "HS" && collection == "H") {
-      # Use an internal human Hallmark dataset for minimal functionality without msigdbdf
-      # msigdb_h <- msigdbdf::msigdbdf(target_species = "HS")
-      # msigdb_h <- dplyr::filter(msigdb_h, gs_collection == "H")
-      # usethis::use_data(msigdb_h, internal = TRUE, overwrite = TRUE, compress = "xz")
-      mdb <- msigdb_h
+    if (species == "Homo sapiens" && db_species == "HS") {
+      # Use an internal dataset for minimal functionality without msigdbdf
+      mdb <- testdb
+      message("The 'msigdbdf' package must be installed to access the full dataset.")
     } else {
       # Check if msigdbdf is available and try to install otherwise
       msigdbr_check_data()

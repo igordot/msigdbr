@@ -7,7 +7,7 @@
 #' @importFrom utils install.packages menu
 msigdbr_check_data <- function() {
   if (!requireNamespace("msigdbdf", quietly = TRUE)) {
-    message("The 'msigdbdf' package must be installed to access all the data.")
+    message("The 'msigdbdf' package must be installed to access the full dataset.")
 
     install_instructions <- paste0(
       "Please run the following command to install the 'msigdbdf' package:\n",
