@@ -12,6 +12,11 @@
 #'
 #' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 #'
+#' To access the full dataset, please install the msigdbdf package (not available on CRAN):
+#' ```
+#' install.packages("msigdbdf", repos = "https://igordot.r-universe.dev")
+#' ```
+#'
 #' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Use `msigdbr_species()` for available options.
 #' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
 #' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` for the available options.
