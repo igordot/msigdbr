@@ -60,12 +60,12 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     subcollection <- subcategory
   }
 
-  # Get the gene sets table or use an internal Hallmark dataset without msigdbdf
+  # Get the gene sets table from msigdbdf or use an internal test dataset
   if (requireNamespace("msigdbdf", quietly = TRUE)) {
-    # Get the gene sets table
+    # Get the full gene sets data frame (filter later if needed)
     mdb <- msigdbdf::msigdbdf(target_species = db_species)
   } else {
-    if (species == "Homo sapiens" && db_species == "HS") {
+    if (db_species == "HS") {
       # Use an internal dataset for minimal functionality without msigdbdf
       mdb <- testdb
       message("The 'msigdbdf' package must be installed to access the full dataset.")
