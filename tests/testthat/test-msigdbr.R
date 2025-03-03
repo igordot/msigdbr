@@ -1,33 +1,43 @@
 library(dplyr)
 
-test_that("species variations", {
-  skip_if_not_installed("msigdbdf")
-  # human genes
+test_that("species variations internal database", {
+  # Human genes
   m_hs_hs <- msigdbr()
   expect_s3_class(m_hs_hs, "tbl_df")
+  expect_gt(nrow(m_hs_hs), 10000)
   expect_identical(m_hs_hs, msigdbr(species = "Homo sapiens"))
   expect_identical(m_hs_hs, msigdbr(db_species = "hs", species = "human"))
-  # mouse genes
+  # Mouse genes
   m_hs_mm <- msigdbr(species = "Mus musculus")
   expect_s3_class(m_hs_mm, "tbl_df")
+  expect_gt(nrow(m_hs_mm), 10000)
   expect_identical(m_hs_mm, msigdbr(db_species = "hs", species = "mouse"))
-  # rat genes
+  # Rat genes
   m_hs_rn <- msigdbr(species = "Rattus norvegicus")
   expect_s3_class(m_hs_rn, "tbl_df")
-  # mouse database and genes
-  m_mm_mm <- msigdbr(db_species = "mm", species = "Mus musculus")
-  expect_s3_class(m_mm_mm, "tbl_df")
-  # column names should be identical (extra output with orthologs)
+  expect_gt(nrow(m_hs_rn), 10000)
+  # Column names should be identical (extra output with orthologs)
   expect_identical(names(m_hs_hs)[1:19], names(m_hs_mm)[1:19])
   expect_identical(names(m_hs_mm)[1:19], names(m_hs_rn)[1:19])
-  expect_identical(names(m_mm_mm)[1:19], names(m_hs_mm)[1:19])
-  # ortholog conversion should not reduce the database size substantially
+  # Ortholog conversion should not reduce the database size substantially
   expect_gt(nrow(m_hs_mm), nrow(m_hs_hs) * 0.9)
   expect_gt(nrow(m_hs_rn), nrow(m_hs_hs) * 0.9)
-  # non-supported combinations
+  # Non-supported combinations
   expect_error(msigdbr(db_species = "mm", species = "Homo sapiens"))
   expect_error(msigdbr(db_species = "mm", species = "human"))
   expect_error(msigdbr(db_species = "mm", species = "Rattus norvegicus"))
+})
+
+test_that("human and mouse databases", {
+  skip_if_not_installed("msigdbdf")
+  # Human database and mouse genes
+  m_hs_mm <- msigdbr(species = "Mus musculus")
+  expect_s3_class(m_hs_mm, "tbl_df")
+  # Mouse database and genes
+  m_mm_mm <- msigdbr(db_species = "mm", species = "Mus musculus")
+  expect_s3_class(m_mm_mm, "tbl_df")
+  # Column names should be identical (extra output with orthologs)
+  expect_identical(names(m_mm_mm)[1:19], names(m_hs_mm)[1:19])
 })
 
 test_that("human db human genes", {
@@ -75,7 +85,8 @@ test_that("human db rat genes", {
 })
 
 test_that("human hallmark category", {
-  # should be using internal data if msigdbdf is not installed
+  # All Hallmark gene sets are present in the internal test dataset
+  # Should be using internal data if msigdbdf is not installed
   m_hs_h <- msigdbr(species = "Homo sapiens", collection = "H")
   expect_s3_class(m_hs_h, "tbl_df")
   expect_gt(nrow(m_hs_h), 5000)
