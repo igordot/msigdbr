@@ -162,7 +162,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
   mdb <- dplyr::arrange(mdb, .data$gs_name, .data$db_gene_symbol, .data$gene_symbol)
 
   # Add columns from the old msigdbr output if old arguments are present
-  if (lifecycle::is_present(category) | lifecycle::is_present(subcategory)) {
+  if (lifecycle::is_present(category) || lifecycle::is_present(subcategory)) {
     mdb <- dplyr::mutate(
       mdb,
       entrez_gene = .data$ncbi_gene,
