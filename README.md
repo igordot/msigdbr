@@ -22,10 +22,17 @@ The package can be installed from [CRAN](https://cran.r-project.org/package=msig
 install.packages("msigdbr")
 ```
 
-Recent [releases](https://github.com/igordot/msigdbr/releases) are not available on CRAN and can be installed from GitHub (specific version can be specified):
+The recent versions of the package provide only a small subset of the full MSigDB database due to CRAN size limitations.
+Please install the msigdbdf package to access the full MSigDB database:
 
 ```r
-remotes::install_github("igordot/msigdbr", ref = "v2022.1.1")
+install.packages("msigdbdf", repos = "https://igordot.r-universe.dev")
+```
+
+Older [releases](https://github.com/igordot/msigdbr/releases) can be installed from GitHub (specify the exact version):
+
+```r
+remotes::install_github("igordot/msigdbr", ref = "v2023.1.1")
 ```
 
 ## Usage
