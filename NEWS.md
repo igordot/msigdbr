@@ -1,4 +1,4 @@
-# msigdbr (development version)
+# msigdbr 10.0.0
 
 * Removed the MSigDB data (now a separate package msigdbdf).
 * Updated the package versioning scheme so it is not tied to the MSigDB release.
