@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">msigdbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2023.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">10.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
       <h1>Introduction to msigdbr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/main/vignettes/msigdbr-intro.Rmd" class="external-link"><code>vignettes/msigdbr-intro.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/main/vignettes/articles/msigdbr-intro.Rmd" class="external-link"><code>vignettes/articles/msigdbr-intro.Rmd</code></a></small>
       <div class="d-none name"><code>msigdbr-intro.Rmd</code></div>
     </div>
 
@@ -68,17 +68,17 @@ object.</p>
 gene sets typically used with the Gene Set Enrichment Analysis (GSEA)
 software:</p>
 <ul>
-<li>in an R-friendly “<a href="https://r4ds.had.co.nz/tidy-data.html" class="external-link">tidy</a>” format with one
+<li>in an R-friendly “<a href="https://r4ds.hadley.nz/data-tidy.html" class="external-link">tidy</a>” format with one
 gene pair per row</li>
 <li>for multiple frequently studied model organisms, such as mouse, rat,
 pig, zebrafish, fly, and yeast, in addition to the original human
 genes</li>
 <li>as gene symbols as well as NCBI Entrez and Ensembl IDs</li>
-<li>without accessing external resources and requiring an active
-internet connection</li>
+<li>without accessing external resources requiring an active internet
+connection</li>
 </ul>
-<p>Please be aware that the homologs were computationally predicted for
-distinct genes. The full pathways may not be well conserved across
+<p>Please be aware that the orthologs were computationally predicted at
+the gene level. The full pathways may not be well conserved across
 species.</p>
 </div>
 <div class="section level2">
@@ -99,80 +99,84 @@ species of interest.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 18</span></span></span>
-<span><span class="co">#&gt;   gs_cat gs_subcat     gs_name gene_symbol entrez_gene ensembl_gene human_gene…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> C3     MIR:MIR_LEGA… AAACCA… Abcc4            <span style="text-decoration: underline;">239</span>273 ENSMUSG0000… ABCC4       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> C3     MIR:MIR_LEGA… AAACCA… Abraxas2         <span style="text-decoration: underline;">109</span>359 ENSMUSG0000… ABRAXAS2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> C3     MIR:MIR_LEGA… AAACCA… Actn4             <span style="text-decoration: underline;">60</span>595 ENSMUSG0000… ACTN4       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> C3     MIR:MIR_LEGA… AAACCA… Acvr1             <span style="text-decoration: underline;">11</span>477 ENSMUSG0000… ACVR1       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> C3     MIR:MIR_LEGA… AAACCA… Adam9             <span style="text-decoration: underline;">11</span>502 ENSMUSG0000… ADAM9       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> C3     MIR:MIR_LEGA… AAACCA… Adamts5           <span style="text-decoration: underline;">23</span>794 ENSMUSG0000… ADAMTS5     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​human_gene_symbol</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>You can retrieve data just for a specific collection/category, such
-as the hallmark gene sets.</p>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abcc4          <span style="text-decoration: underline;">239</span>273 ENSMUSG000000328… ABCC4        10257        ENSG0000012…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abraxas2       <span style="text-decoration: underline;">109</span>359 ENSMUSG000000309… ABRAXAS2     23172        ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Actn4           <span style="text-decoration: underline;">60</span>595 ENSMUSG000000548… ACTN4        81           ENSG0000013…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acvr1           <span style="text-decoration: underline;">11</span>477 ENSMUSG000000268… ACVR1        90           ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Adam9           <span style="text-decoration: underline;">11</span>502 ENSMUSG000000315… ADAM9        8754         ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Adamts5         <span style="text-decoration: underline;">23</span>794 ENSMUSG000000228… ADAMTS5      11096        ENSG0000015…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<p>You can retrieve data just for a specific collection, such as the
+hallmark gene sets.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">h_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, category <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">h_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 18</span></span></span>
-<span><span class="co">#&gt;   gs_cat gs_subcat gs_name     gene_symbol entrez_gene ensembl_gene human_gene…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Abca1             <span style="text-decoration: underline;">11</span>303 ENSMUSG0000… ABCA1       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Abcb8             <span style="text-decoration: underline;">74</span>610 ENSMUSG0000… ABCB8       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acaa2             <span style="text-decoration: underline;">52</span>538 ENSMUSG0000… ACAA2       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acadl             <span style="text-decoration: underline;">11</span>363 ENSMUSG0000… ACADL       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acadm             <span style="text-decoration: underline;">11</span>364 ENSMUSG0000… ACADM       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acads             <span style="text-decoration: underline;">11</span>409 ENSMUSG0000… ACADS       </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​human_gene_symbol</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>You can specify a sub-category, such as C2 (curated) CGP (chemical
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abca1           <span style="text-decoration: underline;">11</span>303 ENSMUSG000000152… ABCA1        19           ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abcb8           <span style="text-decoration: underline;">74</span>610 ENSMUSG000000289… ABCB8        11194        ENSG0000019…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Acaa2           <span style="text-decoration: underline;">52</span>538 ENSMUSG000000368… ACAA2        10449        ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acadl           <span style="text-decoration: underline;">11</span>363 ENSMUSG000000260… ACADL        33           ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Acadm           <span style="text-decoration: underline;">11</span>364 ENSMUSG000000629… ACADM        34           ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Acads           <span style="text-decoration: underline;">11</span>409 ENSMUSG000000295… ACADS        35           ENSG0000012…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<p>You can specify a sub-collection, such as C2 (curated) CGP (chemical
 and genetic perturbations) gene sets.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cgp_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, category <span class="op">=</span> <span class="st">"C2"</span>, subcategory <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">cgp_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 18</span></span></span>
-<span><span class="co">#&gt;   gs_cat gs_subcat gs_name     gene_symbol entrez_gene ensembl_gene human_gene…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> C2     CGP       ABBUD_LIF_… Ahnak             <span style="text-decoration: underline;">66</span>395 ENSMUSG0000… AHNAK       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> C2     CGP       ABBUD_LIF_… Alcam             <span style="text-decoration: underline;">11</span>658 ENSMUSG0000… ALCAM       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> C2     CGP       ABBUD_LIF_… Ankrd40           <span style="text-decoration: underline;">71</span>452 ENSMUSG0000… ANKRD40     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> C2     CGP       ABBUD_LIF_… Arid1a            <span style="text-decoration: underline;">93</span>760 ENSMUSG0000… ARID1A      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> C2     CGP       ABBUD_LIF_… Bckdhb            <span style="text-decoration: underline;">12</span>040 ENSMUSG0000… BCKDHB      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> C2     CGP       ABBUD_LIF_… AU021092         <span style="text-decoration: underline;">239</span>691 ENSMUSG0000… C16orf89    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​human_gene_symbol</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>If you require more custom filtering, the <code><a href="../reference/msigdbr.html">msigdbr()</a></code>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Ahnak           <span style="text-decoration: underline;">66</span>395 ENSMUSG000000698… AHNAK        79026        ENSG0000012…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Alcam           <span style="text-decoration: underline;">11</span>658 ENSMUSG000000226… ALCAM        214          ENSG0000017…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Ankrd40         <span style="text-decoration: underline;">71</span>452 ENSMUSG000000208… ANKRD40      91369        ENSG0000015…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Arid1a          <span style="text-decoration: underline;">93</span>760 ENSMUSG000000078… ARID1A       8289         ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Bckdhb          <span style="text-decoration: underline;">12</span>040 ENSMUSG000000322… BCKDHB       594          ENSG0000008…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AU021092       <span style="text-decoration: underline;">239</span>691 ENSMUSG000000516… C16orf89     146556       ENSG0000015…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<p>If you require more precise filtering, the <code><a href="../reference/msigdbr.html">msigdbr()</a></code>
 function output is a data frame that can be manipulated using standard
-methods. For example, you can subset to a specific collection/category
-using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>.</p>
+methods. For example, you can subset to a specific collection using
+dplyr.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gs_cat</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gs_collection</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 18</span></span></span>
-<span><span class="co">#&gt;   gs_cat gs_subcat gs_name     gene_symbol entrez_gene ensembl_gene human_gene…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Abca1             <span style="text-decoration: underline;">11</span>303 ENSMUSG0000… ABCA1       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Abcb8             <span style="text-decoration: underline;">74</span>610 ENSMUSG0000… ABCB8       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acaa2             <span style="text-decoration: underline;">52</span>538 ENSMUSG0000… ACAA2       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acadl             <span style="text-decoration: underline;">11</span>363 ENSMUSG0000… ACADL       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acadm             <span style="text-decoration: underline;">11</span>364 ENSMUSG0000… ACADM       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> H      <span style="color: #949494;">""</span>        HALLMARK_A… Acads             <span style="text-decoration: underline;">11</span>409 ENSMUSG0000… ACADS       </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​human_gene_symbol</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: human_entrez_gene &lt;int&gt;, human_ensembl_gene &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_id &lt;chr&gt;, gs_pmid &lt;chr&gt;, gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_url &lt;chr&gt;, gs_description &lt;chr&gt;, taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abca1           <span style="text-decoration: underline;">11</span>303 ENSMUSG000000152… ABCA1        19           ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abcb8           <span style="text-decoration: underline;">74</span>610 ENSMUSG000000289… ABCB8        11194        ENSG0000019…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Acaa2           <span style="text-decoration: underline;">52</span>538 ENSMUSG000000368… ACAA2        10449        ENSG0000016…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acadl           <span style="text-decoration: underline;">11</span>363 ENSMUSG000000260… ACADL        33           ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Acadm           <span style="text-decoration: underline;">11</span>364 ENSMUSG000000629… ACADM        34           ENSG0000011…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Acads           <span style="text-decoration: underline;">11</span>409 ENSMUSG000000295… ACADS        35           ENSG0000012…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="helper-functions">Helper functions<a class="anchor" aria-label="anchor" href="#helper-functions"></a>
@@ -181,7 +185,7 @@ using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="e
 <code><a href="../reference/msigdbr_collections.html">msigdbr_collections()</a></code> helper functions to assist with
 setting the <code><a href="../reference/msigdbr.html">msigdbr()</a></code> parameters.</p>
 <p>You can check the available species with
-<code><a href="../reference/msigdbr_species.html">msigdbr_species()</a></code>. Either scientific or common names are
+<code><a href="../reference/msigdbr_species.html">msigdbr_species()</a></code>. Both scientific and common names are
 acceptable for the <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -212,32 +216,34 @@ acceptable for the <code><a href="../reference/msigdbr.html">msigdbr()</a></code
 <code><a href="../reference/msigdbr_collections.html">msigdbr_collections()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 23 × 3</span></span></span>
-<span><span class="co">#&gt;    gs_cat gs_subcat         num_genesets</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C1     <span style="color: #949494;">""</span>                         300</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> C2     <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>                     <span style="text-decoration: underline;">3</span>405</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> C2     <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>                        29</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> C2     <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>              292</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> C2     <span style="color: #949494;">"</span>CP:KEGG<span style="color: #949494;">"</span>                  186</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> C2     <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>                   196</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> C2     <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>             <span style="text-decoration: underline;">1</span>654</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> C2     <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span>          733</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> C3     <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">2</span>377</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> C3     <span style="color: #949494;">"</span>MIR:MIR_LEGACY<span style="color: #949494;">"</span>           221</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> C3     <span style="color: #949494;">"</span>TFT:GTRD<span style="color: #949494;">"</span>                 505</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> C3     <span style="color: #949494;">"</span>TFT:TFT_LEGACY<span style="color: #949494;">"</span>           610</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> C4     <span style="color: #949494;">"</span>CGN<span style="color: #949494;">"</span>                      427</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> C4     <span style="color: #949494;">"</span>CM<span style="color: #949494;">"</span>                       431</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> C5     <span style="color: #949494;">"</span>GO:BP<span style="color: #949494;">"</span>                   <span style="text-decoration: underline;">7</span>751</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> C5     <span style="color: #949494;">"</span>GO:CC<span style="color: #949494;">"</span>                   <span style="text-decoration: underline;">1</span>009</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> C5     <span style="color: #949494;">"</span>GO:MF<span style="color: #949494;">"</span>                   <span style="text-decoration: underline;">1</span>772</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> C5     <span style="color: #949494;">"</span>HPO<span style="color: #949494;">"</span>                     <span style="text-decoration: underline;">5</span>405</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> C6     <span style="color: #949494;">""</span>                         189</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> C7     <span style="color: #949494;">"</span>IMMUNESIGDB<span style="color: #949494;">"</span>             <span style="text-decoration: underline;">4</span>872</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">21</span> C7     <span style="color: #949494;">"</span>VAX<span style="color: #949494;">"</span>                      347</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">22</span> C8     <span style="color: #949494;">""</span>                         830</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">23</span> H      <span style="color: #949494;">""</span>                          50</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 4</span></span></span>
+<span><span class="co">#&gt;    gs_collection gs_subcollection  gs_collection_name               num_genesets</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C1            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Positional<span style="color: #949494;">"</span>                              302</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> C2            <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Chemical and Genetic Perturbat…         <span style="text-decoration: underline;">3</span>494</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> C2            <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Canonical Pathways<span style="color: #949494;">"</span>                       19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> C2            <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>BioCarta Pathways<span style="color: #949494;">"</span>                       292</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> C2            <span style="color: #949494;">"</span>CP:KEGG_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>KEGG Legacy Pathways<span style="color: #949494;">"</span>                    186</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> C2            <span style="color: #949494;">"</span>CP:KEGG_MEDICUS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>KEGG Medicus Pathways<span style="color: #949494;">"</span>                   658</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> C2            <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>          <span style="color: #949494;">"</span>PID Pathways<span style="color: #949494;">"</span>                            196</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> C2            <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>Reactome Pathways<span style="color: #949494;">"</span>                      <span style="text-decoration: underline;">1</span>736</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> C2            <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>WikiPathways<span style="color: #949494;">"</span>                            830</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> C3            <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>       <span style="color: #949494;">"</span>miRDB<span style="color: #949494;">"</span>                                  <span style="text-decoration: underline;">2</span>377</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> C3            <span style="color: #949494;">"</span>MIR:MIR_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>MIR_Legacy<span style="color: #949494;">"</span>                              221</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> C3            <span style="color: #949494;">"</span>TFT:GTRD<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>GTRD<span style="color: #949494;">"</span>                                    505</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> C3            <span style="color: #949494;">"</span>TFT:TFT_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>TFT_Legacy<span style="color: #949494;">"</span>                              610</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> C4            <span style="color: #949494;">"</span>3CA<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Curated Cancer Cell Atlas gene…          148</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> C4            <span style="color: #949494;">"</span>CGN<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Cancer Gene Neighborhoods<span style="color: #949494;">"</span>               427</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> C4            <span style="color: #949494;">"</span>CM<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Cancer Modules<span style="color: #949494;">"</span>                          431</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> C5            <span style="color: #949494;">"</span>GO:BP<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Biological Process<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">7</span>608</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> C5            <span style="color: #949494;">"</span>GO:CC<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Cellular Component<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>026</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> C5            <span style="color: #949494;">"</span>GO:MF<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Molecular Function<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>820</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> C5            <span style="color: #949494;">"</span>HPO<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Human Phenotype Ontology<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">5</span>653</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">21</span> C6            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Oncogenic Signature<span style="color: #949494;">"</span>                     189</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">22</span> C7            <span style="color: #949494;">"</span>IMMUNESIGDB<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>ImmuneSigDB<span style="color: #949494;">"</span>                            <span style="text-decoration: underline;">4</span>872</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">23</span> C7            <span style="color: #949494;">"</span>VAX<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>HIPC Vaccine Response<span style="color: #949494;">"</span>                   347</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">24</span> C8            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Cell Type Signature<span style="color: #949494;">"</span>                     840</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">25</span> H             <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Hallmark<span style="color: #949494;">"</span>                                 50</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="pathway-enrichment-analysis">Pathway enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-enrichment-analysis"></a>
@@ -245,17 +251,17 @@ acceptable for the <code><a href="../reference/msigdbr.html">msigdbr()</a></code
 <p>The msigdbr output can be used with various pathway analysis
 packages.</p>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
-with genes as Entrez Gene IDs.</p>
+with genes as NCBI Entrez Gene IDs.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">entrez_gene</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">ncbi_gene</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
 with genes as gene symbols.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="va">msigdbr_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/fgsea/" class="external-link">fgsea</a>.</p>
@@ -268,35 +274,36 @@ with genes as gene symbols.</p>
 <span><span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="potential-questions-or-concerns">Potential questions or concerns<a class="anchor" aria-label="anchor" href="#potential-questions-or-concerns"></a>
+<h2 id="potential-questions-and-concerns">Potential questions and concerns<a class="anchor" aria-label="anchor" href="#potential-questions-and-concerns"></a>
 </h2>
 <p><strong>Which version of MSigDB was used?</strong></p>
-<p>This package was generated with MSigDB v2023.1.Hs. The MSigDB version
-is used as the base of the msigdbr CRAN package version. You can check
-the installed version with <code>packageVersion("msigdbr")</code>.</p>
-<p><strong>Can I download the gene sets directly from MSigDB instead of
-using this package?</strong></p>
-<p>Yes. You can then import the GMT files (with <code>getGmt()</code>
-from the <code>GSEABase</code> package, for example). The GMTs only
-include the human genes, even for gene sets generated from mouse
-experiments. If you are working with non-human data, you then have to
-convert the MSigDB genes to your organism or your genes to human.</p>
+<p>The MSigDB version is stored in the <code>db_version</code> column of
+the returned data frame. You can check the version used with
+<code>unique(msigdbr_df$db_version)</code>.</p>
+<p><strong>Why use this package when I can download the gene sets
+directly from MSigDB?</strong></p>
+<p>This package makes it more convenient to work with MSigDB gene sets
+in R. You can download the GMT files and import them (with
+<code>getGmt()</code> from the GSEABase package, for example). You then
+have to format the output to be compatible with downstream tools. If you
+are working with non-human data, you then have to convert the MSigDB
+genes to your organism.</p>
 <p><strong>Can I convert between human and mouse genes just by adjusting
 gene capitalization?</strong></p>
-<p>That will work for most genes, but not all.</p>
+<p>That will work for most, but not all, genes.</p>
 <p><strong>Can I convert human genes to any organism myself instead of
 using this package?</strong></p>
-<p>Yes. A popular method is using the <code>biomaRt</code> package. You
-may still end up with dozens of homologs for some genes, so additional
-cleanup may be helpful.</p>
+<p>One popular method is using the biomaRt package. You may still end up
+with dozens of homologs for some genes, so additional cleanup may be
+helpful.</p>
 <p><strong>Aren’t there already other similar tools?</strong></p>
 <p>There are a few resources that provide some of the msigdbr
 functionality and served as an inspiration for this package. <a href="https://bioinf.wehi.edu.au/software/MSigDB/" class="external-link">WEHI</a> provides
-MSigDB gene sets in R format for human and mouse. <a href="https://github.com/stephenturner/msigdf" class="external-link">MSigDF</a> relies on the
-WEHI resource, but is converted to a more tidyverse-friendly data frame.
-There is a more recent <a href="https://github.com/ToledoEM/msigdf" class="external-link">ToledoEM/msigdf</a> fork.
-These are updated at varying frequencies and may not be based on the
-latest version of MSigDB. Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
+MSigDB gene sets in R format for human and mouse. <a href="https://github.com/stephenturner/msigdf" class="external-link">MSigDF</a> and a more
+recent <a href="https://github.com/ToledoEM/msigdf" class="external-link">ToledoEM/msigdf</a>
+fork provide a tidyverse-friendly data frame. These are updated at
+varying frequencies and may not be based on the latest version of
+MSigDB. Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
 that are natively mouse</a> and don’t require orthology conversion.</p>
 <p><strong>What if I have other questions?</strong></p>
 <p>You can submit feedback and report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub</a>.</p>
@@ -309,8 +316,8 @@ sets originally created for use with the Gene Set Enrichment Analysis
 (GSEA) software. To cite use of the underlying MSigDB data, reference
 Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the
 following as appropriate: Liberzon, et al. (2011, Bioinformatics),
-Liberzon, et al. (2015, Cell Systems), and also the source for the gene
-set.</p>
+Liberzon, et al. (2015, Cell Systems), Castanza, et al. (2023, Nature
+Methods) and also the source for the gene set.</p>
 <p>Gene homologs are provided by HUGO Gene Nomenclature Committee at the
 European Bioinformatics Institute which integrates the orthology
 assertions predicted for human genes by eggNOG, Ensembl Compara, HGNC,

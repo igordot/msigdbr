@@ -1,17 +1,16 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://igordot.github.io/msigdbr/404.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/LICENSE-text.html</loc></url>
-<url><loc>https://igordot.github.io/msigdbr/LICENSE.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/articles/index.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/articles/msigdbr-intro.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/authors.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/index.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/news/index.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/reference/index.html</loc></url>
+<url><loc>https://igordot.github.io/msigdbr/reference/msigdbr-package.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/reference/msigdbr.html</loc></url>
+<url><loc>https://igordot.github.io/msigdbr/reference/msigdbr_check_data.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/reference/msigdbr_collections.html</loc></url>
-<url><loc>https://igordot.github.io/msigdbr/reference/msigdbr_show_species.html</loc></url>
 <url><loc>https://igordot.github.io/msigdbr/reference/msigdbr_species.html</loc></url>
-<url><loc>https://igordot.github.io/msigdbr/reference/pipe.html</loc></url>
 </urlset>
 

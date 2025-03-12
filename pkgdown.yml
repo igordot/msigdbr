@@ -2,8 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  msigdbr-intro: msigdbr-intro.html
-last_built: 2025-02-14T17:06Z
+  articles/msigdbr-intro: msigdbr-intro.html
+last_built: 2025-03-12T14:32Z
 urls:
   reference: https://igordot.github.io/msigdbr/reference
   article: https://igordot.github.io/msigdbr/articles
