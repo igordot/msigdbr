@@ -4,8 +4,9 @@
 ## usethis namespace: start
 #' @import tibble
 #' @import tidyselect
+#' @importFrom assertthat assert_that
 #' @importFrom lifecycle deprecated is_present
 #' @importFrom methods is
-#' @importFrom rlang .data check_installed
+#' @importFrom rlang .data check_installed is_installed
 ## usethis namespace: end
 NULL

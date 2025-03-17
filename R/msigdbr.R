@@ -34,29 +34,46 @@
 #' @export
 msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check parameters
-  if (!is(species, "character")) {
-    stop("`species` is not a character string")
+  assertthat::assert_that(
+    is.character(species),
+    length(species) == 1,
+    nchar(species) > 1
+  )
+  assertthat::assert_that(
+    is.character(db_species),
+    length(db_species) == 1,
+    nchar(db_species) == 2
+  )
+  if (!is.null(collection)) {
+    assertthat::assert_that(
+      is.character(collection),
+      length(collection) == 1,
+      nchar(collection) > 0
+    )
   }
-  if (length(species) > 1) {
-    stop("only one `species` should be specified")
-  }
-  if (!is(db_species, "character")) {
-    stop("`db_species` is not a character string")
+  if (!is.null(subcollection)) {
+    assertthat::assert_that(
+      is.character(subcollection),
+      length(subcollection) == 1,
+      nchar(subcollection) > 0
+    )
   }
 
   # Use only mouse genes for mouse database
   db_species <- toupper(db_species)
   if (db_species == "MM" && !(species %in% c("Mus musculus", "mouse", "house mouse"))) {
-    stop("set species to mouse for the mouse database")
+    stop("Set `species` to mouse for the mouse database.")
   }
 
   # Check for deprecated category arguments
   if (lifecycle::is_present(category)) {
-    lifecycle::deprecate_warn("9.0.0", "msigdbr(category)", "msigdbr(collection)")
+    lifecycle::deprecate_warn("10.0.0", "msigdbr(category)", "msigdbr(collection)")
+    assertthat::assert_that(is.character(category), length(category) == 1, nchar(category) > 0)
     collection <- category
   }
   if (lifecycle::is_present(subcategory)) {
-    lifecycle::deprecate_warn("9.0.0", "msigdbr(subcategory)", "msigdbr(subcollection)")
+    lifecycle::deprecate_warn("10.0.0", "msigdbr(subcategory)", "msigdbr(subcollection)")
+    assertthat::assert_that(is.character(subcategory), length(subcategory) == 1, nchar(subcategory) > 0)
     subcollection <- subcategory
   }
 
@@ -77,9 +94,6 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
 
   # Filter by collection
   if (is.character(collection)) {
-    if (length(collection) > 1) {
-      stop("Please specify only one collection at a time.")
-    }
     if (collection %in% mdb$gs_collection) {
       mdb <- dplyr::filter(mdb, .data$gs_collection == collection)
     } else {
@@ -89,9 +103,6 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
 
   # Filter by sub-collection
   if (is.character(subcollection)) {
-    if (length(subcollection) > 1) {
-      stop("Please specify only one subcollection at a time.")
-    }
     if (subcollection %in% mdb$gs_subcollection) {
       mdb <- dplyr::filter(mdb, .data$gs_subcollection == subcollection)
     } else if (subcollection %in% gsub(".*:", "", mdb$gs_subcollection)) {
