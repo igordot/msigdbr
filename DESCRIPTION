@@ -34,6 +34,7 @@ Suggests:
     roxygen2,
     testthat
 Additional_repositories: https://igordot.r-universe.dev
+Config/Needs/website: rmarkdown
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
