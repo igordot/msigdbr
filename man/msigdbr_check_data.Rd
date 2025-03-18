@@ -4,7 +4,10 @@
 \alias{msigdbr_check_data}
 \title{Check that the data package is installed}
 \usage{
-msigdbr_check_data()
+msigdbr_check_data(require_data = TRUE)
+}
+\arguments{
+\item{require_data}{Stop execution if the data package is not installed.}
 }
 \description{
 Check that the 'msigdbdf' data package is installed.
