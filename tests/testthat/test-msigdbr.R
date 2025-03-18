@@ -103,60 +103,24 @@ test_that("human hallmark category", {
   expect_equal(max(table(m_hs_h_sym$gs_id)), 200)
 })
 
-# test_that("mouse hallmark category", {
-#   msigdbr_mm_h <- msigdbr(species = "Mus musculus", category = "H")
-#   expect_s3_class(msigdbr_mm_h, "tbl_df")
-#   expect_gt(nrow(msigdbr_mm_h), 5000)
-#   expect_equal(n_distinct(msigdbr_mm_h$gs_cat), 1)
-#   expect_equal(n_distinct(msigdbr_mm_h$gs_subcat), 1)
-#   expect_equal(n_distinct(msigdbr_mm_h$gs_id), 50)
-#   expect_gt(min(table(msigdbr_mm_h$gs_id)), 30)
-#   expect_lt(max(table(msigdbr_mm_h$gs_id)), 250)
-#   msigdbr_mm_h_entrez <- distinct(msigdbr_mm_h, gs_id, entrez_gene)
-#   expect_gt(min(table(msigdbr_mm_h_entrez$gs_id)), 30)
-#   expect_lt(max(table(msigdbr_mm_h_entrez$gs_id)), 220)
-#   msigdbr_mm_h_symbol <- distinct(msigdbr_mm_h, gs_id, gene_symbol)
-#   expect_gt(min(table(msigdbr_mm_h_symbol$gs_id)), 30)
-#   expect_lt(max(table(msigdbr_mm_h_symbol$gs_id)), 220)
+# test_that("collections and subcollections", {
+#   m_rn_bp <- msigdbr(species = "Rattus norvegicus", collection = "C5", subcollection = "BP")
+#   expect_s3_class(m_rn_bp, "tbl_df")
+#   expect_gt(nrow(m_rn_bp), 100)
+#   expect_equal(n_distinct(m_rn_bp$gs_collection), 1)
+#   expect_equal(n_distinct(m_rn_bp$gs_subcollection), 1)
+#   expect_gt(n_distinct(m_rn_bp$gs_id), 1)
 # })
 
-# test_that("human CGP subcategory", {
-#   msigdbr_hs_cgp <- msigdbr(species = "Homo sapiens", category = "C2", subcategory = "CGP")
-#   expect_s3_class(msigdbr_hs_cgp, "tbl_df")
-#   expect_gt(nrow(msigdbr_hs_cgp), 100000)
-#   expect_equal(n_distinct(msigdbr_hs_cgp$gs_cat), 1)
-#   expect_equal(n_distinct(msigdbr_hs_cgp$gs_subcat), 1)
-#   expect_gt(n_distinct(msigdbr_hs_cgp$gs_id), 3000)
-#   expect_lt(n_distinct(msigdbr_hs_cgp$gs_id), 5000)
-# })
-
-# test_that("human BP subcategory", {
-#   msigdbr_hs_bp <- msigdbr(species = "Homo sapiens", category = "C5", subcategory = "BP")
-#   expect_s3_class(msigdbr_hs_bp, "tbl_df")
-#   expect_gt(nrow(msigdbr_hs_bp), 100000)
-#   expect_equal(n_distinct(msigdbr_hs_bp$gs_cat), 1)
-#   expect_equal(n_distinct(msigdbr_hs_bp$gs_subcat), 1)
-#   expect_gt(n_distinct(msigdbr_hs_bp$gs_id), 7000)
-#   expect_lt(n_distinct(msigdbr_hs_bp$gs_id), 9000)
-# })
-
-# test_that("rat BP subcategory", {
-#   msigdbr_rn_bp <- msigdbr(species = "Rattus norvegicus", category = "C5", subcategory = "BP")
-#   expect_s3_class(msigdbr_rn_bp, "tbl_df")
-#   expect_gt(nrow(msigdbr_rn_bp), 500000)
-#   expect_equal(n_distinct(msigdbr_rn_bp$gs_cat), 1)
-#   expect_equal(n_distinct(msigdbr_rn_bp$gs_subcat), 1)
-#   expect_gt(n_distinct(msigdbr_rn_bp$gs_id), 7000)
-#   expect_lt(n_distinct(msigdbr_rn_bp$gs_id), 9000)
-# })
-
-# test_that("subcategory partial match", {
-#   msigdbr_mm_gomf <- msigdbr(species = "Mus musculus", category = "C5", subcategory = "GO:MF")
-#   expect_s3_class(msigdbr_mm_gomf, "tbl_df")
-#   msigdbr_mm_mf <- msigdbr(species = "Mus musculus", category = "C5", subcategory = "MF")
-#   expect_s3_class(msigdbr_mm_mf, "tbl_df")
-#   expect_equal(nrow(msigdbr_mm_gomf), nrow(msigdbr_mm_mf))
-#   expect_identical(msigdbr_mm_gomf, msigdbr_mm_mf)
+# test_that("subcollection partial match", {
+#   m_mm_gomf <- msigdbr(species = "mouse", collection = "C5", subcollection = "GO:MF")
+#   expect_s3_class(m_mm_gomf, "tbl_df")
+#   expect_gt(nrow(m_mm_gomf), 100)
+#   m_mm_mf <- msigdbr(species = "mouse", collection = "C5", subcollection = "MF")
+#   expect_s3_class(m_mm_mf, "tbl_df")
+#   expect_gt(nrow(m_mm_mf), 100)
+#   expect_equal(nrow(m_mm_gomf), nrow(m_mm_mf))
+#   expect_identical(m_mm_gomf, m_mm_mf)
 # })
 
 test_that("wrong parameters", {
