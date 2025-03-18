@@ -67,11 +67,13 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
 
   # Check for deprecated category arguments
   if (lifecycle::is_present(category)) {
+  if (lifecycle::is_present(category) && !is.null(category)) {
     lifecycle::deprecate_warn("10.0.0", "msigdbr(category)", "msigdbr(collection)")
     assertthat::assert_that(is.character(category), length(category) == 1, nchar(category) > 0)
     collection <- category
   }
   if (lifecycle::is_present(subcategory)) {
+  if (lifecycle::is_present(subcategory) && !is.null(subcategory)) {
     lifecycle::deprecate_warn("10.0.0", "msigdbr(subcategory)", "msigdbr(subcollection)")
     assertthat::assert_that(is.character(subcategory), length(subcategory) == 1, nchar(subcategory) > 0)
     subcollection <- subcategory
