@@ -178,6 +178,7 @@ test_that("deprecated parameters", {
   expect_warning(msigdbr(species = "Homo sapiens", subcategory = "CGP"))
   expect_no_error(msigdbr(species = "Homo sapiens", category = NULL))
   expect_no_error(msigdbr(species = "Homo sapiens", subcategory = NULL))
+  expect_identical(nrow(msigdbr(species = "human")), nrow(msigdbr(species = "human", category = NULL)))
   m_hs <- msigdbr(species = "Homo sapiens", category = "H")
   expect_contains(colnames(m_hs), c("gene_symbol", "entrez_gene", "ensembl_gene", "gs_cat", "gs_subcat"))
 })
