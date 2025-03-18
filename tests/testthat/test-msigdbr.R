@@ -176,7 +176,9 @@ test_that("wrong parameters", {
 test_that("deprecated parameters", {
   skip_if_not_installed("msigdbdf")
   expect_warning(msigdbr(species = "Homo sapiens", category = "H"))
+  expect_warning(msigdbr(species = "Homo sapiens", category = NULL))
   expect_warning(msigdbr(species = "Homo sapiens", subcategory = "CGP"))
+  expect_warning(msigdbr(species = "Homo sapiens", subcategory = NULL))
   m_hs <- msigdbr(species = "Homo sapiens", category = "H")
   expect_contains(colnames(m_hs), c("gene_symbol", "entrez_gene", "ensembl_gene", "gs_cat", "gs_subcat"))
 })
