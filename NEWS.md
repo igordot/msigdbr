@@ -1,3 +1,7 @@
+# msigdbr 10.0.1
+
+* Updated documentation.
+
 # msigdbr 10.0.0
 
 * Removed the MSigDB data (now a separate package msigdbdf).
