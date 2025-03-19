@@ -22,19 +22,6 @@ The package can be installed from [CRAN](https://cran.r-project.org/package=msig
 install.packages("msigdbr")
 ```
 
-The recent versions of the package provide only a small subset of the full MSigDB database due to CRAN size limitations.
-Please install the msigdbdf package to access the full MSigDB database:
-
-```r
-install.packages("msigdbdf", repos = "https://igordot.r-universe.dev")
-```
-
-Older [releases](https://github.com/igordot/msigdbr/releases) can be installed from GitHub (specify the exact version):
-
-```r
-remotes::install_github("igordot/msigdbr", ref = "v2023.1.1")
-```
-
 ## Usage
 
 The package data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes.
