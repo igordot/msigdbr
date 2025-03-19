@@ -29,7 +29,7 @@ For example, you can retrieve mouse genes from the C2 (curated) CGP (chemical an
 
 ```r
 library(msigdbr)
-genesets <- msigdbr(species = "mouse", category = "C2", subcategory = "CGP")
+genesets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
 ```
 
 Check the [documentation website](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html) for more information.
