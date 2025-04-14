@@ -103,25 +103,28 @@ test_that("human hallmark category", {
   expect_equal(max(table(m_hs_h_sym$gs_id)), 200)
 })
 
-# test_that("collections and subcollections", {
-#   m_rn_bp <- msigdbr(species = "Rattus norvegicus", collection = "C5", subcollection = "BP")
-#   expect_s3_class(m_rn_bp, "tbl_df")
-#   expect_gt(nrow(m_rn_bp), 100)
-#   expect_equal(n_distinct(m_rn_bp$gs_collection), 1)
-#   expect_equal(n_distinct(m_rn_bp$gs_subcollection), 1)
-#   expect_gt(n_distinct(m_rn_bp$gs_id), 1)
-# })
+test_that("collections and subcollections", {
+  m_rn_bp <- msigdbr(species = "Rattus norvegicus", collection = "C5", subcollection = "BP")
+  expect_s3_class(m_rn_bp, "tbl_df")
+  expect_gt(nrow(m_rn_bp), 100)
+  expect_gt(n_distinct(m_rn_bp$gene_symbol), 10)
+  expect_gt(n_distinct(m_rn_bp$ncbi_gene), 10)
+  expect_gt(n_distinct(m_rn_bp$ensembl_gene), 10)
+  expect_equal(n_distinct(m_rn_bp$gs_collection), 1)
+  expect_equal(n_distinct(m_rn_bp$gs_subcollection), 1)
+  expect_gt(n_distinct(m_rn_bp$gs_id), 1)
+})
 
-# test_that("subcollection partial match", {
-#   m_mm_gomf <- msigdbr(species = "mouse", collection = "C5", subcollection = "GO:MF")
-#   expect_s3_class(m_mm_gomf, "tbl_df")
-#   expect_gt(nrow(m_mm_gomf), 100)
-#   m_mm_mf <- msigdbr(species = "mouse", collection = "C5", subcollection = "MF")
-#   expect_s3_class(m_mm_mf, "tbl_df")
-#   expect_gt(nrow(m_mm_mf), 100)
-#   expect_equal(nrow(m_mm_gomf), nrow(m_mm_mf))
-#   expect_identical(m_mm_gomf, m_mm_mf)
-# })
+test_that("subcollection partial match", {
+  m_mm_gomf <- msigdbr(species = "mouse", collection = "C5", subcollection = "GO:MF")
+  expect_s3_class(m_mm_gomf, "tbl_df")
+  expect_gt(nrow(m_mm_gomf), 100)
+  m_mm_mf <- msigdbr(species = "mouse", collection = "C5", subcollection = "MF")
+  expect_s3_class(m_mm_mf, "tbl_df")
+  expect_gt(nrow(m_mm_mf), 100)
+  expect_equal(nrow(m_mm_gomf), nrow(m_mm_mf))
+  expect_identical(m_mm_gomf, m_mm_mf)
+})
 
 test_that("wrong parameters", {
   expect_error(msigdbr(db_species = "X"))
