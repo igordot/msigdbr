@@ -2,11 +2,11 @@
 
 <details>
 
-* Version: 0.2.0
+* Version: 0.2.2
 * GitHub: https://github.com/XiaoZhangryy/CAESAR.Suite
 * Source code: https://github.com/cran/CAESAR.Suite
-* Date/Publication: 2025-03-03 10:10:01 UTC
-* Number of recursive dependencies: 269
+* Date/Publication: 2025-04-01 09:00:07 UTC
+* Number of recursive dependencies: 254
 
 Run `revdepcheck::revdep_details(, "CAESAR.Suite")` for more info
 
@@ -14,18 +14,69 @@ Run `revdepcheck::revdep_details(, "CAESAR.Suite")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking whether package ‘CAESAR.Suite’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/Users/id460/repos/msigdbr/revdep/checks.noindex/CAESAR.Suite/new/CAESAR.Suite.Rcheck/00install.out’ for details.
+    ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘CAESAR.Suite’ ...
+** this is package ‘CAESAR.Suite’ version ‘0.2.2’
+** package ‘CAESAR.Suite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘Apple clang version 16.0.0 (clang-1600.0.26.6)’
+using SDK: ‘MacOSX15.2.sdk’
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c RcppExports.cpp -o RcppExports.o
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c gene_embed.cpp -o gene_embed.o
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c imfactor.cpp -o imfactor.o
+clang++ -arch x86_64 -std=gnu++17 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -L/opt/R/x86_64/lib -o CAESAR.Suite.so RcppExports.o gene_embed.o imfactor.o -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -lRlapack -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -lRblas -L/opt/gfortran/lib/gcc/x86_64-apple-darwin20.0/14.2.0 -L/opt/gfortran/lib -lemutls_w -lheapt_w -lgfortran -lquadmath -F/Library/Frameworks/R.framework/Versions/4.5-x86_64 -framework R
+ld: warning: search path '/opt/gfortran/lib/gcc/x86_64-apple-darwin20.0/14.2.0' not found
+ld: library 'emutls_w' not found
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [CAESAR.Suite.so] Error 1
+ERROR: compilation failed for package ‘CAESAR.Suite’
+* removing ‘/Users/id460/repos/msigdbr/revdep/checks.noindex/CAESAR.Suite/new/CAESAR.Suite.Rcheck/CAESAR.Suite’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘CAESAR.Suite’ ...
+** this is package ‘CAESAR.Suite’ version ‘0.2.2’
+** package ‘CAESAR.Suite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C++ compiler: ‘Apple clang version 16.0.0 (clang-1600.0.26.6)’
+using SDK: ‘MacOSX15.2.sdk’
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c RcppExports.cpp -o RcppExports.o
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c gene_embed.cpp -o gene_embed.o
+clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c imfactor.cpp -o imfactor.o
+clang++ -arch x86_64 -std=gnu++17 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -L/opt/R/x86_64/lib -o CAESAR.Suite.so RcppExports.o gene_embed.o imfactor.o -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -lRlapack -L/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/lib -lRblas -L/opt/gfortran/lib/gcc/x86_64-apple-darwin20.0/14.2.0 -L/opt/gfortran/lib -lemutls_w -lheapt_w -lgfortran -lquadmath -F/Library/Frameworks/R.framework/Versions/4.5-x86_64 -framework R
+ld: warning: search path '/opt/gfortran/lib/gcc/x86_64-apple-darwin20.0/14.2.0' not found
+ld: library 'emutls_w' not found
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [CAESAR.Suite.so] Error 1
+ERROR: compilation failed for package ‘CAESAR.Suite’
+* removing ‘/Users/id460/repos/msigdbr/revdep/checks.noindex/CAESAR.Suite/old/CAESAR.Suite.Rcheck/CAESAR.Suite’
+
+
+```
 # CatsCradle
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.1.2
 * GitHub: https://github.com/AnnaLaddach/CatsCradle
 * Source code: https://github.com/cran/CatsCradle
-* Date/Publication: 2025-02-13
-* Number of recursive dependencies: 202
+* Date/Publication: 2025-03-17
+* Number of recursive dependencies: 203
 
 Run `revdepcheck::revdep_details(, "CatsCradle")` for more info
 
@@ -35,50 +86,6 @@ Run `revdepcheck::revdep_details(, "CatsCradle")` for more info
 
 *   R CMD check timed out
     
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Codoc mismatches from Rd file 'aggregateGeneExpression.Rd':
-    aggregateGeneExpression
-      Code: function(f, neighbourhoods, self = FALSE, verbose = TRUE,
-                     returnType = "Seurat")
-      Docs: function(f, neighbourhoods, verbose = TRUE, returnType =
-                     "Seurat")
-      Argument names in code not in docs:
-        self
-      Mismatches in argument names:
-        Position: 3 Code: self Docs: verbose
-        Position: 4 Code: verbose Docs: returnType
-    
-    Codoc mismatches from Rd file 'nbhdsAsEdgesToNbhdsAsList.Rd':
-    nbhdsAsEdgesToNbhdsAsList
-      Code: function(cells, neighbourhoods, self = FALSE)
-      Docs: function(cells, neighbourhoods)
-      Argument names in code not in docs:
-        self
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    Undocumented arguments in Rd file 'getFeatureZScores.Rd'
-      ‘features’
-    Documented arguments not in \usage in Rd file 'getFeatureZScores.Rd':
-      ‘featurs’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.2Mb
-      sub-directories of 1Mb or more:
-        data   1.2Mb
-        doc    6.6Mb
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -109,11 +116,11 @@ Run `revdepcheck::revdep_details(, "CatsCradle")` for more info
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.17.0
 * GitHub: https://github.com/vallotlab/ChromSCape
 * Source code: https://github.com/cran/ChromSCape
 * Date/Publication: 2024-10-29
-* Number of recursive dependencies: 230
+* Number of recursive dependencies: 231
 
 Run `revdepcheck::revdep_details(, "ChromSCape")` for more info
 
@@ -177,15 +184,6 @@ Run `revdepcheck::revdep_details(, "ChromSCape")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.6Mb
-      sub-directories of 1Mb or more:
-        data   1.5Mb
-        doc    2.9Mb
-        www    2.1Mb
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     bams_to_matrix_indexes: no visible binding for global variable
@@ -216,51 +214,39 @@ Run `revdepcheck::revdep_details(, "ChromSCape")` for more info
     prepare_Rd: raw_counts_to_sparse_matrix.Rd:6-8: Dropping empty section \source
     ```
 
-# epiregulon.extra
+# EnrichmentBrowser
 
 <details>
 
-* Version: 
-* GitHub: https://github.com/igordot/msigdbr
-* Source code: NA
-* Number of recursive dependencies: 0
+* Version: 2.37.0
+* GitHub: https://github.com/lgeistlinger/EnrichmentBrowser
+* Source code: https://github.com/cran/EnrichmentBrowser
+* Date/Publication: 2024-10-29
+* Number of recursive dependencies: 200
+
+Run `revdepcheck::revdep_details(, "EnrichmentBrowser")` for more info
 
 </details>
 
-## Error before installation
+## In both
 
-### Devel
+*   R CMD check timed out
+    
 
-```
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: 'pathview:::parseKGML2Graph2'
+      See the note in ?`:::` about the use of this operator.
+    ```
 
-  There is a binary version available but the source version is later:
-      binary source needs_compilation
-fgsea 1.32.0 1.32.2              TRUE
+*   checking R code for possible problems ... NOTE
+    ```
+    .getGOFromBiomart: no visible binding for global variable
+      ‘go_linkage_type’
+    Undefined global functions or variables:
+      go_linkage_type
+    ```
 
-  Binaries will be installed
-
-
-installing the source packages ‘BSgenome.Hsapiens.UCSC.hg19’, ‘BSgenome.Hsapiens.UCSC.hg38’, ‘BSgenome.Mmusculus.UCSC.mm10’, ‘dorothea’, ‘scMultiome’
-
-
-
-```
-### CRAN
-
-```
-
-  There is a binary version available but the source version is later:
-      binary source needs_compilation
-fgsea 1.32.0 1.32.2              TRUE
-
-  Binaries will be installed
-
-
-installing the source packages ‘BSgenome.Hsapiens.UCSC.hg19’, ‘BSgenome.Hsapiens.UCSC.hg38’, ‘BSgenome.Mmusculus.UCSC.mm10’, ‘dorothea’, ‘scMultiome’
-
-
-
-```
 # fgsea
 
 <details>
@@ -280,7 +266,7 @@ installing the source packages ‘BSgenome.Hsapiens.UCSC.hg19’, ‘BSgenome.Hs
 
 
 
-installing the source package ‘reactome.db’
+installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’
 
 
 
@@ -291,7 +277,79 @@ installing the source package ‘reactome.db’
 
 
 
-installing the source package ‘reactome.db’
+installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’
+
+
+
+```
+# gCrisprTools
+
+<details>
+
+* Version: 2.13.0
+* GitHub: NA
+* Source code: https://github.com/cran/gCrisprTools
+* Date/Publication: 2024-10-29
+* Number of recursive dependencies: 150
+
+Run `revdepcheck::revdep_details(, "gCrisprTools")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘RobustRankAggreg’
+      All declared Imports should be used.
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    Documented arguments not in \usage in Rd file 'ct.targetSetEnrichment.Rd':
+      ‘pvalue.cutoff’ ‘organism’ ‘db.cut’ ‘species’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+# GenomicSuperSignature
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/igordot/msigdbr
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+
+
+
+installing the source packages ‘bcellViper’, ‘GO.db’, ‘org.Hs.eg.db’
+
+
+
+```
+### CRAN
+
+```
+
+
+
+installing the source packages ‘bcellViper’, ‘GO.db’, ‘org.Hs.eg.db’
 
 
 
@@ -300,11 +358,11 @@ installing the source package ‘reactome.db’
 
 <details>
 
-* Version: 2.4.0
+* Version: 2.5.0
 * GitHub: https://github.com/montilab/hypeR
 * Source code: https://github.com/cran/hypeR
 * Date/Publication: 2024-10-29
-* Number of recursive dependencies: 165
+* Number of recursive dependencies: 166
 
 Run `revdepcheck::revdep_details(, "hypeR")` for more info
 
@@ -324,7 +382,7 @@ Run `revdepcheck::revdep_details(, "hypeR")` for more info
 
 ```
 * installing *source* package ‘hypeR’ ...
-** package ‘hypeR’ successfully unpacked and MD5 sums checked
+** this is package ‘hypeR’ version ‘2.5.0’
 ** using staged installation
 ** R
 ** inst
@@ -340,7 +398,7 @@ ERROR: lazy loading failed for package ‘hypeR’
 
 ```
 * installing *source* package ‘hypeR’ ...
-** package ‘hypeR’ successfully unpacked and MD5 sums checked
+** this is package ‘hypeR’ version ‘2.5.0’
 ** using staged installation
 ** R
 ** inst
@@ -349,6 +407,41 @@ Error: object ‘msigdbr_show_species’ is not exported by 'namespace:msigdbr'
 Execution halted
 ERROR: lazy loading failed for package ‘hypeR’
 * removing ‘/Users/id460/repos/msigdbr/revdep/checks.noindex/hypeR/old/hypeR.Rcheck/hypeR’
+
+
+```
+# OSCA.advanced
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/igordot/msigdbr
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+
+
+
+installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
+
+
+
+```
+### CRAN
+
+```
+
+
+
+installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
+
 
 
 ```
@@ -380,6 +473,7 @@ Run `revdepcheck::revdep_details(, "pathfindR")` for more info
 
 ```
 * installing *source* package ‘pathfindR’ ...
+** this is package ‘pathfindR’ version ‘2.4.2’
 ** package ‘pathfindR’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
@@ -388,7 +482,6 @@ Run `revdepcheck::revdep_details(, "pathfindR")` for more info
 ** help
 *** installing help indices
 *** copying figures
-** building package indices
 ...
 Warning in system2(java, "-version", stderr = TRUE, stdout = TRUE) :
   running command ''/usr/bin/java' -version 2>&1' had status 1
@@ -407,6 +500,7 @@ ERROR: loading failed
 
 ```
 * installing *source* package ‘pathfindR’ ...
+** this is package ‘pathfindR’ version ‘2.4.2’
 ** package ‘pathfindR’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
@@ -415,7 +509,6 @@ ERROR: loading failed
 ** help
 *** installing help indices
 *** copying figures
-** building package indices
 ...
 Warning in system2(java, "-version", stderr = TRUE, stdout = TRUE) :
   running command ''/usr/bin/java' -version 2>&1' had status 1
@@ -449,7 +542,7 @@ ERROR: loading failed
 
 
 
-installing the source package ‘reactome.db’
+installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’, ‘TxDb.Hsapiens.UCSC.hg19.knownGene’, ‘TxDb.Hsapiens.UCSC.hg38.knownGene’
 
 
 
@@ -460,114 +553,46 @@ installing the source package ‘reactome.db’
 
 
 
-installing the source package ‘reactome.db’
+installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’, ‘TxDb.Hsapiens.UCSC.hg19.knownGene’, ‘TxDb.Hsapiens.UCSC.hg38.knownGene’
 
 
 
 ```
-# scFeatures
-
-<details>
-
-* Version: 1.6.0
-* GitHub: https://github.com/SydneyBioX/scFeatures
-* Source code: https://github.com/cran/scFeatures
-* Date/Publication: 2024-10-29
-* Number of recursive dependencies: 317
-
-Run `revdepcheck::revdep_details(, "scFeatures")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      'DT' 'Seurat'
-      All declared Imports should be used.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    helper_CCI: no visible global function definition for 'data'
-    helper_CCI: no visible binding for global variable 'LRdb'
-    helper_CCI: no visible global function definition for 'capture.output'
-    helper_pathway_gsva: no visible global function definition for
-      'capture.output'
-    run_pathway_gsva: no visible global function definition for
-      'capture.output'
-    Undefined global functions or variables:
-      LRdb capture.output data
-    Consider adding
-      importFrom("utils", "capture.output", "data")
-    to your NAMESPACE file.
-    ```
-
 # singleCellTK
 
 <details>
 
-* Version: 2.16.1
-* GitHub: https://github.com/compbiomed/singleCellTK
-* Source code: https://github.com/cran/singleCellTK
-* Date/Publication: 2025-02-17
-* Number of recursive dependencies: 405
-
-Run `revdepcheck::revdep_details(, "singleCellTK")` for more info
+* Version: 
+* GitHub: https://github.com/igordot/msigdbr
+* Source code: NA
+* Number of recursive dependencies: 0
 
 </details>
 
-## In both
+## Error before installation
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘singleCellTK-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: importGeneSetsFromMSigDB
-    > ### Title: Imports gene sets from MSigDB
-    > ### Aliases: importGeneSetsFromMSigDB
-    > 
-    > ### ** Examples
-    > 
-    > data(scExample)
-    ...
-      <https://github.com/compbiomed/singleCellTK/issues>.
-    Warning: The `subcategory` argument of `msigdbr()` is deprecated as of msigdbr 10.0.0.
-    ℹ Please use the `subcollection` argument instead.
-    ℹ The deprecated feature was likely used in the singleCellTK package.
-      Please report the issue at
-      <https://github.com/compbiomed/singleCellTK/issues>.
-    Error in (function (cond)  : 
-      error in evaluating the argument 'x' in selecting a method for function 'as.data.frame': subcategory is not a character vector
-    Calls: importGeneSetsFromMSigDB -> as.data.frame -> <Anonymous> -> <Anonymous>
-    Execution halted
-    ```
+### Devel
 
-*   R CMD check timed out
-    
+```
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Missing link or links in Rd file 'importGeneSetsFromMSigDB.Rd':
-      ‘[msigdbr]{msigdbr_show_species}’
-    
-    See section 'Cross-references' in the 'Writing R Extensions' manual.
-    ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.5Mb
-      sub-directories of 1Mb or more:
-        R         1.0Mb
-        extdata   1.5Mb
-        shiny     2.9Mb
-    ```
 
+installing the source packages ‘celldex’, ‘GSVAdata’, ‘hgu95a.db’, ‘org.Mm.eg.db’, ‘scRNAseq’, ‘TENxPBMCData’
+
+
+
+```
+### CRAN
+
+```
+
+
+
+installing the source packages ‘celldex’, ‘GSVAdata’, ‘hgu95a.db’, ‘org.Mm.eg.db’, ‘scRNAseq’, ‘TENxPBMCData’
+
+
+
+```
 # sparrow
 
 <details>
@@ -585,11 +610,6 @@ Run `revdepcheck::revdep_details(, "singleCellTK")` for more info
 
 ```
 
-  There is a binary version available but the source version is later:
-      binary source needs_compilation
-fgsea 1.32.0 1.32.2              TRUE
-
-  Binaries will be installed
 
 
 installing the source packages ‘geneLenDataBase’, ‘PANTHER.db’, ‘reactome.db’
@@ -601,14 +621,44 @@ installing the source packages ‘geneLenDataBase’, ‘PANTHER.db’, ‘react
 
 ```
 
-  There is a binary version available but the source version is later:
-      binary source needs_compilation
-fgsea 1.32.0 1.32.2              TRUE
-
-  Binaries will be installed
 
 
 installing the source packages ‘geneLenDataBase’, ‘PANTHER.db’, ‘reactome.db’
+
+
+
+```
+# tidybulk
+
+<details>
+
+* Version: 
+* GitHub: https://github.com/igordot/msigdbr
+* Source code: NA
+* Number of recursive dependencies: 0
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+
+
+
+installing the source packages ‘EGSEAdata’, ‘hgu133a.db’, ‘hgu133plus2.db’, ‘KEGGdzPathwaysGEO’, ‘org.Mm.eg.db’, ‘org.Rn.eg.db’, ‘pasilla’
+
+
+
+```
+### CRAN
+
+```
+
+
+
+installing the source packages ‘EGSEAdata’, ‘hgu133a.db’, ‘hgu133plus2.db’, ‘KEGGdzPathwaysGEO’, ‘org.Mm.eg.db’, ‘org.Rn.eg.db’, ‘pasilla’
 
 
 
