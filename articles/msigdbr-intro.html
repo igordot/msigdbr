@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">msigdbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">10.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">10.0.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
       <h1>Introduction to msigdbr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/v10.0.2/vignettes/articles/msigdbr-intro.Rmd" class="external-link"><code>vignettes/articles/msigdbr-intro.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/main/vignettes/articles/msigdbr-intro.Rmd" class="external-link"><code>vignettes/articles/msigdbr-intro.Rmd</code></a></small>
       <div class="d-none name"><code>msigdbr-intro.Rmd</code></div>
     </div>
 
@@ -104,61 +104,184 @@ species of interest.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
-<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abcc4          <span style="text-decoration: underline;">239</span>273 ENSMUSG000000328… ABCC4        10257        ENSG0000012…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abraxas2       <span style="text-decoration: underline;">109</span>359 ENSMUSG000000309… ABRAXAS2     23172        ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Actn4           <span style="text-decoration: underline;">60</span>595 ENSMUSG000000548… ACTN4        81           ENSG0000013…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acvr1           <span style="text-decoration: underline;">11</span>477 ENSMUSG000000268… ACVR1        90           ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Adam9           <span style="text-decoration: underline;">11</span>502 ENSMUSG000000315… ADAM9        8754         ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Adamts5         <span style="text-decoration: underline;">23</span>794 ENSMUSG000000228… ADAMTS5      11096        ENSG0000015…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene       ensembl_gene db_gene_symbol db_ncbi_gene</span></span>
+<span><span class="co">#&gt; 1       Abcc4    239273 ENSMUSG00000032849          ABCC4        10257</span></span>
+<span><span class="co">#&gt; 2    Abraxas2    109359 ENSMUSG00000030965       ABRAXAS2        23172</span></span>
+<span><span class="co">#&gt; 3       Actn4     60595 ENSMUSG00000054808          ACTN4           81</span></span>
+<span><span class="co">#&gt; 4       Acvr1     11477 ENSMUSG00000026836          ACVR1           90</span></span>
+<span><span class="co">#&gt; 5       Adam9     11502 ENSMUSG00000031555          ADAM9         8754</span></span>
+<span><span class="co">#&gt; 6     Adamts5     23794 ENSMUSG00000022894        ADAMTS5        11096</span></span>
+<span><span class="co">#&gt;   db_ensembl_gene source_gene  gs_id        gs_name gs_collection</span></span>
+<span><span class="co">#&gt; 1 ENSG00000125257       ABCC4 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt; 2 ENSG00000165660    KIAA0157 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt; 3 ENSG00000130402       ACTN4 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt; 4 ENSG00000115170       ACVR1 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt; 5 ENSG00000168615       ADAM9 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt; 6 ENSG00000154736     ADAMTS5 M12609 AAACCAC_MIR140            C3</span></span>
+<span><span class="co">#&gt;   gs_subcollection gs_collection_name</span></span>
+<span><span class="co">#&gt; 1   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt; 2   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt; 3   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt; 4   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt; 5   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt; 6   MIR:MIR_LEGACY         MIR_Legacy</span></span>
+<span><span class="co">#&gt;                                                                                                                                                                                           gs_description</span></span>
+<span><span class="co">#&gt; 1 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt; 2 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt; 3 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt; 4 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt; 5 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt; 6 Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).</span></span>
+<span><span class="co">#&gt;   gs_source_species gs_pmid gs_geoid gs_exact_source gs_url db_version</span></span>
+<span><span class="co">#&gt; 1                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt; 2                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt; 3                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt; 4                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt; 5                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt; 6                HS                                          2024.1.Hs</span></span>
+<span><span class="co">#&gt;   db_target_species ortholog_taxon_id</span></span>
+<span><span class="co">#&gt; 1                HS             10090</span></span>
+<span><span class="co">#&gt; 2                HS             10090</span></span>
+<span><span class="co">#&gt; 3                HS             10090</span></span>
+<span><span class="co">#&gt; 4                HS             10090</span></span>
+<span><span class="co">#&gt; 5                HS             10090</span></span>
+<span><span class="co">#&gt; 6                HS             10090</span></span>
+<span><span class="co">#&gt;                                                                                ortholog_sources</span></span>
+<span><span class="co">#&gt; 1                          Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther</span></span>
+<span><span class="co">#&gt; 2 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 3 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 4 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 5           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 6           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt;   num_ortholog_sources</span></span>
+<span><span class="co">#&gt; 1                    9</span></span>
+<span><span class="co">#&gt; 2                   12</span></span>
+<span><span class="co">#&gt; 3                   12</span></span>
+<span><span class="co">#&gt; 4                   12</span></span>
+<span><span class="co">#&gt; 5                   11</span></span>
+<span><span class="co">#&gt; 6                   11</span></span></code></pre></div>
 <p>You can retrieve data just for a specific collection, such as the
 Hallmark gene sets.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
-<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abca1           <span style="text-decoration: underline;">11</span>303 ENSMUSG000000152… ABCA1        19           ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abcb8           <span style="text-decoration: underline;">74</span>610 ENSMUSG000000289… ABCB8        11194        ENSG0000019…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Acaa2           <span style="text-decoration: underline;">52</span>538 ENSMUSG000000368… ACAA2        10449        ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acadl           <span style="text-decoration: underline;">11</span>363 ENSMUSG000000260… ACADL        33           ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Acadm           <span style="text-decoration: underline;">11</span>364 ENSMUSG000000629… ACADM        34           ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Acads           <span style="text-decoration: underline;">11</span>409 ENSMUSG000000295… ACADS        35           ENSG0000012…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene       ensembl_gene db_gene_symbol db_ncbi_gene</span></span>
+<span><span class="co">#&gt; 1       Abca1     11303 ENSMUSG00000015243          ABCA1           19</span></span>
+<span><span class="co">#&gt; 2       Abcb8     74610 ENSMUSG00000028973          ABCB8        11194</span></span>
+<span><span class="co">#&gt; 3       Acaa2     52538 ENSMUSG00000036880          ACAA2        10449</span></span>
+<span><span class="co">#&gt; 4       Acadl     11363 ENSMUSG00000026003          ACADL           33</span></span>
+<span><span class="co">#&gt; 5       Acadm     11364 ENSMUSG00000062908          ACADM           34</span></span>
+<span><span class="co">#&gt; 6       Acads     11409 ENSMUSG00000029545          ACADS           35</span></span>
+<span><span class="co">#&gt;   db_ensembl_gene source_gene gs_id               gs_name gs_collection</span></span>
+<span><span class="co">#&gt; 1 ENSG00000165029       ABCA1 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 2 ENSG00000197150       ABCB8 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 3 ENSG00000167315       ACAA2 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 4 ENSG00000115361       ACADL M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 5 ENSG00000117054       ACADM M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 6 ENSG00000122971       ACADS M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt;   gs_subcollection gs_collection_name</span></span>
+<span><span class="co">#&gt; 1                            Hallmark</span></span>
+<span><span class="co">#&gt; 2                            Hallmark</span></span>
+<span><span class="co">#&gt; 3                            Hallmark</span></span>
+<span><span class="co">#&gt; 4                            Hallmark</span></span>
+<span><span class="co">#&gt; 5                            Hallmark</span></span>
+<span><span class="co">#&gt; 6                            Hallmark</span></span>
+<span><span class="co">#&gt;                                                        gs_description</span></span>
+<span><span class="co">#&gt; 1 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 2 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 3 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 4 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 5 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 6 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt;   gs_source_species  gs_pmid gs_geoid gs_exact_source gs_url db_version</span></span>
+<span><span class="co">#&gt; 1                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 2                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 3                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 4                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 5                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 6                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt;   db_target_species ortholog_taxon_id</span></span>
+<span><span class="co">#&gt; 1                HS             10090</span></span>
+<span><span class="co">#&gt; 2                HS             10090</span></span>
+<span><span class="co">#&gt; 3                HS             10090</span></span>
+<span><span class="co">#&gt; 4                HS             10090</span></span>
+<span><span class="co">#&gt; 5                HS             10090</span></span>
+<span><span class="co">#&gt; 6                HS             10090</span></span>
+<span><span class="co">#&gt;                                                                                ortholog_sources</span></span>
+<span><span class="co">#&gt; 1           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 2 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 3           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 4 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 5 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 6           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt;   num_ortholog_sources</span></span>
+<span><span class="co">#&gt; 1                   11</span></span>
+<span><span class="co">#&gt; 2                   12</span></span>
+<span><span class="co">#&gt; 3                   11</span></span>
+<span><span class="co">#&gt; 4                   12</span></span>
+<span><span class="co">#&gt; 5                   12</span></span>
+<span><span class="co">#&gt; 6                   11</span></span></code></pre></div>
 <p>You can specify a sub-collection, such as C2 (curated) CGP (chemical
 and genetic perturbations) gene sets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cgp_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
-<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Ahnak           <span style="text-decoration: underline;">66</span>395 ENSMUSG000000698… AHNAK        79026        ENSG0000012…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Alcam           <span style="text-decoration: underline;">11</span>658 ENSMUSG000000226… ALCAM        214          ENSG0000017…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Ankrd40         <span style="text-decoration: underline;">71</span>452 ENSMUSG000000208… ANKRD40      91369        ENSG0000015…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Arid1a          <span style="text-decoration: underline;">93</span>760 ENSMUSG000000078… ARID1A       8289         ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Bckdhb          <span style="text-decoration: underline;">12</span>040 ENSMUSG000000322… BCKDHB       594          ENSG0000008…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> AU021092       <span style="text-decoration: underline;">239</span>691 ENSMUSG000000516… C16orf89     146556       ENSG0000015…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene       ensembl_gene db_gene_symbol db_ncbi_gene</span></span>
+<span><span class="co">#&gt; 1       Ahnak     66395 ENSMUSG00000069833          AHNAK        79026</span></span>
+<span><span class="co">#&gt; 2       Alcam     11658 ENSMUSG00000022636          ALCAM          214</span></span>
+<span><span class="co">#&gt; 3     Ankrd40     71452 ENSMUSG00000020864        ANKRD40        91369</span></span>
+<span><span class="co">#&gt; 4      Arid1a     93760 ENSMUSG00000007880         ARID1A         8289</span></span>
+<span><span class="co">#&gt; 5      Bckdhb     12040 ENSMUSG00000032263         BCKDHB          594</span></span>
+<span><span class="co">#&gt; 6    AU021092    239691 ENSMUSG00000051669       C16orf89       146556</span></span>
+<span><span class="co">#&gt;   db_ensembl_gene source_gene gs_id                  gs_name gs_collection</span></span>
+<span><span class="co">#&gt; 1 ENSG00000124942    AA657044 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt; 2 ENSG00000170017      L25274 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt; 3 ENSG00000154945    AW125433 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt; 4 ENSG00000117713    AI842326 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt; 5 ENSG00000083123      L16992 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt; 6 ENSG00000153446    AW045808 M1423 ABBUD_LIF_SIGNALING_1_DN            C2</span></span>
+<span><span class="co">#&gt;   gs_subcollection                 gs_collection_name</span></span>
+<span><span class="co">#&gt; 1              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 2              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 3              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 4              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 5              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 6              CGP Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt;                                                                                    gs_description</span></span>
+<span><span class="co">#&gt; 1 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt; 2 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt; 3 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt; 4 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt; 5 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt; 6 Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].</span></span>
+<span><span class="co">#&gt;   gs_source_species  gs_pmid gs_geoid gs_exact_source gs_url db_version</span></span>
+<span><span class="co">#&gt; 1                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt; 2                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt; 3                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt; 4                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt; 5                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt; 6                MM 14576184                  Table 2         2024.1.Hs</span></span>
+<span><span class="co">#&gt;   db_target_species ortholog_taxon_id</span></span>
+<span><span class="co">#&gt; 1                HS             10090</span></span>
+<span><span class="co">#&gt; 2                HS             10090</span></span>
+<span><span class="co">#&gt; 3                HS             10090</span></span>
+<span><span class="co">#&gt; 4                HS             10090</span></span>
+<span><span class="co">#&gt; 5                HS             10090</span></span>
+<span><span class="co">#&gt; 6                HS             10090</span></span>
+<span><span class="co">#&gt;                                                                                ortholog_sources</span></span>
+<span><span class="co">#&gt; 1           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 2 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 3 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 4 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 5 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 6 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt;   num_ortholog_sources</span></span>
+<span><span class="co">#&gt; 1                   11</span></span>
+<span><span class="co">#&gt; 2                   12</span></span>
+<span><span class="co">#&gt; 3                   12</span></span>
+<span><span class="co">#&gt; 4                   12</span></span>
+<span><span class="co">#&gt; 5                   12</span></span>
+<span><span class="co">#&gt; 6                   12</span></span></code></pre></div>
 <p>If you require more precise filtering, the <code><a href="../reference/msigdbr.html">msigdbr()</a></code>
 function output is a data frame that can be manipulated using standard
 methods. For example, you can subset to a specific collection using
@@ -167,21 +290,62 @@ dplyr.</p>
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gs_collection</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 22</span></span></span>
-<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene      db_gene_sy…¹ db_ncbi_gene db_ensembl…²</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abca1           <span style="text-decoration: underline;">11</span>303 ENSMUSG000000152… ABCA1        19           ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abcb8           <span style="text-decoration: underline;">74</span>610 ENSMUSG000000289… ABCB8        11194        ENSG0000019…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Acaa2           <span style="text-decoration: underline;">52</span>538 ENSMUSG000000368… ACAA2        10449        ENSG0000016…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acadl           <span style="text-decoration: underline;">11</span>363 ENSMUSG000000260… ACADL        33           ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Acadm           <span style="text-decoration: underline;">11</span>364 ENSMUSG000000629… ACADM        34           ENSG0000011…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Acads           <span style="text-decoration: underline;">11</span>409 ENSMUSG000000295… ACADS        35           ENSG0000012…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​db_gene_symbol, ²​db_ensembl_gene</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 16 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;, db_target_species &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;, num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene       ensembl_gene db_gene_symbol db_ncbi_gene</span></span>
+<span><span class="co">#&gt; 1       Abca1     11303 ENSMUSG00000015243          ABCA1           19</span></span>
+<span><span class="co">#&gt; 2       Abcb8     74610 ENSMUSG00000028973          ABCB8        11194</span></span>
+<span><span class="co">#&gt; 3       Acaa2     52538 ENSMUSG00000036880          ACAA2        10449</span></span>
+<span><span class="co">#&gt; 4       Acadl     11363 ENSMUSG00000026003          ACADL           33</span></span>
+<span><span class="co">#&gt; 5       Acadm     11364 ENSMUSG00000062908          ACADM           34</span></span>
+<span><span class="co">#&gt; 6       Acads     11409 ENSMUSG00000029545          ACADS           35</span></span>
+<span><span class="co">#&gt;   db_ensembl_gene source_gene gs_id               gs_name gs_collection</span></span>
+<span><span class="co">#&gt; 1 ENSG00000165029       ABCA1 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 2 ENSG00000197150       ABCB8 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 3 ENSG00000167315       ACAA2 M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 4 ENSG00000115361       ACADL M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 5 ENSG00000117054       ACADM M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt; 6 ENSG00000122971       ACADS M5905 HALLMARK_ADIPOGENESIS             H</span></span>
+<span><span class="co">#&gt;   gs_subcollection gs_collection_name</span></span>
+<span><span class="co">#&gt; 1                            Hallmark</span></span>
+<span><span class="co">#&gt; 2                            Hallmark</span></span>
+<span><span class="co">#&gt; 3                            Hallmark</span></span>
+<span><span class="co">#&gt; 4                            Hallmark</span></span>
+<span><span class="co">#&gt; 5                            Hallmark</span></span>
+<span><span class="co">#&gt; 6                            Hallmark</span></span>
+<span><span class="co">#&gt;                                                        gs_description</span></span>
+<span><span class="co">#&gt; 1 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 2 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 3 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 4 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 5 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt; 6 Genes up-regulated during adipocyte differentiation (adipogenesis).</span></span>
+<span><span class="co">#&gt;   gs_source_species  gs_pmid gs_geoid gs_exact_source gs_url db_version</span></span>
+<span><span class="co">#&gt; 1                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 2                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 3                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 4                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 5                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt; 6                HS 26771021                                  2024.1.Hs</span></span>
+<span><span class="co">#&gt;   db_target_species ortholog_taxon_id</span></span>
+<span><span class="co">#&gt; 1                HS             10090</span></span>
+<span><span class="co">#&gt; 2                HS             10090</span></span>
+<span><span class="co">#&gt; 3                HS             10090</span></span>
+<span><span class="co">#&gt; 4                HS             10090</span></span>
+<span><span class="co">#&gt; 5                HS             10090</span></span>
+<span><span class="co">#&gt; 6                HS             10090</span></span>
+<span><span class="co">#&gt;                                                                                ortholog_sources</span></span>
+<span><span class="co">#&gt; 1           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 2 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 3           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt; 4 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 5 EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam</span></span>
+<span><span class="co">#&gt; 6           EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam</span></span>
+<span><span class="co">#&gt;   num_ortholog_sources</span></span>
+<span><span class="co">#&gt; 1                   11</span></span>
+<span><span class="co">#&gt; 2                   12</span></span>
+<span><span class="co">#&gt; 3                   11</span></span>
+<span><span class="co">#&gt; 4                   12</span></span>
+<span><span class="co">#&gt; 5                   12</span></span>
+<span><span class="co">#&gt; 6                   11</span></span></code></pre></div>
 <p>The version of the MSigDB database is stored in the
 <code>db_version</code> column of the returned data frame.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -225,34 +389,58 @@ Both scientific and common names are acceptable for the
 collections.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 4</span></span></span>
-<span><span class="co">#&gt;    gs_collection gs_subcollection  gs_collection_name               num_genesets</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C1            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Positional<span style="color: #949494;">"</span>                              302</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> C2            <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Chemical and Genetic Perturbat…         <span style="text-decoration: underline;">3</span>494</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> C2            <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Canonical Pathways<span style="color: #949494;">"</span>                       19</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> C2            <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>BioCarta Pathways<span style="color: #949494;">"</span>                       292</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> C2            <span style="color: #949494;">"</span>CP:KEGG_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>KEGG Legacy Pathways<span style="color: #949494;">"</span>                    186</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> C2            <span style="color: #949494;">"</span>CP:KEGG_MEDICUS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>KEGG Medicus Pathways<span style="color: #949494;">"</span>                   658</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> C2            <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>          <span style="color: #949494;">"</span>PID Pathways<span style="color: #949494;">"</span>                            196</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> C2            <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>Reactome Pathways<span style="color: #949494;">"</span>                      <span style="text-decoration: underline;">1</span>736</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> C2            <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>WikiPathways<span style="color: #949494;">"</span>                            830</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> C3            <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>       <span style="color: #949494;">"</span>miRDB<span style="color: #949494;">"</span>                                  <span style="text-decoration: underline;">2</span>377</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> C3            <span style="color: #949494;">"</span>MIR:MIR_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>MIR_Legacy<span style="color: #949494;">"</span>                              221</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> C3            <span style="color: #949494;">"</span>TFT:GTRD<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>GTRD<span style="color: #949494;">"</span>                                    505</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> C3            <span style="color: #949494;">"</span>TFT:TFT_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>TFT_Legacy<span style="color: #949494;">"</span>                              610</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> C4            <span style="color: #949494;">"</span>3CA<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Curated Cancer Cell Atlas gene…          148</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> C4            <span style="color: #949494;">"</span>CGN<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Cancer Gene Neighborhoods<span style="color: #949494;">"</span>               427</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> C4            <span style="color: #949494;">"</span>CM<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Cancer Modules<span style="color: #949494;">"</span>                          431</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> C5            <span style="color: #949494;">"</span>GO:BP<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Biological Process<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">7</span>608</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> C5            <span style="color: #949494;">"</span>GO:CC<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Cellular Component<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>026</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> C5            <span style="color: #949494;">"</span>GO:MF<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Molecular Function<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>820</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> C5            <span style="color: #949494;">"</span>HPO<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Human Phenotype Ontology<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">5</span>653</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">21</span> C6            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Oncogenic Signature<span style="color: #949494;">"</span>                     189</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">22</span> C7            <span style="color: #949494;">"</span>IMMUNESIGDB<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>ImmuneSigDB<span style="color: #949494;">"</span>                            <span style="text-decoration: underline;">4</span>872</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">23</span> C7            <span style="color: #949494;">"</span>VAX<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>HIPC Vaccine Response<span style="color: #949494;">"</span>                   347</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">24</span> C8            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Cell Type Signature<span style="color: #949494;">"</span>                     840</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">25</span> H             <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Hallmark<span style="color: #949494;">"</span>                                 50</span></span></code></pre></div>
+<span><span class="co">#&gt;    gs_collection gs_subcollection                   gs_collection_name</span></span>
+<span><span class="co">#&gt; 1             C1                                            Positional</span></span>
+<span><span class="co">#&gt; 2             C2              CGP   Chemical and Genetic Perturbations</span></span>
+<span><span class="co">#&gt; 3             C2               CP                   Canonical Pathways</span></span>
+<span><span class="co">#&gt; 4             C2      CP:BIOCARTA                    BioCarta Pathways</span></span>
+<span><span class="co">#&gt; 5             C2   CP:KEGG_LEGACY                 KEGG Legacy Pathways</span></span>
+<span><span class="co">#&gt; 6             C2  CP:KEGG_MEDICUS                KEGG Medicus Pathways</span></span>
+<span><span class="co">#&gt; 7             C2           CP:PID                         PID Pathways</span></span>
+<span><span class="co">#&gt; 8             C2      CP:REACTOME                    Reactome Pathways</span></span>
+<span><span class="co">#&gt; 9             C2  CP:WIKIPATHWAYS                         WikiPathways</span></span>
+<span><span class="co">#&gt; 10            C3        MIR:MIRDB                                miRDB</span></span>
+<span><span class="co">#&gt; 11            C3   MIR:MIR_LEGACY                           MIR_Legacy</span></span>
+<span><span class="co">#&gt; 12            C3         TFT:GTRD                                 GTRD</span></span>
+<span><span class="co">#&gt; 13            C3   TFT:TFT_LEGACY                           TFT_Legacy</span></span>
+<span><span class="co">#&gt; 14            C4              3CA Curated Cancer Cell Atlas gene sets </span></span>
+<span><span class="co">#&gt; 15            C4              CGN            Cancer Gene Neighborhoods</span></span>
+<span><span class="co">#&gt; 16            C4               CM                       Cancer Modules</span></span>
+<span><span class="co">#&gt; 17            C5            GO:BP                GO Biological Process</span></span>
+<span><span class="co">#&gt; 18            C5            GO:CC                GO Cellular Component</span></span>
+<span><span class="co">#&gt; 19            C5            GO:MF                GO Molecular Function</span></span>
+<span><span class="co">#&gt; 20            C5              HPO             Human Phenotype Ontology</span></span>
+<span><span class="co">#&gt; 21            C6                                   Oncogenic Signature</span></span>
+<span><span class="co">#&gt; 22            C7      IMMUNESIGDB                          ImmuneSigDB</span></span>
+<span><span class="co">#&gt; 23            C7              VAX                HIPC Vaccine Response</span></span>
+<span><span class="co">#&gt; 24            C8                                   Cell Type Signature</span></span>
+<span><span class="co">#&gt; 25             H                                              Hallmark</span></span>
+<span><span class="co">#&gt;    num_genesets</span></span>
+<span><span class="co">#&gt; 1           302</span></span>
+<span><span class="co">#&gt; 2          3494</span></span>
+<span><span class="co">#&gt; 3            19</span></span>
+<span><span class="co">#&gt; 4           292</span></span>
+<span><span class="co">#&gt; 5           186</span></span>
+<span><span class="co">#&gt; 6           658</span></span>
+<span><span class="co">#&gt; 7           196</span></span>
+<span><span class="co">#&gt; 8          1736</span></span>
+<span><span class="co">#&gt; 9           830</span></span>
+<span><span class="co">#&gt; 10         2377</span></span>
+<span><span class="co">#&gt; 11          221</span></span>
+<span><span class="co">#&gt; 12          505</span></span>
+<span><span class="co">#&gt; 13          610</span></span>
+<span><span class="co">#&gt; 14          148</span></span>
+<span><span class="co">#&gt; 15          427</span></span>
+<span><span class="co">#&gt; 16          431</span></span>
+<span><span class="co">#&gt; 17         7608</span></span>
+<span><span class="co">#&gt; 18         1026</span></span>
+<span><span class="co">#&gt; 19         1820</span></span>
+<span><span class="co">#&gt; 20         5653</span></span>
+<span><span class="co">#&gt; 21          189</span></span>
+<span><span class="co">#&gt; 22         4872</span></span>
+<span><span class="co">#&gt; 23          347</span></span>
+<span><span class="co">#&gt; 24          840</span></span>
+<span><span class="co">#&gt; 25           50</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="pathway-enrichment-analysis">Pathway enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-enrichment-analysis"></a>
