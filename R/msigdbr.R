@@ -140,6 +140,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
       num_ortholog_sources = "support_n",
       !tidyselect::any_of(c("human_symbol", "human_entrez"))
     )
+    species_genes$ncbi_gene <- as.character(species_genes$ncbi_gene)
   }
 
   # Remove duplicate entries
