@@ -1,16 +1,17 @@
 ---
 title: "Introduction to msigdbr"
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r setup, include = FALSE}
+```{r options, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-# reduce the minimum number of characters for the tibble column titles (default: 15)
-options(pillar.min_title_chars = 10)
-# increase the maximum number of rows printed (default: 20)
-options(tibble.print_max = 25)
+# increase the maximum number of rows printed per page
+options(rows.print = 30)
 ```
 
 ## Overview
@@ -57,6 +58,12 @@ All gene sets in the database can be retrieved by specifying a species of intere
 all_gene_sets <- msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 ```
+
+The `gene_symbol`, `ncbi_gene`, and `ensembl_gene` columns are the gene identifiers for the requested species.
+The `db_gene_symbol`, `db_ncbi_gene`, `db_ensembl_gene` columns are the gene identifiers in the database.
+The `source_gene` column are the gene identifiers in the original publication.
+The `gs_*` columns provide details about the gene sets.
+The `db_*` columns provide details about the MSigDB database, so should be identical for the entire data frame.
 
 You can retrieve data just for a specific collection, such as the Hallmark gene sets.
 
