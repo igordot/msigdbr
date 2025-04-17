@@ -160,6 +160,15 @@ species of interest.</p>
 <span><span class="co">#&gt; 4                   12</span></span>
 <span><span class="co">#&gt; 5                   11</span></span>
 <span><span class="co">#&gt; 6                   11</span></span></code></pre></div>
+<p>The <code>gene_symbol</code>, <code>ncbi_gene</code>, and
+<code>ensembl_gene</code> columns are the gene identifiers for the
+requested species. The <code>db_gene_symbol</code>,
+<code>db_ncbi_gene</code>, <code>db_ensembl_gene</code> columns are the
+gene identifiers in the database. The <code>source_gene</code> column
+are the gene identifiers in the original publication. The
+<code>gs_*</code> columns provide details about the gene sets. The
+<code>db_*</code> columns provide details about the MSigDB database, so
+should be identical for the entire data frame.</p>
 <p>You can retrieve data just for a specific collection, such as the
 Hallmark gene sets.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
