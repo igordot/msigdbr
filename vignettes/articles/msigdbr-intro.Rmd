@@ -1,15 +1,23 @@
 ---
 title: "Introduction to msigdbr"
-output:
-  html_document:
-    df_print: paged
 ---
 
-```{r options, include = FALSE}
+```{r options, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# override printing method with rmarkdown::paged_table() for readability
+knit_print.data.frame <- function(x, ...) {
+  res <- rmarkdown::paged_table(x)
+  rmarkdown:::knit_print.data.frame(res)
+}
+registerS3method(
+  "knit_print", "data.frame", knit_print.data.frame,
+  envir = asNamespace("knitr")
+)
+
 # increase the maximum number of rows printed per page
 options(rows.print = 30)
 ```
