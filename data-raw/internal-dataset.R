@@ -6,14 +6,33 @@ library(dplyr)
 mdb <- msigdbdf::msigdbdf(target_species = "HS")
 
 # Get the Hallmark gene sets
-hallmark_gs_ids <- filter(mdb, gs_collection == "H") |> pull(gs_id)
+hallmark_gs_ids <- filter(mdb, gs_collection == "H") |>
+  pull(gs_id) |>
+  unique()
+
+# Get genes that are part of many C2 (curated gene sets) gene sets
+common_genes <- mdb |>
+  filter(gs_collection == "C2") |>
+  distinct(gs_id, db_gene_symbol) |>
+  count(db_gene_symbol, sort = TRUE) |>
+  pull(db_gene_symbol) |>
+  head(100)
+
+# Get gene sets that include popular genes (likely more familiar)
+common_genesets <- mdb |>
+  filter(db_gene_symbol %in% common_genes) |>
+  pull(gs_id) |>
+  unique()
 
 # Subsample smaller gene sets from every collection and sub-collection
 set.seed(99)
 random_gs_ids <- mdb |>
+  filter(gs_id %in% common_genesets) |>
+  distinct(source_gene, gs_id, gs_collection, gs_subcollection) |>
   count(gs_id, gs_collection, gs_subcollection) |>
-  filter(n < 100) |>
+  filter(n < 80) |>
   group_by(gs_collection, gs_subcollection) |>
+  slice_min(order_by = n, n = 100) |>
   slice_sample(n = 5) |>
   pull(gs_id)
 
