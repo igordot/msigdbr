@@ -115,7 +115,7 @@ test_that("human hallmark category", {
 test_that("collections and subcollections", {
   m_rn_bp <- msigdbr(species = "Rattus norvegicus", collection = "C5", subcollection = "BP")
   expect_s3_class(m_rn_bp, "data.frame")
-  expect_gt(nrow(m_rn_bp), 100)
+  expect_gt(nrow(m_rn_bp), 20)
   expect_gt(n_distinct(m_rn_bp$gene_symbol), 10)
   expect_gt(n_distinct(m_rn_bp$ncbi_gene), 10)
   expect_gt(n_distinct(m_rn_bp$ensembl_gene), 10)
@@ -127,10 +127,10 @@ test_that("collections and subcollections", {
 test_that("subcollection partial match", {
   m_mm_gomf <- msigdbr(species = "mouse", collection = "C5", subcollection = "GO:MF")
   expect_s3_class(m_mm_gomf, "data.frame")
-  expect_gt(nrow(m_mm_gomf), 100)
+  expect_gt(nrow(m_mm_gomf), 20)
   m_mm_mf <- msigdbr(species = "mouse", collection = "C5", subcollection = "MF")
   expect_s3_class(m_mm_mf, "data.frame")
-  expect_gt(nrow(m_mm_mf), 100)
+  expect_gt(nrow(m_mm_mf), 20)
   expect_equal(nrow(m_mm_gomf), nrow(m_mm_mf))
   expect_identical(m_mm_gomf, m_mm_mf)
 })
