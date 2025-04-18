@@ -148,6 +148,14 @@ Use the gene sets data frame for [GSVA](https://bioconductor.org/packages/GSVA/)
 
 ```{r gsva, eval=FALSE}
 msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
+gsvapar <- gsvaParam(geneSets = msigdbr_list, ...)
+gsva(gsvapar)
+```
+
+Earlier versions of GSVA (<1.50) only need the `gsva()` function.
+
+```{r gsva-old, eval=FALSE}
+msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 gsva(gset.idx.list = msigdbr_list, ...)
 ```
 
