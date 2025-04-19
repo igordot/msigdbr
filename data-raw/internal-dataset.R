@@ -19,7 +19,7 @@ common_genes <- mdb |>
   head(100)
 
 # Get gene sets that include popular genes (likely more familiar)
-common_genesets <- mdb |>
+common_gs_ids <- mdb |>
   filter(db_gene_symbol %in% common_genes) |>
   pull(gs_id) |>
   unique()
@@ -27,18 +27,19 @@ common_genesets <- mdb |>
 # Subsample smaller gene sets from every collection and sub-collection
 set.seed(99)
 random_gs_ids <- mdb |>
-  filter(gs_id %in% common_genesets) |>
+  filter(gs_id %in% common_gs_ids) |>
   distinct(source_gene, gs_id, gs_collection, gs_subcollection) |>
   count(gs_id, gs_collection, gs_subcollection) |>
-  filter(n < 80) |>
+  filter(n < 100) |>
   group_by(gs_collection, gs_subcollection) |>
-  slice_min(order_by = n, n = 100) |>
-  slice_sample(n = 5) |>
+  slice_sample(n = 20) |>
+  slice_min(order_by = n, n = 5, with_ties = FALSE) |>
   pull(gs_id)
 
-# Subset the full table to the
+# Subset the full table to the selected gene sets
 subset_gs_ids <- unique(sort(c(hallmark_gs_ids, random_gs_ids)))
 testdb <- filter(mdb, gs_id %in% subset_gs_ids)
+testdb <- arrange(testdb, gs_name, db_gene_symbol)
 
 # count(testdb, gs_collection, gs_subcollection)
 # count(testdb, db_gene_symbol, sort = TRUE)
@@ -48,3 +49,4 @@ testdb$db_version <- paste0("TEST.", testdb$db_version)
 
 # Save package data
 usethis::use_data(testdb, internal = TRUE, overwrite = TRUE, compress = "xz")
+
