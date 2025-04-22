@@ -27,7 +27,7 @@ msigdbr(
 \item{subcategory}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use the \code{subcollection} argument}
 }
 \value{
-A data frame of gene sets with one gene per row.
+A tibble (a data frame with class \code{\link[tibble:tbl_df-class]{tibble::tbl_df}}) of gene sets with one gene per row.
 }
 \description{
 Retrieve a data frame of gene sets and their member genes.
