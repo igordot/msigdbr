@@ -24,7 +24,7 @@
 #' @param category `r lifecycle::badge("deprecated")` use the `collection` argument
 #' @param subcategory `r lifecycle::badge("deprecated")` use the `subcollection` argument
 #'
-#' @return A data frame of gene sets with one gene per row.
+#' @return A tibble (a data frame with class [`tibble::tbl_df`]) of gene sets with one gene per row.
 #'
 #' @references <https://www.gsea-msigdb.org/gsea/msigdb/index.jsp>
 #'
@@ -90,6 +90,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
   } else {
     mdb <- testdb
   }
+  mdb <- tibble::as_tibble(mdb)
 
   # Filter by collection
   if (is.character(collection)) {

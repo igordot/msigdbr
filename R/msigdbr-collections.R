@@ -13,8 +13,9 @@ msigdbr_collections <- function(db_species = "Hs") {
 
   # Get the full table of gene sets and their member genes
   mc <- msigdbdf::msigdbdf(target_species = db_species)
+  mc <- tibble::as_tibble(mc)
 
-  # Keep only gene set information (ignors genes)
+  # Keep only gene set information (ignores genes)
   mc <- dplyr::distinct(
     mc,
     .data$gs_collection,
