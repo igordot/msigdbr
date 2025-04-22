@@ -8,12 +8,12 @@
 #' @export
 msigdbr_species <- function() {
   babelgene::species() |>
-    as_tibble() |>
-    select(
+    tibble::as_tibble() |>
+    dplyr::select(
       species_name = "scientific_name",
       species_common_name = "common_name"
     ) |>
     rbind(c("Homo sapiens", "human")) |>
-    distinct() |>
-    arrange(.data$species_name)
+    dplyr::distinct() |>
+    dplyr::arrange(.data$species_name)
 }
