@@ -1,5 +1,4 @@
 test_that("msigdbr_collections()", {
-  skip_if_not_installed("msigdbdf")
   collections <- msigdbr_collections()
   expect_s3_class(collections, "data.frame")
   expect_gt(nrow(collections), 10)
@@ -11,7 +10,6 @@ test_that("msigdbr_collections()", {
 })
 
 test_that("msigdbr_collections() db_species", {
-  skip_if_not_installed("msigdbdf")
   chs <- msigdbr_collections(db_species = "Hs")
   expect_s3_class(chs, "data.frame")
   expect_gt(nrow(chs), 10)

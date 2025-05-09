@@ -1,14 +1,14 @@
 library(dplyr)
 
-test_that("species variations internal database", {
+test_that("species variations", {
   # Human genes
   m_hs_hs <- msigdbr()
   expect_s3_class(m_hs_hs, "data.frame")
   expect_type(m_hs_hs$gene_symbol, "character")
   expect_type(m_hs_hs$ncbi_gene, "character")
   expect_type(m_hs_hs$ensembl_gene, "character")
-  expect_gt(nrow(m_hs_hs), 1000)
-  expect_gt(n_distinct(m_hs_hs$gene_symbol), 1000)
+  expect_gt(nrow(m_hs_hs), 1000000)
+  expect_gt(n_distinct(m_hs_hs$gene_symbol), 10000)
   expect_identical(m_hs_hs, msigdbr(species = "Homo sapiens"))
   expect_identical(m_hs_hs, msigdbr(db_species = "hs", species = "human"))
   # Mouse genes
@@ -17,8 +17,8 @@ test_that("species variations internal database", {
   expect_type(m_hs_mm$gene_symbol, "character")
   expect_type(m_hs_mm$ncbi_gene, "character")
   expect_type(m_hs_mm$ensembl_gene, "character")
-  expect_gt(nrow(m_hs_mm), 1000)
-  expect_gt(n_distinct(m_hs_mm$gene_symbol), 1000)
+  expect_gt(nrow(m_hs_mm), 1000000)
+  expect_gt(n_distinct(m_hs_mm$gene_symbol), 10000)
   expect_identical(m_hs_mm, msigdbr(db_species = "hs", species = "mouse"))
   # Rat genes
   m_hs_rn <- msigdbr(species = "Rattus norvegicus")
@@ -26,79 +26,99 @@ test_that("species variations internal database", {
   expect_type(m_hs_rn$gene_symbol, "character")
   expect_type(m_hs_rn$ncbi_gene, "character")
   expect_type(m_hs_rn$ensembl_gene, "character")
-  expect_gt(nrow(m_hs_rn), 1000)
-  expect_gt(n_distinct(m_hs_rn$gene_symbol), 1000)
+  expect_gt(nrow(m_hs_rn), 1000000)
+  expect_gt(n_distinct(m_hs_rn$gene_symbol), 10000)
+  expect_equal(max(m_hs_rn$num_ortholog_sources), 10)
   # Column names should be identical (extra output with orthologs)
   expect_identical(names(m_hs_hs)[1:19], names(m_hs_mm)[1:19])
   expect_identical(names(m_hs_mm)[1:19], names(m_hs_rn)[1:19])
   # Ortholog conversion should not reduce the database size substantially
   expect_gt(nrow(m_hs_mm), nrow(m_hs_hs) * 0.9)
   expect_gt(nrow(m_hs_rn), nrow(m_hs_hs) * 0.9)
+})
+
+test_that("human and mouse databases", {
+  # Human database and mouse genes
+  m_hs_mm <- msigdbr(species = "Mus musculus")
+  expect_s3_class(m_hs_mm, "data.frame")
+  # Mouse database and mouse genes
+  m_mm_mm <- msigdbr(db_species = "mm", species = "Mus musculus")
+  expect_s3_class(m_mm_mm, "data.frame")
+  # Column names should be identical (extra output with orthologs)
+  expect_identical(names(m_mm_mm)[1:19], names(m_hs_mm)[1:19])
   # Non-supported combinations
   expect_error(msigdbr(db_species = "mm", species = "Homo sapiens"))
   expect_error(msigdbr(db_species = "mm", species = "human"))
   expect_error(msigdbr(db_species = "mm", species = "Rattus norvegicus"))
 })
 
-test_that("human and mouse databases", {
-  skip_if_not_installed("msigdbdf")
-  # Human database and mouse genes
-  m_hs_mm <- msigdbr(species = "Mus musculus")
-  expect_s3_class(m_hs_mm, "data.frame")
-  # Mouse database and genes
-  m_mm_mm <- msigdbr(db_species = "mm", species = "Mus musculus")
-  expect_s3_class(m_mm_mm, "data.frame")
-  # Column names should be identical (extra output with orthologs)
-  expect_identical(names(m_mm_mm)[1:19], names(m_hs_mm)[1:19])
-})
-
 test_that("human db human genes", {
-  skip_if_not_installed("msigdbdf")
   m_hs <- msigdbr()
   expect_s3_class(m_hs, "data.frame")
   expect_identical(m_hs, msigdbr(species = "human"))
   expect_identical(m_hs, msigdbr(db_species = "hs", species = "human"))
-  expect_gt(nrow(m_hs), 1000000)
   expect_identical(names(m_hs)[1:3], c("gene_symbol", "ncbi_gene", "ensembl_gene"))
   expect_identical(names(m_hs)[4:8], c("db_gene_symbol", "db_ncbi_gene", "db_ensembl_gene", "source_gene", "gs_id"))
-  expect_gt(n_distinct(m_hs$gs_id), 30000)
+  expect_equal(n_distinct(m_hs$db_version), 1)
+  expect_identical(unique(m_hs$db_target_species), "HS")
+  # Overall dimensions
+  expect_gt(nrow(m_hs), 4400000)
+  expect_lt(nrow(m_hs), 4500000)
+  expect_equal(n_distinct(m_hs$gs_collection), 9)
+  expect_equal(n_distinct(m_hs$gs_subcollection), 22)
+  expect_gt(n_distinct(m_hs$gs_id), 34000)
   expect_gt(n_distinct(m_hs$gene_symbol), 40000)
   expect_gt(n_distinct(m_hs$ncbi_gene), 40000)
   expect_gt(n_distinct(m_hs$ensembl_gene), 40000)
+  # Gene set sizes
   expect_equal(min(table(m_hs$gs_id)), 5)
-  m_hs_sym <- distinct(m_hs, gs_id, gene_symbol)
-  expect_gt(nrow(m_hs_sym), 1000000)
+  expect_lt(max(table(m_hs$gs_id)), 2500)
+  expect_lt(quantile(table(m_hs$gs_id), 0.999), 2000)
+  expect_lt(quantile(table(m_hs$gs_id), 0.98), 1000)
+  expect_lt(quantile(table(m_hs$gs_id), 0.9), 300)
+  expect_gt(quantile(table(m_hs$gs_id), 0.9), 200)
+  expect_gt(quantile(table(m_hs$gs_id), 0.5), 40)
+  expect_gt(quantile(table(m_hs$gs_id), 0.2), 10)
+  m_hs_sym <- distinct(m_hs, gs_id, db_gene_symbol)
+  expect_equal(min(table(m_hs_sym$gs_id)), 5)
+  expect_lt(max(table(m_hs_sym$gs_id)), 2001)
+  m_hs_ens <- distinct(m_hs, gs_id, db_ensembl_gene)
+  expect_equal(min(table(m_hs_ens$gs_id)), 5)
+  expect_lt(max(table(m_hs_ens$gs_id)), 2001)
 })
 
-test_that("human db mouse genes", {
-  skip_if_not_installed("msigdbdf")
-  m_mm <- msigdbr(species = "Mus musculus")
+test_that("mouse db mouse genes", {
+  m_mm <- msigdbr(db_species = "mm", species = "Mus musculus")
   expect_s3_class(m_mm, "data.frame")
-  expect_identical(m_mm, msigdbr(species = "mouse"))
-  expect_gt(nrow(m_mm), 1000000)
-  expect_gt(n_distinct(m_mm$gs_id), 30000)
-  expect_gt(n_distinct(m_mm$gene_symbol), 15000)
-  expect_gt(n_distinct(m_mm$ncbi_gene), 15000)
-  expect_gt(n_distinct(m_mm$ensembl_gene), 15000)
-  expect_equal(max(m_mm$num_ortholog_sources), 12)
-})
-
-test_that("human db rat genes", {
-  skip_if_not_installed("msigdbdf")
-  m_rn <- msigdbr(species = "Rattus norvegicus")
-  expect_s3_class(m_rn, "data.frame")
-  expect_identical(m_rn, msigdbr(species = "rat"))
-  expect_gt(nrow(m_rn), 1000000)
-  expect_gt(n_distinct(m_rn$gs_id), 30000)
-  expect_gt(n_distinct(m_rn$gene_symbol), 15000)
-  expect_gt(n_distinct(m_rn$ncbi_gene), 15000)
-  expect_gt(n_distinct(m_rn$ensembl_gene), 15000)
-  expect_equal(max(m_rn$num_ortholog_sources), 10)
+  expect_equal(n_distinct(m_mm$db_version), 1)
+  expect_identical(unique(m_mm$db_target_species), "MM")
+  # Overall dimensions
+  expect_gt(nrow(m_mm), 1600000)
+  expect_lt(nrow(m_mm), 1700000)
+  expect_equal(n_distinct(m_mm$gs_collection), 6)
+  expect_equal(n_distinct(m_mm$gs_subcollection), 11)
+  expect_gt(n_distinct(m_mm$gs_id), 16000)
+  expect_gt(n_distinct(m_mm$db_gene_symbol), 40000)
+  expect_gt(n_distinct(m_mm$db_ncbi_gene), 40000)
+  expect_gt(n_distinct(m_mm$db_ensembl_gene), 40000)
+  # Gene set sizes
+  expect_equal(min(table(m_mm$gs_id)), 5)
+  expect_lt(max(table(m_mm$gs_id)), 2900)
+  expect_lt(quantile(table(m_mm$gs_id), 0.999), 2000)
+  expect_lt(quantile(table(m_mm$gs_id), 0.98), 1000)
+  expect_lt(quantile(table(m_mm$gs_id), 0.9), 300)
+  expect_gt(quantile(table(m_mm$gs_id), 0.9), 200)
+  expect_gt(quantile(table(m_mm$gs_id), 0.5), 20)
+  expect_gt(quantile(table(m_mm$gs_id), 0.1), 5)
+  m_mm_sym <- distinct(m_mm, gs_id, db_gene_symbol)
+  expect_equal(min(table(m_mm_sym$gs_id)), 5)
+  expect_lt(max(table(m_mm_sym$gs_id)), 2001)
+  m_mm_ens <- distinct(m_mm, gs_id, db_ensembl_gene)
+  expect_equal(min(table(m_mm_ens$gs_id)), 5)
+  expect_lt(max(table(m_mm_ens$gs_id)), 2001)
 })
 
 test_that("human hallmark category", {
-  # All Hallmark gene sets are present in the internal test dataset
-  # Should be using internal data if msigdbdf is not installed
   m_hs_h <- msigdbr(species = "Homo sapiens", collection = "H")
   expect_s3_class(m_hs_h, "data.frame")
   expect_gt(nrow(m_hs_h), 5000)

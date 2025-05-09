@@ -12,11 +12,6 @@
 #'
 #' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 #'
-#' To access the full dataset, please install the msigdbdf package (not available on CRAN):
-#' ```
-#' install.packages("msigdbdf", repos = "https://igordot.r-universe.dev")
-#' ```
-#'
 #' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Use `msigdbr_species()` for available options.
 #' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
 #' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` for the available options.
@@ -77,19 +72,8 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     subcollection <- subcategory
   }
 
-  # Use an internal dataset for minimal functionality without msigdbdf
-  if (db_species == "HS") {
-    msigdbr_check_data(require_data = FALSE)
-  } else {
-    msigdbr_check_data(require_data = TRUE)
-  }
-
-  # Get the gene sets table from msigdbdf or use an internal test dataset
-  if (rlang::is_installed("msigdbdf")) {
-    mdb <- msigdbdf::msigdbdf(target_species = db_species)
-  } else {
-    mdb <- testdb
-  }
+  # Get the gene sets table
+  mdb <- msigdbr_db(target_species = db_species)
   mdb <- tibble::as_tibble(mdb)
 
   # Filter by collection
