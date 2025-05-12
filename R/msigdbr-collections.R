@@ -9,7 +9,7 @@
 #' @export
 msigdbr_collections <- function(db_species = "Hs") {
   # Get the full table of gene sets and their member genes
-  mc <- msigdbr_db(target_species = db_species)
+  mc <- load_msigdb_df(target_species = db_species)
   mc <- tibble::as_tibble(mc)
 
   # Keep only gene set information (ignore genes)

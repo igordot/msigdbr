@@ -73,7 +73,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
   }
 
   # Get the gene sets table
-  mdb <- msigdbr_db(target_species = db_species)
+  mdb <- load_msigdb_df(target_species = db_species)
   mdb <- tibble::as_tibble(mdb)
 
   # Filter by collection

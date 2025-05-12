@@ -1,6 +1,4 @@
-#' Load the gene sets database
-#'
-#' Download, cache, and load the gene sets data frame.
+#' Download, cache, and load the gene sets database
 #'
 #' @param target_species Species abbreviation for human or mouse databases (`"HS"` or `"MM"`).
 #' @param overwrite A logical indicating whether existing cached file should be overwritten.
@@ -10,7 +8,7 @@
 #'
 #' @importFrom curl curl_download new_handle
 #' @importFrom tools md5sum R_user_dir
-msigdbr_db <- function(target_species = c("HS", "MM"), overwrite = FALSE, verbose = FALSE) {
+load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, verbose = FALSE) {
   target_species <- toupper(target_species)
   target_species <- match.arg(target_species)
 
