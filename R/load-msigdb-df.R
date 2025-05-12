@@ -57,9 +57,22 @@ load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, ve
     stop("Data file not found: ", file_path)
   }
 
-  # Load RDS file
+  # Load data if already in memory cache
+  if (exists(file_name, envir = pkg_env, inherits = FALSE)) {
+    if (verbose) {
+      message("Loading data from cache.")
+    }
+    return(pkg_env[[file_name]])
+  }
+
+  # Read RDS file and cache the data frame
   if (verbose) {
     message("Loading data from: ", file_path)
   }
-  readRDS(file_path)
+  mdb <- readRDS(file_path)
+  pkg_env[[file_name]] <- mdb
+  return(mdb)
 }
+
+# Create a package-level environment for caching
+pkg_env <- new.env(parent = emptyenv())
