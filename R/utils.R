@@ -1,3 +1,6 @@
+# Create a package-level environment for caching
+pkg_env <- new.env(parent = emptyenv())
+
 #' Download, cache, and load the gene sets database
 #'
 #' @param target_species Species abbreviation for human or mouse databases (`"HS"` or `"MM"`).
@@ -8,6 +11,8 @@
 #'
 #' @importFrom curl curl_download new_handle
 #' @importFrom tools md5sum R_user_dir
+#'
+#' @noRd
 load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, verbose = FALSE) {
   target_species <- toupper(target_species)
   target_species <- match.arg(target_species)
@@ -73,6 +78,3 @@ load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, ve
   pkg_env[[file_name]] <- mdb
   return(mdb)
 }
-
-# Create a package-level environment for caching
-pkg_env <- new.env(parent = emptyenv())
