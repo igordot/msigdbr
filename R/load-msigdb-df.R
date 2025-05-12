@@ -14,13 +14,11 @@ load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, ve
 
   # Define source URL based on target species
   if (target_species == "HS") {
-    file_name <- "msigdb.2024.1.Hs.rds"
-    file_url <- "https://figshare.com/ndownloader/files/54371954"
+    file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Hs.rds?download=1"
     file_md5 <- "ff43b9132477cbdff7243cbf3574b816"
   }
   if (target_species == "MM") {
-    file_name <- "msigdb.2024.1.Mm.rds"
-    file_url <- "https://figshare.com/ndownloader/files/54371960"
+    file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Mm.rds?download=1"
     file_md5 <- "dc60894e71d8e14e5bd0022834cca77f"
   }
 
@@ -34,6 +32,8 @@ load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, ve
   }
 
   # Download the file if it is not already cached
+  file_name <- basename(file_url)
+  file_name <- sub("\\?.*$", "", file_name)
   file_path <- file.path(cache_dir, file_name)
   if (!file.exists(file_path) || overwrite) {
     if (verbose) {
