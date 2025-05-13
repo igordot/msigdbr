@@ -6,7 +6,7 @@
 * GitHub: https://github.com/XiaoZhangryy/CAESAR.Suite
 * Source code: https://github.com/cran/CAESAR.Suite
 * Date/Publication: 2025-04-01 09:00:07 UTC
-* Number of recursive dependencies: 254
+* Number of recursive dependencies: 253
 
 Run `revdepcheck::revdep_details(, "CAESAR.Suite")` for more info
 
@@ -30,8 +30,8 @@ Run `revdepcheck::revdep_details(, "CAESAR.Suite")` for more info
 ** package ‘CAESAR.Suite’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘Apple clang version 16.0.0 (clang-1600.0.26.6)’
-using SDK: ‘MacOSX15.2.sdk’
+using C++ compiler: ‘Apple clang version 17.0.0 (clang-1700.0.13.3)’
+using SDK: ‘MacOSX15.4.sdk’
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c RcppExports.cpp -o RcppExports.o
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c gene_embed.cpp -o gene_embed.o
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c imfactor.cpp -o imfactor.o
@@ -53,8 +53,8 @@ ERROR: compilation failed for package ‘CAESAR.Suite’
 ** package ‘CAESAR.Suite’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘Apple clang version 16.0.0 (clang-1600.0.26.6)’
-using SDK: ‘MacOSX15.2.sdk’
+using C++ compiler: ‘Apple clang version 17.0.0 (clang-1700.0.13.3)’
+using SDK: ‘MacOSX15.4.sdk’
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c RcppExports.cpp -o RcppExports.o
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c gene_embed.cpp -o gene_embed.o
 clang++ -arch x86_64 -std=gnu++17 -I"/Library/Frameworks/R.framework/Versions/4.5-x86_64/Resources/include" -DNDEBUG  -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/Rcpp/include' -I'/Users/id460/repos/msigdbr/revdep/library.noindex/CAESAR.Suite/RcppArmadillo/include' -I/opt/R/x86_64/include    -fPIC  -falign-functions=64 -Wall -g -O2   -c imfactor.cpp -o imfactor.o
@@ -72,11 +72,11 @@ ERROR: compilation failed for package ‘CAESAR.Suite’
 
 <details>
 
-* Version: 1.1.2
+* Version: 1.2.0
 * GitHub: https://github.com/AnnaLaddach/CatsCradle
 * Source code: https://github.com/cran/CatsCradle
-* Date/Publication: 2025-03-17
-* Number of recursive dependencies: 203
+* Date/Publication: 2025-04-15
+* Number of recursive dependencies: 201
 
 Run `revdepcheck::revdep_details(, "CatsCradle")` for more info
 
@@ -120,7 +120,7 @@ Run `revdepcheck::revdep_details(, "CatsCradle")` for more info
 * GitHub: https://github.com/vallotlab/ChromSCape
 * Source code: https://github.com/cran/ChromSCape
 * Date/Publication: 2024-10-29
-* Number of recursive dependencies: 231
+* Number of recursive dependencies: 229
 
 Run `revdepcheck::revdep_details(, "ChromSCape")` for more info
 
@@ -218,11 +218,11 @@ Run `revdepcheck::revdep_details(, "ChromSCape")` for more info
 
 <details>
 
-* Version: 2.37.0
+* Version: 2.38.0
 * GitHub: https://github.com/lgeistlinger/EnrichmentBrowser
 * Source code: https://github.com/cran/EnrichmentBrowser
-* Date/Publication: 2024-10-29
-* Number of recursive dependencies: 200
+* Date/Publication: 2025-04-15
+* Number of recursive dependencies: 199
 
 Run `revdepcheck::revdep_details(, "EnrichmentBrowser")` for more info
 
@@ -286,11 +286,11 @@ installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’
 
 <details>
 
-* Version: 2.13.0
+* Version: 2.14.0
 * GitHub: NA
 * Source code: https://github.com/cran/gCrisprTools
-* Date/Publication: 2024-10-29
-* Number of recursive dependencies: 150
+* Date/Publication: 2025-04-15
+* Number of recursive dependencies: 149
 
 Run `revdepcheck::revdep_details(, "gCrisprTools")` for more info
 
@@ -362,7 +362,7 @@ installing the source packages ‘bcellViper’, ‘GO.db’, ‘org.Hs.eg.db’
 * GitHub: https://github.com/montilab/hypeR
 * Source code: https://github.com/cran/hypeR
 * Date/Publication: 2024-10-29
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 164
 
 Run `revdepcheck::revdep_details(, "hypeR")` for more info
 
@@ -429,7 +429,7 @@ ERROR: lazy loading failed for package ‘hypeR’
 
 
 
-installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
+installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘GO.db’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
 
 
 
@@ -440,11 +440,30 @@ installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.H
 
 
 
-installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
+installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.Hsapiens.v86’, ‘GO.db’, ‘HCAData’, ‘MouseGastrulationData’, ‘org.Hs.eg.db’, ‘org.Mm.eg.db’, ‘OSCA.basic’, ‘OSCA.multisample’, ‘OSCA.workflows’, ‘scRNAseq’, ‘TENxBrainData’, ‘TENxPBMCData’
 
 
 
 ```
+# pairedGSEA
+
+<details>
+
+* Version: 1.8.0
+* GitHub: https://github.com/shdam/pairedGSEA
+* Source code: https://github.com/cran/pairedGSEA
+* Date/Publication: 2025-04-15
+* Number of recursive dependencies: 168
+
+Run `revdepcheck::revdep_details(, "pairedGSEA")` for more info
+
+</details>
+
+## Newly broken
+
+*   R CMD check timed out
+    
+
 # pathfindR
 
 <details>
@@ -453,7 +472,7 @@ installing the source packages ‘celldex’, ‘DropletTestFiles’, ‘EnsDb.H
 * GitHub: https://github.com/egeulgen/pathfindR
 * Source code: https://github.com/cran/pathfindR
 * Date/Publication: 2025-02-17 09:30:02 UTC
-* Number of recursive dependencies: 145
+* Number of recursive dependencies: 143
 
 Run `revdepcheck::revdep_details(, "pathfindR")` for more info
 
@@ -523,6 +542,79 @@ ERROR: loading failed
 
 
 ```
+# ReducedExperiment
+
+<details>
+
+* Version: 0.99.6
+* GitHub: https://github.com/jackgisby/ReducedExperiment
+* Source code: https://github.com/cran/ReducedExperiment
+* Date/Publication: 2025-01-15
+* Number of recursive dependencies: 219
+
+Run `revdepcheck::revdep_details(, "ReducedExperiment")` for more info
+
+</details>
+
+## Newly broken
+
+*   R CMD check timed out
+    
+
+## Newly fixed
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+        |===================================                                   |  50%
+        |                                                                            
+        |======================================================================| 100%
+      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 584 ]
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure ('test_features.R:85:5'): Get MSGIDB data ───────────────────────────
+      nrow(t2g) > 1e+05 is not TRUE
+      
+      `actual`:   FALSE
+      `expected`: TRUE 
+      
+      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 584 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+      ‘ReducedExperiment.Rmd’ using ‘UTF-8’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘ReducedExperiment.Rmd’
+      ...
+    > ggplot(module_1_enrich[1:15, ], aes(-log10(p.adjust), 
+    +     reorder(substr(ID, 1, 45), -log10(p.adjust)))) + geom_point(pch = 21, 
+    +     size = 3)  .... [TRUNCATED] 
+    
+      When sourcing ‘ReducedExperiment.R’:
+    Error: Problem while computing aesthetics.
+    ℹ Error occurred in the 1st layer.
+    Caused by error in `log10()`:
+    ! non-numeric argument to mathematical function
+    Execution halted
+    ```
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘BiocGenerics:::replaceSlots’
+      ‘SummarizedExperiment:::.SummarizedExperiment.charbound’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
 # rGREAT
 
 <details>
@@ -558,6 +650,48 @@ installing the source packages ‘org.Mm.eg.db’, ‘reactome.db’, ‘TxDb.Hs
 
 
 ```
+# scFeatures
+
+<details>
+
+* Version: 1.8.0
+* GitHub: https://github.com/SydneyBioX/scFeatures
+* Source code: https://github.com/cran/scFeatures
+* Date/Publication: 2025-04-15
+* Number of recursive dependencies: 318
+
+Run `revdepcheck::revdep_details(, "scFeatures")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      'DT' 'Seurat'
+      All declared Imports should be used.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    helper_CCI: no visible global function definition for 'data'
+    helper_CCI: no visible binding for global variable 'LRdb'
+    helper_CCI: no visible global function definition for 'capture.output'
+    helper_pathway_gsva: no visible global function definition for
+      'capture.output'
+    run_pathway_gsva: no visible global function definition for
+      'capture.output'
+    Undefined global functions or variables:
+      LRdb capture.output data
+    Consider adding
+      importFrom("utils", "capture.output", "data")
+    to your NAMESPACE file.
+    ```
+
 # singleCellTK
 
 <details>

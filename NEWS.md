@@ -1,3 +1,9 @@
+# msigdbr 24.1.0
+
+* Updated the package to download the data, removing the non-CRAN msigdbdf data package dependency.
+* Included the MSigDB v2024.1 data.
+* Updated the package versioning scheme so it is tied to the MSigDB release.
+
 # msigdbr 10.0.2
 
 * Updated tests.
