@@ -45,13 +45,6 @@ The package can be installed from [CRAN](https://cran.r-project.org/package=msig
 install.packages("msigdbr")
 ```
 
-The package includes only a small subset of the full MSigDB database due to CRAN size limitations.
-Please install the msigdbdf package to access the full MSigDB database:
-
-```{r install-msigdbdf, eval=FALSE}
-install.packages("msigdbdf", repos = "https://igordot.r-universe.dev")
-```
-
 ## Usage
 
 Load package.
@@ -169,11 +162,12 @@ You can check the version used with `unique(msigdbr_df$db_version)`.
 **Why use this package when I can download the gene sets directly from MSigDB?**
 
 This package makes it more convenient to work with MSigDB gene sets in R.
+This package includes Ensembl IDs.
 You don't need to download the GMT files and import them.
 You don't need to learn how to restructure the output to make it compatible with downstream tools.
 You don't need to convert the genes to your organism if you are working with non-human data.
 
-**Can I convert between human and mouse genes just by adjusting gene capitalization?**
+**Can I convert between human and mouse genes simply by adjusting gene capitalization?**
 
 That will work for most, but not all, genes.
 
@@ -185,9 +179,11 @@ You may still end up with dozens of homologs for some genes, so additional clean
 **Aren't there already other similar tools?**
 
 There are a few resources that provide some of the msigdbr functionality and served as an inspiration for this package.
-[WEHI](https://bioinf.wehi.edu.au/software/MSigDB/) provides MSigDB gene sets in R format for human and mouse.
-[MSigDF](https://github.com/stephenturner/msigdf) and a more recent [ToledoEM/msigdf](https://github.com/ToledoEM/msigdf) fork provide a tidyverse-friendly data frame.
+[EGSEAdata](https://doi.org/doi:10.18129/B9.bioc.EGSEAdata) Bioconductor package provides data as a list.
+[WEHI MSigDB](https://bioinf.wehi.edu.au/MSigDB/) provides data for human and mouse as RDS files.
+[MSigDF](https://github.com/ToledoEM/msigdf) provides data as an R data frame.
 These are updated at varying frequencies and may not be based on the latest version of MSigDB.
+
 Since 2022, the GSEA/MSigDB team provides [collections that are natively mouse](https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp) and don't require orthology conversion.
 
 **What if I have other questions?**
