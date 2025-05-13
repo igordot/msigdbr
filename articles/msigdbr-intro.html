@@ -87,21 +87,16 @@ species.</p>
 <p>The package can be installed from <a href="https://cran.r-project.org/package=msigdbr" class="external-link">CRAN</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"msigdbr"</span><span class="op">)</span></span></code></pre></div>
-<p>The package includes only a small subset of the full MSigDB database
-due to CRAN size limitations. Please install the msigdbdf package to
-access the full MSigDB database:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"msigdbdf"</span>, repos <span class="op">=</span> <span class="st">"https://igordot.r-universe.dev"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Load package.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr/">msigdbr</a></span><span class="op">)</span></span></code></pre></div>
 <p>All gene sets in the database can be retrieved by specifying a
 species of interest.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -120,7 +115,7 @@ are the gene identifiers in the original publication. The
 should be identical for the entire data frame.</p>
 <p>You can retrieve data just for a specific collection, such as the
 Hallmark gene sets.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -130,7 +125,7 @@ Hallmark gene sets.</p>
 </div>
 <p>You can specify a sub-collection, such as C2 (curated) CGP (chemical
 and genetic perturbations) gene sets.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cgp_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -142,7 +137,7 @@ and genetic perturbations) gene sets.</p>
 function output is a data frame that can be manipulated using standard
 methods. For example, you can subset to a specific collection using
 dplyr.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gs_collection</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -153,7 +148,7 @@ dplyr.</p>
 </div>
 <p>The version of the MSigDB database is stored in the
 <code>db_version</code> column of the returned data frame.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">$</span><span class="va">db_version</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2024.1.Hs"</span></span></code></pre></div>
 </div>
@@ -165,7 +160,7 @@ dplyr.</p>
 <p>Use <code><a href="../reference/msigdbr_species.html">msigdbr_species()</a></code> to check the available species.
 Both scientific and common names are acceptable for the
 <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -174,7 +169,7 @@ Both scientific and common names are acceptable for the
 </div>
 <p>Use <code><a href="../reference/msigdbr_collections.html">msigdbr_collections()</a></code> to check the available
 collections.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -189,26 +184,26 @@ collections.</p>
 packages.</p>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
 with genes as NCBI/Entrez IDs.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">msigdbr_df</span>, <span class="va">gs_name</span>, <span class="va">ncbi_gene</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
 with genes as gene symbols.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">msigdbr_df</span>, <span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/fgsea/" class="external-link">fgsea</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">fgsea</span><span class="op">(</span>pathways <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/GSVA/" class="external-link">GSVA</a>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="va">gsvapar</span> <span class="op">&lt;-</span> <span class="fu">gsvaParam</span><span class="op">(</span>geneSets <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="fu">gsva</span><span class="op">(</span><span class="va">gsvapar</span><span class="op">)</span></span></code></pre></div>
 <p>Earlier versions of GSVA (&lt;1.50) only need the <code>gsva()</code>
 function.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -222,12 +217,13 @@ the returned data frame. You can check the version used with
 <p><strong>Why use this package when I can download the gene sets
 directly from MSigDB?</strong></p>
 <p>This package makes it more convenient to work with MSigDB gene sets
-in R. You don’t need to download the GMT files and import them. You
-don’t need to learn how to restructure the output to make it compatible
-with downstream tools. You don’t need to convert the genes to your
-organism if you are working with non-human data.</p>
-<p><strong>Can I convert between human and mouse genes just by adjusting
-gene capitalization?</strong></p>
+in R. This package includes Ensembl IDs. You don’t need to download the
+GMT files and import them. You don’t need to learn how to restructure
+the output to make it compatible with downstream tools. You don’t need
+to convert the genes to your organism if you are working with non-human
+data.</p>
+<p><strong>Can I convert between human and mouse genes simply by
+adjusting gene capitalization?</strong></p>
 <p>That will work for most, but not all, genes.</p>
 <p><strong>Can I convert human genes to any organism myself instead of
 using this package?</strong></p>
@@ -236,12 +232,12 @@ with dozens of homologs for some genes, so additional cleanup may be
 helpful.</p>
 <p><strong>Aren’t there already other similar tools?</strong></p>
 <p>There are a few resources that provide some of the msigdbr
-functionality and served as an inspiration for this package. <a href="https://bioinf.wehi.edu.au/software/MSigDB/" class="external-link">WEHI</a> provides
-MSigDB gene sets in R format for human and mouse. <a href="https://github.com/stephenturner/msigdf" class="external-link">MSigDF</a> and a more
-recent <a href="https://github.com/ToledoEM/msigdf" class="external-link">ToledoEM/msigdf</a>
-fork provide a tidyverse-friendly data frame. These are updated at
-varying frequencies and may not be based on the latest version of
-MSigDB. Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
+functionality and served as an inspiration for this package. <a href="https://doi.org/doi:10.18129/B9.bioc.EGSEAdata" class="external-link">EGSEAdata</a>
+Bioconductor package provides data as a list. <a href="https://bioinf.wehi.edu.au/MSigDB/" class="external-link">WEHI MSigDB</a> provides data
+for human and mouse as RDS files. <a href="https://github.com/ToledoEM/msigdf" class="external-link">MSigDF</a> provides data as an
+R data frame. These are updated at varying frequencies and may not be
+based on the latest version of MSigDB.</p>
+<p>Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
 that are natively mouse</a> and don’t require orthology conversion.</p>
 <p><strong>What if I have other questions?</strong></p>
 <p>You can submit feedback and report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub</a>.</p>
