@@ -39,6 +39,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     length(db_species) == 1,
     nchar(db_species) == 2
   )
+  db_species <- toupper(db_species)
   if (!is.null(collection)) {
     assertthat::assert_that(
       is.character(collection),
@@ -54,10 +55,22 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
     )
   }
 
+  # Define name variants for species with caveats
+  species_hs <- c("Homo sapiens", "human")
+  species_mm <- c("Mus musculus", "mouse", "house mouse")
+
   # Use only mouse genes for mouse database
-  db_species <- toupper(db_species)
-  if (db_species == "MM" && !(species %in% c("Mus musculus", "mouse", "house mouse"))) {
-    stop("Set `species` to mouse for the mouse database.")
+  if (db_species == "MM" && !(species %in% species_mm)) {
+    stop("Use `species = \"mouse\"` when selecting the mouse database.")
+  }
+
+  # Display a message when selecting the human database and mouse genes
+  if (db_species == "HS" && species %in% species_mm) {
+    rlang::inform(
+      message = "Using human MSigDB with ortholog mapping to mouse. Use `db_species = \"MM\"` for mouse-native gene sets.",
+      .frequency = "once",
+      .frequency_id = "msigdbr_species_mm"
+    )
   }
 
   # Check for deprecated category arguments
@@ -109,7 +122,7 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
   )
 
   # Retrieve orthologs for the non-human species for the human database
-  if (db_species == "HS" && !(species %in% c("Homo sapiens", "human"))) {
+  if (db_species == "HS" && !(species %in% species_hs)) {
     species_genes <- babelgene::orthologs(
       genes = unique(mdb$db_ensembl_gene),
       species = species

@@ -7,6 +7,6 @@
 #' @importFrom assertthat assert_that
 #' @importFrom lifecycle deprecated is_present
 #' @importFrom methods is
-#' @importFrom rlang .data check_installed is_installed
+#' @importFrom rlang .data check_installed inform is_installed
 ## usethis namespace: end
 NULL
