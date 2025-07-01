@@ -77,9 +77,6 @@ genes</li>
 <li>without accessing external resources requiring an active internet
 connection</li>
 </ul>
-<p>Please be aware that the orthologs were computationally predicted at
-the gene level. The full pathways may not be well conserved across
-species.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -94,30 +91,56 @@ species.</p>
 <p>Load package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr/">msigdbr</a></span><span class="op">)</span></span></code></pre></div>
-<p>All gene sets in the database can be retrieved by specifying a
-species of interest.</p>
+<p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function retrieves a data frame of all
+genes and gene sets in the database.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]}],"data":[{"1":"ABCC4","2":"10257","3":"ENSG00000125257","4":"ABCC4","5":"10257","6":"ENSG00000125257","7":"ABCC4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"},{"1":"ABRAXAS2","2":"23172","3":"ENSG00000165660","4":"ABRAXAS2","5":"23172","6":"ENSG00000165660","7":"KIAA0157","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"},{"1":"ACTN4","2":"81","3":"ENSG00000130402","4":"ACTN4","5":"81","6":"ENSG00000130402","7":"ACTN4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"},{"1":"ACVR1","2":"90","3":"ENSG00000115170","4":"ACVR1","5":"90","6":"ENSG00000115170","7":"ACVR1","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"},{"1":"ADAM9","2":"8754","3":"ENSG00000168615","4":"ADAM9","5":"8754","6":"ENSG00000168615","7":"ADAM9","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"},{"1":"ADAMTS5","2":"11096","3":"ENSG00000154736","4":"ADAMTS5","5":"11096","6":"ENSG00000154736","7":"ADAMTS5","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
+  </script>
+</div>
+<div class="section level3">
+<h3 id="species">Species<a class="anchor" aria-label="anchor" href="#species"></a>
+</h3>
+<p>The <code>species</code> parameter enables conversion of the original
+human genes to their orthologs in various model organisms, such as
+mouse. You can use <code><a href="../reference/msigdbr_species.html">msigdbr_species()</a></code> to check the available
+species.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using human MSigDB with ortholog mapping to mouse. Use `db_species = "MM"` for mouse-native gene sets.</span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">This message is displayed once per session.</span></span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]},{"label":["ortholog_taxon_id"],"name":[21],"type":["int"],"align":["right"]},{"label":["ortholog_sources"],"name":[22],"type":["chr"],"align":["left"]},{"label":["num_ortholog_sources"],"name":[23],"type":["dbl"],"align":["right"]}],"data":[{"1":"Abcc4","2":"239273","3":"ENSMUSG00000032849","4":"ABCC4","5":"10257","6":"ENSG00000125257","7":"ABCC4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther","23":"9"},{"1":"Abraxas2","2":"109359","3":"ENSMUSG00000030965","4":"ABRAXAS2","5":"23172","6":"ENSG00000165660","7":"KIAA0157","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Actn4","2":"60595","3":"ENSMUSG00000054808","4":"ACTN4","5":"81","6":"ENSG00000130402","7":"ACTN4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Acvr1","2":"11477","3":"ENSMUSG00000026836","4":"ACVR1","5":"90","6":"ENSG00000115170","7":"ACVR1","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Adam9","2":"11502","3":"ENSMUSG00000031555","4":"ADAM9","5":"8754","6":"ENSG00000168615","7":"ADAM9","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"},{"1":"Adamts5","2":"23794","3":"ENSMUSG00000022894","4":"ADAMTS5","5":"11096","6":"ENSG00000154736","7":"ADAMTS5","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
   </script>
 </div>
-<p>The <code>gene_symbol</code>, <code>ncbi_gene</code>, and
-<code>ensembl_gene</code> columns are the gene identifiers for the
-requested species. The <code>db_gene_symbol</code>,
-<code>db_ncbi_gene</code>, <code>db_ensembl_gene</code> columns are the
-gene identifiers in the database. The <code>source_gene</code> column
-are the gene identifiers in the original publication. The
-<code>gs_*</code> columns provide details about the gene sets. The
-<code>db_*</code> columns provide details about the MSigDB database, so
-should be identical for the entire data frame.</p>
+<p>Please be aware that the orthologs are computationally predicted at
+the gene level. The full pathways may not be well conserved across
+species.</p>
+<p>There are human and mouse versions of MSigDB. The
+<code>db_species</code> parameter specifies the database (human by
+default).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">all_mm_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span>, db_species <span class="op">=</span> <span class="st">"MM"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_mm_gene_sets</span><span class="op">)</span></span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]}],"data":[{"1":"AU021092","2":"239691","3":"ENSMUSG00000051669","4":"AU021092","5":"239691","6":"ENSMUSG00000051669","7":"AW045808","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"},{"1":"Ahnak","2":"66395","3":"ENSMUSG00000069833","4":"Ahnak","5":"66395","6":"ENSMUSG00000069833","7":"AA657044","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"},{"1":"Alcam","2":"11658","3":"ENSMUSG00000022636","4":"Alcam","5":"11658","6":"ENSMUSG00000022636","7":"L25274","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"},{"1":"Ankrd40","2":"71452","3":"ENSMUSG00000020864","4":"Ankrd40","5":"71452","6":"ENSMUSG00000020864","7":"AW125433","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"},{"1":"Arid1a","2":"93760","3":"ENSMUSG00000007880","4":"Arid1a","5":"93760","6":"ENSMUSG00000007880","7":"AI842326","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"},{"1":"Bckdhb","2":"12040","3":"ENSMUSG00000032263","4":"Bckdhb","5":"12040","6":"ENSMUSG00000032263","7":"L16992","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2024.1.Mm","20":"MM"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
+  </script>
+</div>
+<p>The genes within each gene set may originate from a species different
+from the database target species, as indicated by the
+<code>gs_source_species</code> and <code>db_target_species</code>
+fields.</p>
+</div>
+<div class="section level3">
+<h3 id="collections">Collections<a class="anchor" aria-label="anchor" href="#collections"></a>
+</h3>
 <p>You can retrieve data just for a specific collection, such as the
 Hallmark gene sets.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">h_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -127,7 +150,7 @@ Hallmark gene sets.</p>
 </div>
 <p>You can specify a sub-collection, such as C2 (curated) CGP (chemical
 and genetic perturbations) gene sets.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cgp_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cgp_gene_sets</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -139,7 +162,7 @@ and genetic perturbations) gene sets.</p>
 function output is a data frame that can be manipulated using standard
 methods. For example, you can subset to a specific collection using
 dplyr.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gs_collection</span> <span class="op">==</span> <span class="st">"H"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -148,11 +171,28 @@ dplyr.</p>
 {"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]},{"label":["ortholog_taxon_id"],"name":[21],"type":["int"],"align":["right"]},{"label":["ortholog_sources"],"name":[22],"type":["chr"],"align":["left"]},{"label":["num_ortholog_sources"],"name":[23],"type":["dbl"],"align":["right"]}],"data":[{"1":"Abca1","2":"11303","3":"ENSMUSG00000015243","4":"ABCA1","5":"19","6":"ENSG00000165029","7":"ABCA1","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"},{"1":"Abcb8","2":"74610","3":"ENSMUSG00000028973","4":"ABCB8","5":"11194","6":"ENSG00000197150","7":"ABCB8","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Acaa2","2":"52538","3":"ENSMUSG00000036880","4":"ACAA2","5":"10449","6":"ENSG00000167315","7":"ACAA2","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"},{"1":"Acadl","2":"11363","3":"ENSMUSG00000026003","4":"ACADL","5":"33","6":"ENSG00000115361","7":"ACADL","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Acadm","2":"11364","3":"ENSMUSG00000062908","4":"ACADM","5":"34","6":"ENSG00000117054","7":"ACADM","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Acads","2":"11409","3":"ENSMUSG00000029545","4":"ACADS","5":"35","6":"ENSG00000122971","7":"ACADS","8":"M5905","9":"HALLMARK_ADIPOGENESIS","10":"H","11":"","12":"Hallmark","13":"Genes up-regulated during adipocyte differentiation (adipogenesis).","14":"HS","15":"26771021","16":"","17":"","18":"","19":"2024.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
   </script>
 </div>
+</div>
+<div class="section level3">
+<h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h3>
+<p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function returns a data frame with one
+gene per row. Generally, the <code>gene_symbol</code> (gene symbol) and
+<code>gs_name</code> (gene set name) columns are the most useful.</p>
+<p>The <code>gene_symbol</code>, <code>ncbi_gene</code>, and
+<code>ensembl_gene</code> columns are the gene identifiers for the
+requested species. The <code>db_gene_symbol</code>,
+<code>db_ncbi_gene</code>, <code>db_ensembl_gene</code> columns are the
+gene identifiers in the database. The <code>source_gene</code> column
+are the gene identifiers in the original publication. The
+<code>gs_*</code> columns provide details about the gene sets. The
+<code>db_*</code> columns provide details about the MSigDB database, so
+should be identical for the entire data frame.</p>
 <p>The version of the MSigDB database is stored in the
 <code>db_version</code> column of the returned data frame.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">$</span><span class="va">db_version</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2024.1.Hs"</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="helper-functions">Helper functions<a class="anchor" aria-label="anchor" href="#helper-functions"></a>
@@ -162,7 +202,7 @@ dplyr.</p>
 <p>Use <code><a href="../reference/msigdbr_species.html">msigdbr_species()</a></code> to check the available species.
 Both scientific and common names are acceptable for the
 <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -171,7 +211,7 @@ Both scientific and common names are acceptable for the
 </div>
 <p>Use <code><a href="../reference/msigdbr_collections.html">msigdbr_collections()</a></code> to check the available
 collections.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -186,26 +226,26 @@ collections.</p>
 packages.</p>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
 with genes as NCBI/Entrez IDs.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">msigdbr_df</span>, <span class="va">gs_name</span>, <span class="va">ncbi_gene</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_ids_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/clusterProfiler/" class="external-link">clusterProfiler</a>
 with genes as gene symbols.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_t2g</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">msigdbr_df</span>, <span class="va">gs_name</span>, <span class="va">gene_symbol</span><span class="op">)</span></span>
 <span><span class="fu">enricher</span><span class="op">(</span>gene <span class="op">=</span> <span class="va">gene_symbols_vector</span>, TERM2GENE <span class="op">=</span> <span class="va">msigdbr_t2g</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/fgsea/" class="external-link">fgsea</a>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">fgsea</span><span class="op">(</span>pathways <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 <p>Use the gene sets data frame for <a href="https://bioconductor.org/packages/GSVA/" class="external-link">GSVA</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="va">gsvapar</span> <span class="op">&lt;-</span> <span class="fu">gsvaParam</span><span class="op">(</span>geneSets <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span>
 <span><span class="fu">gsva</span><span class="op">(</span><span class="va">gsvapar</span><span class="op">)</span></span></code></pre></div>
 <p>Earlier versions of GSVA (&lt;1.50) only need the <code>gsva()</code>
 function.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">msigdbr_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gene_symbol</span>, f <span class="op">=</span> <span class="va">msigdbr_df</span><span class="op">$</span><span class="va">gs_name</span><span class="op">)</span></span>
 <span><span class="fu">gsva</span><span class="op">(</span>gset.idx.list <span class="op">=</span> <span class="va">msigdbr_list</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -242,7 +282,7 @@ based on the latest version of MSigDB.</p>
 <p>Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
 that are natively mouse</a> and don’t require orthology conversion.</p>
 <p><strong>What if I have other questions?</strong></p>
-<p>You can submit feedback and report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub</a>.</p>
+<p>Please submit feedback and report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
