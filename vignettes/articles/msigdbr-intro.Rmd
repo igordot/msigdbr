@@ -34,9 +34,6 @@ The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets 
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
 * without accessing external resources requiring an active internet connection
 
-Please be aware that the orthologs were computationally predicted at the gene level.
-The full pathways may not be well conserved across species.
-
 ## Installation
 
 The package can be installed from [CRAN](https://cran.r-project.org/package=msigdbr).
@@ -53,18 +50,37 @@ Load package.
 library(msigdbr)
 ```
 
-All gene sets in the database can be retrieved by specifying a species of interest.
+The `msigdbr()` function retrieves a data frame of all genes and gene sets in the database.
 
-```{r msigdbr-mouse-all}
+```{r msigdbr-default}
+all_gene_sets <- msigdbr()
+head(all_gene_sets)
+```
+
+### Species
+
+The `species` parameter enables conversion of the original human genes to their orthologs in various model organisms, such as mouse.
+You can use `msigdbr_species()` to check the available species.
+
+```{r msigdbr-mouse-all, message=FALSE}
 all_gene_sets <- msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 ```
 
-The `gene_symbol`, `ncbi_gene`, and `ensembl_gene` columns are the gene identifiers for the requested species.
-The `db_gene_symbol`, `db_ncbi_gene`, `db_ensembl_gene` columns are the gene identifiers in the database.
-The `source_gene` column are the gene identifiers in the original publication.
-The `gs_*` columns provide details about the gene sets.
-The `db_*` columns provide details about the MSigDB database, so should be identical for the entire data frame.
+Please be aware that the orthologs are computationally predicted at the gene level.
+The full pathways may not be well conserved across species.
+
+There are human and mouse versions of MSigDB.
+The `db_species` parameter specifies the database (human by default).
+
+```{r msigdbr-mouse-mm, message=FALSE}
+all_mm_gene_sets <- msigdbr(species = "Mus musculus", db_species = "MM")
+head(all_mm_gene_sets)
+```
+
+The genes within each gene set may originate from a species different from the database target species, as indicated by the `gs_source_species` and `db_target_species` fields.
+
+### Collections
 
 You can retrieve data just for a specific collection, such as the Hallmark gene sets.
 
@@ -88,6 +104,17 @@ all_gene_sets |>
   dplyr::filter(gs_collection == "H") |>
   head()
 ```
+
+### Output
+
+The `msigdbr()` function returns a data frame with one gene per row.
+Generally, the `gene_symbol` (gene symbol) and `gs_name` (gene set name) columns are the most useful.
+
+The `gene_symbol`, `ncbi_gene`, and `ensembl_gene` columns are the gene identifiers for the requested species.
+The `db_gene_symbol`, `db_ncbi_gene`, `db_ensembl_gene` columns are the gene identifiers in the database.
+The `source_gene` column are the gene identifiers in the original publication.
+The `gs_*` columns provide details about the gene sets.
+The `db_*` columns provide details about the MSigDB database, so should be identical for the entire data frame.
 
 The version of the MSigDB database is stored in the `db_version` column of the returned data frame.
 
@@ -188,7 +215,7 @@ Since 2022, the GSEA/MSigDB team provides [collections that are natively mouse](
 
 **What if I have other questions?**
 
-You can submit feedback and report bugs on [GitHub](https://github.com/igordot/msigdbr/issues).
+Please submit feedback and report bugs on [GitHub](https://github.com/igordot/msigdbr/issues).
 
 ## Details
 
