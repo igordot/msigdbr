@@ -46,21 +46,18 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
-<p>The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software.</p>
+  <main id="main" class="col-md-9"><p>The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software.</p>
 <p>The data can be accessed using the <code><a href="reference/msigdbr.html">msigdbr()</a></code> function, which returns a data frame of gene sets and their member genes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>You can convert the original human genes to their orthologs in various model organisms, such as mouse.</p>
+<p>You can convert the original human genes to their orthologs in other organisms, such as mouse.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mm_genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span><span class="op">)</span></span></code></pre></div>
-<p>You can retrieve data just for a specific collection, such as the Hallmark gene sets.</p>
+<code class="sourceCode R"><span><span class="va">genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span><span class="op">)</span></span></code></pre></div>
+<p>You can retrieve gene sets from a specific collection, such as the Hallmark gene sets.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">h_genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span></code></pre></div>
 <p>Check the <a href="articles/msigdbr-intro.html">full overview</a> for more information.</p>
-</div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
