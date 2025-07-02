@@ -1,4 +1,4 @@
-# msigdbr: MSigDB in a Tidy Data Format
+# msigdbr: MSigDB data frame
 
 [![CRAN](https://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/msigdbr)](https://cran.r-project.org/package=msigdbr)
