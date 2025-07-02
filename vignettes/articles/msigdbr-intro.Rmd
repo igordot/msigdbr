@@ -84,25 +84,21 @@ The genes within each gene set may originate from a species different from the d
 
 You can retrieve data just for a specific collection, such as the Hallmark gene sets.
 
-```{r msigdbr-mouse-h}
+```{r msigdbr-mouse-h, eval=FALSE}
 h_gene_sets <- msigdbr(species = "mouse", collection = "H")
-head(h_gene_sets)
 ```
 
 You can specify a sub-collection, such as C2 (curated) CGP (chemical and genetic perturbations) gene sets.
 
-```{r msigdbr-mouse-c2}
+```{r msigdbr-mouse-c2, eval=FALSE}
 cgp_gene_sets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
-head(cgp_gene_sets)
 ```
 
 If you require more precise filtering, the `msigdbr()` function output is a data frame that can be manipulated using standard methods.
 For example, you can subset to a specific collection using dplyr.
 
-```{r filter-h}
-all_gene_sets |>
-  dplyr::filter(gs_collection == "H") |>
-  head()
+```{r filter-h, eval=FALSE}
+dplyr::filter(all_gene_sets, gs_collection == "H")
 ```
 
 ### Output

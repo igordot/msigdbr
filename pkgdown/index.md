@@ -1,5 +1,3 @@
-## Overview
-
 The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software.
 
 The data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes.
@@ -8,16 +6,16 @@ The data can be accessed using the `msigdbr()` function, which returns a data fr
 genesets <- msigdbr()
 ```
 
-You can convert the original human genes to their orthologs in various model organisms, such as mouse.
+You can convert the original human genes to their orthologs in other organisms, such as mouse.
 
 ```r
-mm_genesets <- msigdbr(species = "mouse")
+genesets <- msigdbr(species = "mouse")
 ```
 
-You can retrieve data just for a specific collection, such as the Hallmark gene sets.
+You can retrieve gene sets from a specific collection, such as the Hallmark gene sets.
 
 ```r
-h_genesets <- msigdbr(species = "mouse", collection = "H")
+genesets <- msigdbr(species = "mouse", collection = "H")
 ```
 
 Check the [full overview](articles/msigdbr-intro.html) for more information.
