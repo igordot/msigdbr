@@ -1,11 +1,9 @@
-# msigdbr: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
+# msigdbr: MSigDB for Multiple Organisms in a Tidy Data Format
 
 [![CRAN](https://www.r-pkg.org/badges/version/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/msigdbr)](https://cran.r-project.org/package=msigdbr)
 [![R-CMD-check](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/igordot/msigdbr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/igordot/msigdbr/graph/badge.svg)](https://app.codecov.io/gh/igordot/msigdbr)
-
-## Overview
 
 The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
@@ -13,23 +11,5 @@ The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets 
 * for multiple frequently studied model organisms, such as mouse, rat, pig, zebrafish, fly, and yeast, in addition to the original human genes
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
 * without accessing external resources requiring an active internet connection
-
-## Installation
-
-The package can be installed from [CRAN](https://cran.r-project.org/package=msigdbr).
-
-```r
-install.packages("msigdbr")
-```
-
-## Usage
-
-The package data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes.
-For example, you can retrieve mouse genes from the C2 (curated) CGP (chemical and genetic perturbations) gene sets.
-
-```r
-library(msigdbr)
-genesets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
-```
 
 Check the [documentation website](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html) for more information.
