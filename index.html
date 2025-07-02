@@ -46,7 +46,10 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p>The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software.</p>
+  <main id="main" class="col-md-9"><div class="section level2">
+<h2 id="msigdbr-msigdb-data-frame">msigdbr: MSigDB data frame<a class="anchor" aria-label="anchor" href="#msigdbr-msigdb-data-frame"></a>
+</h2>
+<p>The msigdbr package provides Molecular Signatures Database (MSigDB) gene sets in a tidy R data frame.</p>
 <p>The data can be accessed using the <code><a href="reference/msigdbr.html">msigdbr()</a></code> function, which returns a data frame of gene sets and their member genes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -57,7 +60,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">genesets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"mouse"</span>, collection <span class="op">=</span> <span class="st">"H"</span><span class="op">)</span></span></code></pre></div>
 <p>Check the <a href="articles/msigdbr-intro.html">full overview</a> for more information.</p>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
