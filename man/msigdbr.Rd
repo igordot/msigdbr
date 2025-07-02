@@ -5,8 +5,8 @@
 \title{Retrieve the gene sets data frame}
 \usage{
 msigdbr(
-  species = "Homo sapiens",
   db_species = "HS",
+  species = "human",
   collection = NULL,
   subcollection = NULL,
   category = deprecated(),
@@ -14,9 +14,9 @@ msigdbr(
 )
 }
 \arguments{
-\item{species}{Species name for output genes, such as \code{"Homo sapiens"} or \code{"Mus musculus"}. Use \code{msigdbr_species()} for available options.}
-
 \item{db_species}{Species abbreviation for the human or mouse databases (\code{"HS"} or \code{"MM"}).}
+
+\item{species}{Species name for output genes, such as \code{"Homo sapiens"} or \code{"Mus musculus"}. Both scientific and common names are acceptable. Use \code{msigdbr_species()} for the available options.}
 
 \item{collection}{Collection abbreviation, such as \code{"H"} or \code{"C1"}. Use \code{msigdbr_collections()} for the available options.}
 
@@ -38,8 +38,6 @@ The output includes gene symbols along with NCBI and Ensembl IDs.
 Historically, the MSigDB resource has been tailored to the analysis of human-specific datasets, with gene sets exclusively aligned to the human genome.
 Starting with release 2022.1, MSigDB incorporated a database of mouse-native gene sets and was split into human and mouse divisions ("Hs" and "Mm").
 Each one is provided in the approved gene symbols of its respective species.
-The versioning convention of MSigDB is in the format \code{Year.Release.Species}.
-The genes within each gene set may originate from a species different from the database target species as indicated by the \code{gs_source_species} and \code{db_target_species} fields.
 
 Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 }

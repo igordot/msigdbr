@@ -7,13 +7,11 @@
 #' Historically, the MSigDB resource has been tailored to the analysis of human-specific datasets, with gene sets exclusively aligned to the human genome.
 #' Starting with release 2022.1, MSigDB incorporated a database of mouse-native gene sets and was split into human and mouse divisions ("Hs" and "Mm").
 #' Each one is provided in the approved gene symbols of its respective species.
-#' The versioning convention of MSigDB is in the format `Year.Release.Species`.
-#' The genes within each gene set may originate from a species different from the database target species as indicated by the `gs_source_species` and `db_target_species` fields.
 #'
 #' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 #'
-#' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Use `msigdbr_species()` for available options.
 #' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
+#' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Both scientific and common names are acceptable. Use `msigdbr_species()` for the available options.
 #' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` for the available options.
 #' @param subcollection Sub-collection abbreviation, such as `"CGP"` or `"BP"`. Use `msigdbr_collections()` for the available options.
 #' @param category `r lifecycle::badge("deprecated")` use the `collection` argument
@@ -27,19 +25,19 @@
 #' @importFrom dplyr arrange distinct filter inner_join mutate rename select
 #'
 #' @export
-msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
+msigdbr <- function(db_species = "HS", species = "human", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check parameters
-  assertthat::assert_that(
-    is.character(species),
-    length(species) == 1,
-    nchar(species) > 1
-  )
   assertthat::assert_that(
     is.character(db_species),
     length(db_species) == 1,
     nchar(db_species) == 2
   )
   db_species <- toupper(db_species)
+  assertthat::assert_that(
+    is.character(species),
+    length(species) == 1,
+    nchar(species) > 1
+  )
   if (!is.null(collection)) {
     assertthat::assert_that(
       is.character(collection),
@@ -66,11 +64,8 @@ msigdbr <- function(species = "Homo sapiens", db_species = "HS", collection = NU
 
   # Display a message when selecting the human database and mouse genes
   if (db_species == "HS" && species %in% species_mm) {
-    rlang::inform(
-      message = "Using human MSigDB with ortholog mapping to mouse. Use `db_species = \"MM\"` for mouse-native gene sets.",
-      .frequency = "once",
-      .frequency_id = "msigdbr_species_mm"
-    )
+    mm_msg <- "Using human MSigDB with ortholog mapping to mouse. Use `db_species = \"MM\"` for mouse-native gene sets."
+    rlang::inform(message = mm_msg, .frequency = "once", .frequency_id = "msigdbr_species_mm")
   }
 
   # Check for deprecated category arguments
