@@ -110,13 +110,37 @@ all_gene_sets |>
 The `msigdbr()` function returns a data frame with one gene per row.
 Generally, the `gene_symbol` (gene symbol) and `gs_name` (gene set name) columns are the most useful.
 
-The `gene_symbol`, `ncbi_gene`, and `ensembl_gene` columns are the gene identifiers for the requested species.
-The `db_gene_symbol`, `db_ncbi_gene`, `db_ensembl_gene` columns are the gene identifiers in the database.
-The `source_gene` column are the gene identifiers in the original publication.
-The `gs_*` columns provide details about the gene sets.
-The `db_*` columns provide details about the MSigDB database, so should be identical for the entire data frame.
+The data frame contains the following columns for gene-level info:
 
-The version of the MSigDB database is stored in the `db_version` column of the returned data frame.
+* `gene_symbol` Official gene symbol for the requested species.
+* `ncbi_gene` NCBI (formerly Entrez) ID for the requested species.
+* `ensembl_gene` Ensembl ID for the requested species.
+* `db_gene_symbol` Official gene symbol in the MSigDB database.
+* `db_ncbi_gene` NCBI ID in the MSigDB database.
+* `db_ensembl_gene` Ensembl ID in the MSigDB database.
+* `source_gene` Gene identifier in the original publication.
+* `ortholog_taxon_id` The taxon ID of the species.
+* `ortholog_sources` The databases that support the ortholog mapping.
+* `num_ortholog_sources` The number of databases that support the ortholog mapping.
+
+The `gs_*` columns provide details about the gene sets:
+
+* `gs_id` Gene set systematic name.
+* `gs_name` Gene set standard name.
+* `gs_collection` The collection the gene set belongs to.
+* `gs_subcollection` The sub-collection the gene set belongs to.
+* `gs_collection_name` The name of the collection.
+* `gs_description` A description of the gene set.
+* `gs_source_species` The species from which the gene set originated from.
+* `gs_pmid` PubMed ID.
+* `gs_geoid` GEO ID.
+* `gs_exact_source` The original source of the gene set, such as a resource identifier, a figure, or a supplementary document from a publication.
+* `gs_url` A URL to the original source of the gene set.
+
+The `db_*` columns provide details about the MSigDB database and should be identical for the entire data frame:
+
+* `db_version` The version of the MSigDB database.
+* `db_target_species` The target species of the MSigDB database (HS or MM).
 
 ```{r msigdb-version}
 unique(all_gene_sets$db_version)
