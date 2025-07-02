@@ -12,4 +12,4 @@ The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets:
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
 * without accessing external resources requiring an active internet connection
 
-Check the [documentation website](https://igordot.github.io/msigdbr/articles/msigdbr-intro.html) for more information.
+Check the [documentation website](https://igordot.github.io/msigdbr/) for more information.
