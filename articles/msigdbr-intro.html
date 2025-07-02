@@ -178,17 +178,77 @@ dplyr.</p>
 <p>The <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function returns a data frame with one
 gene per row. Generally, the <code>gene_symbol</code> (gene symbol) and
 <code>gs_name</code> (gene set name) columns are the most useful.</p>
-<p>The <code>gene_symbol</code>, <code>ncbi_gene</code>, and
-<code>ensembl_gene</code> columns are the gene identifiers for the
-requested species. The <code>db_gene_symbol</code>,
-<code>db_ncbi_gene</code>, <code>db_ensembl_gene</code> columns are the
-gene identifiers in the database. The <code>source_gene</code> column
-are the gene identifiers in the original publication. The
-<code>gs_*</code> columns provide details about the gene sets. The
-<code>db_*</code> columns provide details about the MSigDB database, so
-should be identical for the entire data frame.</p>
-<p>The version of the MSigDB database is stored in the
-<code>db_version</code> column of the returned data frame.</p>
+<p>The data frame contains the following columns for gene-level
+info:</p>
+<ul>
+<li>
+<code>gene_symbol</code> Official gene symbol for the requested
+species.</li>
+<li>
+<code>ncbi_gene</code> NCBI (formerly Entrez) ID for the requested
+species.</li>
+<li>
+<code>ensembl_gene</code> Ensembl ID for the requested species.</li>
+<li>
+<code>db_gene_symbol</code> Official gene symbol in the MSigDB
+database.</li>
+<li>
+<code>db_ncbi_gene</code> NCBI ID in the MSigDB database.</li>
+<li>
+<code>db_ensembl_gene</code> Ensembl ID in the MSigDB database.</li>
+<li>
+<code>source_gene</code> Gene identifier in the original
+publication.</li>
+<li>
+<code>ortholog_taxon_id</code> The taxon ID of the species.</li>
+<li>
+<code>ortholog_sources</code> The databases that support the
+ortholog mapping.</li>
+<li>
+<code>num_ortholog_sources</code> The number of databases that
+support the ortholog mapping.</li>
+</ul>
+<p>The <code>gs_*</code> columns provide details about the gene
+sets:</p>
+<ul>
+<li>
+<code>gs_id</code> Gene set systematic name.</li>
+<li>
+<code>gs_name</code> Gene set standard name.</li>
+<li>
+<code>gs_collection</code> The collection the gene set belongs
+to.</li>
+<li>
+<code>gs_subcollection</code> The sub-collection the gene set
+belongs to.</li>
+<li>
+<code>gs_collection_name</code> The name of the collection.</li>
+<li>
+<code>gs_description</code> A description of the gene set.</li>
+<li>
+<code>gs_source_species</code> The species from which the gene set
+originated from.</li>
+<li>
+<code>gs_pmid</code> PubMed ID.</li>
+<li>
+<code>gs_geoid</code> GEO ID.</li>
+<li>
+<code>gs_exact_source</code> The original source of the gene set,
+such as a resource identifier, a figure, or a supplementary document
+from a publication.</li>
+<li>
+<code>gs_url</code> A URL to the original source of the gene
+set.</li>
+</ul>
+<p>The <code>db_*</code> columns provide details about the MSigDB
+database and should be identical for the entire data frame:</p>
+<ul>
+<li>
+<code>db_version</code> The version of the MSigDB database.</li>
+<li>
+<code>db_target_species</code> The target species of the MSigDB
+database (HS or MM).</li>
+</ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">$</span><span class="va">db_version</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2024.1.Hs"</span></span></code></pre></div>
