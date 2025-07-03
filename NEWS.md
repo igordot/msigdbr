@@ -1,3 +1,7 @@
+# msigdbr 25.1.0
+
+* Included the MSigDB v2025.1 data.
+
 # msigdbr 24.1.0
 
 * Updated the package to download the data, removing the non-CRAN msigdbdf data package dependency.

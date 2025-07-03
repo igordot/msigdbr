@@ -1,4 +1,5 @@
 ## Test environments
+
 * local R installation (macOS): R 4.5.0
 * ubuntu-latest (on GitHub Actions): R 4.1, R-release, R-devel
 * macOS (on GitHub Actions): R-release
@@ -7,11 +8,11 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
 ## revdepcheck results
 
-We checked 34 reverse dependencies (13 from CRAN + 21 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 12 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
- * We failed to check 2 packages
+ * We failed to check 4 packages
