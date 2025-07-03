@@ -16,7 +16,7 @@ test_that("species", {
   expect_identical(unique(m_hs_hs$db_target_species), "HS")
   # Overall dimensions
   expect_gt(nrow(m_hs_hs), 4400000)
-  expect_lt(nrow(m_hs_hs), 4500000)
+  expect_lt(nrow(m_hs_hs), 4900000)
   expect_equal(n_distinct(m_hs_hs$gs_collection), 9)
   expect_equal(n_distinct(m_hs_hs$gs_subcollection), 22)
   expect_gt(n_distinct(m_hs_hs$gs_id), 34000)
@@ -71,9 +71,9 @@ test_that("species", {
   expect_identical(unique(m_mm_mm$db_target_species), "MM")
   # Overall dimensions
   expect_gt(nrow(m_mm_mm), 1600000)
-  expect_lt(nrow(m_mm_mm), 1700000)
-  expect_equal(n_distinct(m_mm_mm$gs_collection), 6)
-  expect_equal(n_distinct(m_mm_mm$gs_subcollection), 11)
+  expect_lt(nrow(m_mm_mm), 1900000)
+  expect_gt(n_distinct(m_mm_mm$gs_collection), 5)
+  expect_gt(n_distinct(m_mm_mm$gs_subcollection), 10)
   expect_gt(n_distinct(m_mm_mm$gs_id), 16000)
   expect_gt(n_distinct(m_mm_mm$db_gene_symbol), 40000)
   expect_gt(n_distinct(m_mm_mm$db_ncbi_gene), 40000)

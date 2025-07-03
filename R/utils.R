@@ -19,12 +19,16 @@ load_msigdb_df <- function(target_species = c("HS", "MM"), overwrite = FALSE, ve
 
   # Define source URL based on target species
   if (target_species == "HS") {
-    file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Hs.rds?download=1"
-    file_md5 <- "ff43b9132477cbdff7243cbf3574b816"
+    # file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Hs.rds?download=1"
+    # file_md5 <- "ff43b9132477cbdff7243cbf3574b816"
+    file_url <- "https://zenodo.org/records/15800824/files/msigdb.2025.1.Hs.rds?download=1"
+    file_md5 <- "d898c396b109d61ef9b20b0632f0bfa7"
   }
   if (target_species == "MM") {
-    file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Mm.rds?download=1"
-    file_md5 <- "dc60894e71d8e14e5bd0022834cca77f"
+    # file_url <- "https://zenodo.org/records/15377497/files/msigdb.2024.1.Mm.rds?download=1"
+    # file_md5 <- "dc60894e71d8e14e5bd0022834cca77f"
+    file_url <- "https://zenodo.org/records/15800824/files/msigdb.2025.1.Mm.rds?download=1"
+    file_md5 <- "e3b2d3a2aa3bd77b0b22fdf185207afd"
   }
 
   # Create a directory to hold the data
