@@ -11,7 +11,7 @@ The output includes gene symbols along with NCBI and Ensembl IDs."><meta name="t
 
     <a class="navbar-brand me-2" href="../index.html">msigdbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@ The output includes gene symbols along with NCBI and Ensembl IDs."><meta name="t
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Retrieve the gene sets data frame</h1>
-      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/v25.1.0/R/msigdbr.R" class="external-link"><code>R/msigdbr.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/main/R/msigdbr.R" class="external-link"><code>R/msigdbr.R</code></a></small>
       <div class="d-none name"><code>msigdbr.Rd</code></div>
     </div>
 
@@ -98,6 +98,20 @@ Each one is provided in the approved gene symbols of its respective species.</p>
     <p><a href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp" class="external-link">https://www.gsea-msigdb.org/gsea/msigdb/index.jsp</a></p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># Get all human gene sets</span></span></span>
+<span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get all mouse gene sets</span></span></span>
+<span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span>db_species <span class="op">=</span> <span class="st">"MM"</span>, species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs</span></span></span>
+<span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Rattus norvegicus"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
