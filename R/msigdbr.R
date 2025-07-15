@@ -25,6 +25,18 @@
 #' @importFrom dplyr arrange distinct filter inner_join mutate rename select
 #'
 #' @export
+#'
+#' @examples
+#' \donttest{
+#' # Get all human gene sets
+#' gs <- msigdbr()
+#'
+#' # Get all mouse gene sets
+#' gs <- msigdbr(db_species = "MM", species = "Mus musculus")
+#'
+#' # Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs
+#' gs <- msigdbr(species = "Rattus norvegicus", collection = "C2", subcollection = "CGP")
+#' }
 msigdbr <- function(db_species = "HS", species = "human", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check parameters
   assertthat::assert_that(

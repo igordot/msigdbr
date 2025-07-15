@@ -41,6 +41,18 @@ Each one is provided in the approved gene symbols of its respective species.
 
 Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 }
+\examples{
+\donttest{
+# Get all human gene sets
+gs <- msigdbr()
+
+# Get all mouse gene sets
+gs <- msigdbr(db_species = "MM", species = "Mus musculus")
+
+# Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs
+gs <- msigdbr(species = "Rattus norvegicus", collection = "C2", subcollection = "CGP")
+}
+}
 \references{
 \url{https://www.gsea-msigdb.org/gsea/msigdb/index.jsp}
 }

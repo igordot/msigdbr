@@ -2,12 +2,17 @@
 #'
 #' @return A data frame of the available collections.
 #'
-#' @param db_species Species abbreviation for the human or mouse databases (`"Hs"` or `"Mm"`).
+#' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
 #'
 #' @importFrom dplyr arrange count distinct
 #'
 #' @export
-msigdbr_collections <- function(db_species = "Hs") {
+#'
+#' @examples
+#' \donttest{
+#' msigdbr_collections()
+#' }
+msigdbr_collections <- function(db_species = "HS") {
   # Get the full table of gene sets and their member genes
   mc <- load_msigdb_df(target_species = db_species)
   mc <- tibble::as_tibble(mc)

@@ -6,6 +6,9 @@
 #' @importFrom dplyr arrange distinct select
 #'
 #' @export
+#'
+#' @examples
+#' msigdbr_species()
 msigdbr_species <- function() {
   babelgene::species() |>
     tibble::as_tibble() |>
