@@ -10,6 +10,7 @@
 #'
 #' @examples
 #' \donttest{
+#'
 #' msigdbr_collections()
 #' }
 msigdbr_collections <- function(db_species = "HS") {

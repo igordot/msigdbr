@@ -17,6 +17,7 @@ List the collections available in the msigdbr package
 }
 \examples{
 \donttest{
+
 msigdbr_collections()
 }
 }

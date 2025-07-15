@@ -74,7 +74,7 @@ There are human and mouse versions of MSigDB.
 The `db_species` parameter specifies the database (human by default).
 
 ```{r msigdbr-mouse-mm, message=FALSE}
-all_mm_gene_sets <- msigdbr(species = "Mus musculus", db_species = "MM")
+all_mm_gene_sets <- msigdbr(db_species = "MM", species = "Mus musculus")
 head(all_mm_gene_sets)
 ```
 

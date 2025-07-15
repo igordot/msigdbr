@@ -11,8 +11,8 @@
 #' Mouse MSigDB includes gene sets curated from mouse-centric datasets and specified in native mouse gene identifiers, eliminating the need for ortholog mapping.
 #'
 #' @param db_species Species abbreviation for the human or mouse databases (`"HS"` or `"MM"`).
-#' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Both scientific and common names are acceptable. Use `msigdbr_species()` for the available options.
-#' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` for the available options.
+#' @param species Species name for output genes, such as `"Homo sapiens"` or `"Mus musculus"`. Both scientific and common names are acceptable. Use `msigdbr_species()` to see the available options.
+#' @param collection Collection abbreviation, such as `"H"` or `"C1"`. Use `msigdbr_collections()` to see the available options.
 #' @param subcollection Sub-collection abbreviation, such as `"CGP"` or `"BP"`. Use `msigdbr_collections()` for the available options.
 #' @param category `r lifecycle::badge("deprecated")` use the `collection` argument
 #' @param subcategory `r lifecycle::badge("deprecated")` use the `subcollection` argument
@@ -28,6 +28,7 @@
 #'
 #' @examples
 #' \donttest{
+#'
 #' # Get all human gene sets
 #' gs <- msigdbr()
 #'
