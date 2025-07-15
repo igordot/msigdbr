@@ -104,12 +104,58 @@ Each one is provided in the approved gene symbols of its respective species.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all human gene sets</span></span></span>
 <span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gs</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ABCC4       10257     ENSG0000012… ABCC4          10257        ENSG00000125257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ABRAXAS2    23172     ENSG0000016… ABRAXAS2       23172        ENSG00000165660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ACTN4       81        ENSG0000013… ACTN4          81           ENSG00000130402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ACVR1       90        ENSG0000011… ACVR1          90           ENSG00000115170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ADAM9       8754      ENSG0000016… ADAM9          8754         ENSG00000168615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ADAMTS5     11096     ENSG0000015… ADAMTS5        11096        ENSG00000154736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   db_target_species &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all mouse gene sets</span></span></span>
 <span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span>db_species <span class="op">=</span> <span class="st">"MM"</span>, species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gs</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> AU021092    239691    ENSMUSG0000… AU021092       239691       ENSMUSG0000005…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Ahnak       66395     ENSMUSG0000… Ahnak          66395        ENSMUSG0000006…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Alcam       11658     ENSMUSG0000… Alcam          11658        ENSMUSG0000002…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Ankrd40     71452     ENSMUSG0000… Ankrd40        71452        ENSMUSG0000002…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Arid1a      93760     ENSMUSG0000… Arid1a         93760        ENSMUSG0000000…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Bckdhb      12040     ENSMUSG0000… Bckdhb         12040        ENSMUSG0000003…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   db_target_species &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs</span></span></span>
 <span class="r-in"><span><span class="va">gs</span> <span class="op">&lt;-</span> <span class="fu">msigdbr</span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Rattus norvegicus"</span>, collection <span class="op">=</span> <span class="st">"C2"</span>, subcollection <span class="op">=</span> <span class="st">"CGP"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gs</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 23</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ahnak       191572    ENSRNOG0000… AHNAK          79026        ENSG00000124942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Alcam       79559     ENSRNOG0000… ALCAM          214          ENSG00000170017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Ankrd40     690586    ENSRNOG0000… ANKRD40        91369        ENSG00000154945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Arid1a      297867    ENSRNOG0000… ARID1A         8289         ENSG00000117713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Bckdhb      29711     ENSRNOG0000… BCKDHB         594          ENSG00000083123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> RGD1565166  287059    ENSRNOG0000… C16orf89       146556       ENSG00000153446</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 17 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   db_target_species &lt;chr&gt;, ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
