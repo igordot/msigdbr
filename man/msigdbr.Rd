@@ -46,12 +46,15 @@ Mouse MSigDB includes gene sets curated from mouse-centric datasets and specifie
 
 # Get all human gene sets
 gs <- msigdbr()
+head(gs)
 
 # Get all mouse gene sets
 gs <- msigdbr(db_species = "MM", species = "Mus musculus")
+head(gs)
 
 # Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs
 gs <- msigdbr(species = "Rattus norvegicus", collection = "C2", subcollection = "CGP")
+head(gs)
 }
 }
 \references{
