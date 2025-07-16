@@ -8,11 +8,8 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
-#'
+#' @examplesIf interactive() || identical(Sys.getenv("IN_PKGDOWN"), "true")
 #' msigdbr_collections()
-#' }
 msigdbr_collections <- function(db_species = "HS") {
   # Get the full table of gene sets and their member genes
   mc <- load_msigdb_df(target_species = db_species)

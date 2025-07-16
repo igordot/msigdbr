@@ -26,9 +26,7 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
-#'
+#' @examplesIf interactive() || identical(Sys.getenv("IN_PKGDOWN"), "true")
 #' # Get all human gene sets
 #' gs <- msigdbr()
 #' head(gs)
@@ -40,7 +38,6 @@
 #' # Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs
 #' gs <- msigdbr(species = "Rattus norvegicus", collection = "C2", subcollection = "CGP")
 #' head(gs)
-#' }
 msigdbr <- function(db_species = "HS", species = "human", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
   # Check parameters
   assertthat::assert_that(

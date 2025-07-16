@@ -16,8 +16,7 @@ A data frame of the available collections.
 List the collections available in the msigdbr package
 }
 \examples{
-\donttest{
-
+\dontshow{if (interactive() || identical(Sys.getenv("IN_PKGDOWN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 msigdbr_collections()
-}
+\dontshow{\}) # examplesIf}
 }
