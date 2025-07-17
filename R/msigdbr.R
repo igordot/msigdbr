@@ -26,7 +26,7 @@
 #'
 #' @export
 #'
-#' @examplesIf interactive() || identical(Sys.getenv("IN_PKGDOWN"), "true")
+#' @examplesIf (identical(Sys.getenv("NOT_CRAN"), "true") || identical(Sys.getenv("IN_PKGDOWN"), "true"))
 #' # Get all human gene sets
 #' gs <- msigdbr()
 #' head(gs)

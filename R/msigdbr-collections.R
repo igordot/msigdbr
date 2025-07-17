@@ -8,7 +8,7 @@
 #'
 #' @export
 #'
-#' @examplesIf interactive() || identical(Sys.getenv("IN_PKGDOWN"), "true")
+#' @examplesIf (identical(Sys.getenv("NOT_CRAN"), "true") || identical(Sys.getenv("IN_PKGDOWN"), "true"))
 #' msigdbr_collections()
 msigdbr_collections <- function(db_species = "HS") {
   # Get the full table of gene sets and their member genes
