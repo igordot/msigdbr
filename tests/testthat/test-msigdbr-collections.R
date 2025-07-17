@@ -1,3 +1,6 @@
+# Skip on CRAN due to long run-time and use of web resources
+skip_on_cran()
+
 test_that("msigdbr_collections()", {
   chs <- msigdbr_collections(db_species = "Hs")
   expect_identical(chs, msigdbr_collections())

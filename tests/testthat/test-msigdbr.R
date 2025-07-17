@@ -1,3 +1,6 @@
+# Skip on CRAN due to long run-time and use of web resources
+skip_on_cran()
+
 library(dplyr)
 
 test_that("species", {
