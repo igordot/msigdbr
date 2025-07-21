@@ -28,11 +28,15 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"></ul>
-<ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
 <li class="active nav-item"><a class="nav-link" href="../articles/msigdbr-intro.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
+      </ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/igordot/msigdbr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
@@ -43,8 +47,8 @@
 
 
 
-<link href="msigdbr-intro_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="msigdbr-intro_files/pagedtable-1.1/js/pagedtable.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Introduction to msigdbr</h1>
@@ -57,7 +61,7 @@
     
     
 <div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
 <p>Pathway analysis is a common task in genomics research and there are
 many available R-based software tools. Depending on the tool, it may be
@@ -88,6 +92,9 @@ connection</li>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<div class="section level3">
+<h3 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h3>
 <p>Load package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igordot.github.io/msigdbr/">msigdbr</a></span><span class="op">)</span></span></code></pre></div>
@@ -95,11 +102,21 @@ connection</li>
 genes and gene sets in the database.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]}],"data":[{"1":"ABCC4","2":"10257","3":"ENSG00000125257","4":"ABCC4","5":"10257","6":"ENSG00000125257","7":"ABCC4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"},{"1":"ABRAXAS2","2":"23172","3":"ENSG00000165660","4":"ABRAXAS2","5":"23172","6":"ENSG00000165660","7":"KIAA0157","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"},{"1":"ACTN4","2":"81","3":"ENSG00000130402","4":"ACTN4","5":"81","6":"ENSG00000130402","7":"ACTN4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"},{"1":"ACVR1","2":"90","3":"ENSG00000115170","4":"ACVR1","5":"90","6":"ENSG00000115170","7":"ACVR1","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"},{"1":"ADAM9","2":"8754","3":"ENSG00000168615","4":"ADAM9","5":"8754","6":"ENSG00000168615","7":"ADAM9","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"},{"1":"ADAMTS5","2":"11096","3":"ENSG00000154736","4":"ADAMTS5","5":"11096","6":"ENSG00000154736","7":"ADAMTS5","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
-  </script>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 20</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ABCC4       10257     ENSG0000012… ABCC4          10257        ENSG00000125257</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ABRAXAS2    23172     ENSG0000016… ABRAXAS2       23172        ENSG00000165660</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ACTN4       81        ENSG0000013… ACTN4          81           ENSG00000130402</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ACVR1       90        ENSG0000011… ACVR1          90           ENSG00000115170</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> ADAM9       8754      ENSG0000016… ADAM9          8754         ENSG00000168615</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> ADAMTS5     11096     ENSG0000015… ADAMTS5        11096        ENSG00000154736</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   db_target_species &lt;chr&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="species">Species<a class="anchor" aria-label="anchor" href="#species"></a>
@@ -110,12 +127,22 @@ mouse. You can use <code><a href="../reference/msigdbr_species.html">msigdbr_spe
 species.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]},{"label":["ortholog_taxon_id"],"name":[21],"type":["int"],"align":["right"]},{"label":["ortholog_sources"],"name":[22],"type":["chr"],"align":["left"]},{"label":["num_ortholog_sources"],"name":[23],"type":["dbl"],"align":["right"]}],"data":[{"1":"Abcc4","2":"239273","3":"ENSMUSG00000032849","4":"ABCC4","5":"10257","6":"ENSG00000125257","7":"ABCC4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther","23":"9"},{"1":"Abraxas2","2":"109359","3":"ENSMUSG00000030965","4":"ABRAXAS2","5":"23172","6":"ENSG00000165660","7":"KIAA0157","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Actn4","2":"60595","3":"ENSMUSG00000054808","4":"ACTN4","5":"81","6":"ENSG00000130402","7":"ACTN4","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Acvr1","2":"11477","3":"ENSMUSG00000026836","4":"ACVR1","5":"90","6":"ENSG00000115170","7":"ACVR1","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|PhylomeDB|Treefam","23":"12"},{"1":"Adam9","2":"11502","3":"ENSMUSG00000031555","4":"ADAM9","5":"8754","6":"ENSG00000168615","7":"ADAM9","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"},{"1":"Adamts5","2":"23794","3":"ENSMUSG00000022894","4":"ADAMTS5","5":"11096","6":"ENSG00000154736","7":"ADAMTS5","8":"M12609","9":"AAACCAC_MIR140","10":"C3","11":"MIR:MIR_LEGACY","12":"MIR_Legacy","13":"Genes having at least one occurence of the motif AAACCAC in their 3' untranslated region. The motif represents putative target (that is, seed match) of human mature miRNA hsa-miR-140 (v7.1 miRBase).","14":"HS","15":"","16":"","17":"","18":"","19":"2025.1.Hs","20":"HS","21":"10090","22":"EggNOG|Ensembl|HGNC|HomoloGene|Inparanoid|NCBI|OMA|OrthoDB|OrthoMCL|Panther|Treefam","23":"11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
-  </script>
-</div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 23</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Abcc4       239273    ENSMUSG0000… ABCC4          10257        ENSG00000125257</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Abraxas2    109359    ENSMUSG0000… ABRAXAS2       23172        ENSG00000165660</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Actn4       60595     ENSMUSG0000… ACTN4          81           ENSG00000130402</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Acvr1       11477     ENSMUSG0000… ACVR1          90           ENSG00000115170</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Adam9       11502     ENSMUSG0000… ADAM9          8754         ENSG00000168615</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Adamts5     23794     ENSMUSG0000… ADAMTS5        11096        ENSG00000154736</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 17 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   db_target_species &lt;chr&gt;, ortholog_taxon_id &lt;int&gt;, ortholog_sources &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   num_ortholog_sources &lt;dbl&gt;</span></span></span></code></pre></div>
 <p>Please be aware that the orthologs are computationally predicted at
 the gene level. The full pathways may not be well conserved across
 species.</p>
@@ -124,12 +151,21 @@ species.</p>
 default).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_mm_gene_sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/msigdbr.html">msigdbr</a></span><span class="op">(</span>db_species <span class="op">=</span> <span class="st">"MM"</span>, species <span class="op">=</span> <span class="st">"Mus musculus"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_mm_gene_sets</span><span class="op">)</span></span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["gene_symbol"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ncbi_gene"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ensembl_gene"],"name":[3],"type":["chr"],"align":["left"]},{"label":["db_gene_symbol"],"name":[4],"type":["chr"],"align":["left"]},{"label":["db_ncbi_gene"],"name":[5],"type":["chr"],"align":["left"]},{"label":["db_ensembl_gene"],"name":[6],"type":["chr"],"align":["left"]},{"label":["source_gene"],"name":[7],"type":["chr"],"align":["left"]},{"label":["gs_id"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gs_name"],"name":[9],"type":["chr"],"align":["left"]},{"label":["gs_collection"],"name":[10],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[11],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[12],"type":["chr"],"align":["left"]},{"label":["gs_description"],"name":[13],"type":["chr"],"align":["left"]},{"label":["gs_source_species"],"name":[14],"type":["chr"],"align":["left"]},{"label":["gs_pmid"],"name":[15],"type":["chr"],"align":["left"]},{"label":["gs_geoid"],"name":[16],"type":["chr"],"align":["left"]},{"label":["gs_exact_source"],"name":[17],"type":["chr"],"align":["left"]},{"label":["gs_url"],"name":[18],"type":["chr"],"align":["left"]},{"label":["db_version"],"name":[19],"type":["chr"],"align":["left"]},{"label":["db_target_species"],"name":[20],"type":["chr"],"align":["left"]}],"data":[{"1":"AU021092","2":"239691","3":"ENSMUSG00000051669","4":"AU021092","5":"239691","6":"ENSMUSG00000051669","7":"AW045808","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"},{"1":"Ahnak","2":"66395","3":"ENSMUSG00000069833","4":"Ahnak","5":"66395","6":"ENSMUSG00000069833","7":"AA657044","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"},{"1":"Alcam","2":"11658","3":"ENSMUSG00000022636","4":"Alcam","5":"11658","6":"ENSMUSG00000022636","7":"L25274","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"},{"1":"Ankrd40","2":"71452","3":"ENSMUSG00000020864","4":"Ankrd40","5":"71452","6":"ENSMUSG00000020864","7":"AW125433","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"},{"1":"Arid1a","2":"93760","3":"ENSMUSG00000007880","4":"Arid1a","5":"93760","6":"ENSMUSG00000007880","7":"AI842326","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"},{"1":"Bckdhb","2":"12040","3":"ENSMUSG00000032263","4":"Bckdhb","5":"12040","6":"ENSMUSG00000032263","7":"L16992","8":"MM623","9":"ABBUD_LIF_SIGNALING_1_DN","10":"M2","11":"CGP","12":"Chemical and Genetic Perturbations","13":"Genes down-regulated in AtT20 cells (pituitary cancer) after  treatment with LIF [GeneID=3976].","14":"MM","15":"14576184","16":"","17":"Table 2","18":"","19":"2025.1.Mm","20":"MM"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
-  </script>
-</div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">all_mm_gene_sets</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 20</span></span></span>
+<span><span class="co">#&gt;   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> AU021092    239691    ENSMUSG0000… AU021092       239691       ENSMUSG0000005…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Ahnak       66395     ENSMUSG0000… Ahnak          66395        ENSMUSG0000006…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Alcam       11658     ENSMUSG0000… Alcam          11658        ENSMUSG0000002…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Ankrd40     71452     ENSMUSG0000… Ankrd40        71452        ENSMUSG0000002…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Arid1a      93760     ENSMUSG0000… Arid1a         93760        ENSMUSG0000000…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Bckdhb      12040     ENSMUSG0000… Bckdhb         12040        ENSMUSG0000003…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: source_gene &lt;chr&gt;, gs_id &lt;chr&gt;, gs_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_collection &lt;chr&gt;, gs_subcollection &lt;chr&gt;, gs_collection_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_description &lt;chr&gt;, gs_source_species &lt;chr&gt;, gs_pmid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   gs_geoid &lt;chr&gt;, gs_exact_source &lt;chr&gt;, gs_url &lt;chr&gt;, db_version &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   db_target_species &lt;chr&gt;</span></span></span></code></pre></div>
 <p>The genes within each gene set may originate from a species different
 from the database target species, as indicated by the
 <code>gs_source_species</code> and <code>db_target_species</code>
@@ -244,21 +280,62 @@ database (HS or MM).</li>
 Both scientific and common names are acceptable for the
 <code><a href="../reference/msigdbr.html">msigdbr()</a></code> function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["species_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["species_common_name"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Anolis carolinensis","2":"Carolina anole, green anole"},{"1":"Bos taurus","2":"bovine, cattle, cow, dairy cow, domestic cattle, domestic cow, ox, oxen"},{"1":"Caenorhabditis elegans","2":"NA"},{"1":"Canis lupus familiaris","2":"dog, dogs"},{"1":"Danio rerio","2":"leopard danio, zebra danio, zebra fish, zebrafish"},{"1":"Drosophila melanogaster","2":"fruit fly"},{"1":"Equus caballus","2":"domestic horse, equine, horse"},{"1":"Felis catus","2":"cat, cats, domestic cat"},{"1":"Gallus gallus","2":"bantam, chicken, chickens, Gallus domesticus"},{"1":"Homo sapiens","2":"human"},{"1":"Macaca mulatta","2":"rhesus macaque, rhesus macaques, Rhesus monkey, rhesus monkeys"},{"1":"Monodelphis domestica","2":"gray short-tailed opossum"},{"1":"Mus musculus","2":"house mouse, mouse"},{"1":"Ornithorhynchus anatinus","2":"duck-billed platypus, duckbill platypus, platypus"},{"1":"Pan troglodytes","2":"chimpanzee"},{"1":"Rattus norvegicus","2":"brown rat, Norway rat, rat, rats"},{"1":"Saccharomyces cerevisiae","2":"baker's yeast, brewer's yeast, S. cerevisiae"},{"1":"Schizosaccharomyces pombe 972h-","2":"NA"},{"1":"Sus scrofa","2":"pig, pigs, swine, wild boar"},{"1":"Xenopus tropicalis","2":"tropical clawed frog, western clawed frog"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
-  </script>
-</div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_species.html">msigdbr_species</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 2</span></span></span>
+<span><span class="co">#&gt;    species_name                    species_common_name                          </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Anolis carolinensis             Carolina anole, green anole                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Bos taurus                      bovine, cattle, cow, dairy cow, domestic cat…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Caenorhabditis elegans          <span style="color: #BB0000;">NA</span>                                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Canis lupus familiaris          dog, dogs                                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Danio rerio                     leopard danio, zebra danio, zebra fish, zebr…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Drosophila melanogaster         fruit fly                                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Equus caballus                  domestic horse, equine, horse                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Felis catus                     cat, cats, domestic cat                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Gallus gallus                   bantam, chicken, chickens, Gallus domesticus </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Homo sapiens                    human                                        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Macaca mulatta                  rhesus macaque, rhesus macaques, Rhesus monk…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Monodelphis domestica           gray short-tailed opossum                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Mus musculus                    house mouse, mouse                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Ornithorhynchus anatinus        duck-billed platypus, duckbill platypus, pla…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Pan troglodytes                 chimpanzee                                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Rattus norvegicus               brown rat, Norway rat, rat, rats             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Saccharomyces cerevisiae        baker's yeast, brewer's yeast, S. cerevisiae </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Schizosaccharomyces pombe 972h- <span style="color: #BB0000;">NA</span>                                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> Sus scrofa                      pig, pigs, swine, wild boar                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> Xenopus tropicalis              tropical clawed frog, western clawed frog</span></span></code></pre></div>
 <p>Use <code><a href="../reference/msigdbr_collections.html">msigdbr_collections()</a></code> to check the available
 collections.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["gs_collection"],"name":[1],"type":["chr"],"align":["left"]},{"label":["gs_subcollection"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gs_collection_name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["num_genesets"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"C1","2":"","3":"Positional","4":"302"},{"1":"C2","2":"CGP","3":"Chemical and Genetic Perturbations","4":"3538"},{"1":"C2","2":"CP","3":"Canonical Pathways","4":"19"},{"1":"C2","2":"CP:BIOCARTA","3":"BioCarta Pathways","4":"292"},{"1":"C2","2":"CP:KEGG_LEGACY","3":"KEGG Legacy Pathways","4":"186"},{"1":"C2","2":"CP:KEGG_MEDICUS","3":"KEGG Medicus Pathways","4":"658"},{"1":"C2","2":"CP:PID","3":"PID Pathways","4":"196"},{"1":"C2","2":"CP:REACTOME","3":"Reactome Pathways","4":"1787"},{"1":"C2","2":"CP:WIKIPATHWAYS","3":"WikiPathways","4":"885"},{"1":"C3","2":"MIR:MIRDB","3":"miRDB","4":"2377"},{"1":"C3","2":"MIR:MIR_LEGACY","3":"MIR_Legacy","4":"221"},{"1":"C3","2":"TFT:GTRD","3":"GTRD","4":"505"},{"1":"C3","2":"TFT:TFT_LEGACY","3":"TFT_Legacy","4":"610"},{"1":"C4","2":"3CA","3":"Curated Cancer Cell Atlas gene sets","4":"148"},{"1":"C4","2":"CGN","3":"Cancer Gene Neighborhoods","4":"427"},{"1":"C4","2":"CM","3":"Cancer Modules","4":"431"},{"1":"C5","2":"GO:BP","3":"GO Biological Process","4":"7583"},{"1":"C5","2":"GO:CC","3":"GO Cellular Component","4":"1042"},{"1":"C5","2":"GO:MF","3":"GO Molecular Function","4":"1855"},{"1":"C5","2":"HPO","3":"Human Phenotype Ontology","4":"5748"},{"1":"C6","2":"","3":"Oncogenic Signature","4":"189"},{"1":"C7","2":"IMMUNESIGDB","3":"ImmuneSigDB","4":"4872"},{"1":"C7","2":"VAX","3":"HIPC Vaccine Response","4":"347"},{"1":"C8","2":"","3":"Cell Type Signature","4":"866"},{"1":"H","2":"","3":"Hallmark","4":"50"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[30],"max":[30]},"pages":{}}}
-  </script>
-</div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 4</span></span></span>
+<span><span class="co">#&gt;    gs_collection gs_subcollection  gs_collection_name               num_genesets</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C1            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Positional<span style="color: #949494;">"</span>                              302</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> C2            <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Chemical and Genetic Perturbat…         <span style="text-decoration: underline;">3</span>538</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> C2            <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Canonical Pathways<span style="color: #949494;">"</span>                       19</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> C2            <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>BioCarta Pathways<span style="color: #949494;">"</span>                       292</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> C2            <span style="color: #949494;">"</span>CP:KEGG_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>KEGG Legacy Pathways<span style="color: #949494;">"</span>                    186</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> C2            <span style="color: #949494;">"</span>CP:KEGG_MEDICUS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>KEGG Medicus Pathways<span style="color: #949494;">"</span>                   658</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> C2            <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>          <span style="color: #949494;">"</span>PID Pathways<span style="color: #949494;">"</span>                            196</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> C2            <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>Reactome Pathways<span style="color: #949494;">"</span>                      <span style="text-decoration: underline;">1</span>787</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> C2            <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>WikiPathways<span style="color: #949494;">"</span>                            885</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> C3            <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>       <span style="color: #949494;">"</span>miRDB<span style="color: #949494;">"</span>                                  <span style="text-decoration: underline;">2</span>377</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> C3            <span style="color: #949494;">"</span>MIR:MIR_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>MIR_Legacy<span style="color: #949494;">"</span>                              221</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> C3            <span style="color: #949494;">"</span>TFT:GTRD<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>GTRD<span style="color: #949494;">"</span>                                    505</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> C3            <span style="color: #949494;">"</span>TFT:TFT_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>TFT_Legacy<span style="color: #949494;">"</span>                              610</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> C4            <span style="color: #949494;">"</span>3CA<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Curated Cancer Cell Atlas gene…          148</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> C4            <span style="color: #949494;">"</span>CGN<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Cancer Gene Neighborhoods<span style="color: #949494;">"</span>               427</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> C4            <span style="color: #949494;">"</span>CM<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Cancer Modules<span style="color: #949494;">"</span>                          431</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> C5            <span style="color: #949494;">"</span>GO:BP<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Biological Process<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">7</span>583</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> C5            <span style="color: #949494;">"</span>GO:CC<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Cellular Component<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>042</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> C5            <span style="color: #949494;">"</span>GO:MF<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Molecular Function<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>855</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> C5            <span style="color: #949494;">"</span>HPO<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Human Phenotype Ontology<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">5</span>748</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">21</span> C6            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Oncogenic Signature<span style="color: #949494;">"</span>                     189</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">22</span> C7            <span style="color: #949494;">"</span>IMMUNESIGDB<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>ImmuneSigDB<span style="color: #949494;">"</span>                            <span style="text-decoration: underline;">4</span>872</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">23</span> C7            <span style="color: #949494;">"</span>VAX<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>HIPC Vaccine Response<span style="color: #949494;">"</span>                   347</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">24</span> C8            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Cell Type Signature<span style="color: #949494;">"</span>                     866</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">25</span> H             <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Hallmark<span style="color: #949494;">"</span>                                 50</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="pathway-enrichment-analysis">Pathway enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-enrichment-analysis"></a>
@@ -294,25 +371,25 @@ function.</p>
 <h2 id="potential-questions-and-concerns">Potential questions and concerns<a class="anchor" aria-label="anchor" href="#potential-questions-and-concerns"></a>
 </h2>
 <p><strong>Which version of MSigDB was used?</strong></p>
-<p>The MSigDB version is stored in the <code>db_version</code> column of
-the returned data frame. You can check the version used with
-<code>unique(msigdbr_df$db_version)</code>.</p>
+<p>The MSigDB version is included in the returned data frame. Check the
+version with <code>unique(msigdbr_df$db_version)</code>.</p>
 <p><strong>Why use this package when I can download the gene sets
 directly from MSigDB?</strong></p>
-<p>This package makes it more convenient to work with MSigDB gene sets
-in R. This package includes Ensembl IDs. You don’t need to download the
-GMT files and import them. You don’t need to learn how to restructure
-the output to make it compatible with downstream tools. You don’t need
-to convert the genes to your organism if you are working with non-human
-data.</p>
+<p>This package makes it more convenient to work with the MSigDB gene
+sets in R. You don’t need to import the GMT files and restructure the
+content to make it compatible with downstream tools. It adds Ensembl
+gene IDs and converts the gene symbols/IDs if you are working with
+non-human data.</p>
 <p><strong>Can I convert between human and mouse genes simply by
 adjusting gene capitalization?</strong></p>
-<p>That will work for most, but not all, genes.</p>
-<p><strong>Can I convert human genes to any organism myself instead of
-using this package?</strong></p>
+<p>That will work for most, but not all, genes. Since 2022, the
+GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
+that are natively mouse</a> and don’t require orthology conversion.</p>
+<p><strong>Can I convert genes to any organism myself?</strong></p>
 <p>One popular method is using the biomaRt package. You may still end up
 with dozens of homologs for some genes, so additional cleanup may be
-helpful.</p>
+helpful. Because biomaRt relies on live BioMart services, it can be
+disrupted by server outage or maintenance.</p>
 <p><strong>Aren’t there already other similar tools?</strong></p>
 <p>There are a few resources that provide some of the msigdbr
 functionality and served as an inspiration for this package. <a href="https://doi.org/doi:10.18129/B9.bioc.EGSEAdata" class="external-link">EGSEAdata</a>
@@ -320,24 +397,24 @@ Bioconductor package provides data as a list. <a href="https://bioinf.wehi.edu.a
 for human and mouse as RDS files. <a href="https://github.com/ToledoEM/msigdf" class="external-link">MSigDF</a> provides data as an
 R data frame. These are updated at varying frequencies and may not be
 based on the latest version of MSigDB.</p>
-<p>Since 2022, the GSEA/MSigDB team provides <a href="https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp" class="external-link">collections
-that are natively mouse</a> and don’t require orthology conversion.</p>
 <p><strong>What if I have other questions?</strong></p>
-<p>Please submit feedback and report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub</a>.</p>
+<p>Please post questions or feedback on <a href="https://github.com/igordot/msigdbr/discussions" class="external-link">GitHub
+Discussions</a>. Report bugs on <a href="https://github.com/igordot/msigdbr/issues" class="external-link">GitHub Issues</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
 </h2>
 <p>The Molecular Signatures Database (MSigDB) is a collection of gene
 sets originally created for use with the Gene Set Enrichment Analysis
-(GSEA) software. To cite use of the underlying MSigDB data, reference
-Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the
-following as appropriate: Liberzon, et al. (2011, Bioinformatics),
+(GSEA) software. To cite the use of the underlying MSigDB data,
+reference Subramanian, Tamayo, et al. (2005, PNAS) and one or more of
+the following as appropriate: Liberzon, et al. (2011, Bioinformatics),
 Liberzon, et al. (2015, Cell Systems), Castanza, et al. (2023, Nature
 Methods) and also the source for the gene set.</p>
-<p>Gene homologs are provided by HUGO Gene Nomenclature Committee at the
-European Bioinformatics Institute which integrates the orthology
-assertions predicted for human genes by eggNOG, Ensembl Compara, HGNC,
+<p>Gene homologs are mapped using the <a href="https://cran.r-project.org/package=babelgene" class="external-link">babelgene</a>
+package. The information is sourced from the HUGO Gene Nomenclature
+Committee at the European Bioinformatics Institute which integrates the
+orthology assertions predicted by eggNOG, Ensembl Compara, HGNC,
 HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL,
 Panther, PhylomeDB, TreeFam and ZFIN. For each human equivalent within
 each species, only the ortholog supported by the largest number of
