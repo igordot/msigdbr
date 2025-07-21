@@ -1,10 +1,11 @@
-## msigdbr: MSigDB data frame
+## msigdbr: MSigDB R data frame
 
 The msigdbr package provides Molecular Signatures Database (MSigDB) gene sets in a tidy R data frame.
 
 The data can be accessed using the `msigdbr()` function, which returns a data frame of gene sets and their member genes.
 
 ```r
+library(msigdbr)
 genesets <- msigdbr()
 ```
 

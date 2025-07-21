@@ -22,4 +22,4 @@ navbar:
       href: articles/msigdbr-intro.html
 
 home:
-  title: MSigDB gene sets R package
+  title: MSigDB R data frame
