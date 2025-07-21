@@ -8,24 +8,13 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-# override printing method with rmarkdown::paged_table() for readability
-knit_print.data.frame <- function(x, ...) {
-  res <- rmarkdown::paged_table(x)
-  rmarkdown:::knit_print.data.frame(res)
-}
-registerS3method(
-  "knit_print", "data.frame", knit_print.data.frame,
-  envir = asNamespace("knitr")
-)
-
 # increase the maximum number of rows printed per page
-options(rows.print = 30)
+options(pillar.print_max = 30)
 ```
 
-## Overview
+## About
 
-Pathway analysis is a common task in genomics research and there are many available R-based software tools.
-Depending on the tool, it may be necessary to import the pathways, translate genes to the appropriate species, convert between symbols and IDs, and format the resulting object.
+Pathway analysis is a common task in genomics research and there are many available R-based software tools. Depending on the tool, it may be necessary to import the pathways, translate genes to the appropriate species, convert between symbols and IDs, and format the resulting object.
 
 The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets typically used with the Gene Set Enrichment Analysis (GSEA) software:
 
@@ -44,6 +33,8 @@ install.packages("msigdbr")
 
 ## Usage
 
+### Basic usage
+
 Load package.
 
 ```{r load-package, message=FALSE}
@@ -59,19 +50,16 @@ head(all_gene_sets)
 
 ### Species
 
-The `species` parameter enables conversion of the original human genes to their orthologs in various model organisms, such as mouse.
-You can use `msigdbr_species()` to check the available species.
+The `species` parameter enables conversion of the original human genes to their orthologs in various model organisms, such as mouse. You can use `msigdbr_species()` to check the available species.
 
 ```{r msigdbr-mouse-all, message=FALSE}
 all_gene_sets <- msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 ```
 
-Please be aware that the orthologs are computationally predicted at the gene level.
-The full pathways may not be well conserved across species.
+Please be aware that the orthologs are computationally predicted at the gene level. The full pathways may not be well conserved across species.
 
-There are human and mouse versions of MSigDB.
-The `db_species` parameter specifies the database (human by default).
+There are human and mouse versions of MSigDB. The `db_species` parameter specifies the database (human by default).
 
 ```{r msigdbr-mouse-mm, message=FALSE}
 all_mm_gene_sets <- msigdbr(db_species = "MM", species = "Mus musculus")
@@ -94,8 +82,7 @@ You can specify a sub-collection, such as C2 (curated) CGP (chemical and genetic
 cgp_gene_sets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
 ```
 
-If you require more precise filtering, the `msigdbr()` function output is a data frame that can be manipulated using standard methods.
-For example, you can subset to a specific collection using dplyr.
+If you require more precise filtering, the `msigdbr()` function output is a data frame that can be manipulated using standard methods. For example, you can subset to a specific collection using dplyr.
 
 ```{r filter-h, eval=FALSE}
 dplyr::filter(all_gene_sets, gs_collection == "H")
@@ -103,8 +90,7 @@ dplyr::filter(all_gene_sets, gs_collection == "H")
 
 ### Output
 
-The `msigdbr()` function returns a data frame with one gene per row.
-Generally, the `gene_symbol` (gene symbol) and `gs_name` (gene set name) columns are the most useful.
+The `msigdbr()` function returns a data frame with one gene per row. Generally, the `gene_symbol` (gene symbol) and `gs_name` (gene set name) columns are the most useful.
 
 The data frame contains the following columns for gene-level info:
 
@@ -146,8 +132,7 @@ unique(all_gene_sets$db_version)
 
 There are helper functions to assist with setting the `msigdbr()` parameters.
 
-Use `msigdbr_species()` to check the available species.
-Both scientific and common names are acceptable for the `msigdbr()` function.
+Use `msigdbr_species()` to check the available species. Both scientific and common names are acceptable for the `msigdbr()` function.
 
 ```{r species}
 msigdbr_species()
@@ -203,46 +188,32 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 **Which version of MSigDB was used?**
 
-The MSigDB version is stored in the `db_version` column of the returned data frame.
-You can check the version used with `unique(msigdbr_df$db_version)`.
+The MSigDB version is included in the returned data frame. Check the version with `unique(msigdbr_df$db_version)`.
 
 **Why use this package when I can download the gene sets directly from MSigDB?**
 
-This package makes it more convenient to work with MSigDB gene sets in R.
-This package includes Ensembl IDs.
-You don't need to download the GMT files and import them.
-You don't need to learn how to restructure the output to make it compatible with downstream tools.
-You don't need to convert the genes to your organism if you are working with non-human data.
+This package makes it more convenient to work with the MSigDB gene sets in R. You don't need to import the GMT files and restructure the content to make it compatible with downstream tools. It adds Ensembl gene IDs and converts the gene symbols/IDs if you are working with non-human data.
 
 **Can I convert between human and mouse genes simply by adjusting gene capitalization?**
 
-That will work for most, but not all, genes.
+That will work for most, but not all, genes. Since 2022, the GSEA/MSigDB team provides [collections that are natively mouse](https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp) and don't require orthology conversion.
 
-**Can I convert human genes to any organism myself instead of using this package?**
+**Can I convert genes to any organism myself?**
 
-One popular method is using the biomaRt package.
-You may still end up with dozens of homologs for some genes, so additional cleanup may be helpful.
+One popular method is using the biomaRt package. You may still end up with dozens of homologs for some genes, so additional cleanup may be helpful. Because biomaRt relies on live BioMart services, it can be disrupted by server outage or maintenance.
 
 **Aren't there already other similar tools?**
 
-There are a few resources that provide some of the msigdbr functionality and served as an inspiration for this package.
-[EGSEAdata](https://doi.org/doi:10.18129/B9.bioc.EGSEAdata) Bioconductor package provides data as a list.
-[WEHI MSigDB](https://bioinf.wehi.edu.au/MSigDB/) provides data for human and mouse as RDS files.
-[MSigDF](https://github.com/ToledoEM/msigdf) provides data as an R data frame.
-These are updated at varying frequencies and may not be based on the latest version of MSigDB.
-
-Since 2022, the GSEA/MSigDB team provides [collections that are natively mouse](https://www.gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp) and don't require orthology conversion.
+There are a few resources that provide some of the msigdbr functionality and served as an inspiration for this package. [EGSEAdata](https://doi.org/doi:10.18129/B9.bioc.EGSEAdata) Bioconductor package provides data as a list. [WEHI MSigDB](https://bioinf.wehi.edu.au/MSigDB/) provides data for human and mouse as RDS files. [MSigDF](https://github.com/ToledoEM/msigdf) provides data as an R data frame. These are updated at varying frequencies and may not be based on the latest version of MSigDB.
 
 **What if I have other questions?**
 
-Please submit feedback and report bugs on [GitHub](https://github.com/igordot/msigdbr/issues).
+Please post questions or feedback on [GitHub Discussions](https://github.com/igordot/msigdbr/discussions). Report bugs on [GitHub Issues](https://github.com/igordot/msigdbr/issues).
 
 ## Details
 
-The Molecular Signatures Database (MSigDB) is a collection of gene sets originally created for use with the Gene Set Enrichment Analysis (GSEA) software.
-To cite use of the underlying MSigDB data, reference Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the following as appropriate: Liberzon, et al. (2011, Bioinformatics), Liberzon, et al. (2015, Cell Systems), Castanza, et al. (2023, Nature Methods) and also the source for the gene set.
+The Molecular Signatures Database (MSigDB) is a collection of gene sets originally created for use with the Gene Set Enrichment Analysis (GSEA) software. To cite the use of the underlying MSigDB data, reference Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the following as appropriate: Liberzon, et al. (2011, Bioinformatics), Liberzon, et al. (2015, Cell Systems), Castanza, et al. (2023, Nature Methods) and also the source for the gene set.
 
-Gene homologs are provided by HUGO Gene Nomenclature Committee at the European Bioinformatics Institute which integrates the orthology assertions predicted for human genes by eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN.
-For each human equivalent within each species, only the ortholog supported by the largest number of databases is used.
+Gene homologs are mapped using the [babelgene](https://cran.r-project.org/package=babelgene) package. The information is sourced from the HUGO Gene Nomenclature Committee at the European Bioinformatics Institute which integrates the orthology assertions predicted by eggNOG, Ensembl Compara, HGNC, HomoloGene, Inparanoid, NCBI Gene Orthology, OMA, OrthoDB, OrthoMCL, Panther, PhylomeDB, TreeFam and ZFIN. For each human equivalent within each species, only the ortholog supported by the largest number of databases is used.
 
 For information on how to cite the msigdbr R package, run `citation("msigdbr")`.

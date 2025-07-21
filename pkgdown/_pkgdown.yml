@@ -2,7 +2,7 @@ url: https://igordot.github.io/msigdbr/
 
 template:
   bootstrap: 5
-  bootswatch: simplex
+  bootswatch: zephyr
   includes:
     after_body: >
       <script data-goatcounter="https://igordot.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -12,9 +12,8 @@ template:
       card: summary_large_image
 
 navbar:
-  structure:
-    left: []
-    right: [home, intro, reference, articles, news, github]
+  # zephyr navbar is blue by default
+  bg: light
   components:
     home: ~
     articles: ~
