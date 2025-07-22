@@ -1,3 +1,7 @@
+# msigdbr 25.1.1
+
+* Updated tests and examples to comply with CRAN policies.
+
 # msigdbr 25.1.0
 
 * Included the MSigDB v2025.1 data.

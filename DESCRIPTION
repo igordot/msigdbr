@@ -1,7 +1,7 @@
 Type: Package
 Package: msigdbr
 Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
-Version: 25.1.0.9000
+Version: 25.1.1
 Authors@R:
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4451-126X"))

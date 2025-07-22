@@ -2,10 +2,10 @@
 
 <details>
 
-* Version: 2.5.0
+* Version: 2.5.1
 * GitHub: https://github.com/egeulgen/pathfindR
 * Source code: https://github.com/cran/pathfindR
-* Date/Publication: 2025-06-15 00:00:02 UTC
+* Date/Publication: 2025-07-15 11:20:02 UTC
 * Number of recursive dependencies: 117
 
 Run `revdepcheck::revdep_details(, "pathfindR")` for more info
@@ -26,7 +26,7 @@ Run `revdepcheck::revdep_details(, "pathfindR")` for more info
 
 ```
 * installing *source* package ‘pathfindR’ ...
-** this is package ‘pathfindR’ version ‘2.5.0’
+** this is package ‘pathfindR’ version ‘2.5.1’
 ** package ‘pathfindR’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
@@ -53,7 +53,7 @@ ERROR: loading failed
 
 ```
 * installing *source* package ‘pathfindR’ ...
-** this is package ‘pathfindR’ version ‘2.5.0’
+** this is package ‘pathfindR’ version ‘2.5.1’
 ** package ‘pathfindR’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** R
@@ -76,76 +76,3 @@ ERROR: loading failed
 
 
 ```
-# Platypus
-
-<details>
-
-* Version: 3.6.0
-* GitHub: NA
-* Source code: https://github.com/cran/Platypus
-* Date/Publication: 2024-10-18 11:10:17 UTC
-* Number of recursive dependencies: 255
-
-Run `revdepcheck::revdep_details(, "Platypus")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
-## In both
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-      Missing dependency on R >= 4.1.0 because package code uses the pipe
-      |> or function shorthand \(...) syntax added in R 4.1.0.
-      File(s) using such syntax:
-        ‘VDJ_build.R’
-    ```
-
-# RVA
-
-<details>
-
-* Version: 0.0.5
-* GitHub: https://github.com/THERMOSTATS/RVA
-* Source code: https://github.com/cran/RVA
-* Date/Publication: 2021-11-01 21:40:02 UTC
-* Number of recursive dependencies: 132
-
-Run `revdepcheck::revdep_details(, "RVA")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘XML’
-      All declared Imports should be used.
-    ```
-
-# scITD
-
-<details>
-
-* Version: 1.0.4
-* GitHub: NA
-* Source code: https://github.com/cran/scITD
-* Date/Publication: 2023-09-08 16:00:02 UTC
-* Number of recursive dependencies: 248
-
-Run `revdepcheck::revdep_details(, "scITD")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-

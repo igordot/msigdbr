@@ -10,16 +10,16 @@
 |collate  |en_US.UTF-8                                                                 |
 |ctype    |en_US.UTF-8                                                                 |
 |tz       |America/New_York                                                            |
-|date     |2025-07-03                                                                  |
+|date     |2025-07-21                                                                  |
 |rstudio  |2025.05.0+496 Mariposa Orchid (desktop)                                     |
-|pandoc   |3.6.4 @ /usr/local/bin/pandoc                                               |
+|pandoc   |3.6.4 @ /usr/local/bin/ (via rmarkdown)                                     |
 |quarto   |1.6.42 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto |
 
 # Dependencies
 
 |package    |old    |new    |Δ  |
 |:----------|:------|:------|:--|
-|msigdbr    |24.1.0 |25.1.0 |*  |
+|msigdbr    |25.1.0 |25.1.1 |*  |
 |assertthat |0.2.1  |0.2.1  |   |
 |babelgene  |22.9   |22.9   |   |
 |cli        |3.6.5  |3.6.5  |   |
@@ -29,7 +29,7 @@
 |glue       |1.8.0  |1.8.0  |   |
 |lifecycle  |1.0.4  |1.0.4  |   |
 |magrittr   |2.0.3  |2.0.3  |   |
-|pillar     |1.10.2 |1.10.2 |   |
+|pillar     |1.11.0 |1.11.0 |   |
 |pkgconfig  |2.0.3  |2.0.3  |   |
 |R6         |2.6.1  |2.6.1  |   |
 |rlang      |1.1.6  |1.1.6  |   |
@@ -41,12 +41,9 @@
 
 # Revdeps
 
-## Failed to check (4)
+## Failed to check (1)
 
-|package   |version |error  |warning |note |
-|:---------|:-------|:------|:-------|:----|
-|pathfindR |2.5.0   |1      |        |     |
-|[Platypus](failures.md#platypus)|3.6.0   |__+1__ |        |1    |
-|RVA       |0.0.5   |1      |        |1    |
-|scITD     |1.0.4   |1      |        |     |
+|package   |version |error |warning |note |
+|:---------|:-------|:-----|:-------|:----|
+|pathfindR |2.5.1   |1     |        |     |
 
