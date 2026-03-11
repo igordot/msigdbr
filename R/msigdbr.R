@@ -122,22 +122,29 @@ msigdbr <- function(db_species = "HS", species = "human", collection = NULL, sub
 
   # Retrieve orthologs for the non-human species for the human database
   if (db_species == "HS" && !(species %in% species_hs)) {
-    species_genes <- babelgene::orthologs(
-      genes = unique(mdb$db_ensembl_gene),
-      species = species
-    )
-    species_genes <- dplyr::select(
-      species_genes,
-      db_ensembl_gene = "human_ensembl",
-      gene_symbol = "symbol",
-      ncbi_gene = "entrez",
-      ensembl_gene = "ensembl",
-      ortholog_taxon_id = "taxon_id",
-      ortholog_sources = "support",
-      num_ortholog_sources = "support_n",
-      !tidyselect::any_of(c("human_symbol", "human_entrez"))
-    )
-    species_genes$ncbi_gene <- as.character(species_genes$ncbi_gene)
+    species_id <- babelgene::species(species)$taxon_id
+    orthologs_key <- paste0("orthologs", species_id)
+    if (exists(orthologs_key, envir = pkg_env, inherits = FALSE)) {
+      species_genes <- pkg_env[[orthologs_key]]
+    } else {
+      species_genes <- babelgene::orthologs(
+        genes = unique(mdb$db_ensembl_gene),
+        species = species
+      )
+      species_genes <- dplyr::select(
+        species_genes,
+        db_ensembl_gene = "human_ensembl",
+        gene_symbol = "symbol",
+        ncbi_gene = "entrez",
+        ensembl_gene = "ensembl",
+        ortholog_taxon_id = "taxon_id",
+        ortholog_sources = "support",
+        num_ortholog_sources = "support_n",
+        !tidyselect::any_of(c("human_symbol", "human_entrez"))
+      )
+      species_genes$ncbi_gene <- as.character(species_genes$ncbi_gene)
+      pkg_env[[orthologs_key]] <- species_genes
+    }
   }
 
   # Remove duplicate entries
