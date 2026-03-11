@@ -94,17 +94,8 @@ msigdbr <- function(db_species = "HS", species = "human", collection = NULL, sub
   }
 
   # Get the gene sets table
-  mdb <- load_msigdb_df(target_species = db_species)
+  mdb <- load_gene_sets(target_species = db_species, collection = collection)
   mdb <- tibble::as_tibble(mdb)
-
-  # Filter by collection
-  if (is.character(collection)) {
-    if (collection %in% mdb$gs_collection) {
-      mdb <- dplyr::filter(mdb, .data$gs_collection == collection)
-    } else {
-      stop("Unknown collection. Use `msigdbr_collections()` to see the available collections.")
-    }
-  }
 
   # Filter by sub-collection
   if (is.character(subcollection)) {
