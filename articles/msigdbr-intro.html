@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">msigdbr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">25.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@
       <h1>Introduction to msigdbr</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/v25.1.1/vignettes/articles/msigdbr-intro.Rmd" class="external-link"><code>vignettes/articles/msigdbr-intro.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/igordot/msigdbr/blob/main/vignettes/articles/msigdbr-intro.Rmd" class="external-link"><code>vignettes/articles/msigdbr-intro.Rmd</code></a></small>
       <div class="d-none name"><code>msigdbr-intro.Rmd</code></div>
     </div>
 
@@ -268,7 +268,7 @@ database (HS or MM).</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">all_gene_sets</span><span class="op">$</span><span class="va">db_version</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2025.1.Hs"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2026.1.Hs"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -308,34 +308,60 @@ Both scientific and common names are acceptable for the
 collections.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/msigdbr_collections.html">msigdbr_collections</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 4</span></span></span>
-<span><span class="co">#&gt;    gs_collection gs_subcollection  gs_collection_name               num_genesets</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> C1            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Positional<span style="color: #949494;">"</span>                              302</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> C2            <span style="color: #949494;">"</span>CGP<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Chemical and Genetic Perturbat…         <span style="text-decoration: underline;">3</span>538</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> C2            <span style="color: #949494;">"</span>CP<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Canonical Pathways<span style="color: #949494;">"</span>                       19</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> C2            <span style="color: #949494;">"</span>CP:BIOCARTA<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>BioCarta Pathways<span style="color: #949494;">"</span>                       292</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> C2            <span style="color: #949494;">"</span>CP:KEGG_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>KEGG Legacy Pathways<span style="color: #949494;">"</span>                    186</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> C2            <span style="color: #949494;">"</span>CP:KEGG_MEDICUS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>KEGG Medicus Pathways<span style="color: #949494;">"</span>                   658</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> C2            <span style="color: #949494;">"</span>CP:PID<span style="color: #949494;">"</span>          <span style="color: #949494;">"</span>PID Pathways<span style="color: #949494;">"</span>                            196</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> C2            <span style="color: #949494;">"</span>CP:REACTOME<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>Reactome Pathways<span style="color: #949494;">"</span>                      <span style="text-decoration: underline;">1</span>787</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> C2            <span style="color: #949494;">"</span>CP:WIKIPATHWAYS<span style="color: #949494;">"</span> <span style="color: #949494;">"</span>WikiPathways<span style="color: #949494;">"</span>                            885</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> C3            <span style="color: #949494;">"</span>MIR:MIRDB<span style="color: #949494;">"</span>       <span style="color: #949494;">"</span>miRDB<span style="color: #949494;">"</span>                                  <span style="text-decoration: underline;">2</span>377</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> C3            <span style="color: #949494;">"</span>MIR:MIR_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>MIR_Legacy<span style="color: #949494;">"</span>                              221</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> C3            <span style="color: #949494;">"</span>TFT:GTRD<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>GTRD<span style="color: #949494;">"</span>                                    505</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> C3            <span style="color: #949494;">"</span>TFT:TFT_LEGACY<span style="color: #949494;">"</span>  <span style="color: #949494;">"</span>TFT_Legacy<span style="color: #949494;">"</span>                              610</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> C4            <span style="color: #949494;">"</span>3CA<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Curated Cancer Cell Atlas gene…          148</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> C4            <span style="color: #949494;">"</span>CGN<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Cancer Gene Neighborhoods<span style="color: #949494;">"</span>               427</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> C4            <span style="color: #949494;">"</span>CM<span style="color: #949494;">"</span>              <span style="color: #949494;">"</span>Cancer Modules<span style="color: #949494;">"</span>                          431</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> C5            <span style="color: #949494;">"</span>GO:BP<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Biological Process<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">7</span>583</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> C5            <span style="color: #949494;">"</span>GO:CC<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Cellular Component<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>042</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> C5            <span style="color: #949494;">"</span>GO:MF<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>GO Molecular Function<span style="color: #949494;">"</span>                  <span style="text-decoration: underline;">1</span>855</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> C5            <span style="color: #949494;">"</span>HPO<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>Human Phenotype Ontology<span style="color: #949494;">"</span>               <span style="text-decoration: underline;">5</span>748</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">21</span> C6            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Oncogenic Signature<span style="color: #949494;">"</span>                     189</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">22</span> C7            <span style="color: #949494;">"</span>IMMUNESIGDB<span style="color: #949494;">"</span>     <span style="color: #949494;">"</span>ImmuneSigDB<span style="color: #949494;">"</span>                            <span style="text-decoration: underline;">4</span>872</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">23</span> C7            <span style="color: #949494;">"</span>VAX<span style="color: #949494;">"</span>             <span style="color: #949494;">"</span>HIPC Vaccine Response<span style="color: #949494;">"</span>                   347</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">24</span> C8            <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Cell Type Signature<span style="color: #949494;">"</span>                     866</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">25</span> H             <span style="color: #949494;">""</span>                <span style="color: #949494;">"</span>Hallmark<span style="color: #949494;">"</span>                                 50</span></span></code></pre></div>
+<span><span class="co">#&gt;    db_version gs_collection gs_subcollection</span></span>
+<span><span class="co">#&gt; 1   2026.1.Hs            C1                 </span></span>
+<span><span class="co">#&gt; 2   2026.1.Hs            C2              CGP</span></span>
+<span><span class="co">#&gt; 3   2026.1.Hs            C2               CP</span></span>
+<span><span class="co">#&gt; 4   2026.1.Hs            C2      CP:BIOCARTA</span></span>
+<span><span class="co">#&gt; 5   2026.1.Hs            C2   CP:KEGG_LEGACY</span></span>
+<span><span class="co">#&gt; 6   2026.1.Hs            C2  CP:KEGG_MEDICUS</span></span>
+<span><span class="co">#&gt; 7   2026.1.Hs            C2           CP:PID</span></span>
+<span><span class="co">#&gt; 8   2026.1.Hs            C2      CP:REACTOME</span></span>
+<span><span class="co">#&gt; 9   2026.1.Hs            C2  CP:WIKIPATHWAYS</span></span>
+<span><span class="co">#&gt; 10  2026.1.Hs            C3        MIR:MIRDB</span></span>
+<span><span class="co">#&gt; 11  2026.1.Hs            C3   MIR:MIR_LEGACY</span></span>
+<span><span class="co">#&gt; 12  2026.1.Hs            C3         TFT:GTRD</span></span>
+<span><span class="co">#&gt; 13  2026.1.Hs            C3   TFT:TFT_LEGACY</span></span>
+<span><span class="co">#&gt; 14  2026.1.Hs            C4              3CA</span></span>
+<span><span class="co">#&gt; 15  2026.1.Hs            C4              CGN</span></span>
+<span><span class="co">#&gt; 16  2026.1.Hs            C4               CM</span></span>
+<span><span class="co">#&gt; 17  2026.1.Hs            C5            GO:BP</span></span>
+<span><span class="co">#&gt; 18  2026.1.Hs            C5            GO:CC</span></span>
+<span><span class="co">#&gt; 19  2026.1.Hs            C5            GO:MF</span></span>
+<span><span class="co">#&gt; 20  2026.1.Hs            C5              HPO</span></span>
+<span><span class="co">#&gt; 21  2026.1.Hs            C6                 </span></span>
+<span><span class="co">#&gt; 22  2026.1.Hs            C7      IMMUNESIGDB</span></span>
+<span><span class="co">#&gt; 23  2026.1.Hs            C7              VAX</span></span>
+<span><span class="co">#&gt; 24  2026.1.Hs            C8                 </span></span>
+<span><span class="co">#&gt; 25  2026.1.Hs            C9                 </span></span>
+<span><span class="co">#&gt; 26  2026.1.Hs             H                 </span></span>
+<span><span class="co">#&gt;                      gs_collection_name num_genesets</span></span>
+<span><span class="co">#&gt; 1                            Positional          302</span></span>
+<span><span class="co">#&gt; 2    Chemical and Genetic Perturbations         3555</span></span>
+<span><span class="co">#&gt; 3                    Canonical Pathways           19</span></span>
+<span><span class="co">#&gt; 4                     BioCarta Pathways          292</span></span>
+<span><span class="co">#&gt; 5                  KEGG Legacy Pathways          186</span></span>
+<span><span class="co">#&gt; 6                 KEGG Medicus Pathways          658</span></span>
+<span><span class="co">#&gt; 7                          PID Pathways          196</span></span>
+<span><span class="co">#&gt; 8                     Reactome Pathways         1839</span></span>
+<span><span class="co">#&gt; 9                          WikiPathways          925</span></span>
+<span><span class="co">#&gt; 10                                miRDB         2377</span></span>
+<span><span class="co">#&gt; 11                           MIR_Legacy          221</span></span>
+<span><span class="co">#&gt; 12                                 GTRD          506</span></span>
+<span><span class="co">#&gt; 13                           TFT_Legacy          610</span></span>
+<span><span class="co">#&gt; 14 Curated Cancer Cell Atlas gene sets           148</span></span>
+<span><span class="co">#&gt; 15            Cancer Gene Neighborhoods          427</span></span>
+<span><span class="co">#&gt; 16                       Cancer Modules          431</span></span>
+<span><span class="co">#&gt; 17                GO Biological Process         7538</span></span>
+<span><span class="co">#&gt; 18                GO Cellular Component         1080</span></span>
+<span><span class="co">#&gt; 19                GO Molecular Function         1872</span></span>
+<span><span class="co">#&gt; 20             Human Phenotype Ontology         5793</span></span>
+<span><span class="co">#&gt; 21                  Oncogenic Signature          189</span></span>
+<span><span class="co">#&gt; 22                          ImmuneSigDB         4872</span></span>
+<span><span class="co">#&gt; 23                HIPC Vaccine Response          347</span></span>
+<span><span class="co">#&gt; 24                  Cell Type Signature          866</span></span>
+<span><span class="co">#&gt; 25 Computational Perturbation Signature           62</span></span>
+<span><span class="co">#&gt; 26                             Hallmark           50</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="pathway-enrichment-analysis">Pathway enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-enrichment-analysis"></a>
@@ -433,7 +459,7 @@ databases is used.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

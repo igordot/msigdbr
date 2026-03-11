@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2018-2025
+    COPYRIGHT HOLDER: Igor Dolgalev
