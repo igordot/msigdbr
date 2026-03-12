@@ -1,5 +1,12 @@
 # Changelog
 
+## msigdbr 26.1.0
+
+CRAN release: 2026-03-12
+
+- Updated to MSigDB v2026.1.
+- Split source data per collection for faster loading.
+
 ## msigdbr 25.1.1
 
 CRAN release: 2025-07-21
@@ -16,8 +23,8 @@ CRAN release: 2025-07-03
 
 CRAN release: 2025-05-13
 
-- Updated the package to download the data, removing the non-CRAN
-  msigdbdf data package dependency.
+- Updated the package to download the data, removing the non-CRAN data
+  package dependency.
 - Included the MSigDB v2024.1 data.
 - Updated the package versioning scheme so it is tied to the MSigDB
   release.
@@ -38,7 +45,7 @@ CRAN release: 2025-03-19
 
 CRAN release: 2025-03-12
 
-- Removed the MSigDB data (now a separate package msigdbdf).
+- Removed the MSigDB data (now a separate package).
 - Updated the package versioning scheme so it is not tied to the MSigDB
   release.
 - Added support for mouse versions of MSigDB
