@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/igordot/msigdbr/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/igordot/msigdbr/blob/v26.1.0/DESCRIPTION)
 
 Dolgalev I (2026). *msigdbr: MSigDB Gene Sets for Multiple Organisms in
 a Tidy Data Format*. R package version 26.1.0,
