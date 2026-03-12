@@ -1,3 +1,8 @@
+# msigdbr 26.1.0
+
+* Updated to MSigDB v2026.1.
+* Split source data per collection for faster loading.
+
 # msigdbr 25.1.1
 
 * Updated tests and examples to comply with CRAN policies.
@@ -8,7 +13,7 @@
 
 # msigdbr 24.1.0
 
-* Updated the package to download the data, removing the non-CRAN msigdbdf data package dependency.
+* Updated the package to download the data, removing the non-CRAN data package dependency.
 * Included the MSigDB v2024.1 data.
 * Updated the package versioning scheme so it is tied to the MSigDB release.
 
@@ -22,7 +27,7 @@
 
 # msigdbr 10.0.0
 
-* Removed the MSigDB data (now a separate package msigdbdf).
+* Removed the MSigDB data (now a separate package).
 * Updated the package versioning scheme so it is not tied to the MSigDB release.
 * Added support for mouse versions of MSigDB (`msigdbr()` gains a `db_species` argument).
 * Updated the annotation fields in the returned gene sets.
