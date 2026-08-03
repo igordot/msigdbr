@@ -1,7 +1,7 @@
 Type: Package
 Package: msigdbr
 Title: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format
-Version: 26.1.0
+Version: 26.1.0.9000
 Authors@R:
     person("Igor", "Dolgalev", , "igor.dolgalev@nyumc.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4451-126X"))
@@ -34,7 +34,7 @@ Suggests:
     rmarkdown,
     roxygen2,
     testthat
-Config/Needs/website: rmarkdown
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/Needs/website: rmarkdown
+Config/roxygen2/version: 8.0.0
