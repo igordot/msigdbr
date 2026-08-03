@@ -27,6 +27,7 @@ The package can be installed from
 [CRAN](https://cran.r-project.org/package=msigdbr).
 
 ``` r
+
 install.packages("msigdbr")
 ```
 
@@ -37,6 +38,7 @@ install.packages("msigdbr")
 Load package.
 
 ``` r
+
 library(msigdbr)
 ```
 
@@ -46,6 +48,7 @@ function retrieves a data frame of all genes and gene sets in the
 database.
 
 ``` r
+
 all_gene_sets <- msigdbr()
 head(all_gene_sets)
 #> # A tibble: 6 × 20
@@ -73,6 +76,7 @@ use
 to check the available species.
 
 ``` r
+
 all_gene_sets <- msigdbr(species = "Mus musculus")
 head(all_gene_sets)
 #> # A tibble: 6 × 23
@@ -99,6 +103,7 @@ There are human and mouse versions of MSigDB. The `db_species` parameter
 specifies the database (human by default).
 
 ``` r
+
 all_mm_gene_sets <- msigdbr(db_species = "MM", species = "Mus musculus")
 head(all_mm_gene_sets)
 #> # A tibble: 6 × 20
@@ -127,6 +132,7 @@ You can retrieve data just for a specific collection, such as the
 Hallmark gene sets.
 
 ``` r
+
 h_gene_sets <- msigdbr(species = "mouse", collection = "H")
 ```
 
@@ -134,6 +140,7 @@ You can specify a sub-collection, such as C2 (curated) CGP (chemical and
 genetic perturbations) gene sets.
 
 ``` r
+
 cgp_gene_sets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
 ```
 
@@ -144,6 +151,7 @@ methods. For example, you can subset to a specific collection using
 dplyr.
 
 ``` r
+
 dplyr::filter(all_gene_sets, gs_collection == "H")
 ```
 
@@ -194,6 +202,7 @@ be identical for the entire data frame:
   MM).
 
 ``` r
+
 unique(all_gene_sets$db_version)
 #> [1] "2026.1.Hs"
 ```
@@ -212,6 +221,7 @@ acceptable for the
 function.
 
 ``` r
+
 msigdbr_species()
 #> # A tibble: 20 × 2
 #>    species_name                    species_common_name                          
@@ -243,6 +253,7 @@ Use
 to check the available collections.
 
 ``` r
+
 msigdbr_collections()
 #>    db_version gs_collection gs_subcollection
 #> 1   2026.1.Hs            C1                 
@@ -309,6 +320,7 @@ Use the gene sets data frame for
 with genes as NCBI/Entrez IDs.
 
 ``` r
+
 msigdbr_t2g <- dplyr::distinct(msigdbr_df, gs_name, ncbi_gene)
 enricher(gene = gene_ids_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
@@ -318,6 +330,7 @@ Use the gene sets data frame for
 with genes as gene symbols.
 
 ``` r
+
 msigdbr_t2g <- dplyr::distinct(msigdbr_df, gs_name, gene_symbol)
 enricher(gene = gene_symbols_vector, TERM2GENE = msigdbr_t2g, ...)
 ```
@@ -326,6 +339,7 @@ Use the gene sets data frame for
 [fgsea](https://bioconductor.org/packages/fgsea/).
 
 ``` r
+
 msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 fgsea(pathways = msigdbr_list, ...)
 ```
@@ -334,6 +348,7 @@ Use the gene sets data frame for
 [GSVA](https://bioconductor.org/packages/GSVA/).
 
 ``` r
+
 msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 gsvapar <- gsvaParam(geneSets = msigdbr_list, ...)
 gsva(gsvapar)
@@ -342,6 +357,7 @@ gsva(gsvapar)
 Earlier versions of GSVA (\<1.50) only need the `gsva()` function.
 
 ``` r
+
 msigdbr_list <- split(x = msigdbr_df$gene_symbol, f = msigdbr_df$gs_name)
 gsva(gset.idx.list = msigdbr_list, ...)
 ```

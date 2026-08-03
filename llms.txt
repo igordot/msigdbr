@@ -9,6 +9,7 @@ function, which returns a data frame of gene sets and their member
 genes.
 
 ``` r
+
 library(msigdbr)
 genesets <- msigdbr()
 ```
@@ -17,6 +18,7 @@ You can convert the original human genes to their orthologs in other
 organisms, such as mouse.
 
 ``` r
+
 genesets <- msigdbr(species = "mouse")
 ```
 
@@ -24,6 +26,7 @@ You can retrieve gene sets from a specific collection, such as the
 Hallmark gene sets.
 
 ``` r
+
 genesets <- msigdbr(species = "mouse", collection = "H")
 ```
 

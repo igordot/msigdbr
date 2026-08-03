@@ -8,16 +8,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/igordot/msigdbr/blob/v26.1.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/igordot/msigdbr/blob/main/DESCRIPTION)
 
 Dolgalev I (2026). *msigdbr: MSigDB Gene Sets for Multiple Organisms in
-a Tidy Data Format*. R package version 26.1.0,
+a Tidy Data Format*. R package version 26.1.0.9000,
 <https://igordot.github.io/msigdbr/>.
 
     @Manual{,
       title = {msigdbr: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format},
       author = {Igor Dolgalev},
       year = {2026},
-      note = {R package version 26.1.0},
+      note = {R package version 26.1.0.9000},
       url = {https://igordot.github.io/msigdbr/},
     }
