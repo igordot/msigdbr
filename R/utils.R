@@ -13,7 +13,12 @@ pkg_env <- new.env(parent = emptyenv())
 #' @importFrom dplyr bind_rows distinct
 #'
 #' @noRd
-load_gene_sets <- function(target_species = c("HS", "MM"), collection = NULL, overwrite = FALSE, verbose = FALSE) {
+load_gene_sets <- function(
+  target_species = c("HS", "MM"),
+  collection = NULL,
+  overwrite = FALSE,
+  verbose = FALSE
+) {
   target_species <- match.arg(toupper(target_species), choices = c("HS", "MM"))
 
   data_info <- check_cache(overwrite = overwrite, verbose = verbose)
@@ -22,7 +27,12 @@ load_gene_sets <- function(target_species = c("HS", "MM"), collection = NULL, ov
   summary <- read_cached_rds(data_info$summary_rds, verbose = verbose)
 
   # Simplify summary table
-  summary <- dplyr::distinct(summary, .data$db_target_species, .data$gs_collection, .data$df_rds)
+  summary <- dplyr::distinct(
+    summary,
+    .data$db_target_species,
+    .data$gs_collection,
+    .data$df_rds
+  )
 
   # Filter summary table by species
   summary <- summary[summary$db_target_species == target_species, ]
@@ -31,7 +41,10 @@ load_gene_sets <- function(target_species = c("HS", "MM"), collection = NULL, ov
   if (!is.null(collection)) {
     summary <- summary[summary$gs_collection == collection, ]
     if (nrow(summary) == 0) {
-      stop("Unknown collection (use `msigdbr_collections()` to see the available options): ", collection)
+      stop(
+        "Unknown collection (use `msigdbr_collections()` to see the available options): ",
+        collection
+      )
     }
   }
 

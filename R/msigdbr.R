@@ -38,7 +38,14 @@
 #' # Get CGP (chemical and genetic perturbations) gene sets with genes mapped to rat orthologs
 #' gs <- msigdbr(species = "Rattus norvegicus", collection = "C2", subcollection = "CGP")
 #' head(gs)
-msigdbr <- function(db_species = "HS", species = "human", collection = NULL, subcollection = NULL, category = deprecated(), subcategory = deprecated()) {
+msigdbr <- function(
+  db_species = "HS",
+  species = "human",
+  collection = NULL,
+  subcollection = NULL,
+  category = deprecated(),
+  subcategory = deprecated()
+) {
   # Check parameters
   assertthat::assert_that(
     is.character(db_species),
@@ -78,18 +85,38 @@ msigdbr <- function(db_species = "HS", species = "human", collection = NULL, sub
   # Display a message when selecting the human database and mouse genes
   if (db_species == "HS" && species %in% species_mm) {
     mm_msg <- "Using human MSigDB with ortholog mapping to mouse. Use `db_species = \"MM\"` for mouse-native gene sets."
-    rlang::inform(message = mm_msg, .frequency = "once", .frequency_id = "msigdbr_species_mm")
+    rlang::inform(
+      message = mm_msg,
+      .frequency = "once",
+      .frequency_id = "msigdbr_species_mm"
+    )
   }
 
   # Check for deprecated category arguments
   if (lifecycle::is_present(category) && !is.null(category)) {
-    lifecycle::deprecate_warn("10.0.0", "msigdbr(category)", "msigdbr(collection)")
-    assertthat::assert_that(is.character(category), length(category) == 1, nchar(category) > 0)
+    lifecycle::deprecate_warn(
+      "10.0.0",
+      "msigdbr(category)",
+      "msigdbr(collection)"
+    )
+    assertthat::assert_that(
+      is.character(category),
+      length(category) == 1,
+      nchar(category) > 0
+    )
     collection <- category
   }
   if (lifecycle::is_present(subcategory) && !is.null(subcategory)) {
-    lifecycle::deprecate_warn("10.0.0", "msigdbr(subcategory)", "msigdbr(subcollection)")
-    assertthat::assert_that(is.character(subcategory), length(subcategory) == 1, nchar(subcategory) > 0)
+    lifecycle::deprecate_warn(
+      "10.0.0",
+      "msigdbr(subcategory)",
+      "msigdbr(subcollection)"
+    )
+    assertthat::assert_that(
+      is.character(subcategory),
+      length(subcategory) == 1,
+      nchar(subcategory) > 0
+    )
     subcollection <- subcategory
   }
 
@@ -102,7 +129,10 @@ msigdbr <- function(db_species = "HS", species = "human", collection = NULL, sub
     if (subcollection %in% mdb$gs_subcollection) {
       mdb <- dplyr::filter(mdb, .data$gs_subcollection == subcollection)
     } else if (subcollection %in% gsub(".*:", "", mdb$gs_subcollection)) {
-      mdb <- dplyr::filter(mdb, gsub(".*:", "", .data$gs_subcollection) == subcollection)
+      mdb <- dplyr::filter(
+        mdb,
+        gsub(".*:", "", .data$gs_subcollection) == subcollection
+      )
     } else {
       stop("Unknown subcollection.")
     }
@@ -174,7 +204,12 @@ msigdbr <- function(db_species = "HS", species = "human", collection = NULL, sub
     "gs_subcollection",
     everything()
   )
-  mdb <- dplyr::arrange(mdb, .data$gs_name, .data$db_gene_symbol, .data$gene_symbol)
+  mdb <- dplyr::arrange(
+    mdb,
+    .data$gs_name,
+    .data$db_gene_symbol,
+    .data$gene_symbol
+  )
 
   # Add columns from the old msigdbr output if old arguments are present
   if (lifecycle::is_present(category) || lifecycle::is_present(subcategory)) {

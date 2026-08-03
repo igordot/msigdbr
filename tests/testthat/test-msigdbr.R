@@ -13,8 +13,20 @@ test_that("species", {
   expect_type(m_hs_hs$gene_symbol, "character")
   expect_type(m_hs_hs$ncbi_gene, "character")
   expect_type(m_hs_hs$ensembl_gene, "character")
-  expect_identical(names(m_hs_hs)[1:3], c("gene_symbol", "ncbi_gene", "ensembl_gene"))
-  expect_identical(names(m_hs_hs)[4:8], c("db_gene_symbol", "db_ncbi_gene", "db_ensembl_gene", "source_gene", "gs_id"))
+  expect_identical(
+    names(m_hs_hs)[1:3],
+    c("gene_symbol", "ncbi_gene", "ensembl_gene")
+  )
+  expect_identical(
+    names(m_hs_hs)[4:8],
+    c(
+      "db_gene_symbol",
+      "db_ncbi_gene",
+      "db_ensembl_gene",
+      "source_gene",
+      "gs_id"
+    )
+  )
   expect_equal(n_distinct(m_hs_hs$db_version), 1)
   expect_identical(unique(m_hs_hs$db_target_species), "HS")
   # Overall dimensions
@@ -112,7 +124,11 @@ test_that("species", {
 })
 
 test_that("collections and subcollections", {
-  m_rn_bp <- msigdbr(species = "Rattus norvegicus", collection = "C5", subcollection = "BP")
+  m_rn_bp <- msigdbr(
+    species = "Rattus norvegicus",
+    collection = "C5",
+    subcollection = "BP"
+  )
   expect_s3_class(m_rn_bp, "data.frame")
   expect_gt(nrow(m_rn_bp), 25)
   expect_gt(n_distinct(m_rn_bp$gene_symbol), 10)
@@ -124,7 +140,11 @@ test_that("collections and subcollections", {
 })
 
 test_that("msigdbr() subcollection partial match", {
-  m_mm_gomf <- msigdbr(species = "mouse", collection = "C5", subcollection = "GO:MF")
+  m_mm_gomf <- msigdbr(
+    species = "mouse",
+    collection = "C5",
+    subcollection = "GO:MF"
+  )
   expect_s3_class(m_mm_gomf, "data.frame")
   expect_gt(nrow(m_mm_gomf), 25)
   m_mm_mf <- msigdbr(species = "mouse", collection = "C5", subcollection = "MF")
@@ -142,10 +162,22 @@ test_that("wrong parameters", {
   expect_error(msigdbr(species = ""))
   expect_error(msigdbr(species = NA))
   expect_error(msigdbr(species = "Homo sapiens", collection = "X"))
-  expect_error(msigdbr(species = "Homo sapiens", collection = "X", subcollection = "X"))
-  expect_error(msigdbr(species = "Homo sapiens", collection = "H", subcollection = "H"))
+  expect_error(msigdbr(
+    species = "Homo sapiens",
+    collection = "X",
+    subcollection = "X"
+  ))
+  expect_error(msigdbr(
+    species = "Homo sapiens",
+    collection = "H",
+    subcollection = "H"
+  ))
   expect_error(msigdbr(species = "Homo sapiens", collection = c("C1", "C2")))
-  expect_error(msigdbr(species = "Homo sapiens", collection = "C2", subcollection = c("CGP", "CP")))
+  expect_error(msigdbr(
+    species = "Homo sapiens",
+    collection = "C2",
+    subcollection = c("CGP", "CP")
+  ))
   expect_error(msigdbr(db_species = "mm", species = "Homo sapiens"))
   expect_error(msigdbr(db_species = "mm", species = "human"))
   expect_error(msigdbr(db_species = "mm", species = "Rattus norvegicus"))
@@ -156,7 +188,13 @@ test_that("deprecated parameters", {
   expect_warning(msigdbr(species = "Homo sapiens", subcategory = "CGP"))
   expect_no_error(msigdbr(species = "Homo sapiens", category = NULL))
   expect_no_error(msigdbr(species = "Homo sapiens", subcategory = NULL))
-  expect_identical(nrow(msigdbr(species = "human")), nrow(msigdbr(species = "human", category = NULL)))
+  expect_identical(
+    nrow(msigdbr(species = "human")),
+    nrow(msigdbr(species = "human", category = NULL))
+  )
   m_hs <- msigdbr(species = "Homo sapiens", category = "H")
-  expect_contains(colnames(m_hs), c("gene_symbol", "entrez_gene", "ensembl_gene", "gs_cat", "gs_subcat"))
+  expect_contains(
+    colnames(m_hs),
+    c("gene_symbol", "entrez_gene", "ensembl_gene", "gs_cat", "gs_subcat")
+  )
 })
