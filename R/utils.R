@@ -10,8 +10,6 @@ pkg_env <- new.env(parent = emptyenv())
 #'
 #' @return A data frame of gene sets and their member genes.
 #'
-#' @importFrom dplyr bind_rows distinct
-#'
 #' @noRd
 load_gene_sets <- function(
   target_species = c("HS", "MM"),
@@ -62,10 +60,6 @@ load_gene_sets <- function(
 #' @param timeout Maximum time in seconds for the download to complete.
 #'
 #' @return A list of information about the data release.
-#'
-#' @importFrom curl curl_download new_handle
-#' @importFrom tools md5sum R_user_dir
-#' @importFrom utils unzip
 #'
 #' @noRd
 check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
@@ -127,8 +121,6 @@ check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
 #' @param verbose A logical indicating whether to print progress information.
 #'
 #' @return The object stored in the RDS file.
-#'
-#' @importFrom tools R_user_dir
 #'
 #' @noRd
 read_cached_rds <- function(x, verbose = FALSE) {

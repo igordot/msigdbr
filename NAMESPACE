@@ -3,41 +3,13 @@
 export(msigdbr)
 export(msigdbr_collections)
 export(msigdbr_species)
-import(tibble)
-import(tidyselect)
 importFrom(assertthat,assert_that)
-importFrom(babelgene,
-  orthologs,
-  species
-)
-importFrom(curl,
-  curl_download,
-  new_handle
-)
-importFrom(dplyr,
-  arrange,
-  bind_rows,
-  count,
-  distinct,
-  filter,
-  inner_join,
-  mutate,
-  rename,
-  select
-)
 importFrom(lifecycle,
   deprecated,
   is_present
 )
-importFrom(methods,is)
 importFrom(rlang,
   .data,
-  check_installed,
-  inform,
-  is_installed
+  inform
 )
-importFrom(tools,
-  R_user_dir,
-  md5sum
-)
-importFrom(utils,unzip)
+importFrom(tidyselect,everything)

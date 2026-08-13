@@ -21,9 +21,6 @@
 #'
 #' @references <https://www.gsea-msigdb.org/gsea/msigdb/index.jsp>
 #'
-#' @importFrom babelgene orthologs
-#' @importFrom dplyr arrange distinct filter inner_join mutate rename select
-#'
 #' @export
 #'
 #' @examplesIf (identical(Sys.getenv("NOT_CRAN"), "true") || identical(Sys.getenv("IN_PKGDOWN"), "true"))

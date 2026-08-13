@@ -2,9 +2,6 @@
 #'
 #' @return A data frame of the available species.
 #'
-#' @importFrom babelgene species
-#' @importFrom dplyr arrange distinct select
-#'
 #' @export
 #'
 #' @examples
