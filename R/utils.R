@@ -100,13 +100,26 @@ check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
     if (tools::md5sum(tmp_path) != release$zip_md5) {
       stop("Downloaded zip file does not match the expected checksum.")
     }
-    file.rename(tmp_path, zip_path)
 
-    # Extract files from the zip archive
-    if (verbose) {
-      message("Extracting zip archive to: ", release$cache_dir)
+    # Skip if another process already finished populating the cache
+    if (!file.exists(zip_path) || overwrite) {
+      if (verbose) {
+        message("Moving zip archive to: ", zip_path)
+      }
+      # file.rename() fails silently across filesystems
+      if (!file.rename(tmp_path, zip_path)) {
+        if (verbose) {
+          message("Rename failed, falling back to file copy.")
+        }
+        file.copy(tmp_path, zip_path, overwrite = TRUE)
+      }
+
+      # Extract files from the zip archive
+      if (verbose) {
+        message("Extracting zip archive to: ", release$cache_dir)
+      }
+      utils::unzip(zip_path, exdir = release$cache_dir)
     }
-    utils::unzip(zip_path, exdir = release$cache_dir)
   }
 
   # Check that the expected summary file exists
