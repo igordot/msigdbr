@@ -6,26 +6,38 @@ export(msigdbr_species)
 import(tibble)
 import(tidyselect)
 importFrom(assertthat,assert_that)
-importFrom(babelgene,orthologs)
-importFrom(babelgene,species)
-importFrom(curl,curl_download)
-importFrom(curl,new_handle)
-importFrom(dplyr,arrange)
-importFrom(dplyr,bind_rows)
-importFrom(dplyr,count)
-importFrom(dplyr,distinct)
-importFrom(dplyr,filter)
-importFrom(dplyr,inner_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,rename)
-importFrom(dplyr,select)
-importFrom(lifecycle,deprecated)
-importFrom(lifecycle,is_present)
+importFrom(babelgene,
+  orthologs,
+  species
+)
+importFrom(curl,
+  curl_download,
+  new_handle
+)
+importFrom(dplyr,
+  arrange,
+  bind_rows,
+  count,
+  distinct,
+  filter,
+  inner_join,
+  mutate,
+  rename,
+  select
+)
+importFrom(lifecycle,
+  deprecated,
+  is_present
+)
 importFrom(methods,is)
-importFrom(rlang,.data)
-importFrom(rlang,check_installed)
-importFrom(rlang,inform)
-importFrom(rlang,is_installed)
-importFrom(tools,R_user_dir)
-importFrom(tools,md5sum)
+importFrom(rlang,
+  .data,
+  check_installed,
+  inform,
+  is_installed
+)
+importFrom(tools,
+  R_user_dir,
+  md5sum
+)
 importFrom(utils,unzip)
