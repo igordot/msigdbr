@@ -139,7 +139,7 @@ test_that("collections and subcollections", {
   expect_gt(n_distinct(m_rn_bp$gs_id), 1)
 })
 
-test_that("msigdbr() subcollection partial match", {
+test_that("subcollection partial match", {
   m_mm_gomf <- msigdbr(
     species = "mouse",
     collection = "C5",
@@ -152,6 +152,22 @@ test_that("msigdbr() subcollection partial match", {
   expect_gt(nrow(m_mm_mf), 25)
   expect_equal(nrow(m_mm_gomf), nrow(m_mm_mf))
   expect_identical(m_mm_gomf, m_mm_mf)
+})
+
+test_that("ortholog cache", {
+  m_dr_h <- msigdbr(species = "zebrafish", collection = "H")
+  m_dr_c2 <- msigdbr(species = "zebrafish", collection = "C2")
+  m_dr_c4 <- msigdbr(species = "zebrafish", collection = "C4")
+  m_dr_r <- msigdbr(species = "zebrafish", subcollection = "REACTOME")
+  # Catch retrieval issues
+  expect_gt(n_distinct(m_dr_h$gene_symbol), 1000)
+  expect_gt(n_distinct(m_dr_c2$gene_symbol), 1000)
+  expect_gt(n_distinct(m_dr_c4$gene_symbol), 1000)
+  expect_gt(n_distinct(m_dr_r$gene_symbol), 1000)
+  # Catch relative size inconsistencies (cache issues)
+  expect_gt(n_distinct(m_dr_c4$gene_symbol), n_distinct(m_dr_h$gene_symbol) * 2)
+  expect_gt(n_distinct(m_dr_c2$gene_symbol), n_distinct(m_dr_h$gene_symbol) * 3)
+  expect_gt(n_distinct(m_dr_r$gene_symbol), n_distinct(m_dr_h$gene_symbol) * 2)
 })
 
 test_that("wrong parameters", {

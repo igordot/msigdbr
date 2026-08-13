@@ -1,4 +1,5 @@
 # Create a package-level environment for caching
+# To check environment contents: ls(msigdbr:::pkg_env)
 pkg_env <- new.env(parent = emptyenv())
 
 #' Load the gene sets database

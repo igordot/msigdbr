@@ -130,6 +130,13 @@ msigdbr <- function(
         mdb,
         gsub(".*:", "", .data$gs_subcollection) == subcollection
       )
+      if (dplyr::n_distinct(mdb$gs_subcollection) > 1) {
+        stop(
+          "Ambiguous subcollection, multiple matches: ",
+          toString(sort(unique(mdb$gs_subcollection)))
+        )
+      }
+      subcollection <- unique(mdb$gs_subcollection)
     } else {
       stop("Unknown subcollection.")
     }
@@ -150,7 +157,14 @@ msigdbr <- function(
   # Retrieve orthologs for the non-human species for the human database
   if (db_species == "HS" && !(species %in% species_hs)) {
     species_id <- babelgene::species(species)$taxon_id
-    orthologs_key <- paste0("orthologs", species_id)
+    orthologs_key <- paste(
+      "orthologs",
+      species_id,
+      collection,
+      subcollection,
+      sep = "."
+    )
+    # Load from cache if available
     if (exists(orthologs_key, envir = pkg_env, inherits = FALSE)) {
       species_genes <- pkg_env[[orthologs_key]]
     } else {
