@@ -86,18 +86,21 @@ check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
     if (verbose) {
       message("Downloading zip archive to: ", zip_path)
     }
+    # Download to a temp file to prevent partial downloads from being cached
+    tmp_path <- tempfile(fileext = ".zip")
+    on.exit(unlink(tmp_path), add = TRUE)
     curl::curl_download(
       url = release$zip_url,
-      destfile = zip_path,
+      destfile = tmp_path,
       quiet = !verbose,
       handle = curl::new_handle(timeout = timeout)
     )
 
-    # Verify checksum
-    if (tools::md5sum(zip_path) != release$zip_md5) {
-      file.remove(zip_path)
-      stop("Downloaded file does not match the expected checksum.")
+    # Move zip file to the final location if the checksum matches
+    if (tools::md5sum(tmp_path) != release$zip_md5) {
+      stop("Downloaded zip file does not match the expected checksum.")
     }
+    file.rename(tmp_path, zip_path)
 
     # Extract files from the zip archive
     if (verbose) {
