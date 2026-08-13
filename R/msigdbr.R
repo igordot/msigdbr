@@ -44,26 +44,26 @@ msigdbr <- function(
   subcategory = deprecated()
 ) {
   # Check parameters
-  assertthat::assert_that(
+  assert_that(
     is.character(db_species),
     length(db_species) == 1,
     nchar(db_species) == 2
   )
   db_species <- toupper(db_species)
-  assertthat::assert_that(
+  assert_that(
     is.character(species),
     length(species) == 1,
     nchar(species) > 1
   )
   if (!is.null(collection)) {
-    assertthat::assert_that(
+    assert_that(
       is.character(collection),
       length(collection) == 1,
       nchar(collection) > 0
     )
   }
   if (!is.null(subcollection)) {
-    assertthat::assert_that(
+    assert_that(
       is.character(subcollection),
       length(subcollection) == 1,
       nchar(subcollection) > 0
@@ -90,26 +90,26 @@ msigdbr <- function(
   }
 
   # Check for deprecated category arguments
-  if (lifecycle::is_present(category) && !is.null(category)) {
+  if (is_present(category) && !is.null(category)) {
     lifecycle::deprecate_warn(
       "10.0.0",
       "msigdbr(category)",
       "msigdbr(collection)"
     )
-    assertthat::assert_that(
+    assert_that(
       is.character(category),
       length(category) == 1,
       nchar(category) > 0
     )
     collection <- category
   }
-  if (lifecycle::is_present(subcategory) && !is.null(subcategory)) {
+  if (is_present(subcategory) && !is.null(subcategory)) {
     lifecycle::deprecate_warn(
       "10.0.0",
       "msigdbr(subcategory)",
       "msigdbr(subcollection)"
     )
-    assertthat::assert_that(
+    assert_that(
       is.character(subcategory),
       length(subcategory) == 1,
       nchar(subcategory) > 0
@@ -209,7 +209,7 @@ msigdbr <- function(
   )
 
   # Add columns from the old msigdbr output if old arguments are present
-  if (lifecycle::is_present(category) || lifecycle::is_present(subcategory)) {
+  if (is_present(category) || is_present(subcategory)) {
     mdb <- dplyr::mutate(
       mdb,
       entrez_gene = .data$ncbi_gene,
