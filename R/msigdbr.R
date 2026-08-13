@@ -70,17 +70,17 @@ msigdbr <- function(
     )
   }
 
-  # Define name variants for species with caveats
-  species_hs <- c("Homo sapiens", "human")
-  species_mm <- c("Mus musculus", "mouse", "house mouse")
+  # Define name variants for species with caveats (matched case-insensitively)
+  species_hs <- c("homo sapiens", "human")
+  species_mm <- c("mus musculus", "mouse", "house mouse")
 
   # Use only mouse genes for mouse database
-  if (db_species == "MM" && !(species %in% species_mm)) {
+  if (db_species == "MM" && !(tolower(species) %in% species_mm)) {
     stop("Use `species = \"mouse\"` when selecting the mouse database.")
   }
 
   # Display a message when selecting the human database and mouse genes
-  if (db_species == "HS" && species %in% species_mm) {
+  if (db_species == "HS" && tolower(species) %in% species_mm) {
     mm_msg <- "Using human MSigDB with ortholog mapping to mouse. Use `db_species = \"MM\"` for mouse-native gene sets."
     rlang::inform(
       message = mm_msg,
@@ -155,7 +155,7 @@ msigdbr <- function(
   )
 
   # Retrieve orthologs for the non-human species for the human database
-  if (db_species == "HS" && !(species %in% species_hs)) {
+  if (db_species == "HS" && !(tolower(species) %in% species_hs)) {
     species_id <- babelgene::species(species)$taxon_id
     orthologs_key <- paste(
       "orthologs",

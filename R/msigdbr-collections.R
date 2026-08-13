@@ -15,7 +15,7 @@ msigdbr_collections <- function(db_species = "HS") {
     length(db_species) == 1,
     nchar(db_species) == 2
   )
-  db_species <- toupper(db_species)
+  db_species <- match.arg(toupper(db_species), choices = c("HS", "MM"))
 
   # Get data summary (from memory cache or disk)
   cache_info <- check_cache()

@@ -8,6 +8,8 @@ test_that("species", {
   m_hs_hs <- msigdbr()
   expect_identical(m_hs_hs, msigdbr(species = "Homo sapiens"))
   expect_identical(m_hs_hs, msigdbr(db_species = "hs", species = "human"))
+  expect_identical(m_hs_hs, msigdbr(species = "Human"))
+  expect_identical(m_hs_hs, msigdbr(species = "HOMO SAPIENS"))
   # Basic info
   expect_s3_class(m_hs_hs, "tbl_df")
   expect_type(m_hs_hs$gene_symbol, "character")

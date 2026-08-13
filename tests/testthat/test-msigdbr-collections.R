@@ -26,3 +26,8 @@ test_that("msigdbr_collections()", {
   expect_match(cmm$gs_collection, "MH", fixed = TRUE, all = FALSE)
   expect_match(cmm$gs_collection, "M8", fixed = TRUE, all = FALSE)
 })
+
+test_that("wrong parameters", {
+  expect_error(msigdbr_collections(db_species = "XX"))
+  expect_error(msigdbr_collections(db_species = "RN"))
+})
