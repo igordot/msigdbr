@@ -30,6 +30,6 @@ Hallmark gene sets.
 genesets <- msigdbr(species = "mouse", collection = "H")
 ```
 
-Check the [full
-overview](https://igordot.github.io/msigdbr/articles/msigdbr-intro.md)
-for more information.
+Check the [overview
+vignette](https://igordot.github.io/msigdbr/articles/msigdbr-intro.md)
+for more details.

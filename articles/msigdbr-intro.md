@@ -13,10 +13,9 @@ gene sets typically used with the Gene Set Enrichment Analysis (GSEA)
 software:
 
 - in an R-friendly “[tidy](https://r4ds.hadley.nz/data-tidy.html)”
-  format with one gene pair per row
-- for multiple frequently studied model organisms, such as mouse, rat,
-  pig, zebrafish, fly, and yeast, in addition to the original human
-  genes
+  format with one gene-to-gene-set mapping per row
+- for multiple frequently studied model organisms in addition to the
+  original human genes
 - as gene symbols as well as NCBI Entrez and Ensembl IDs
 - without accessing external resources requiring an active internet
   connection
@@ -44,8 +43,8 @@ library(msigdbr)
 
 The
 [`msigdbr()`](https://igordot.github.io/msigdbr/reference/msigdbr.md)
-function retrieves a data frame of all genes and gene sets in the
-database.
+function retrieves a data frame of gene set memberships, with one row
+per gene per gene set.
 
 ``` r
 
@@ -67,13 +66,38 @@ head(all_gene_sets)
 #> #   db_target_species <chr>
 ```
 
-### Species
+### Selecting collection
 
-The `species` parameter enables conversion of the original human genes
-to their orthologs in various model organisms, such as mouse. You can
-use
-[`msigdbr_species()`](https://igordot.github.io/msigdbr/reference/msigdbr_species.md)
-to check the available species.
+You can retrieve data for a specific collection, such as the Hallmark
+gene sets.
+
+``` r
+
+h_gene_sets <- msigdbr(collection = "H")
+```
+
+You can specify a sub-collection, such as C2 (curated) CGP (chemical and
+genetic perturbations) gene sets.
+
+``` r
+
+cgp_gene_sets <- msigdbr(collection = "C2", subcollection = "CGP")
+```
+
+Use
+[`msigdbr_collections()`](https://igordot.github.io/msigdbr/reference/msigdbr_collections.md)
+to check the available collections.
+
+If you require more precise filtering, the
+[`msigdbr()`](https://igordot.github.io/msigdbr/reference/msigdbr.md)
+output is a data frame that can be manipulated using generic methods
+such as
+[`dplyr::filter()`](https://dplyr.tidyverse.org/reference/filter.html).
+
+### Converting genes to other species
+
+The `species` parameter converts the human gene identifiers to orthologs
+of various model organisms.
 
 ``` r
 
@@ -96,11 +120,18 @@ head(all_gene_sets)
 #> #   num_ortholog_sources <dbl>
 ```
 
+Use
+[`msigdbr_species()`](https://igordot.github.io/msigdbr/reference/msigdbr_species.md)
+to check the available organisms.
+
 Please be aware that the orthologs are computationally predicted at the
 gene level. The full pathways may not be well conserved across species.
 
-There are human and mouse versions of MSigDB. The `db_species` parameter
-specifies the database (human by default).
+### Using the native mouse database
+
+Recent releases of MSigDB include both human and mouse versions. The
+`db_species` parameter selects the underlying MSigDB database (human by
+default).
 
 ``` r
 
@@ -126,42 +157,13 @@ The genes within each gene set may originate from a species different
 from the database target species, as indicated by the
 `gs_source_species` and `db_target_species` fields.
 
-### Collections
-
-You can retrieve data just for a specific collection, such as the
-Hallmark gene sets.
-
-``` r
-
-h_gene_sets <- msigdbr(species = "mouse", collection = "H")
-```
-
-You can specify a sub-collection, such as C2 (curated) CGP (chemical and
-genetic perturbations) gene sets.
-
-``` r
-
-cgp_gene_sets <- msigdbr(species = "mouse", collection = "C2", subcollection = "CGP")
-```
-
-If you require more precise filtering, the
-[`msigdbr()`](https://igordot.github.io/msigdbr/reference/msigdbr.md)
-function output is a data frame that can be manipulated using standard
-methods. For example, you can subset to a specific collection using
-dplyr.
-
-``` r
-
-dplyr::filter(all_gene_sets, gs_collection == "H")
-```
-
-### Output
+### Understanding the output
 
 The
 [`msigdbr()`](https://igordot.github.io/msigdbr/reference/msigdbr.md)
-function returns a data frame with one gene per row. Generally, the
-`gene_symbol` (gene symbol) and `gs_name` (gene set name) columns are
-the most useful.
+function returns a data frame with one gene-to-gene-set mapping per row.
+Generally, the `gene_symbol` (gene symbol) and `gs_name` (gene set name)
+columns are the most relevant.
 
 The data frame contains the following columns for gene-level info:
 
@@ -314,6 +316,7 @@ msigdbr_collections()
 ## Pathway enrichment analysis
 
 The msigdbr output can be used with various pathway analysis packages.
+It just needs to be reshaped to the appropriate format.
 
 Use the gene sets data frame for
 [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/)
@@ -364,11 +367,6 @@ gsva(gset.idx.list = msigdbr_list, ...)
 
 ## Potential questions and concerns
 
-**Which version of MSigDB was used?**
-
-The MSigDB version is included in the returned data frame. Check the
-version with `unique(msigdbr_df$db_version)`.
-
 **Why use this package when I can download the gene sets directly from
 MSigDB?**
 
@@ -393,7 +391,7 @@ with dozens of homologs for some genes, so additional cleanup may be
 helpful. Because biomaRt relies on live BioMart services, it can be
 disrupted by server outage or maintenance.
 
-**Aren’t there already other similar tools?**
+**How does msigdbr compare to similar tools?**
 
 There are a few resources that provide some of the msigdbr functionality
 and served as an inspiration for this package.
