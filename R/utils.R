@@ -83,12 +83,14 @@ check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
   zip_name <- sub("\\?.*$", "", basename(release$zip_url))
   zip_path <- file.path(release$cache_dir, zip_name)
   if (!file.exists(zip_path) || overwrite) {
-    if (verbose) {
-      message("Downloading zip archive to: ", zip_path)
-    }
+    message("Downloading gene sets (first use only, may take a few minutes)...")
+
     # Download to a temp file to prevent partial downloads from being cached
     tmp_path <- tempfile(fileext = ".zip")
     on.exit(unlink(tmp_path), add = TRUE)
+    if (verbose) {
+      message("Downloading zip archive to: ", tmp_path)
+    }
     curl::curl_download(
       url = release$zip_url,
       destfile = tmp_path,
@@ -96,7 +98,7 @@ check_cache <- function(overwrite = FALSE, verbose = FALSE, timeout = 600) {
       handle = curl::new_handle(timeout = timeout)
     )
 
-    # Move zip file to the final location if the checksum matches
+    # Check the md5 checksum of the zip file
     if (tools::md5sum(tmp_path) != release$zip_md5) {
       stop("Downloaded zip file does not match the expected checksum.")
     }
