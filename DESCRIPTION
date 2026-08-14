@@ -24,7 +24,6 @@ Imports:
     curl,
     dplyr (>= 1.1.1),
     lifecycle,
-    methods,
     rlang,
     tibble,
     tidyselect (>= 1.2.0),
@@ -37,4 +36,4 @@ Suggests:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Config/Needs/website: rmarkdown
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
