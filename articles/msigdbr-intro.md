@@ -157,6 +157,10 @@ The genes within each gene set may originate from a species different
 from the database target species, as indicated by the
 `gs_source_species` and `db_target_species` fields.
 
+An [in-depth comparison of the human and mouse
+databases](https://igordot.github.io/msigdbr/articles/hs-mm.md) is
+available as a separate vignette.
+
 ### Understanding the output
 
 The
