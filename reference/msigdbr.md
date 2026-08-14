@@ -80,6 +80,7 @@ ortholog mapping.
 ``` r
 # Get all human gene sets
 gs <- msigdbr()
+#> Downloading gene sets (first use only, may take a few minutes)...
 head(gs)
 #> # A tibble: 6 × 20
 #>   gene_symbol ncbi_gene ensembl_gene db_gene_symbol db_ncbi_gene db_ensembl_gene
