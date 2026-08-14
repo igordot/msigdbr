@@ -376,7 +376,7 @@ gene set level.
 plot_overlap(
   genesets_hs$gs_name,
   genesets_mm$gs_name,
-  "Gene sets from shared collections"
+  "Shared collections gene sets"
 )
 ```
 
@@ -392,7 +392,7 @@ The overlap is much higher for mouse-derived gene sets.
 plot_overlap(
   filter(genesets_hs, gs_source_species == "MM")$gs_name,
   filter(genesets_mm, gs_source_species == "MM")$gs_name,
-  "Mouse-derived gene sets from shared collections"
+  "Mouse-derived gene sets"
 )
 ```
 
@@ -479,7 +479,7 @@ The overall overlap is not very high.
 plot_overlap(
   filter(genesets_hs, gs_collection_name == "Chemical and Genetic Perturbations")$gs_name,
   filter(genesets_mm, gs_collection_name == "Chemical and Genetic Perturbations")$gs_name,
-  "Chemical and Genetic Perturbation gene sets"
+  "CGP gene sets"
 )
 ```
 
@@ -502,7 +502,7 @@ plot(
     c(genesets_hs_cgp, genesets_mm_cgp)
   ),
   quantities = TRUE,
-  main = "Chemical and Genetic Perturbation gene sets"
+  main = "CGP gene sets (split by source)"
 )
 ```
 
@@ -629,7 +629,7 @@ length(setdiff(mm_cgp$gs_name_gene, hs_cgp$gs_name_gene)) / n_distinct(mm_cgp$gs
 plot_overlap(
   hs_cgp$gs_name_gene,
   mm_cgp$gs_name_gene,
-  "Chemical and Genetic Perturbations collection genes"
+  "CGP collection genes"
 )
 ```
 

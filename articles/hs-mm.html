@@ -356,7 +356,7 @@ the gene set level.</p>
 <code class="sourceCode R"><span><span class="fu">plot_overlap</span><span class="op">(</span></span>
 <span>  <span class="va">genesets_hs</span><span class="op">$</span><span class="va">gs_name</span>,</span>
 <span>  <span class="va">genesets_mm</span><span class="op">$</span><span class="va">gs_name</span>,</span>
-<span>  <span class="st">"Gene sets from shared collections"</span></span>
+<span>  <span class="st">"Shared collections gene sets"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="hs-mm_files/figure-html/plot-overlap-gs-all-1.png" class="r-plt" alt="" width="60%" style="display: block; margin: auto;"></p>
 <p>As would be expected, there is substantial overlap between the two
@@ -366,7 +366,7 @@ databases, but there are unique gene sets in each.</p>
 <code class="sourceCode R"><span><span class="fu">plot_overlap</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">genesets_hs</span>, <span class="va">gs_source_species</span> <span class="op">==</span> <span class="st">"MM"</span><span class="op">)</span><span class="op">$</span><span class="va">gs_name</span>,</span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">genesets_mm</span>, <span class="va">gs_source_species</span> <span class="op">==</span> <span class="st">"MM"</span><span class="op">)</span><span class="op">$</span><span class="va">gs_name</span>,</span>
-<span>  <span class="st">"Mouse-derived gene sets from shared collections"</span></span>
+<span>  <span class="st">"Mouse-derived gene sets"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="hs-mm_files/figure-html/plot-overlap-gs-all-mm-1.png" class="r-plt" alt="" width="60%" style="display: block; margin: auto;"></p>
 <p><strong>Most of the mouse-derived gene sets in the human database are
@@ -433,7 +433,7 @@ The overall overlap is not very high.</p>
 <code class="sourceCode R"><span><span class="fu">plot_overlap</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">genesets_hs</span>, <span class="va">gs_collection_name</span> <span class="op">==</span> <span class="st">"Chemical and Genetic Perturbations"</span><span class="op">)</span><span class="op">$</span><span class="va">gs_name</span>,</span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">genesets_mm</span>, <span class="va">gs_collection_name</span> <span class="op">==</span> <span class="st">"Chemical and Genetic Perturbations"</span><span class="op">)</span><span class="op">$</span><span class="va">gs_name</span>,</span>
-<span>  <span class="st">"Chemical and Genetic Perturbation gene sets"</span></span>
+<span>  <span class="st">"CGP gene sets"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="hs-mm_files/figure-html/plot-overlap-gs-cgp-1.png" class="r-plt" alt="" width="60%" style="display: block; margin: auto;"></p>
 <p>The overlap looks very different when we split the human gene sets by
@@ -451,7 +451,7 @@ source species.</p>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">genesets_hs_cgp</span>, <span class="va">genesets_mm_cgp</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  quantities <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">"Chemical and Genetic Perturbation gene sets"</span></span>
+<span>  main <span class="op">=</span> <span class="st">"CGP gene sets (split by source)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="hs-mm_files/figure-html/plot-overlap-gs-cgp-split-1.png" class="r-plt" alt="" width="60%" style="display: block; margin: auto;"></p>
 <p>Most of the overlap can be explained by the mouse-derived gene sets.
@@ -540,7 +540,7 @@ database.</p>
 <code class="sourceCode R"><span><span class="fu">plot_overlap</span><span class="op">(</span></span>
 <span>  <span class="va">hs_cgp</span><span class="op">$</span><span class="va">gs_name_gene</span>,</span>
 <span>  <span class="va">mm_cgp</span><span class="op">$</span><span class="va">gs_name_gene</span>,</span>
-<span>  <span class="st">"Chemical and Genetic Perturbations collection genes"</span></span>
+<span>  <span class="st">"CGP collection genes"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="hs-mm_files/figure-html/plot-overlap-ge-genes-cgp-1.png" class="r-plt" alt="" width="60%" style="display: block; margin: auto;"></p>
 </div>
