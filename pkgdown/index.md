@@ -21,4 +21,4 @@ You can retrieve gene sets from a specific collection, such as the Hallmark gene
 genesets <- msigdbr(species = "mouse", collection = "H")
 ```
 
-Check the [full overview](articles/msigdbr-intro.html) for more information.
+Check the [overview vignette](articles/msigdbr-intro.html) for more details.

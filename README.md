@@ -7,7 +7,7 @@
 
 The msigdbr R package provides Molecular Signatures Database (MSigDB) gene sets:
 
-* in an R-friendly tidy format with one gene pair per row
+* in an R-friendly tidy format with one gene-to-gene-set mapping per row
 * for multiple frequently studied model organisms in addition to the original human genes
 * as gene symbols as well as NCBI Entrez and Ensembl IDs
 * without accessing external resources requiring an active internet connection
