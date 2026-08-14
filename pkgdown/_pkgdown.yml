@@ -14,12 +14,16 @@ template:
 navbar:
   # zephyr navbar is blue by default
   bg: light
+  structure:
+    left: [intro, articles, reference, news]
   components:
     home: ~
-    articles: ~
     intro:
       text: Get started
       href: articles/msigdbr-intro.html
+    articles:
+      text: HS/MM databases
+      href: articles/hs-mm.html
 
 home:
   title: MSigDB R data frame
