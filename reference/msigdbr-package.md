@@ -23,9 +23,9 @@ Useful links:
 ## Author
 
 **Maintainer**: Igor Dolgalev <igor.dolgalev@nyumc.org>
-([ORCID](https://orcid.org/0000-0003-4451-126X))
+([ORCID](https://orcid.org/0000-0003-4451-126X)) \[copyright holder\]
 
 Authors:
 
 - Igor Dolgalev <igor.dolgalev@nyumc.org>
-  ([ORCID](https://orcid.org/0000-0003-4451-126X))
+  ([ORCID](https://orcid.org/0000-0003-4451-126X)) \[copyright holder\]

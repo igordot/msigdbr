@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Igor Dolgalev**. Author, maintainer.
+- **Igor Dolgalev**. Author, maintainer, copyright holder.
   [](https://orcid.org/0000-0003-4451-126X)
 
 ## Citation
