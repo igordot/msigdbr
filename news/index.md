@@ -1,5 +1,14 @@
 # Changelog
 
+## msigdbr 26.1.1
+
+CRAN release: 2026-08-20
+
+- Fixed ortholog caching that could return incomplete gene sets
+  depending on request order
+  ([\#62](https://github.com/igordot/msigdbr/issues/62))
+- Made the gene set download more resilient to partial downloads.
+
 ## msigdbr 26.1.0
 
 CRAN release: 2026-03-12
