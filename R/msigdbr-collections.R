@@ -18,8 +18,8 @@ msigdbr_collections <- function(db_species = "HS") {
   db_species <- match.arg(toupper(db_species), choices = c("HS", "MM"))
 
   # Get data summary (from memory cache or disk)
-  cache_info <- check_cache()
-  mc <- read_cached_rds(cache_info$summary_rds)
+  summary_rds <- resolve_cache()
+  mc <- read_cached_rds(summary_rds)
 
   # Filter summary table by species
   mc <- mc[mc$db_target_species == db_species, ]
