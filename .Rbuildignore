@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
-^LICENSE\.txt$
+^LICENSE\.md$
 ^\.github$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
